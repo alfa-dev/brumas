@@ -1,0 +1,138 @@
+/* Ornamentos baseados em iluminuras medievais */
+
+/* Bordas ornamentadas para containers */
+.illuminated-border {
+    position: relative;
+    border: 2px solid var(--color-gold);
+    padding: 25px;
+    border-radius: 5px;
+    background-color: rgba(244, 233, 205, 0.95);
+}
+
+.illuminated-border::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    pointer-events: none;
+}
+
+/* Cantos com ornamentos florais */
+.illuminated-border::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    left: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M1,15 C1,8 8,1 15,1 C15,8 8,15 1,15 Z" fill="none" stroke="%23d4af37" stroke-width="1"/><path d="M5,15 C5,10 10,5 15,5 C15,10 10,15 5,15 Z" fill="none" stroke="%23d4af37" stroke-width="0.7"/><path d="M8,12 C8,9 11,6 14,6 C14,9 11,12 8,12 Z" fill="none" stroke="%23d4af37" stroke-width="0.5"/></svg>');
+    background-repeat: no-repeat;
+}
+
+.illuminated-corner-tr,
+.illuminated-corner-bl,
+.illuminated-corner-br {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+}
+
+.illuminated-corner-tr {
+    top: 5px;
+    right: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M29,15 C29,8 22,1 15,1 C15,8 22,15 29,15 Z" fill="none" stroke="%23d4af37" stroke-width="1"/><path d="M25,15 C25,10 20,5 15,5 C15,10 20,15 25,15 Z" fill="none" stroke="%23d4af37" stroke-width="0.7"/><path d="M22,12 C22,9 19,6 16,6 C16,9 19,12 22,12 Z" fill="none" stroke="%23d4af37" stroke-width="0.5"/></svg>');
+}
+
+.illuminated-corner-bl {
+    bottom: 5px;
+    left: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M1,15 C1,22 8,29 15,29 C15,22 8,15 1,15 Z" fill="none" stroke="%23d4af37" stroke-width="1"/><path d="M5,15 C5,20 10,25 15,25 C15,20 10,15 5,15 Z" fill="none" stroke="%23d4af37" stroke-width="0.7"/><path d="M8,18 C8,21 11,24 14,24 C14,21 11,18 8,18 Z" fill="none" stroke="%23d4af37" stroke-width="0.5"/></svg>');
+}
+
+.illuminated-corner-br {
+    bottom: 5px;
+    right: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M29,15 C29,22 22,29 15,29 C15,22 22,15 29,15 Z" fill="none" stroke="%23d4af37" stroke-width="1"/><path d="M25,15 C25,20 20,25 15,25 C15,20 20,15 25,15 Z" fill="none" stroke="%23d4af37" stroke-width="0.7"/><path d="M22,18 C22,21 19,24 16,24 C16,21 19,18 22,18 Z" fill="none" stroke="%23d4af37" stroke-width="0.5"/></svg>');
+}
+
+/* Capitular decorada para início de texto */
+.medieval-capital {
+    float: left;
+    font-family: var(--font-medieval);
+    font-size: 3.5rem;
+    line-height: 0.8;
+    padding: 4px 8px 0 0;
+    color: var(--color-deep-purple);
+    position: relative;
+}
+
+.dark-section .medieval-capital {
+    color: var(--color-gold);
+}
+
+/* Separadores de linha ornamentados */
+.illuminated-divider {
+    height: 30px;
+    width: 100%;
+    margin: 20px 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 15"><path d="M0,7.5 Q75,15 150,7.5 T300,7.5" fill="none" stroke="%23d4af37" stroke-width="1"/><g fill="%23d4af37"><circle cx="50" cy="7.5" r="1.5"/><circle cx="100" cy="7.5" r="1.5"/><circle cx="150" cy="7.5" r="1.5"/><circle cx="200" cy="7.5" r="1.5"/><circle cx="250" cy="7.5" r="1.5"/></g></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Cabeçalhos decorados */
+.illuminated-heading {
+    position: relative;
+    text-align: center;
+    padding: 0 50px;
+    display: inline-block;
+}
+
+.illuminated-heading::before,
+.illuminated-heading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-50%);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.illuminated-heading::before {
+    left: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M38,20 H25 C25,13 32,6 39,6" stroke="%23d4af37" fill="none" stroke-width="1.5"/><path d="M38,20 H25 C25,27 32,34 39,34" stroke="%23d4af37" fill="none" stroke-width="1.5"/><circle cx="10" cy="20" r="6" stroke="%23d4af37" fill="none" stroke-width="1"/><circle cx="10" cy="20" r="3" stroke="%23d4af37" fill="none" stroke-width="0.7"/></svg>');
+}
+
+.illuminated-heading::after {
+    right: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M2,20 H15 C15,13 8,6 1,6" stroke="%23d4af37" fill="none" stroke-width="1.5"/><path d="M2,20 H15 C15,27 8,34 1,34" stroke="%23d4af37" fill="none" stroke-width="1.5"/><circle cx="30" cy="20" r="6" stroke="%23d4af37" fill="none" stroke-width="1"/><circle cx="30" cy="20" r="3" stroke="%23d4af37" fill="none" stroke-width="0.7"/></svg>');
+}
+
+/* Decoração de folhas para cards */
+.leaf-ornament {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.leaf-ornament-tl {
+    top: 5px;
+    left: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M5,35 C5,20 20,5 35,5 C35,20 20,35 5,35 Z" fill="none" stroke="%23491449" stroke-width="1.2"/><path d="M10,30 C10,20 20,10 30,10 C30,20 20,30 10,30 Z" fill="none" stroke="%23491449" stroke-width="0.8"/></svg>');
+}
+
+.leaf-ornament-br {
+    bottom: 5px;
+    right: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M5,35 C5,20 20,5 35,5 C35,20 20,35 5,35 Z" fill="none" stroke="%23491449" stroke-width="1.2"/><path d="M10,30 C10,20 20,10 30,10 C30,20 20,30 10,30 Z" fill="none" stroke="%23491449" stroke-width="0.8"/></svg>');
+    transform: rotate(180deg);
+}

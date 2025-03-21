@@ -1,0 +1,159 @@
+/* Efeitos de névoa, brumas e neblina */
+
+/* Camada base de bruma para toda a página */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 18, 70, 0.05) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Efeito de névoa para seções */
+.mist-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.05 0"/></filter><rect width="1000" height="600" filter="url(%23noise)" fill="%23f4e9cd" opacity="0.3"/></svg>');
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.dark-section .mist-layer {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0"/></filter><rect width="1000" height="600" filter="url(%23noise)" fill="%230a1246" opacity="0.4"/></svg>');
+}
+
+/* Animação de névoa flutuante */
+.floating-mist {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="400" viewBox="0 0 2000 400"><filter id="fog"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.5 0"/></filter><rect width="2000" height="400" filter="url(%23fog)" opacity="0.3"/></svg>');
+    background-position: center;
+    opacity: 0.2;
+    animation: floatMist 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Camada de bruma para o hero */
+.hero-mist {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(8, 8, 6, 0.4), transparent);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Efeito de neblina pulsante */
+.pulsating-mist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(73, 20, 73, 0.05) 70%, rgba(73, 20, 73, 0.1) 100%);
+    opacity: 0.5;
+    animation: pulseMist 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Efeito de bruma em elementos flutuantes */
+.mist-glow {
+    position: relative;
+}
+
+.mist-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 20px 10px rgba(48, 93, 135, 0.1);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.mist-glow:hover::after {
+    opacity: 1;
+}
+
+/* Partículas de névoa */
+.mist-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.mist-particle {
+    position: absolute;
+    background: rgba(244, 233, 205, 0.3);
+    border-radius: 50%;
+    animation: floatParticle linear infinite;
+}
+
+.dark-section .mist-particle {
+    background: rgba(139, 74, 150, 0.15);
+}
+
+/* Névoa de borda para divisão de seções */
+.mist-divider {
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(to bottom,
+        rgba(244, 233, 205, 0.2) 0%,
+        rgba(244, 233, 205, 0) 100%);
+    top: -50px;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dark-section .mist-divider {
+    background: linear-gradient(to bottom,
+        rgba(10, 18, 70, 0.3) 0%,
+        rgba(10, 18, 70, 0) 100%);
+}
+
+/* Efeito de bruma nas imagens */
+.mist-filter {
+    position: relative;
+}
+
+.mist-filter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+        rgba(73, 20, 73, 0.1) 0%,
+        rgba(48, 93, 135, 0.1) 50%,
+        rgba(73, 20, 73, 0.1) 100%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}

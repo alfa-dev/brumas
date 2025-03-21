@@ -1,0 +1,74 @@
+/* Animações específicas para elementos decorativos */
+
+/* Animação de flutuação de névoa */
+@keyframes floatMist {
+    0% { background-position: 0 0; }
+    100% { background-position: 2000px 0; }
+}
+
+/* Animação pulsante para bruma */
+@keyframes pulseMist {
+    0% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.02); }
+    100% { opacity: 0.3; transform: scale(1); }
+}
+
+/* Animação para partículas de névoa */
+@keyframes floatParticle {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) translateX(20px);
+    }
+}
+
+/* Animação para iluminação de pontos de luz */
+@keyframes illumination {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.2; }
+}
+
+/* Animação de escrita rúnica */
+@keyframes runicReveal {
+    0% { stroke-dashoffset: 100; opacity: 0; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* Animação de pergaminho desenrolando */
+@keyframes unrollScroll {
+    0% { transform: scaleY(0.1); opacity: 0; }
+    100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Efeito de esmaecimento para bruma entre seções */
+@keyframes mistFade {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animação para símbolos alquímicos */
+@keyframes alchemyGlow {
+    0% { filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.1)); }
+    50% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); }
+    100% { filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.1)); }
+}
+
+/* Rotação lenta para círculos alquímicos */
+@keyframes slowRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animação para destaque de cantos iluminados */
+@keyframes cornerLight {
+    0% { background-size: 100%; }
+    50% { background-size: 110%; }
+    100% { background-size: 100%; }
+}
