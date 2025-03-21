@@ -1,0 +1,58 @@
+/* Contato */
+.contact-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-methods {
+    margin-top: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--color-deep-purple);
+    margin-right: 15px;
+}
+
+.social-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-deep-purple);
+    color: var(--color-light);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--color-gold);
+    color: var(--color-dark);
+    transform: translateY(-5px);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .contact-info {
+        margin-bottom: 30px;
+    }
+}

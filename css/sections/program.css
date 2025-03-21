@@ -1,0 +1,109 @@
+/* Timeline de Programação */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 120px;
+    height: 100%;
+    width: 2px;
+    background-color: var(--color-gold);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 120px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    border: 3px solid var(--color-navy);
+    transform: translateX(-8px);
+    z-index: 1;
+}
+
+.time {
+    width: 100px;
+    font-family: var(--font-title);
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: right;
+    padding-right: 30px;
+    color: var(--color-gold);
+}
+
+.event {
+    margin-left: 50px;
+    background-color: rgba(72, 20, 73, 0.3);
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    flex: 1;
+    border-left: 3px solid var(--color-purple);
+}
+
+.event h3 {
+    color: var(--color-gold);
+    margin-bottom: 10px;
+    font-family: var(--font-medieval);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 60px;
+    }
+
+    .timeline-item::before {
+        left: 60px;
+    }
+
+    .time {
+        width: 50px;
+        font-size: 0.9rem;
+    }
+
+    .event {
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-item {
+        flex-direction: column;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item::before {
+        left: 20px;
+        top: 40px;
+    }
+
+    .time {
+        width: 100%;
+        text-align: left;
+        padding-left: 40px;
+        margin-bottom: 10px;
+    }
+
+    .event {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

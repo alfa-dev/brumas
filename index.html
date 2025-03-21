@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brumas - Festival Medieval</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Brumas Logo">
+            </div>
+            <div class="nav-links">
+                <a href="#hero">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#programacao">Programação</a>
+                <a href="#local">Local</a>
+                <a href="#ingressos">Ingressos</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section com Video Parallax -->
+        <section id="hero" class="parallax-section">
+            <div class="video-container">
+                <video autoplay muted loop id="bg-video">
+                    <source src="assets/video/medieval-background.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <div class="flourish-top"></div>
+                <h1 class="main-title">Brumas</h1>
+                <h2 class="subtitle">Festival Medieval</h2>
+                <div class="date-container">
+                    <p class="event-date">19 de Julho de 2025</p>
+                </div>
+                <a href="#ingressos" class="cta-button">Garantir Ingresso</a>
+                <div class="flourish-bottom"></div>
+                <div class="scroll-indicator">
+                    <p>Desça para descobrir</p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="flourish-header"></div>
+                    <h2>Sobre o Festival</h2>
+                    <div class="flourish-header"></div>
+                </div>
+                <div class="content-columns">
+                    <div class="column">
+                        <div class="medieval-card">
+                            <div class="card-icon">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <h3>Uma Viagem ao Passado</h3>
+                            <p>Brumas Festival Medieval transporta você para uma época de cavaleiros, bardos e castelos. Uma experiência imersiva que recria fielmente o espírito da Idade Média.</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="medieval-card">
+                            <div class="card-icon">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <h3>Tradição e Cultura</h3>
+                            <p>Celebramos as tradições medievais com apresentações autênticas, culinária da época, torneios e música que ecoam através dos séculos.</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="medieval-card">
+                            <div class="card-icon">
+                                <i class="fa-solid fa-chess-knight"></i>
+                            </div>
+                            <h3>Para Todas as Idades</h3>
+                            <p>Atividades para toda a família, desde duelos de cavaleiros e apresentações teatrais até oficinas de artesanato medieval e jogos tradicionais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programação Section -->
+        <section id="programacao" class="section dark-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="flourish-header"></div>
+                    <h2>Programação</h2>
+                    <div class="flourish-header"></div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">10:00</div>
+                        <div class="event">
+                            <h3>Abertura dos Portões</h3>
+                            <p>Recepção com música medieval e personagens caracterizados</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">11:30</div>
+                        <div class="event">
+                            <h3>Torneio de Arqueiros</h3>
+                            <p>Competição de arco e flecha com mestres arqueiros</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">13:00</div>
+                        <div class="event">
+                            <h3>Banquete Medieval</h3>
+                            <p>Experiência gastronômica autêntica da época medieval</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">15:00</div>
+                        <div class="event">
+                            <h3>Duelo de Cavaleiros</h3>
+                            <p>Apresentação de combates medievais com armaduras e espadas</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">17:30</div>
+                        <div class="event">
+                            <h3>Concerto de Música Medieval</h3>
+                            <p>Apresentação de instrumentos e canções da época</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20:00</div>
+                        <div class="event">
+                            <h3>Ritual de Encerramento</h3>
+                            <p>Espetáculo com fogo, dança e encenação de lendas medievais</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Local Section -->
+        <section id="local" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="flourish-header"></div>
+                    <h2>Local</h2>
+                    <div class="flourish-header"></div>
+                </div>
+                <div class="location-container">
+                    <div class="location-info">
+                        <div class="medieval-card">
+                            <h3>Castelo de Pedra</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> Estrada das Brumas, km 12</p>
+                            <p><i class="fa-solid fa-city"></i> Serra da Cantaleira</p>
+                            <p class="location-description">Um castelo histórico cercado por florestas místicas e montanhas imponentes. O cenário perfeito para nossa viagem ao passado medieval.</p>
+                            <div class="map-directions">
+                                <a href="#" class="map-button">Como Chegar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-map">
+                        <div class="map-frame">
+                            <!-- Aqui entraria um iframe de mapa real -->
+                            <div class="placeholder-map">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                <p>Mapa Interativo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ingressos Section -->
+        <section id="ingressos" class="section dark-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="flourish-header"></div>
+                    <h2>Ingressos</h2>
+                    <div class="flourish-header"></div>
+                </div>
+                <div class="tickets-container">
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <h3>Plebeu</h3>
+                            <div class="ticket-price">R$ 120</div>
+                        </div>
+                        <div class="ticket-content">
+                            <ul>
+                                <li>Acesso a todas as áreas comuns</li>
+                                <li>Assistir aos torneios e apresentações</li>
+                                <li>Participação em jogos medievais</li>
+                            </ul>
+                            <a href="#" class="ticket-button">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="ticket-card featured">
+                        <div class="ticket-header">
+                            <h3>Cavaleiro</h3>
+                            <div class="ticket-price">R$ 250</div>
+                        </div>
+                        <div class="ticket-content">
+                            <ul>
+                                <li>Todos os benefícios do ingresso Plebeu</li>
+                                <li>Banquete medieval completo</li>
+                                <li>Workshop de combate medieval</li>
+                                <li>Caneca personalizada do evento</li>
+                            </ul>
+                            <a href="#" class="ticket-button">Comprar</a>
+                        </div>
+                    </div>
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <h3>Nobre</h3>
+                            <div class="ticket-price">R$ 450</div>
+                        </div>
+                        <div class="ticket-content">
+                            <ul>
+                                <li>Todos os benefícios do ingresso Cavaleiro</li>
+                                <li>Acesso à área VIP com hidromel ilimitado</li>
+                                <li>Sessão fotográfica com trajes medievais</li>
+                                <li>Encontro exclusivo com artistas do evento</li>
+                                <li>Kit medieval completo de lembrança</li>
+                            </ul>
+                            <a href="#" class="ticket-button">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="flourish-header"></div>
+                    <h2>Contato</h2>
+                    <div class="flourish-header"></div>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="medieval-card">
+                            <h3>Envie uma Mensagem</h3>
+                            <p>Tem dúvidas sobre o evento? Mande-nos um pergaminho digital!</p>
+                            <div class="contact-methods">
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <p>contato@brumasfestival.com</p>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <p>(11) 9876-5432</p>
+                                </div>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" placeholder="Seu nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="seu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensagem</label>
+                                <textarea id="message" rows="5" placeholder="Sua mensagem"></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="Brumas Logo">
+                <p>Brumas - Festival Medieval</p>
+            </div>
+            <div class="footer-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#programacao">Programação</a>
+                <a href="#local">Local</a>
+                <a href="#ingressos">Ingressos</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2025 Brumas Festival Medieval. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
