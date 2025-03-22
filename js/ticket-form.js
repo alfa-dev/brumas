@@ -85,18 +85,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Tratamento do envio do formulário
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // form.addEventListener('submit', function(e) {
+    //     e.preventDefault();
 
-        // Aqui você pode adicionar o código para enviar os dados do formulário
-        // por exemplo, via fetch para uma API
+    //     // Aqui você pode adicionar o código para enviar os dados do formulário
+    //     // por exemplo, via fetch para uma API
 
-        // Por agora, vamos apenas exibir uma mensagem de confirmação
-        alert('Reserva recebida com sucesso! Instruções para pagamento serão enviadas para o seu email em breve.');
+    //     // Por agora, vamos apenas exibir uma mensagem de confirmação
+    //     alert('Reserva recebida com sucesso! Instruções para pagamento serão enviadas para o seu email em breve.');
 
-        // Opcionalmente, redirecionar para a página inicial ou de confirmação
-        // window.location.href = 'confirmacao.html';
-    });
+    //     // Opcionalmente, redirecionar para a página inicial ou de confirmação
+    //     // window.location.href = 'confirmacao.html';
+    // });
 
     // Link para os termos
     const termsLink = document.querySelector('.terms-link');
