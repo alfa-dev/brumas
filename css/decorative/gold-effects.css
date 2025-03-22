@@ -1,0 +1,76 @@
+/* Efeitos Dourados */
+
+/* Bordas douradas */
+.gold-border {
+    border: 2px solid var(--color-gold);
+    box-shadow: 0 0 10px var(--color-gold-glow);
+}
+
+/* Texto com efeito dourado */
+.gold-text {
+    color: var(--color-gold);
+    text-shadow: 0 0 5px var(--color-gold-glow);
+}
+
+/* Elemento com gradiente dourado */
+.gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+}
+
+/* Selo decorativo dourado */
+.gold-seal {
+    position: relative;
+    display: inline-block;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid var(--color-gold);
+        border-radius: 50%;
+        animation: goldPulse 3s infinite alternate;
+    }
+}
+
+/* Efeito de cor dourada em hover */
+.gold-hover {
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: var(--color-gold);
+        text-shadow: 0 0 5px var(--color-gold-glow);
+    }
+}
+
+/* Decoração dourada para títulos */
+.gold-heading {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+    }
+}
+
+/* Animações e efeitos */
+@keyframes goldPulse {
+    0% { box-shadow: 0 0 5px var(--color-gold-pale); }
+    100% { box-shadow: 0 0 15px var(--color-gold-glow); }
+}
+
+@keyframes goldGlow {
+    0% { filter: drop-shadow(0 0 3px var(--color-gold-pale)); }
+    100% { filter: drop-shadow(0 0 8px var(--color-gold-glow)); }
+}
+
+.gold-animate {
+    animation: goldGlow 2s infinite alternate;
+}

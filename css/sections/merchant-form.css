@@ -1,0 +1,401 @@
+/* Estilos para a página de mercadores e artesãos com CSS aninhado */
+
+.merchant-section {
+    min-height: calc(100vh - 100px);
+    padding: 120px 5% 60px;
+    background-color: var(--color-parchment);
+    position: relative;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 L55,40 L65,42 L58,50 L60,60 L50,55 L40,60 L42,50 L35,42 L45,40 Z" fill="%23491449" opacity="0.05"/></svg>');
+
+    & .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.merchant-container {
+    margin-top: 50px;
+
+    & .illuminated-border {
+        padding: 50px 40px;
+        position: relative;
+        background-color: rgba(244, 233, 205, 0.95);
+    }
+}
+
+.merchant-intro {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+
+    & .intro-image {
+        flex: 0 0 200px;
+        display: flex;
+        justify-content: center;
+
+        & .merchant-icon {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--color-parchment);
+
+            & i {
+                font-size: 80px;
+                color: var(--color-dark);
+            }
+        }
+    }
+
+    & .intro-text {
+        flex: 1;
+        min-width: 300px;
+
+        & h2 {
+            font-family: var(--font-medieval);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--color-deep-purple);
+        }
+
+        & p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: var(--color-dark);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        & .medieval-capital {
+            float: left;
+            font-family: var(--font-medieval);
+            font-size: 3.5rem;
+            line-height: 0.8;
+            padding: 4px 8px 0 0;
+            color: var(--color-gold);
+        }
+    }
+}
+
+.merchants-guidelines {
+    margin: 40px 0;
+
+    & h3 {
+        font-family: var(--font-medieval);
+        font-size: 1.8rem;
+        color: var(--color-deep-purple);
+        margin-bottom: 30px;
+        text-align: center;
+
+        & i {
+            margin-right: 12px;
+        }
+    }
+
+    & .guidelines-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        gap: 30px;
+
+        & .guideline-item {
+            display: flex;
+            background-color: rgba(48, 93, 135, 0.05);
+            padding: 25px;
+            border-radius: 5px;
+            border-left: 3px solid var(--color-gold);
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                background-color: rgba(48, 93, 135, 0.08);
+            }
+
+            & .guideline-icon {
+                font-size: 2rem;
+                color: var(--color-gold);
+                margin-right: 20px;
+                min-width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            & .guideline-content {
+                & h4 {
+                    font-family: var(--font-title);
+                    font-size: 1.2rem;
+                    color: var(--color-deep-purple);
+                    margin-bottom: 10px;
+                }
+
+                & p {
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                    color: var(--color-dark);
+                }
+            }
+        }
+    }
+}
+
+.medieval-divider {
+    height: 30px;
+    width: 100%;
+    margin: 20px 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 15"><path d="M0,7.5 Q75,15 150,7.5 T300,7.5" fill="none" stroke="%23d4af37" stroke-width="1"/><g fill="%23d4af37"><circle cx="50" cy="7.5" r="1.5"/><circle cx="100" cy="7.5" r="1.5"/><circle cx="150" cy="7.5" r="1.5"/><circle cx="200" cy="7.5" r="1.5"/><circle cx="250" cy="7.5" r="1.5"/></g></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.merchant-form-container {
+    max-width: 1000px;
+    margin: 40px auto 20px;
+
+    & h3 {
+        font-family: var(--font-medieval);
+        font-size: 2rem;
+        color: var(--color-deep-purple);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    & .form-intro {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--color-dark);
+        margin-bottom: 30px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.medieval-form {
+    margin-top: 40px;
+
+    & .form-columns {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+
+        & .form-column {
+            flex: 1;
+            min-width: 300px;
+        }
+    }
+
+    & .form-group {
+        margin-bottom: 25px;
+
+        &.full-width {
+            width: 100%;
+        }
+
+        & label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: var(--font-title);
+            color: var(--color-deep-purple);
+            font-size: 1.05rem;
+
+            & i {
+                color: var(--color-gold);
+                margin-right: 8px;
+            }
+        }
+
+        & input[type="text"],
+        & input[type="email"],
+        & input[type="tel"],
+        & textarea,
+        & select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--color-gold-pale);
+            border-radius: 5px;
+            font-family: var(--font-text);
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: var(--color-gold);
+                box-shadow: 0 0 8px var(--color-gold-pale);
+                background-color: white;
+            }
+        }
+
+        & textarea {
+            resize: vertical;
+        }
+    }
+
+    & .checkbox-group, & .radio-options {
+        margin-top: 10px;
+    }
+
+    & .checkbox-option, & .radio-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        & input[type="checkbox"], & input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-gold-dark);
+        }
+
+        & label {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+    }
+
+    & .radio-options {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.form-note {
+    background-color: rgba(10, 18, 70, 0.05);
+    border-left: 3px solid var(--color-gold);
+    padding: 15px 20px;
+    border-radius: 0 5px 5px 0;
+    margin: 30px 0;
+
+    & p {
+        font-size: 0.95rem;
+        color: var(--color-deep-purple);
+
+        & i {
+            color: var(--color-gold);
+            margin-right: 8px;
+        }
+    }
+}
+
+.gold-button {
+    background: linear-gradient(to bottom, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-dark);
+    border: none;
+    padding: 15px 30px;
+    font-family: var(--font-medieval);
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(to bottom, var(--color-gold-light) 0%, var(--color-gold) 100%);
+    }
+
+    & i {
+        margin-right: 10px;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .merchants-guidelines .guidelines-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .merchant-section {
+        padding: 100px 4% 60px;
+    }
+
+    .merchant-container .illuminated-border {
+        padding: 30px 25px;
+    }
+
+    .merchant-intro {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+
+        & .intro-image {
+            margin: 0 auto;
+        }
+
+        & .intro-text {
+            & h2 {
+                font-size: 1.8rem;
+            }
+
+            & p {
+                font-size: 1rem;
+                text-align: left;
+            }
+        }
+    }
+
+    .merchants-guidelines h3 {
+        font-size: 1.6rem;
+    }
+
+    .merchant-form-container h3 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .merchants-guidelines .guidelines-grid .guideline-item {
+        flex-direction: column;
+        text-align: center;
+
+        & .guideline-icon {
+            margin: 0 auto 15px;
+        }
+    }
+
+    .merchant-intro .intro-image .merchant-icon {
+        width: 150px;
+        height: 150px;
+
+        & i {
+            font-size: 65px;
+        }
+    }
+
+    .medieval-form .radio-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.terms-link {
+    color: var(--color-gold-dark);
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--color-deep-purple);
+        text-decoration: underline;
+    }
+}
