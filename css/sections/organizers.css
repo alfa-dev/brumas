@@ -1,0 +1,121 @@
+/* Seção de Organizadores com CSS Aninhado */
+.organizers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+
+    & .organizer-item {
+        flex: 1;
+        min-width: 200px;
+        max-width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-10px);
+
+            & .organizer-logo-placeholder {
+                box-shadow: 0 10px 25px rgba(73, 20, 73, 0.2);
+            }
+        }
+
+        & .organizer-logo-placeholder {
+            width: 180px;
+            height: 180px;
+            border-radius: 5px;
+            background: rgba(244, 233, 205, 0.1);
+            border: 1px solid var(--color-gold);
+            padding: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                border: 1px dashed rgba(212, 175, 55, 0.3);
+                pointer-events: none;
+            }
+
+            & .logo-frame {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(244, 233, 205, 0.8);
+                border-radius: 3px;
+
+                &::after {
+                    content: 'Brasão';
+                    font-family: var(--font-medieval);
+                    color: var(--color-deep-purple);
+                    opacity: 0.7;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        & .organizer-name {
+            font-family: var(--font-medieval);
+            color: var(--color-deep-purple);
+            font-size: 1.3rem;
+            margin-top: 10px;
+            position: relative;
+            padding-bottom: 15px;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 2px;
+                background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+            }
+        }
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .organizers-container {
+        gap: 30px;
+
+        & .organizer-item {
+            min-width: 160px;
+
+            & .organizer-logo-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+
+            & .organizer-name {
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .organizers-container {
+        & .organizer-item {
+            min-width: 140px;
+            max-width: 100%;
+
+            & .organizer-logo-placeholder {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    }
+}

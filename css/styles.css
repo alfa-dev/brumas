@@ -6,10 +6,12 @@
 /* Importação dos arquivos de seções */
 @import 'sections/hero.css';
 @import 'sections/about.css';
+@import 'sections/attractions.css';
 @import 'sections/program.css';
 @import 'sections/location.css';
 @import 'sections/tickets.css';
 @import 'sections/contact.css';
+@import 'sections/organizers.css';
 
 /* Importação dos elementos decorativos */
 @import 'decorative/illuminations.css';
@@ -524,7 +526,7 @@ header {
 }
 
 /* Ingressos */
-.tickets-container {
+/* .tickets-container {
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
@@ -620,7 +622,7 @@ header {
 .ticket-button:hover {
     background-color: var(--color-gold);
     color: var(--color-dark);
-}
+} */
 
 /* Contato */
 .contact-container {

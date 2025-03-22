@@ -27,5 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Atualiza a cada minuto
     setInterval(updateCountdown, 60000);
 
-    // Resto do código JavaScript...
+    // Animação para os selos dos ingressos
+    const ticketSeals = document.querySelectorAll('.ticket-seal');
+
+    ticketSeals.forEach(seal => {
+        // Pequena animação de rotação ao carregar a página
+        setTimeout(() => {
+            seal.style.transition = 'all 1s ease';
+            seal.style.transform = 'rotate(10deg)';
+
+            setTimeout(() => {
+                seal.style.transform = 'rotate(0deg)';
+            }, 500);
+        }, Math.random() * 1000);
+    });
 });
