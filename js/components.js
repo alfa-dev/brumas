@@ -86,8 +86,63 @@ class TicketsComponent extends HTMLElement {
     `).join('');
   }
 }
+class ContactComponent extends HTMLElement {
+  constructor() {
+    super();
+
+    const mensagens = [
+      "As brumas estão densas, mas sei que você enxerga através delas. Podemos falar?",
+      "Tenho perguntas que precisam de respostas. Você pode me ajudar a encontrar o que procuro?",
+      "Sei que você sabe. Não vou perguntar como, só preciso das respostas certas.",
+      "Nem tudo pode ser dito às claras. Mas nas brumas, podemos conversar?",
+      "As peças não se encaixam. Falta algo. Você tem o que eu preciso?",
+      "Os rumores são confusos, mas sei que você conhece a verdade. Podemos falar?",
+      "Sinais, rastros, pistas... Já juntei algumas, mas preciso da peça final. Você pode me ajudar?",
+      "A verdade está escondida, mas você sempre sabe onde procurar. Vamos conversar?",
+      "Dizem que os que sabem demais somem nas brumas... mas você ainda está aqui. Podemos falar?"
+    ];
+
+    this.mensagem = mensagens[Math.floor(Math.random() * mensagens.length)];
+  }
+
+  connectedCallback() {
+    this.innerHTML = `
+      <a href="mailto:${CONTACT.email}" target="_blank">
+        <i class="fa-solid fa-envelope gold-text"></i>
+        ${CONTACT.email}
+      </a>
+      <a href="https://wa.me/${CONTACT.phone.replace(/\D/g, '')}/?text=${this.mensagem}" target="_blank">
+        <i class="fa-brands fa-whatsapp gold-text"></i>
+        ${CONTACT.phone}
+      </a>
+    `;
+  }
+}
+
+class SocialComponent extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    this.innerHTML = `
+      <div class="social-icons-container">
+        <h4>Segui-nos nas Redes dos Reinos</h4>
+        <div class="social-icons">
+          ${SOCIAL_LINKS.map(link => `
+            <a href="${link.url}" class="gold-hover" style="text-decoration: none;" target="_blank">
+              <i class="fa-brands fa-${link.name.toLowerCase()}"></i>
+            </a>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+}
 
 // Registrar o componente
 customElements.define('header-component', HeaderComponent);
 customElements.define('footer-component', FooterComponent);
 customElements.define('tickets-component', TicketsComponent);
+customElements.define('contact-component', ContactComponent);
+customElements.define('social-component', SocialComponent);

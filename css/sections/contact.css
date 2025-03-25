@@ -1,29 +1,34 @@
-/* Contato */
-.contact-container {
+contact-component {
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    margin-block: 60px;
 }
 
-.contact-info, .contact-form {
-    flex: 1;
-    min-width: 300px;
+
+contact-component a {
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 30px;
+    overflow: hidden;
+
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    color: var(--color-dark);
+    text-decoration: none;
+
+    background-color: rgba(244, 233, 205, 0.9);
+    border: 1px solid var(--color-gold);
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-methods {
-    margin-top: 30px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.contact-item i {
-    font-size: 1.5rem;
-    color: var(--color-deep-purple);
-    margin-right: 15px;
+contact-component a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .social-icons {

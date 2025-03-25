@@ -111,20 +111,26 @@
 
 /* Botões */
 .cta-button {
-  opacity: 0;
+  position: relative;
+  z-index: 1;
+
   display: inline-block;
   padding: 15px 40px;
-  font-family: var(--font-medieval);
-  font-size: 1.2rem;
-  background-color: var(--color-deep-purple);
-  color: var(--color-light);
   border: 2px solid var(--color-gold);
   border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
   overflow: hidden;
-  z-index: 1;
+
+  font-family: var(--font-medieval);
+  font-size: 1.2rem;
+  color: var(--color-light);
+  text-decoration: none;
+
+  background-color: var(--color-deep-purple);
+  opacity: 0;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
   animation: fadeIn 2s ease forwards 1.5s;
 }
 
