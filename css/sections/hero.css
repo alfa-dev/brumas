@@ -69,6 +69,13 @@
   animation: glow 3s ease-in-out infinite alternate, fadeIn 2s ease forwards;
 }
 
+.main-title img {
+  width: 80%;
+  max-width: 600px;
+  height: 200px;
+  transform: scale(2);
+}
+
 .subtitle {
   opacity: 0;
   font-size: 2.5rem;
