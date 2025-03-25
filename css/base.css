@@ -1,5 +1,5 @@
 /* Variáveis de Cores e Fontes */
-:root {
+/* :root {
   --color-dark: #080806;
   --color-navy: #0a1246;
   --color-blue: #305d87;
@@ -8,6 +8,20 @@
   --color-light: #f5f5f5;
   --color-gold: #d4af37;
   --color-parchment: #f4e9cd;
+  --font-medieval: "MedievalSharp", cursive;
+  --font-title: "Cinzel", serif;
+  --font-text: "Gentium Book Plus", serif;
+} */
+
+:root {
+  --color-dark: #080806;
+  --color-navy: #0a1246;
+  --color-blue: #417ab9;
+  --color-purple: #401b79;
+  --color-deep-purple: #270d4f;
+  --color-light: #f5f5f5;
+  --color-gold: #a98340;
+  --color-parchment: #e9d4b5;
   --font-medieval: "MedievalSharp", cursive;
   --font-title: "Cinzel", serif;
   --font-text: "Gentium Book Plus", serif;
