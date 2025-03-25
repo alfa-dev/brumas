@@ -19,21 +19,23 @@ class HeaderComponent extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
-      <nav class="navbar">
-        <div class="logo">
-          <a href="index.html">
-            <img src="assets/images/logo.png" alt="Brumas Logo">
-          </a>
-        </div>
-        <div class="nav-links">
-          ${navLinks()}
-        </div>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
+      <header>
+        <nav class="navbar">
+          <div class="logo">
+            <a href="index.html">
+              <img src="assets/images/logo.png" alt="Brumas Logo">
+            </a>
+          </div>
+          <div class="nav-links">
+            ${navLinks()}
+          </div>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </header>
     `;
   }
 }
@@ -79,7 +81,7 @@ class TicketsComponent extends HTMLElement {
         <ul>
           ${ticket.description.map(description => `<li>${description}</li>`).join('')}
         </ul>
-        <a href="ingressos.html?tipo=${ticket.name.toLowerCase().replace(/\s+/g, '-')}" class="ticket-button">Adquirir Passagem</a>
+        <a href="ingressos.html?tipo=${ticket.id}" class="ticket-button">Adquirir Passagem</a>
       </article>
     `).join('');
   }

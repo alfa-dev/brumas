@@ -39,18 +39,19 @@ tickets-component .ticket-card {
   min-width: 300px;
   max-width: 400px;
   background-color: rgba(10, 18, 70, 0.8);
-  border: 1px solid var(--color-gold);
+  border: 2px solid var(--color-gold);
   border-radius: 5px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-width 0.3s ease;
   margin-bottom: 30px;
   background: linear-gradient(135deg, rgba(10, 18, 70, 0.9) 0%, rgba(73, 20, 73, 0.8) 100%);
+  box-shadow: 0 15px 30px rgba(91, 91, 91, 0.3);
 }
 
 tickets-component .ticket-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
-  border-width: 2px;
+  /* transform: scale(1.05); */
+  transform: scale3d(1.02, 1.02, 1.02);
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
 }
 
 tickets-component .ticket-card:hover .ticket-seal {
@@ -82,6 +83,7 @@ tickets-component header::after {
 tickets-component ul {
   position: relative;
   list-style-type: none;
+  flex: 1;
   padding: 30px 25px;
 }
 
@@ -93,12 +95,23 @@ tickets-component ul li {
   font-size: 1.05rem;
 }
 
-/* tickets-component .ticket-seal {
+/* ticket seal que agora esta no before do article */
+tickets-component article::before {
+  content: "";
   position: absolute;
   width: 60px;
   height: 60px;
   bottom: 70px;
   right: 25px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+/* tickets-component .ticket-seal {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
   opacity: 0.5;
   transition: all 0.3s ease;
 }
@@ -161,19 +174,15 @@ tickets-component ul li:nth-child(4n + 4)::before {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
 }
 
-tickets-component article::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><polygon points="10,4 13,14 7,14" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
 
-tickets-component article::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
+/* Ticket Seal */
 
-tickets-component article::before {
+
+tickets-component article:nth-child(2n + 1)::before {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,6 v8 M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
 }
 
-tickets-component article::before {
+tickets-component article:nth-child(2n + 2)::before {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
 }
 

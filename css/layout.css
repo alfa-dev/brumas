@@ -3,7 +3,10 @@ header-component {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    transition: all 0.3s ease;
+}
+
+header-component a {
+    text-decoration: none;
 }
 
 .navbar {
@@ -11,9 +14,10 @@ header-component {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background-color: rgba(8, 8, 6, 0.8);
+    background-color: rgba(8, 8, 6, 0.6);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--color-gold);
+    box-shadow: 0 5px 20px rgba(0,0,0, 0.3), 0 15px 60px rgba(0,0,0, 0.6);
 }
 
 .logo img {

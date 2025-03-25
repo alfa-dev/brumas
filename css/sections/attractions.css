@@ -11,8 +11,6 @@
         padding: 30px 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         color: var(--color-dark);
-        animation: unrollScroll 1s ease-out forwards;
-        transform-origin: center top;
 
         & .scroll-top, & .scroll-bottom {
             height: 30px;

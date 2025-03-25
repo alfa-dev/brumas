@@ -8,6 +8,7 @@ const PRICES = {
 
 const TICKETS = [
   {
+    id: 1,
     name: 'Festival',
     price: PRICES.ticket.regular,
     description: [
@@ -18,6 +19,7 @@ const TICKETS = [
     ],
   },
   {
+    id: 2,
     name: 'Festival + Hospedagem',
     price: PRICES.ticket.premium,
     description: [
@@ -30,7 +32,7 @@ const TICKETS = [
   }
 ];
 
-const NAV_LINKS = ['Início', 'Sobre', 'Atrações', 'Programação', 'Local', 'Ingressos', 'Organizadores', 'Contato'];
+const NAV_LINKS = ['Início', 'Sobre', 'Programação', 'Atrações', 'Local', 'Ingressos', 'Contato', 'Organizadores'];
 
 
 // Atualiza a contagem regressiva quando a página carrega
