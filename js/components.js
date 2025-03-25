@@ -23,7 +23,7 @@ class HeaderComponent extends HTMLElement {
         <nav class="navbar">
           <div class="logo">
             <a href="index.html">
-              <img src="assets/images/logo.png" alt="Brumas Logo">
+              <img src="assets/b_of_brumas_logo.svg" alt="Brumas Logo">
             </a>
           </div>
           <div class="nav-links">

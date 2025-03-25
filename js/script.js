@@ -1,7 +1,7 @@
 const PRICES = {
   ticket: {
-    regular: 120,
-    premium: 290,
+    regular: 20,
+    premium: 29,
   },
   mug: 40
 };
@@ -29,6 +29,27 @@ const TICKETS = [
       'Acesso à cerimônia de encerramento ao luar',
       'Participação na caçada ao tesouro noturna',
     ],
+  },
+  {
+    id: 3,
+    name: 'Festival + Hospedagem + cafuné',
+    price: PRICES.ticket.premium,
+    description: [
+      'Todas as benesses do ingresso Festival',
+      'Pernoite em aposentos na vila medieval',
+      'Acesso ao cafuné',
+    ],
+  },
+  {
+    id: 4,
+    name: 'Festival + Hospedagem + cafuné + churrasco',
+    price: PRICES.ticket.premium,
+    description: [
+      'Todas as benesses do ingresso Festival',
+      'Pernoite em aposentos na vila medieval',
+      'Acesso ao cafuné',
+      'Acesso ao churrasco',
+    ],
   }
 ];
 
@@ -36,7 +57,7 @@ const NAV_LINKS = ['Início', 'Sobre', 'Programação', 'Atrações', 'Local', '
 
 const CONTACT = {
   email: 'contato@brumasfestivalmedieval.com',
-  phone: '(41) 99236-6460',
+  phone: '(21) 98333-6417',
   address: 'Estr. Adam Blumer, 5580 - Jardim Esmeralda, Magé - RJ, 25908-683',
   address_link: 'https://maps.app.goo.gl/wXHUA32M3vWztiTS9'
 };
@@ -45,23 +66,7 @@ const SOCIAL_LINKS = [
   {
     name: 'Instagram',
     url: 'https://www.instagram.com/brumasfestivalmedieval/',
-  },
-  {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/brumasfestivalmedieval/',
-  },
-  {
-    name: 'Twitter',
-    url: 'https://www.twitter.com/brumasfestivalmedieval/',
-  },
-  {
-    name: 'YouTube',
-    url: 'https://www.youtube.com/brumasfestivalmedieval/',
-  },
-  {
-    name: 'TikTok',
-    url: 'https://www.tiktok.com/@brumasfestivalmedieval/',
-  },
+  }
 ];
 
 
