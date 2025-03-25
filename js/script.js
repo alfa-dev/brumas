@@ -56,7 +56,7 @@ const TICKETS = [
 const NAV_LINKS = ['Início', 'Sobre', 'Programação', 'Atrações', 'Local', 'Ingressos', 'Contato', 'Organizadores'];
 
 const CONTACT = {
-  email: 'contato@brumasfestivalmedieval.com',
+  email: 'brumasfestival@gmail.com',
   phone: '(21) 98333-6417',
   address: 'Estr. Adam Blumer, 5580 - Jardim Esmeralda, Magé - RJ, 25908-683',
   address_link: 'https://maps.app.goo.gl/wXHUA32M3vWztiTS9'
