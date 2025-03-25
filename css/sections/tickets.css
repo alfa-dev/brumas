@@ -1,222 +1,205 @@
-/* Ingressos com CSS Aninhado */
-.tickets-container {
-    display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 900px;
-    margin: 0 auto;
-
-    /* Cards de Ingressos */
-    & .ticket-card {
-        flex: 1;
-        min-width: 300px;
-        max-width: 400px;
-        background-color: rgba(10, 18, 70, 0.8);
-        border: 1px solid var(--color-gold);
-        border-radius: 5px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        position: relative;
-        margin-bottom: 30px;
-
-        &:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-
-            & .ticket-seal {
-                transform: rotate(15deg);
-                opacity: 0.8;
-            }
-        }
-
-        /* Card com destaque */
-        &.featured {
-            border-width: 2px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(135deg, rgba(10, 18, 70, 0.9) 0%, rgba(73, 20, 73, 0.8) 100%);
-
-            &:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
-            }
-        }
-
-        /* Cabeçalho do Ticket */
-        & .ticket-header {
-            background-color: var(--color-deep-purple);
-            padding: 25px 20px;
-            text-align: center;
-            border-bottom: 1px solid var(--color-gold);
-            position: relative;
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                width: 100%;
-                height: 10px;
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10"><path d="M0,0 C5,10 15,10 20,0" fill="%230a1246"/></svg>');
-                background-repeat: repeat-x;
-                background-size: 20px 10px;
-            }
-
-            & h3 {
-                font-family: var(--font-medieval);
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-                color: var(--color-gold);
-            }
-
-            & .ticket-price {
-                font-size: 2.2rem;
-                font-weight: bold;
-                color: var(--color-light);
-                font-family: var(--font-title);
-            }
-        }
-
-        /* Conteúdo do Ticket */
-        & .ticket-content {
-            padding: 30px 25px;
-            position: relative;
-
-            & ul {
-                list-style-type: none;
-                margin-bottom: 70px;
-
-                & li {
-                    padding: 12px 0;
-                    border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
-                    font-family: var(--font-text);
-                    line-height: 1.5;
-                    font-size: 1.05rem;
-                }
-            }
-
-            & .ticket-button {
-                display: block;
-                width: calc(100% - 50px);
-                padding: 15px;
-                text-align: center;
-                background-color: var(--color-purple);
-                color: var(--color-light);
-                border: none;
-                border-radius: 5px;
-                font-family: var(--font-medieval);
-                font-size: 1.2rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                position: absolute;
-                bottom: 25px;
-                left: 0;
-                right: 0;
-                margin: 0 25px;
-
-                &:hover {
-                    background-color: var(--color-gold);
-                    color: var(--color-dark);
-                }
-            }
-
-            & .ticket-seal {
-                position: absolute;
-                width: 60px;
-                height: 60px;
-                bottom: 70px;
-                right: 25px;
-                opacity: 0.5;
-                transition: all 0.3s ease;
-
-                & .seal-image {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-        }
-    }
+/* Ingressos */
+tickets-component {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* Estilos para a Fita "Recomendado" */
-.ticket-ribbon {
-    position: absolute;
-    top: 15px;
-    right: -30px;
-    background-color: var(--color-gold);
-    color: var(--color-dark);
-    padding: 5px 30px;
-    font-size: 0.8rem;
-    transform: rotate(45deg);
-    font-family: var(--font-title);
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 3;
+tickets-component header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+tickets-component header h3 {
+  font-family: var(--font-medieval);
+  font-size: 1.8rem;
+  color: var(--color-gold);
+}
+
+tickets-component header .ticket-base-price {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-light);
+  font-family: var(--font-title);
+}
+
+tickets-component .ticket-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 400px;
+  background-color: rgba(10, 18, 70, 0.8);
+  border: 1px solid var(--color-gold);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-width 0.3s ease;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, rgba(10, 18, 70, 0.9) 0%, rgba(73, 20, 73, 0.8) 100%);
+}
+
+tickets-component .ticket-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+  border-width: 2px;
+}
+
+tickets-component .ticket-card:hover .ticket-seal {
+  transform: rotate(15deg);
+  opacity: 0.8;
+}
+
+tickets-component header {
+  position: relative;
+  background-color: var(--color-deep-purple);
+  padding: 25px 20px;
+  text-align: center;
+  margin-bottom: 0px;
+  border-bottom: 1px solid var(--color-gold);
+}
+
+tickets-component header::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10"><path d="M0,0 C5,10 15,10 20,0" fill="%230a1246"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 20px 10px;
+}
+
+tickets-component ul {
+  position: relative;
+  list-style-type: none;
+  padding: 30px 25px;
+}
+
+tickets-component ul li {
+  padding-block: 12px;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+  font-family: var(--font-text);
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+/* tickets-component .ticket-seal {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  right: 25px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+tickets-component .seal-image {
+  width: 100%;
+  height: 100%;
+} */
+
+tickets-component .ticket-button {
+  display: block;
+  margin: 0 auto 20px;
+  width: 80%;
+  padding: 15px;
+  text-align: center;
+  background-color: var(--color-purple);
+  color: var(--color-light);
+  border-radius: 5px;
+  font-family: var(--font-medieval);
+  font-size: 1.2rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+tickets-component .ticket-button:hover {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
 }
 
 /* Lista com Símbolos Alquímicos */
-.alchemy-list {
-    & li {
-        position: relative;
-        padding-left: 30px;
+tickets-component ul li {
+  position: relative;
+  padding-left: 30px;
+}
 
-        &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
+tickets-component ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
-        &:nth-child(4n+1)::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><polygon points="10,4 13,14 7,14" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-        }
+tickets-component ul li:nth-child(4n + 1)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><polygon points="10,4 13,14 7,14" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
 
-        &:nth-child(4n+2)::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-        }
+tickets-component ul li:nth-child(4n + 2)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
 
-        &:nth-child(4n+3)::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,6 v8 M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-        }
+tickets-component ul li:nth-child(4n + 3)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,6 v8 M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
 
-        &:nth-child(4n+4)::before {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-        }
-    }
+tickets-component ul li:nth-child(4n + 4)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
+
+tickets-component article::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><polygon points="10,4 13,14 7,14" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
+
+tickets-component article::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
+
+tickets-component article::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,6 v8 M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+}
+
+tickets-component article::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
 }
 
 /* Media Queries */
-@media (max-width: 992px) {
-    .tickets-container {
-        gap: 30px;
-    }
+/* @media (max-width: 992px) {
+  .tickets-container {
+    gap: 30px;
+  }
 }
 
 @media (max-width: 768px) {
-    .tickets-container .ticket-card .ticket-content ul {
-        margin-bottom: 80px;
-    }
+  .tickets-container .ticket-card .ticket-content ul {
+    margin-bottom: 80px;
+  }
 
-    .tickets-container .ticket-card {
-        max-width: 100%;
-    }
+  .tickets-container .ticket-card {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
-    .tickets-container .ticket-card .ticket-header {
-        & h3 {
-            font-size: 1.6rem;
-        }
+  .tickets-container .ticket-card .ticket-header h3 {
+    font-size: 1.6rem;
+  }
 
-        & .ticket-price {
-            font-size: 2rem;
-        }
-    }
-}
+  .tickets-container .ticket-card .ticket-header .ticket-price {
+    font-size: 2rem;
+  }
+} */

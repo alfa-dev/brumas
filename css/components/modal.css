@@ -1,0 +1,248 @@
+/* Estilos para o modal de confirmação medieval usando dialog */
+.medieval-dialog {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    background-color: var(--color-parchment);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.medieval-dialog::backdrop {
+    background-color: rgba(8, 8, 6, 0.85);
+    backdrop-filter: blur(3px);
+}
+
+.medieval-dialog[open] {
+    animation: modalFadeIn 0.6s ease forwards;
+}
+
+.medieval-dialog[open]::backdrop {
+    animation: backdropFadeIn 0.4s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes backdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--color-parchment);
+    overflow: hidden;
+}
+
+/* Bordas decorativas */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--color-gold);
+    pointer-events: none;
+    box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Pergaminho texturizado */
+.modal-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f4e9cd" opacity="0.1"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23491449" stroke-width="0.2" opacity="0.05"/></svg>');
+    pointer-events: none;
+    z-index: -1;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: none;
+    text-align: center;
+    position: relative;
+}
+
+.modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-family: var(--font-medieval);
+    font-size: 1.8rem;
+    color: var(--color-deep-purple);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.modal-header h2 i {
+    margin-right: 10px;
+    color: var(--color-gold);
+}
+
+.modal-body {
+    padding: 30px 25px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><path d="M150,50 L160,70 L180,75 L165,90 L170,110 L150,100 L130,110 L135,90 L120,75 L140,70 Z" fill="%23491449" opacity="0.02"/></svg>');
+    background-size: 300px;
+    position: relative;
+}
+
+.modal-body::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M20,5 C25,15 35,15 35,20 C35,25 25,25 20,35 C15,25 5,25 5,20 C5,15 15,15 20,5 Z" fill="none" stroke="%23d4af37" stroke-width="0.7" opacity="0.3"/></svg>');
+    opacity: 0.5;
+}
+
+.modal-body::after {
+    content: '';
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+    width: 40px;
+    height: 40px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M20,5 C25,15 35,15 35,20 C35,25 25,25 20,35 C15,25 5,25 5,20 C5,15 15,15 20,5 Z" fill="none" stroke="%23d4af37" stroke-width="0.7" opacity="0.3"/></svg>');
+    opacity: 0.5;
+    transform: rotate(180deg);
+}
+
+#submission-summary {
+    font-family: var(--font-text);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+#submission-summary h3 {
+    font-family: var(--font-title);
+    color: var(--color-deep-purple);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--color-gold-pale);
+    padding-bottom: 5px;
+    position: relative;
+    padding-left: 25px;
+}
+
+#submission-summary h3::before {
+    content: '❧';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-gold);
+    font-size: 1rem;
+}
+
+#submission-summary p {
+    margin: 10px 0;
+}
+
+#submission-summary .highlight {
+    font-weight: bold;
+    color: var(--color-deep-purple);
+}
+
+.modal-footer {
+    padding: 20px;
+    border-top: none;
+    text-align: center;
+    position: relative;
+}
+
+.modal-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-gold-pale), transparent);
+}
+
+.modal-footer button {
+    background: linear-gradient(to bottom, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-dark);
+    border: none;
+    padding: 12px 30px;
+    font-family: var(--font-medieval);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-footer button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.modal-footer button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.modal-footer button:hover::before {
+    left: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .medieval-dialog {
+        width: 95%;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-header {
+        padding: 15px;
+    }
+
+    .modal-body::before,
+    .modal-body::after {
+        display: none;
+    }
+
+    #submission-summary h3 {
+        font-size: 1.1rem;
+    }
+}

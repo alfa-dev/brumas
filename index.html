@@ -1,390 +1,325 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brumas - Festival Medieval</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brumas - Festival Medieval</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <script src="js/script.js"></script>
+  <script src="js/components.js"></script>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Brumas Logo">
-            </div>
-            <div class="nav-links">
-                <a href="#hero">Início</a>
-                <a href="#sobre">Sobre</a>
-                <a href="#atracoes">Atrações</a>
-                <a href="#programacao">Programação</a>
-                <a href="#local">Local</a>
-                <a href="#ingressos">Ingressos</a>
-                <a href="#organizadores">Organizadores</a>
-                <a href="#contato">Contato</a>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+  <header-component></header-component>
 
-    <main>
-        <!-- Hero Section com Bruma -->
-        <section id="hero" class="parallax-section">
-            <div class="video-container">
-                <video autoplay muted loop id="bg-video">
-                    <source src="https://static.vecteezy.com/system/resources/previews/023/006/364/mp4/loop-black-and-white-cloud-flow-motion-video.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="overlay"></div>
-            <div class="hero-mist"></div>
-            <div class="floating-mist"></div>
-            <div class="hero-content">
-                <div class="flourish-top"></div>
-                <h1 class="main-title">Brumas</h1>
-                <h2 class="subtitle">Festival Medieval</h2>
-                <div class="date-container">
-                    <p class="event-date">19 de Julho de 2025</p>
-                </div>
-                <a href="#ingressos" class="cta-button mist-glow">Garantir Ingresso</a>
-                <div class="flourish-bottom"></div>
-                <div class="scroll-indicator">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sobre Section com Iluminuras -->
-        <section id="sobre" class="section alchemy-pattern">
-            <div class="mist-layer"></div>
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2 class="illuminated-heading">Sobre o Festival</h2>
-                    <div class="flourish-header"></div>
-                </div>
-                <div class="content-columns">
-                    <div class="column">
-                        <div class="medieval-card illuminated-border">
-                            <div class="illuminated-corner-tr"></div>
-                            <div class="illuminated-corner-bl"></div>
-                            <div class="illuminated-corner-br"></div>
-                            <div class="card-icon">
-                                <i class="fa-solid fa-crown"></i>
-                            </div>
-                            <h3>Uma Viagem ao Passado</h3>
-                            <p><span class="medieval-capital">B</span>rumas Festival Medieval transporta você para uma época de cavaleiros, bardos e castelos. Uma experiência imersiva que recria fielmente o espírito da Idade Média.</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="medieval-card illuminated-border">
-                            <div class="illuminated-corner-tr"></div>
-                            <div class="illuminated-corner-bl"></div>
-                            <div class="illuminated-corner-br"></div>
-                            <div class="card-icon">
-                                <i class="fa-solid fa-scroll"></i>
-                            </div>
-                            <h3>Tradição e Cultura</h3>
-                            <p>Celebramos as tradições medievais com apresentações autênticas, culinária da época, torneios e música que ecoam através dos séculos.</p>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="medieval-card illuminated-border">
-                            <div class="illuminated-corner-tr"></div>
-                            <div class="illuminated-corner-bl"></div>
-                            <div class="illuminated-corner-br"></div>
-                            <div class="card-icon">
-                                <i class="fa-solid fa-chess-knight"></i>
-                            </div>
-                            <h3>Para Todas as Idades</h3>
-                            <p>Atividades para toda a família, desde duelos de cavaleiros e apresentações teatrais até oficinas de artesanato medieval e jogos tradicionais.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Programação Section com Efeito de Névoa -->
-        <section id="programacao" class="section dark-section">
-            <div class="mist-layer"></div>
-            <div class="pulsating-mist"></div>
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2 class="illuminated-heading">Programação</h2>
-                    <div class="flourish-header"></div>
-                </div>
-
-                <!-- Mensagem "Em Breve" -->
-                <div class="coming-soon-container">
-                    <div class="medieval-scroll">
-                        <div class="scroll-top"></div>
-                        <div class="scroll-content">
-                            <div class="coming-soon-text">
-                                <h3>Programação em Breve</h3>
-                                <p>Os arautos do reino estão trabalhando para anunciar os detalhes das festividades.</p>
-                                <div class="medieval-divider"></div>
-                                <p>As atividades incluirão torneios, banquetes, apresentações musicais e muitas surpresas medievais.</p>
-                                <div class="alchemy-seal">
-                                    <div class="seal-icon">
-                                        <i class="fa-solid fa-scroll"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scroll-bottom"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Atrações -->
-        <section id="atracoes" class="section dark-section">
-            <div class="mist-layer"></div>
-            <div class="pulsating-mist"></div>
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2 class="illuminated-heading">Atrações</h2>
-                    <div class="flourish-header"></div>
-                </div>
-
-                <!-- Mensagem "Em Breve" -->
-                <div class="coming-soon-container">
-                    <div class="medieval-scroll">
-                        <div class="scroll-top"></div>
-                        <div class="scroll-content">
-                            <div class="coming-soon-text">
-                                <div class="illuminated-seal">
-                                    <div class="seal-icon">
-                                        <i class="fa-solid fa-wand-sparkles"></i>
-                                    </div>
-                                </div>
-                                <h3>Atrações em Breve</h3>
-                                <p>Os bardos estão compondo baladas sobre os grandes artistas que se apresentarão em nossa festa medieval.</p>
-                                <div class="medieval-divider"></div>
-                                <p>Aguardai! As mais fantásticas performances serão anunciadas quando as estrelas se alinharem.</p>
-                            </div>
-                        </div>
-                        <div class="scroll-bottom"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Local Section -->
-        <section id="local" class="section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2>Local</h2>
-                    <div class="flourish-header"></div>
-                </div>
-                <div class="location-container">
-                    <div class="location-info">
-                        <div class="medieval-card">
-                            <h3>Castelo de Pedra</h3>
-                            <p><i class="fa-solid fa-location-dot"></i> Estrada das Brumas, km 12</p>
-                            <p><i class="fa-solid fa-city"></i> Serra da Cantaleira</p>
-                            <p class="location-description">Um castelo histórico cercado por florestas místicas e montanhas imponentes. O cenário perfeito para nossa viagem ao passado medieval.</p>
-                            <div class="map-directions">
-                                <a href="#" class="map-button">Como Chegar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="location-map">
-                        <div class="map-frame">
-                            <!-- Aqui entraria um iframe de mapa real -->
-                            <div class="placeholder-map">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                                <p>Mapa Interativo</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ingressos Section -->
-        <section id="ingressos" class="section dark-section">
-            <div class="mist-layer"></div>
-            <div class="pulsating-mist"></div>
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2 class="illuminated-heading">Ingressos</h2>
-                    <div class="flourish-header"></div>
-                </div>
-                <div class="tickets-container">
-                    <!-- Ingresso 1: Festival Básico -->
-                    <div class="ticket-card">
-                        <div class="ticket-header">
-                            <h3>Festival</h3>
-                            <div class="ticket-price">R$ 120</div>
-                        </div>
-                        <div class="ticket-content">
-                            <ul class="alchemy-list">
-                                <li>Acesso às festividades do reino</li>
-                                <li>Apresentações de menestréis e trovadores</li>
-                                <li>Torneios de cavaleiros e jogos medievais</li>
-                                <li>Mercado medieval com artesanato e comidas típicas</li>
-                            </ul>
-                            <div class="ticket-seal">
-                                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><circle cx='25' cy='25' r='24' fill='none' stroke='%23d4af37' stroke-width='1'/><path d='M25,10 L25,40 M10,25 L40,25' stroke='%23d4af37' stroke-width='0.7'/></svg>" alt="Selo" class="seal-image">
-                            </div>
-                            <a href="ingressos.html?tipo=regular" class="ticket-button">Adquirir Passagem</a>
-                        </div>
-                    </div>
-
-                    <!-- Ingresso 2: Festival + Hospedagem -->
-                    <div class="ticket-card featured">
-                        <div class="ticket-ribbon">Recomendado</div>
-                        <div class="ticket-header">
-                            <h3>Festival + Hospedagem</h3>
-                            <div class="ticket-price">R$ 290</div>
-                        </div>
-                        <div class="ticket-content">
-                            <ul class="alchemy-list">
-                                <li>Todas as benesses do ingresso Festival</li>
-                                <li>Pernoite em aposentos na vila medieval</li>
-                                <li>Desjejum tradicional servido no salão comunal</li>
-                                <li>Acesso à cerimônia de encerramento ao luar</li>
-                                <li>Participação na caçada ao tesouro noturna</li>
-                                <li>Caneca oficial de cerâmica do festival</li>
-                            </ul>
-                            <div class="ticket-seal">
-                                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'><circle cx='25' cy='25' r='24' fill='none' stroke='%23d4af37' stroke-width='1'/><path d='M15,15 L35,15 L35,35 L15,35 Z M15,15 L35,35 M15,35 L35,15' stroke='%23d4af37' stroke-width='0.7'/></svg>" alt="Selo" class="seal-image">
-                            </div>
-                            <a href="ingressos.html?tipo=premium" class="ticket-button">Adquirir Passagem</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contato Section - Versão Simplificada -->
-        <section id="contato" class="section">
-            <div class="mist-layer"></div>
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2 class="illuminated-heading gold-heading">Contato</h2>
-                    <div class="flourish-header"></div>
-                </div>
-
-                <div class="contact-container-simplified">
-                    <div class="medieval-card illuminated-border gold-border">
-                        <div class="leaf-ornament leaf-ornament-tl"></div>
-                        <div class="leaf-ornament leaf-ornament-br"></div>
-
-                        <h3 class="gold-text">Enviai Vossa Mensagem</h3>
-
-                        <div class="medieval-divider"></div>
-
-                        <p class="contact-intro"><span class="medieval-capital">O</span>s arautos e mensageiros do Reino de Brumas estão a postos para receber vossos pergaminhos. Caso tenhais dúvidas sobre o festival ou qualquer outro assunto relacionado às festividades, não hesiteis em nos contactar pelos meios abaixo.</p>
-
-                        <div class="contact-methods">
-                            <div class="contact-item featured">
-                                <i class="fa-solid fa-envelope gold-text"></i>
-                                <p>contato@brumasfestival.com</p>
-                            </div>
-
-                            <div class="contact-item featured">
-                                <i class="fa-brands fa-whatsapp gold-text"></i>
-                                <p>(11) 98765-4321</p>
-                            </div>
-                        </div>
-
-                        <div class="exhibitor-notice">
-                            <div class="notice-icon">
-                                <i class="fa-solid fa-scroll"></i>
-                            </div>
-                            <h4>Aviso aos Mercadores e Artesãos</h4>
-                            <p>Interessados em expor seus produtos no mercado medieval, <span class="highlight">contactar com devida antecedência</span>. As vagas são limitadas e sujeitas à aprovação prévia dos organizadores.</p>
-                            <a href="expositores.html" class="merchant-link gold-button"><i class="fa-solid fa-store"></i> Inscrever-se como Expositor</a>
-                        </div>
-
-                        <div class="medieval-divider"></div>
-
-                        <div class="social-icons-container">
-                            <h4>Segui-nos nas Redes dos Reinos</h4>
-                            <div class="social-icons">
-                                <a href="#" class="gold-hover"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#" class="gold-hover"><i class="fa-brands fa-facebook"></i></a>
-                                <a href="#" class="gold-hover"><i class="fa-brands fa-twitter"></i></a>
-                                <a href="#" class="gold-hover"><i class="fa-brands fa-youtube"></i></a>
-                                <a href="#" class="gold-hover"><i class="fa-brands fa-tiktok"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção de Organizadores -->
-        <section id="organizadores" class="section">
-            <div class="mist-layer"></div>
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h2 class="illuminated-heading">Organizadores</h2>
-                    <div class="flourish-header"></div>
-                </div>
-                <div class="organizers-container">
-                    <div class="organizer-item">
-                        <div class="organizer-logo-placeholder">
-                            <div class="logo-frame"></div>
-                        </div>
-                        <h3 class="organizer-name">Mittelalter</h3>
-                    </div>
-                    <div class="organizer-item">
-                        <div class="organizer-logo-placeholder">
-                            <div class="logo-frame"></div>
-                        </div>
-                        <h3 class="organizer-name">Old Norse</h3>
-                    </div>
-                    <div class="organizer-item">
-                        <div class="organizer-logo-placeholder">
-                            <div class="logo-frame"></div>
-                        </div>
-                        <h3 class="organizer-name">Invasão Medieval</h3>
-                    </div>
-                    <div class="organizer-item">
-                        <div class="organizer-logo-placeholder">
-                            <div class="logo-frame"></div>
-                        </div>
-                        <h3 class="organizer-name">Festival Medieval da Terra Média</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="assets/images/logo.png" alt="Brumas Logo">
-                <p>Brumas - Festival Medieval</p>
-            </div>
-            <div class="footer-links">
-                <a href="#sobre">Sobre</a>
-                <a href="#programacao">Programação</a>
-                <a href="#local">Local</a>
-                <a href="#ingressos">Ingressos</a>
-                <a href="#contato">Contato</a>
-            </div>
-            <div class="footer-legal">
-                <p>&copy; 2025 Brumas Festival Medieval. Todos os direitos reservados.</p>
-            </div>
+  <main>
+    <!-- Hero Section com Bruma -->
+    <section id="hero" class="parallax-section">
+      <div class="video-container">
+        <video autoplay muted loop id="bg-video">
+          <source
+            src="https://static.vecteezy.com/system/resources/previews/023/006/364/mp4/loop-black-and-white-cloud-flow-motion-video.mp4"
+            type="video/mp4">
+        </video>
+      </div>
+      <div class="overlay"></div>
+      <div class="hero-mist"></div>
+      <div class="floating-mist"></div>
+      <div class="hero-content">
+        <div class="flourish-top"></div>
+        <h1 class="main-title">Brumas</h1>
+        <h2 class="subtitle">Festival Medieval</h2>
+        <div class="date-container">
+          <p class="event-date">19 de Julho de 2025</p>
         </div>
-    </footer>
+        <a href="#ingressos" class="cta-button mist-glow">Garantir Ingresso</a>
+        <div class="flourish-bottom"></div>
+        <div class="scroll-indicator">
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+      </div>
+    </section>
 
-    <script src="js/script.js"></script>
+    <!-- Sobre Section com Iluminuras -->
+    <section id="sobre" class="section alchemy-pattern">
+      <div class="mist-layer"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h2 class="illuminated-heading">Sobre o Festival</h2>
+          <div class="flourish-header"></div>
+        </div>
+        <div class="content-columns">
+          <div class="column">
+            <div class="medieval-card illuminated-border">
+              <div class="illuminated-corner-tr"></div>
+              <div class="illuminated-corner-bl"></div>
+              <div class="illuminated-corner-br"></div>
+              <div class="card-icon">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <h3>Uma Viagem ao Passado</h3>
+              <p><span class="medieval-capital">B</span>rumas Festival Medieval transporta você para uma época de
+                cavaleiros, bardos e castelos. Uma experiência imersiva que recria fielmente o espírito da Idade Média.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="medieval-card illuminated-border">
+              <div class="illuminated-corner-tr"></div>
+              <div class="illuminated-corner-bl"></div>
+              <div class="illuminated-corner-br"></div>
+              <div class="card-icon">
+                <i class="fa-solid fa-scroll"></i>
+              </div>
+              <h3>Tradição e Cultura</h3>
+              <p>Celebramos as tradições medievais com apresentações autênticas, culinária da época, torneios e música
+                que ecoam através dos séculos.</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="medieval-card illuminated-border">
+              <div class="illuminated-corner-tr"></div>
+              <div class="illuminated-corner-bl"></div>
+              <div class="illuminated-corner-br"></div>
+              <div class="card-icon">
+                <i class="fa-solid fa-chess-knight"></i>
+              </div>
+              <h3>Para Todas as Idades</h3>
+              <p>Atividades para toda a família, desde duelos de cavaleiros e apresentações teatrais até oficinas de
+                artesanato medieval e jogos tradicionais.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programação Section com Efeito de Névoa -->
+    <section id="programacao" class="section dark-section">
+      <div class="mist-layer"></div>
+      <div class="pulsating-mist"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h2 class="illuminated-heading">Programação</h2>
+          <div class="flourish-header"></div>
+        </div>
+
+        <!-- Mensagem "Em Breve" -->
+        <div class="coming-soon-container">
+          <div class="medieval-scroll">
+            <div class="scroll-top"></div>
+            <div class="scroll-content">
+              <div class="coming-soon-text">
+                <h3>Programação em Breve</h3>
+                <p>Os arautos do reino estão trabalhando para anunciar os detalhes das festividades.</p>
+                <div class="medieval-divider"></div>
+                <p>As atividades incluirão torneios, banquetes, apresentações musicais e muitas surpresas medievais.</p>
+                <div class="alchemy-seal">
+                  <div class="seal-icon">
+                    <i class="fa-solid fa-scroll"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="scroll-bottom"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Atrações -->
+    <section id="atracoes" class="section dark-section">
+      <div class="mist-layer"></div>
+      <div class="pulsating-mist"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h2 class="illuminated-heading">Atrações</h2>
+          <div class="flourish-header"></div>
+        </div>
+
+        <!-- Mensagem "Em Breve" -->
+        <div class="coming-soon-container">
+          <div class="medieval-scroll">
+            <div class="scroll-top"></div>
+            <div class="scroll-content">
+              <div class="coming-soon-text">
+                <div class="illuminated-seal">
+                  <div class="seal-icon">
+                    <i class="fa-solid fa-wand-sparkles"></i>
+                  </div>
+                </div>
+                <h3>Atrações em Breve</h3>
+                <p>Os bardos estão compondo baladas sobre os grandes artistas que se apresentarão em nossa festa
+                  medieval.</p>
+                <div class="medieval-divider"></div>
+                <p>Aguardai! As mais fantásticas performances serão anunciadas quando as estrelas se alinharem.</p>
+              </div>
+            </div>
+            <div class="scroll-bottom"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local Section -->
+    <section id="local" class="section">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h2>Local</h2>
+          <div class="flourish-header"></div>
+        </div>
+        <div class="location-container">
+          <div class="location-info">
+            <div class="medieval-card">
+              <h3>Castelo de Pedra</h3>
+              <p><i class="fa-solid fa-location-dot"></i> Estrada das Brumas, km 12</p>
+              <p><i class="fa-solid fa-city"></i> Serra da Cantaleira</p>
+              <p class="location-description">Um castelo histórico cercado por florestas místicas e montanhas
+                imponentes. O cenário perfeito para nossa viagem ao passado medieval.</p>
+              <div class="map-directions">
+                <a href="#" class="map-button">Como Chegar</a>
+              </div>
+            </div>
+          </div>
+          <div class="location-map">
+            <div class="map-frame">
+              <!-- Aqui entraria um iframe de mapa real -->
+              <div class="placeholder-map">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p>Mapa Interativo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ingressos Section -->
+    <section id="ingressos" class="dark-section">
+      <header>
+        <div class="flourish-header"></div>
+        <h2 class="illuminated-heading">Ingressos</h2>
+        <div class="flourish-header"></div>
+      </header>
+
+      <!-- tickets-->
+      <tickets-component></tickets-component>
+    </section>
+
+    <!-- Contato Section - Versão Simplificada -->
+    <section id="contato" class="section">
+      <div class="mist-layer"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h2 class="illuminated-heading gold-heading">Contato</h2>
+          <div class="flourish-header"></div>
+        </div>
+
+        <div class="contact-container-simplified">
+          <div class="medieval-card illuminated-border gold-border">
+            <div class="leaf-ornament leaf-ornament-tl"></div>
+            <div class="leaf-ornament leaf-ornament-br"></div>
+
+            <h3 class="gold-text">Enviai Vossa Mensagem</h3>
+
+            <div class="medieval-divider"></div>
+
+            <p class="contact-intro"><span class="medieval-capital">O</span>s arautos e mensageiros do Reino de Brumas
+              estão a postos para receber vossos pergaminhos. Caso tenhais dúvidas sobre o festival ou qualquer outro
+              assunto relacionado às festividades, não hesiteis em nos contactar pelos meios abaixo.</p>
+
+            <div class="contact-methods">
+              <div class="contact-item featured">
+                <i class="fa-solid fa-envelope gold-text"></i>
+                <p>contato@brumasfestival.com</p>
+              </div>
+
+              <div class="contact-item featured">
+                <i class="fa-brands fa-whatsapp gold-text"></i>
+                <p>(11) 98765-4321</p>
+              </div>
+            </div>
+
+            <div class="exhibitor-notice">
+              <div class="notice-icon">
+                <i class="fa-solid fa-scroll"></i>
+              </div>
+              <h4>Aviso aos Mercadores e Artesãos</h4>
+              <p>Interessados em expor seus produtos no mercado medieval, <span class="highlight">contactar com devida
+                  antecedência</span>. As vagas são limitadas e sujeitas à aprovação prévia dos organizadores.</p>
+              <a href="expositores.html" class="merchant-link gold-button"><i class="fa-solid fa-store"></i>
+                Inscrever-se como Expositor</a>
+            </div>
+
+            <div class="medieval-divider"></div>
+
+            <div class="social-icons-container">
+              <h4>Segui-nos nas Redes dos Reinos</h4>
+              <div class="social-icons">
+                <a href="#" class="gold-hover"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="gold-hover"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="gold-hover"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="gold-hover"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="gold-hover"><i class="fa-brands fa-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de Organizadores -->
+    <section id="organizadores" class="section">
+      <div class="mist-layer"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h2 class="illuminated-heading">Organizadores</h2>
+          <div class="flourish-header"></div>
+        </div>
+        <div class="organizers-container">
+          <div class="organizer-item">
+            <div class="organizer-logo-placeholder">
+              <div class="logo-frame"></div>
+            </div>
+            <h3 class="organizer-name">Mittelalter</h3>
+          </div>
+          <div class="organizer-item">
+            <div class="organizer-logo-placeholder">
+              <div class="logo-frame"></div>
+            </div>
+            <h3 class="organizer-name">Old Norse</h3>
+          </div>
+          <div class="organizer-item">
+            <div class="organizer-logo-placeholder">
+              <div class="logo-frame"></div>
+            </div>
+            <h3 class="organizer-name">Invasão Medieval</h3>
+          </div>
+          <div class="organizer-item">
+            <div class="organizer-logo-placeholder">
+              <div class="logo-frame"></div>
+            </div>
+            <h3 class="organizer-name">Festival Medieval da Terra Média</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer-component></footer-component>
 </body>
+
 </html>

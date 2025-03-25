@@ -2,7 +2,7 @@
 
 .merchant-section {
     min-height: calc(100vh - 100px);
-    padding: 120px 5% 60px;
+    padding: 60px 5% 60px;
     background-color: var(--color-parchment);
     position: relative;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 L55,40 L65,42 L58,50 L60,60 L50,55 L40,60 L42,50 L35,42 L45,40 Z" fill="%23491449" opacity="0.05"/></svg>');
