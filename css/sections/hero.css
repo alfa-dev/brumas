@@ -1,12 +1,51 @@
 /* Hero Section com Video Parallax */
-.parallax-section {
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-light);
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(8, 8, 6, 0.7), rgba(10, 18, 70, 0.7));
+}
+
+#hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(8, 8, 6, 0.8), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#hero h1 {
+  opacity: 0;
+  display: block;
+  position: relative;
+  background-image: url(/assets/brumas_logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 80%;
+  max-width: 600px;
+  height: 70%;
+  margin: 0 auto;
+  font-size: 0px;
+  color: transparent;
+  animation: fadeIn 2s ease forwards, alchemyGlow 2s ease-in-out infinite alternate;
 }
 
 .video-container {
@@ -25,15 +64,6 @@
   transform: scale(1.1);
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(8, 8, 6, 0.7), rgba(10, 18, 70, 0.7));
-}
-
 .hero-content {
   text-align: center;
   padding: 2rem;
@@ -43,7 +73,7 @@
 
 .hero-content::before,
 .hero-content::after {
-  content: "";
+  /* content: ""; */
   display: block;
   height: 50px;
   margin: 20px auto;
@@ -63,17 +93,15 @@
   opacity: 0;
   font-size: 5rem;
   letter-spacing: 10px;
-  margin-bottom: 0.5rem;
-  font-family: var(--font-medieval);
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  animation: glow 3s ease-in-out infinite alternate, fadeIn 2s ease forwards;
+  margin-bottom: 2.5rem;
+  animation: alchemyGlow 3s ease-in-out infinite alternate, fadeIn 2s ease forwards;
 }
 
-.main-title img {
+.main-title logo-component{
   width: 80%;
-  max-width: 600px;
-  height: 200px;
-  transform: scale(2);
+  min-width: 600px;
+  height: 250px;
+  animation: alchemyGlow 10s ease-in-out infinite alternate, fadeIn 2s ease forwards;
 }
 
 .subtitle {
@@ -252,7 +280,7 @@
 }
 
 @media (prefers-reduced-motion) {
-  .main-title, .subtitle, .event-date, .cta-button {
+  h1, .main-title, .subtitle, .event-date, .cta-button, .scroll-indicator {
     animation: none;
     opacity: 1;
   }

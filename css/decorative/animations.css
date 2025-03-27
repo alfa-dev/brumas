@@ -55,9 +55,9 @@
 
 /* Animação para símbolos alquímicos */
 @keyframes alchemyGlow {
-    0% { filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.1)); }
-    50% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); }
-    100% { filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.1)); }
+    0% { filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.3)); }
+    50% { filter: drop-shadow(0 0 11px rgba(212, 175, 55, 0.5)); }
+    100% { filter: drop-shadow(0 0 1px rgba(212, 175, 55, 0.3)); }
 }
 
 /* Rotação lenta para círculos alquímicos */

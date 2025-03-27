@@ -13,7 +13,7 @@ header-component a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 0px 5%;
     background-color: rgba(8, 8, 6, 0.6);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--color-gold);
@@ -22,6 +22,7 @@ header-component a {
 
 .logo img {
     height: 60px;
+    filter: drop-shadow(0 0 10px var(--color-gold));
 }
 
 .nav-links a {
