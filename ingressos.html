@@ -1,151 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adquirir Ingressos - Brumas Festival Medieval</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/sections/ticket-form.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adquirir Ingressos - Brumas Festival Medieval</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sections/ticket-form.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
+    rel="stylesheet">
 
-    <script src="js/script.js"></script>
-    <script src="js/components.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/components.js"></script>
+</head>
 
-  </head>
 <body>
-    <header-component></header-component>
+  <header-component></header-component>
 
-    <main>
-        <section class="ticket-form-section">
-            <div class="mist-layer"></div>
-            <div class="pulsating-mist"></div>
+  <main style="padding-top: 72px;">
+    <section class="ticket-form-section">
+      <header>
+        <h1 class="illuminated-heading gold-heading">Adquirir Ingressos</h1>
+      </header>
+      <div class="medieval-divider"></div>
+      <div class="form-intro">
+        <h3><i class="fa-solid fa-feather-pointed gold-text"></i> Reservai Vossa Presença</h3>
+        <p>Preencha o formulário abaixo para reservar seu ingresso. <br>
+          <small>Após o envio, recebereis instruções para o pagamento em vosso email.</small></p>
+      </div>
 
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="flourish-header"></div>
-                    <h1 class="illuminated-heading gold-heading">Adquirir Ingressos</h1>
-                    <div class="flourish-header"></div>
-                </div>
+      <form
+        action="https://script.google.com/macros/s/AKfycbxdt9ACzqELRdahMLUiNITh0d5i7HBSFbzcE4Gry8TVjFW4d-tHmUNJYt-7G2m8Qnde7w/exec"
+        method="POST"
+        class="medieval-card">
+        <fieldset id="personal-data-fieldset">
+          <legend>Vossos Dados Pessoais</legend>
+          <div class="form-group">
+            <label for="name"><i class="fa-solid fa-user"></i> Nome Completo</label>
+            <input type="text" id="name" name="name" required placeholder="Vosso nome">
+          </div>
 
-                <div class="ticket-form-container">
-                    <div class="medieval-scroll-large">
-                        <div class="scroll-top"></div>
-                        <div class="scroll-content">
-                            <div class="ticket-info">
-                                <div class="ticket-options">
-                                    <div class="ticket-type">
-                                        <h2 class="gold-text">Festival</h2>
-                                        <p class="ticket-description">Acesso a todas as festividades do reino, incluindo apresentações, torneios e mercado medieval.</p>
-                                        <div class="ticket-price">
-                                            <p>Valor: <span class="price-tag">R$ 120,00</span></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="ticket-type">
-                                        <h2 class="gold-text">Festival + Hospedagem</h2>
-                                        <p class="ticket-description">Inclui todas as benesses do ingresso Festival, pernoite em aposentos na vila medieval e desjejum tradicional no salão comunal.</p>
-                                        <div class="ticket-price">
-                                            <p>Valor: <span class="price-tag">R$ 290,00</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="illuminated-divider"></div>
-
-                            <div class="form-intro">
-                                <h3><i class="fa-solid fa-feather-pointed gold-text"></i> Reservai Vossa Presença</h3>
-                                <p>Preencha o formulário abaixo para reservar seu ingresso. Após o envio, recebereis instruções para o pagamento em vosso email.</p>
-                            </div>
-
-                            <form action="https://script.google.com/macros/s/AKfycbxdt9ACzqELRdahMLUiNITh0d5i7HBSFbzcE4Gry8TVjFW4d-tHmUNJYt-7G2m8Qnde7w/exec" method="POST">
-                                <div class="form-group">
-                                    <label for="name"><i class="fa-solid fa-user"></i> Nome Completo</label>
-                                    <input type="text" id="name" name="name" required placeholder="Vosso nome">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
-                                    <input type="email" id="email" name="email" required placeholder="vosso@email.com">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</label>
-                                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Tipo de Ingresso</label>
-                                    <div class="radio-options">
-                                        <div class="radio-option">
-                                            <input type="radio" id="ticket-regular" name="ticket-type" value="regular" checked>
-                                            <label for="ticket-regular">Festival (R$ 120,00)</label>
-                                        </div>
-                                        <div class="radio-option">
-                                            <input type="radio" id="ticket-premium" name="ticket-type" value="premium">
-                                            <label for="ticket-premium">Festival + Hospedagem (R$ 290,00)</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group checkbox-group">
-                                    <div class="checkbox-option">
-                                        <input type="checkbox" id="parking" name="parking">
-                                        <label for="parking">Necessito de Estacionamento</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group checkbox-group">
-                                    <div class="checkbox-option">
-                                        <input type="checkbox" id="mug" name="mug">
-                                        <label for="mug">Adquirir Caneca Oficial (+R$ 40,00)</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group checkbox-group">
-                                    <div class="checkbox-option">
-                                        <input type="checkbox" id="accept-terms" name="accept-terms" required>
-                                        <label for="accept-terms">
-                                            Li e concordo com os <a href="termos-participantes.html" target="_blank" class="terms-link">termos e condições para participantes</a> do Festival Brumas
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="price-summary">
-                                    <div class="summary-row">
-                                        <span>Valor do Ingresso:</span>
-                                        <span id="ticket-base-price">R$ 120,00</span>
-                                    </div>
-                                    <div class="summary-row" id="mug-price-row" style="display: none;">
-                                        <span>Caneca Oficial:</span>
-                                        <span>R$ 40,00</span>
-                                    </div>
-                                    <div class="summary-row total">
-                                        <span>Total:</span>
-                                        <span id="total-price">R$ 120,00</span>
-                                    </div>
-                                </div>
-
-                                <div class="form-note">
-                                    <p><i class="fa-solid fa-circle-info"></i> O pagamento será processado após a confirmação da reserva. Instruções serão enviadas para o email fornecido.</p>
-                                </div>
-
-                                <button type="submit" class="submit-button gold-button">
-                                    <i class="fa-solid fa-ticket"></i> Reservar Ingresso
-                                </button>
-                            </form>
-                        </div>
-                        <div class="scroll-bottom"></div>
-                    </div>
-                </div>
+          <div>
+            <div class="form-group">
+              <label for="cpf"><i class="fa-solid fa-id-card"></i> CPF</label>
+              <input type="text" id="cpf" name="cpf" required placeholder="123.456.789-10">
             </div>
-        </section>
-    </main>
 
-    <footer-component></footer-component>
+            <div class="form-group">
+              <label for="birthdate"><i class="fa-solid fa-calendar-days"></i> Data de Nascimento</label>
+              <input type="date" id="birthdate" name="birthdate" required placeholder="dd/mm/yyyy">
+            </div>
+          </div>
 
+          <div>
+            <div class="form-group">
+              <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+              <input type="email" id="email" name="email" required placeholder="vosso@email.com">
+            </div>
+
+            <div class="form-group">
+              <label for="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</label>
+              <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset id="ticket-types-fieldset">
+          <legend>Escolha o Tipo de Ingresso</legend>
+          <ticket-types></ticket-types>
+        </fieldset>
+
+        <fieldset id="optional-fieldset">
+          <legend>Opcionais</legend>
+          <div class="form-group">
+            <input type="checkbox" id="parking" name="parking">
+            <label for="parking">Necessito de Estacionamento</label>
+          </div>
+
+          <div class="form-group">
+            <input type="checkbox" id="mug" name="mug">
+            <label for="mug">Adquirir Caneca Oficial (+R$ 40,00)</label>
+          </div>
+        </fieldset>
+
+        <fieldset id="accept-terms-fieldset">
+          <div class="form-group">
+            <input type="checkbox" id="accept-terms" name="accept-terms" required>
+            <label for="accept-terms">
+              Li e concordo com os <a href="termos-participantes.html" target="_blank" class="terms-link">
+              termos e condições para participantes</a> do Festival Brumas
+            </label>
+          </div>
+        </fieldset>
+
+        <div id="price-summary">
+        </div>
+
+        <div class="form-note">
+          <p><i class="fa-solid fa-circle-info"></i> O pagamento será processado após a confirmação da reserva.
+            Instruções serão enviadas para o email fornecido.</p>
+        </div>
+
+        <button type="submit" class="cta-button mist-glow" style="animation: none; opacity: 1;">
+          <i class="fa-solid fa-ticket"></i> Reservar Ingresso
+        </button>
+      </form>
+    </section>
+  </main>
+  <footer-component></footer-component>
+
+  <script src="js/ticket-form.js"></script>
 </body>
+
 </html>

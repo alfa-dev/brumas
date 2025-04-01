@@ -50,7 +50,7 @@ class FooterComponent extends HTMLElement {
       <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="assets/images/logo.png" alt="Brumas Logo">
+                <img src="assets/b_fundo_escuro.svg" alt="Brumas Logo">
                 <p>Brumas - Festival Medieval</p>
             </div>
             <div class="footer-links">
@@ -86,6 +86,27 @@ class TicketsComponent extends HTMLElement {
     `).join('');
   }
 }
+class TicketTypes extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    // Get ticket type from url
+    const ticketType = parseInt(new URLSearchParams(window.location.search).get('tipo'));
+
+    TICKETS.forEach(ticket => {
+      this.innerHTML += `
+        <input type="radio" id="ticket-${ticket.id}" name="ticket-type" value="${ticket.id}" ${ticket.id === ticketType ? 'checked' : ''}>
+        <label for="ticket-${ticket.id}">
+          <span>${ticket.name}</span>
+          <span class="ticket-price"><span class="currency">R$</span> ${ticket.price}</span>
+        </label>
+      `;
+    });
+  }
+}
+
 class ContactComponent extends HTMLElement {
   constructor() {
     super();
@@ -146,3 +167,4 @@ customElements.define('footer-component', FooterComponent);
 customElements.define('tickets-component', TicketsComponent);
 customElements.define('contact-component', ContactComponent);
 customElements.define('social-component', SocialComponent);
+customElements.define('ticket-types', TicketTypes);

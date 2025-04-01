@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 50">
   <defs>
     <style>
-      .st9 { fill: #000; }
-      .st19 { fill: #000; }
-      .st21 { fill: none; stroke: #000; stroke-width: 2; }
+      .st9 { fill: #d4af36; }
+      .st19 { fill: #401b79; }
+      .st21 { fill: none; stroke: #d4af36; stroke-width: 2; }
     </style>
   </defs>
   <g>

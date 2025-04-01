@@ -1,458 +1,429 @@
-/* Estilos para a página de formulário de ingressos com CSS aninhado */
-
-.ticket-form-section {
-    min-height: calc(100vh - 100px);
-    padding: 60px 5% 60px;
-    background-color: var(--color-parchment);
-    position: relative;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 L55,40 L65,42 L58,50 L60,60 L50,55 L40,60 L42,50 L35,42 L45,40 Z" fill="%23491449" opacity="0.05"/></svg>');
-
-    & .section-container {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-}
-
-.ticket-form-container {
-    margin-top: 50px;
-}
-
-.medieval-scroll-large {
-    position: relative;
-    background-color: var(--color-parchment);
-    border-radius: 8px;
-    padding: 40px 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    color: var(--color-dark);
-
-    & .scroll-top, & .scroll-bottom {
-        height: 40px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    & .scroll-top {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        margin-top: -40px;
-
-        &::before {
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background-color: var(--color-parchment);
-            border: 1px solid rgba(73, 20, 73, 0.2);
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-            top: 20px;
-            border-top-left-radius: 50%;
-            border-top-right-radius: 50%;
-            border-bottom: none;
-        }
-    }
-
-    & .scroll-bottom {
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        margin-bottom: -40px;
-
-        &::before {
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background-color: var(--color-parchment);
-            border: 1px solid rgba(73, 20, 73, 0.2);
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-            bottom: 20px;
-            border-bottom-left-radius: 50%;
-            border-bottom-right-radius: 50%;
-            border-top: none;
-        }
-    }
-
-    & .scroll-content {
-        background-image:
-            linear-gradient(to right, rgba(73, 20, 73, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(73, 20, 73, 0.03) 1px, transparent 1px);
-        background-size: 20px 20px;
-        padding: 40px;
-        border-left: 2px solid rgba(73, 20, 73, 0.1);
-        border-right: 2px solid rgba(73, 20, 73, 0.1);
-        position: relative;
-
-        &::before, &::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M15,1 L29,15 L15,29 L1,15 Z" fill="none" stroke="%23d4af37" stroke-width="0.5" opacity="0.5"/></svg>');
-            background-repeat: no-repeat;
-        }
-
-        &::before {
-            top: 15px;
-            left: 15px;
-        }
-
-        &::after {
-            bottom: 15px;
-            right: 15px;
-            transform: rotate(180deg);
-        }
-    }
-}
-
-.ticket-info {
-    margin-bottom: 40px;
-
-    & .ticket-options {
-        display: flex;
-        justify-content: space-between;
-        gap: 30px;
-        flex-wrap: wrap;
-
-        & .ticket-type {
-            flex: 1;
-            min-width: 300px;
-            background-color: rgba(10, 18, 70, 0.05);
-            border: 1px solid var(--color-gold);
-            border-radius: 5px;
-            padding: 25px;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-
-            &:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                background-color: rgba(10, 18, 70, 0.08);
-            }
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 5px;
-                background: linear-gradient(90deg, var(--color-purple), var(--color-gold));
-            }
-
-            & h2 {
-                font-family: var(--font-medieval);
-                font-size: 1.6rem;
-                margin-bottom: 15px;
-                color: var(--color-deep-purple);
-            }
-
-            & .ticket-description {
-                font-size: 1rem;
-                line-height: 1.5;
-                margin-bottom: 20px;
-                min-height: 70px;
-            }
-
-            & .ticket-price {
-                font-family: var(--font-title);
-                font-size: 1.1rem;
-                color: var(--color-deep-purple);
-                text-align: right;
-
-                & .price-tag {
-                    font-weight: bold;
-                    color: var(--color-gold-dark);
-                    font-size: 1.2rem;
-                }
-            }
-        }
-    }
-}
-
-.illuminated-divider {
-    height: 40px;
-    width: 100%;
-    margin: 30px 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 20"><path d="M0,10 Q75,20 150,10 T300,10" fill="none" stroke="%23d4af37" stroke-width="1"/><g fill="%23d4af37"><circle cx="50" cy="10" r="1.5"/><circle cx="100" cy="10" r="1.5"/><circle cx="150" cy="10" r="1.5"/><circle cx="200" cy="10" r="1.5"/><circle cx="250" cy="10" r="1.5"/></g></svg>');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+h3 {
+  font-family: var(--font-medieval);
+  font-size: 1.8rem;
+  color: var(--color-deep-purple);
+  margin-bottom: 15px;
 }
 
 .form-intro {
-    text-align: center;
-    margin-bottom: 30px;
-
-    & h3 {
-        font-family: var(--font-medieval);
-        font-size: 1.8rem;
-        color: var(--color-deep-purple);
-        margin-bottom: 15px;
-    }
-
-    & p {
-        font-size: 1.1rem;
-        color: var(--color-dark);
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.medieval-form {
-    max-width: 800px;
-    margin: 0 auto;
-
-    & .form-group {
-        margin-bottom: 25px;
-
-        & label {
-            display: block;
-            margin-bottom: 8px;
-            font-family: var(--font-title);
-            color: var(--color-deep-purple);
-            font-size: 1.05rem;
-
-            & i {
-                color: var(--color-gold);
-                margin-right: 8px;
-            }
-        }
-
-        & input[type="text"],
-        & input[type="email"],
-        & input[type="tel"],
-        & textarea,
-        & select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--color-gold-pale);
-            border-radius: 5px;
-            font-family: var(--font-text);
-            font-size: 1rem;
-            background-color: rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-
-            &:focus {
-                outline: none;
-                border-color: var(--color-gold);
-                box-shadow: 0 0 8px var(--color-gold-pale);
-                background-color: white;
-            }
-        }
-    }
-
-    & .checkbox-group, & .radio-options {
-        margin-top: 10px;
-    }
-
-    & .checkbox-option, & .radio-option {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-
-        & input[type="checkbox"], & input[type="radio"] {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--color-gold-dark);
-        }
-
-        & label {
-            margin-bottom: 0;
-            font-size: 1rem;
-        }
-    }
-
-    & .radio-options {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-
-        & .radio-option {
-            flex: 1;
-            min-width: 200px;
-            background-color: rgba(10, 18, 70, 0.03);
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-
-            &:hover {
-                background-color: rgba(10, 18, 70, 0.05);
-                border-color: var(--color-gold-pale);
-            }
-
-            &.selected {
-                background-color: rgba(212, 175, 55, 0.1);
-                border-color: var(--color-gold);
-                box-shadow: 0 0 10px var(--color-gold-pale);
-            }
-        }
-    }
+#personal-data-fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.price-summary {
-    background-color: rgba(244, 233, 205, 0.5);
-    border: 1px solid var(--color-gold-pale);
-    border-radius: 5px;
-    padding: 20px 25px;
-    margin: 30px 0;
+#personal-data-fieldset > div:not(.form-group) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
-    & .summary-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px dashed var(--color-gold-pale);
-        font-family: var(--font-text);
+.form-group:has(#cpf),
+.form-group:has(#email) {
+  flex: 1;
+}
 
-        &:last-child {
-            border-bottom: none;
-        }
+/* ticket-types */
 
-        &.total {
-            font-family: var(--font-title);
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--color-deep-purple);
-            border-top: 1px solid var(--color-gold-pale);
-            margin-top: 5px;
-            padding-top: 15px;
-        }
-    }
+ticket-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+ticket-types input[type="radio"] {
+  display: none;
+}
+
+ticket-types label {
+  opacity: 0.5;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: radial-gradient(circle, #e9d4b571 30%, #e9d4b5 100%);
+}
+
+ticket-types label:hover,
+ticket-types input[type="radio"]:checked + label {
+  opacity: 1;
+}
+
+ticket-types input[type="radio"]:checked + label {
+  outline: 1px solid var(--color-gold);
+  border-radius: 5px;
+  outline-offset: 5px;
+}
+
+ticket-types label span:nth-child(1) {
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+}
+
+ticket-types label span:nth-child(2) {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-left: 1px dashed var(--color-gold);
+}
+
+ticket-types label .currency {
+  font-size: 0.8rem;
+}
+
+ticket-types input[type="radio"] {
+  display: none;
+}
+
+
+#optional-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#optional-fieldset .form-group,
+#accept-terms-fieldset .form-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+#optional-fieldset .form-group label,
+#accept-terms-fieldset .form-group label {
+  flex: 1;
 }
 
 .form-note {
-    background-color: rgba(10, 18, 70, 0.05);
-    border-left: 3px solid var(--color-gold);
-    padding: 15px 20px;
-    border-radius: 0 5px 5px 0;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: var(--color-deep-purple);
+  opacity: 0.8;
+}
 
-    & p {
-        font-size: 0.95rem;
-        color: var(--color-deep-purple);
+button[type="submit"] {
+  margin: 0 auto;
+  display: block;
+}
 
-        & i {
-            color: var(--color-gold);
-            margin-right: 8px;
-        }
+
+
+
+
+
+
+/* Estilos para a página de formulário de ingressos com CSS aninhado
+
+.ticket-form-section {
+  min-height: calc(100vh - 100px);
+  padding: 60px 5% 60px;
+  background-color: var(--color-parchment);
+  position: relative;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 L55,40 L65,42 L58,50 L60,60 L50,55 L40,60 L42,50 L35,42 L45,40 Z" fill="%23491449" opacity="0.05"/></svg>');
+
+  & .section-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+.illuminated-divider {
+  height: 40px;
+  width: 100%;
+  margin: 30px 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 20"><path d="M0,10 Q75,20 150,10 T300,10" fill="none" stroke="%23d4af37" stroke-width="1"/><g fill="%23d4af37"><circle cx="50" cy="10" r="1.5"/><circle cx="100" cy="10" r="1.5"/><circle cx="150" cy="10" r="1.5"/><circle cx="200" cy="10" r="1.5"/><circle cx="250" cy="10" r="1.5"/></g></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.form-intro {
+  text-align: center;
+  margin-bottom: 30px;
+
+  & h3 {
+    font-family: var(--font-medieval);
+    font-size: 1.8rem;
+    color: var(--color-deep-purple);
+    margin-bottom: 15px;
+  }
+
+  & p {
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+.medieval-form {
+  max-width: 800px;
+  margin: 0 auto;
+
+  & .form-group {
+    margin-bottom: 25px;
+
+    & label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--font-title);
+      color: var(--color-deep-purple);
+      font-size: 1.05rem;
+
+      & i {
+        color: var(--color-gold);
+        margin-right: 8px;
+      }
     }
+
+    & input[type="text"],
+    & input[type="email"],
+    & input[type="tel"],
+    & textarea,
+    & select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--color-gold-pale);
+      border-radius: 5px;
+      font-family: var(--font-text);
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-gold);
+        box-shadow: 0 0 8px var(--color-gold-pale);
+        background-color: white;
+      }
+    }
+  }
+
+  & .checkbox-group,
+  & .radio-options {
+    margin-top: 10px;
+  }
+
+  & .checkbox-option,
+  & .radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    & input[type="checkbox"],
+    & input[type="radio"] {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-gold-dark);
+    }
+
+    & label {
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+  }
+
+  & .radio-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    & .radio-option {
+      flex: 1;
+      min-width: 200px;
+      background-color: rgba(10, 18, 70, 0.03);
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba(10, 18, 70, 0.05);
+        border-color: var(--color-gold-pale);
+      }
+
+      &.selected {
+        background-color: rgba(212, 175, 55, 0.1);
+        border-color: var(--color-gold);
+        box-shadow: 0 0 10px var(--color-gold-pale);
+      }
+    }
+  }
+}
+
+.price-summary {
+  background-color: rgba(244, 233, 205, 0.5);
+  border: 1px solid var(--color-gold-pale);
+  border-radius: 5px;
+  padding: 20px 25px;
+  margin: 30px 0;
+
+  & .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--color-gold-pale);
+    font-family: var(--font-text);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.total {
+      font-family: var(--font-title);
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--color-deep-purple);
+      border-top: 1px solid var(--color-gold-pale);
+      margin-top: 5px;
+      padding-top: 15px;
+    }
+  }
+}
+
+.form-note {
+  background-color: rgba(10, 18, 70, 0.05);
+  border-left: 3px solid var(--color-gold);
+  padding: 15px 20px;
+  border-radius: 0 5px 5px 0;
+  margin-bottom: 30px;
+
+  & p {
+    font-size: 0.95rem;
+    color: var(--color-deep-purple);
+
+    & i {
+      color: var(--color-gold);
+      margin-right: 8px;
+    }
+  }
 }
 
 .gold-button {
-    background: linear-gradient(to bottom, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-    color: var(--color-dark);
-    border: none;
-    padding: 15px 30px;
-    font-family: var(--font-medieval);
-    font-size: 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    text-align: center;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: var(--color-dark);
+  border: none;
+  padding: 15px 30px;
+  font-family: var(--font-medieval);
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        background: linear-gradient(to bottom, var(--color-gold-light) 0%, var(--color-gold) 100%);
-    }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
 
-    & i {
-        margin-right: 10px;
-    }
+  & i {
+    margin-right: 10px;
+  }
 }
 
-/* Media Queries */
+/* Media Queries
 @media (max-width: 992px) {
-    .ticket-info .ticket-options .ticket-type {
-        min-width: 250px;
-    }
+  .ticket-info .ticket-options .ticket-type {
+    min-width: 250px;
+  }
 }
 
 @media (max-width: 768px) {
-    .ticket-form-section {
-        padding: 100px 4% 60px;
+  .ticket-form-section {
+    padding: 100px 4% 60px;
+  }
+
+  .medieval-scroll-large .scroll-content {
+    padding: 30px 20px;
+  }
+
+  .ticket-info .ticket-options {
+    flex-direction: column;
+    gap: 20px;
+
+    & .ticket-type {
+      min-width: 100%;
+
+      & .ticket-description {
+        min-height: auto;
+      }
+    }
+  }
+
+  .form-intro {
+    & h3 {
+      font-size: 1.6rem;
     }
 
-    .medieval-scroll-large .scroll-content {
-        padding: 30px 20px;
+    & p {
+      font-size: 1rem;
     }
-
-    .ticket-info .ticket-options {
-        flex-direction: column;
-        gap: 20px;
-
-        & .ticket-type {
-            min-width: 100%;
-
-            & .ticket-description {
-                min-height: auto;
-            }
-        }
-    }
-
-    .form-intro {
-        & h3 {
-            font-size: 1.6rem;
-        }
-
-        & p {
-            font-size: 1rem;
-        }
-    }
+  }
 }
+
+/* Adicione este estilo para o link dos termos
+.terms-link {
+  color: var(--color-gold-dark);
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--color-deep-purple);
+    text-decoration: underline;
+  }
+}
+
+.form-group {
+  border-radius: 5px;
+  padding: 20px;
+}
+
+ticket-types{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+ticket-types label {
+  border: 1px solid var(--color-gold);
+  border-radius: 5px;
+  padding: 20px;
+  background-color: linear-gradient(to right, var(--color-gold) 0%, var(--color-gold) 5%,  white);
+}
+
+ticket-types input[type="radio"] {
+  display: none;
+}
+
 
 @media (max-width: 480px) {
-    .medieval-scroll-large .scroll-content {
-        padding: 25px 15px;
-    }
+  .medieval-scroll-large .scroll-content {
+    padding: 25px 15px;
+  }
 
-    .medieval-form .radio-options {
-        flex-direction: column;
-        gap: 10px;
-    }
+  .medieval-form .radio-options {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .price-summary .summary-row.total {
-        font-size: 1.1rem;
-    }
+  .price-summary .summary-row.total {
+    font-size: 1.1rem;
+  }
 }
 
-/* Adicione este estilo para o link dos termos */
-.terms-link {
-    color: var(--color-gold-dark);
-    text-decoration: underline;
-    font-weight: bold;
-    transition: color 0.3s ease;
-
-    &:hover {
-        color: var(--color-deep-purple);
-        text-decoration: underline;
-    }
-}
-
-.checkbox-group {
-    margin: 25px 0;
-
-    & .checkbox-option {
-        display: flex;
-        align-items: flex-start;
-
-        & input[type="checkbox"] {
-            margin-right: 10px;
-            margin-top: 5px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--color-gold-dark);
-        }
-
-        & label {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: var(--color-dark);
-        }
-    }
-}

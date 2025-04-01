@@ -1,7 +1,7 @@
 const PRICES = {
   ticket: {
-    regular: 20,
-    premium: 29,
+    regular: 120,
+    premium: 200,
   },
   mug: 40
 };
@@ -28,27 +28,6 @@ const TICKETS = [
       'Desjejum tradicional servido no salão comunal',
       'Acesso à cerimônia de encerramento ao luar',
       'Participação na caçada ao tesouro noturna',
-    ],
-  },
-  {
-    id: 3,
-    name: 'Festival + Hospedagem + cafuné',
-    price: PRICES.ticket.premium,
-    description: [
-      'Todas as benesses do ingresso Festival',
-      'Pernoite em aposentos na vila medieval',
-      'Acesso ao cafuné',
-    ],
-  },
-  {
-    id: 4,
-    name: 'Festival + Hospedagem + cafuné + churrasco',
-    price: PRICES.ticket.premium,
-    description: [
-      'Todas as benesses do ingresso Festival',
-      'Pernoite em aposentos na vila medieval',
-      'Acesso ao cafuné',
-      'Acesso ao churrasco',
     ],
   }
 ];
