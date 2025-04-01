@@ -117,6 +117,34 @@ button[type="submit"] {
   display: block;
 }
 
+#price-summary {
+  color: var(--color-deep-purple);
+  text-align: right;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--color-gold-pale);
+  margin-bottom: 20px;
+  width: fit-content;
+  margin: 0 0 30px auto;
+
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  /* background-image: linear-gradient(to top, #00000022 0%, #00000022 100%); */
+  background: radial-gradient(circle, #ffffff 0%, #ffffff 70%, #eaeaea 100%);
+
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+#price-summary:has(*) {
+  display: none;
+}
+
+#price-summary span {
+  font-weight: bold;
+}
+
 
 
 

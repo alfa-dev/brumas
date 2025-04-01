@@ -77,13 +77,13 @@
         <fieldset id="optional-fieldset">
           <legend>Opcionais</legend>
           <div class="form-group">
-            <input type="checkbox" id="parking" name="parking">
+            <input type="checkbox" id="parking" name="parking" data-price="MA==" data-name="RXN0YWNpb25hbWVudG8=">
             <label for="parking">Necessito de Estacionamento</label>
           </div>
 
           <div class="form-group">
             <input type="checkbox" id="mug" name="mug">
-            <label for="mug">Adquirir Caneca Oficial (+R$ 40,00)</label>
+            <label for="mug">Adquirir Caneca Oficial + <span id="mug-price"></span></label>
           </div>
         </fieldset>
 
@@ -97,8 +97,8 @@
           </div>
         </fieldset>
 
-        <div id="price-summary">
-        </div>
+        <pre id="price-summary">
+        </pre>
 
         <div class="form-note">
           <p><i class="fa-solid fa-circle-info"></i> O pagamento será processado após a confirmação da reserva.

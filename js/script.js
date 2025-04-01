@@ -52,9 +52,13 @@ const SOCIAL_LINKS = [
 
 // Atualiza a contagem regressiva quando a página carrega
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('.event-date').addEventListener('click', function () {
 
-    document.querySelector('.event-date').removeEventListener('click', arguments.callee);
+  const eventDate = document.querySelector('.event-date');
+
+  if (!eventDate) return;
+
+  eventDate.addEventListener('click', function () {
+    eventDate.removeEventListener('click', arguments.callee);
 
     const eventDate = new Date('2025-07-19T00:00:00');
     let timeDifference = eventDate - new Date();

@@ -97,7 +97,7 @@ class TicketTypes extends HTMLElement {
 
     TICKETS.forEach(ticket => {
       this.innerHTML += `
-        <input type="radio" id="ticket-${ticket.id}" name="ticket-type" value="${ticket.id}" ${ticket.id === ticketType ? 'checked' : ''}>
+        <input type="radio" id="ticket-${ticket.id}" name="ticket-type" data-price="${btoa(ticket.price)}" data-name="${btoa(ticket.name)}" value="${ticket.id}" ${ticket.id === ticketType ? 'checked' : ''}>
         <label for="ticket-${ticket.id}">
           <span>${ticket.name}</span>
           <span class="ticket-price"><span class="currency">R$</span> ${ticket.price}</span>
