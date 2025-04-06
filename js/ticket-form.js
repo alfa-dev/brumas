@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   mugCheckbox.dataset.price = btoa(PRICES.mug);
   mugCheckbox.dataset.name = btoa('Caneca Oficial');
 
-  birthdate.min = new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0];
+  birthdate.max = new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0];
 
   participantBirthday.max = new Date().toISOString().split('T')[0];
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         priceSummaryData.push({
           price: halfTicketPrice,
-          priceFormatted: `Meio: ${halfTicketPriceFormatted}`,
+          priceFormatted: `Meia: ${halfTicketPriceFormatted}`,
           name: participant.name
         });
       }

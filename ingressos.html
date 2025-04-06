@@ -33,6 +33,10 @@
           <small>Após o envio, recebereis instruções para o pagamento em vosso email.</small></p>
       </div>
 
+      <button onclick="fillMainForm()" class="cta-button" style="margin-bottom: 20px;" hidden>
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Preencher Formulário
+      </button>
+
       <form
         action="https://script.google.com/macros/s/AKfycbxdt9ACzqELRdahMLUiNITh0d5i7HBSFbzcE4Gry8TVjFW4d-tHmUNJYt-7G2m8Qnde7w/exec"
         method="POST"
@@ -54,7 +58,7 @@
 
             <div class="form-group">
               <label for="birthdate"><i class="fa-solid fa-calendar-days"></i> Data de Nascimento</label>
-              <input type="date" id="birthdate" name="birthdate" required placeholder="01/01/2000">
+              <input type="date" id="birthdate" name="birthdate" required>
             </div>
           </div>
 
@@ -159,8 +163,20 @@
         document.getElementById('participant-document').value = '123.456.789-10';
         document.getElementById('participant-birthday').value = '01/01/2000';
       }
+
+      function fillMainForm() {
+        document.getElementById('name').value = 'Maria Silva';
+        document.getElementById('cpf').value = '987.654.321-00';
+        document.getElementById('birthdate').value = '1990-01-01';
+        document.getElementById('email').value = 'maria@email.com';
+        document.getElementById('whatsapp').value = '(11) 98765-4321';
+        document.getElementById('accept-terms').checked = true;
+        document.getElementById('parking').checked = true;
+        document.getElementById('mug').checked = true;
+        document.querySelector('ticket-types input').checked = true;
+      }
     </script>
-    <button id="fill-form" onclick="fillForm()">Preencha o formulário</button>
+    <button id="fill-form" onclick="fillForm()" hidden>Preencha o formulário</button>
   </dialog>
 
   <script src="js/ticket-form.js"></script>
