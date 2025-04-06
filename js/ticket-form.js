@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
           priceFormatted: ticketPriceFormatted,
           name: participant.name
         });
-      } else if (participant.age < 5) {
+      } else if (participant.age < 6) {
         priceSummaryData.push({
           price: 0,
-          priceFormatted: 'Grátis - Menor de 5 anos',
+          priceFormatted: 'Grátis - Menor de 6 anos',
           name: participant.name
         });
       } else {
