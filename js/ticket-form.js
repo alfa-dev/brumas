@@ -1,15 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const birthdate = document.getElementById('birthdate');
   const mugCheckbox = document.getElementById('mug');
   const priceSummary = document.getElementById('price-summary');
   const mugPrice = document.getElementById('mug-price');
   const participantDialog = document.getElementById('participant-dialog');
   const participantList = document.querySelector('#participant-list ul');
   const totalParticipants = document.getElementById('total-participants');
+  const additionalParticipant = document.getElementById('additional-participant');
+  const participantBirthday = document.getElementById('participant-birthday');
   const participants = [];
 
   mugPrice.textContent = PRICES.mug.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   mugCheckbox.dataset.price = btoa(PRICES.mug);
   mugCheckbox.dataset.name = btoa('Caneca Oficial');
+
+  birthdate.min = new Date(new Date().setFullYear(new Date().getFullYear() - 18)).toISOString().split('T')[0];
+
+  participantBirthday.max = new Date().toISOString().split('T')[0];
 
   mugCheckbox.addEventListener('change', updatePriceSummary.bind(this));
   document.querySelectorAll('input[data-price]').forEach(ticket => {
@@ -30,6 +37,35 @@ document.addEventListener('DOMContentLoaded', function() {
         priceFormatted: priceFormatted,
         name: atob(input.dataset.name),
       });
+    });
+
+    checkMinorParticipants();
+
+    participants.map(participant => {
+      const ticketPrice = atob(getSelectedTickets().dataset.price);
+      const ticketPriceFormatted = parseFloat(ticketPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      const halfTicketPrice = ticketPrice / 2;
+      const halfTicketPriceFormatted = halfTicketPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      if (participant.age >= 18) {
+        priceSummaryData.push({
+          price: ticketPrice,
+          priceFormatted: ticketPriceFormatted,
+          name: participant.name
+        });
+      } else if (participant.age < 5) {
+        priceSummaryData.push({
+          price: 0,
+          priceFormatted: 'Grátis - Menor de 5 anos',
+          name: participant.name
+        });
+      } else {
+        priceSummaryData.push({
+          price: halfTicketPrice,
+          priceFormatted: `Meio: ${halfTicketPriceFormatted}`,
+          name: participant.name
+        });
+      }
     });
 
     priceSummary.innerHTML = `
@@ -94,12 +130,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     participantList.innerHTML = participants.map(participant => `
       <li data-id="${participant.id}">
-        <span id="name">${participant.name} - ${participant.age} anos</span>
+        ${participant.name} - ${participant.age} anos
         <button type="button" class="remove-participant">
           <i class="fa-solid fa-trash-can"></i>
         </button>
       </li>
     `).join('');
+
+    additionalParticipant.value = JSON.stringify(participants);
+    updatePriceSummary();
+  }
+
+  function getSelectedTickets() {
+    return document.querySelector('ticket-types input:checked');
   }
 
   function calculateAge(birthday) {
@@ -112,5 +155,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     return age;
+  }
+
+  function checkMinorParticipants() {
+    const minorParticipants = participants.some(participant => participant.age < 18);
+
+    if (minorParticipants) {
+      document.getElementById('ticket-1').click();
+      document.getElementById('ticket-2').setAttribute('disabled', true);
+    } else {
+      document.getElementById('ticket-2').removeAttribute('disabled');
+    }
   }
 });

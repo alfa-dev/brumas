@@ -172,10 +172,9 @@ button[type="submit"] {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2),
               0 8px 7px rgba(0, 0, 0, 0.4),
               0 0 10px rgba(0, 0, 0, 0.2),
-              inset 0 0 10px 6px #b99469;
+              inset 1px -4px 5px 5px #8a6e4e;
   z-index: 2;
-  text-shadow: 1px 1px 1px #ffffff, 0px 0px 2px #6d3f0b;
-  transform: rotate(1deg);
+  text-shadow: 1px 1px 1px #ffffff, 0px 0px 2px #794913;
 }
 
 #price-summary .bottom {
@@ -184,7 +183,7 @@ button[type="submit"] {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2),
               0 -6px 10px rgba(0, 0, 0, 0.4),
               0 -19px 20px rgba(0, 0, 0, 0.2),
-              inset 0 0 5px 6px #b99469
+              inset 0 0 5px 6px #b99469;
 }
 
 #price-summary .top::before,
@@ -236,3 +235,39 @@ button[type="submit"] {
   margin-bottom: 10px;
 }
 
+#participant-list ul li {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  border-radius: 5px;
+  background-color: var(--color-parchment);
+  border: 1px solid var(--color-gold);
+}
+
+#participant-list ul li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+#participant-list ul li:has(button:hover) {
+  opacity: 0.5;
+}
+
+#additional-participant-form button[type="submit"] {
+  transform: none;
+  opacity: 1;
+  animation: none;
+  transition: unset;
+  box-shadow: none;
+  background: var(--color-gold);
+}
+
+input[disabled] + label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
