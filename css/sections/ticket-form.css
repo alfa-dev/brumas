@@ -151,7 +151,15 @@ button[type="submit"] {
 }
 
 #price-summary table td {
+}
+
+#price-summary table td {
   padding: 0 10px;
+  max-width: 32vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px dashed var(--color-gold);
 }
 
 
@@ -270,4 +278,41 @@ button[type="submit"] {
 input[disabled] + label {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+#price-summary-signature {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#price-summary-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#price-summary-badge img {
+  width: 150%;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+#price-summary-signature {
+  display: none;
+  font-family: cursive;
+  font-size: 15px;
+  color: #666;
+  margin: 15px 10px 10px 10px;
+}
+
+form:has(#accept-terms:checked) #price-summary-signature {
+  display: flex;
 }

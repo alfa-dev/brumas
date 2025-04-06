@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
   const birthdate = document.getElementById('birthdate');
   const mugCheckbox = document.getElementById('mug');
-  const priceSummary = document.getElementById('price-summary');
+  const priceSummaryTable = document.getElementById('price-summary-table');
   const mugPrice = document.getElementById('mug-price');
   const participantDialog = document.getElementById('participant-dialog');
   const participantList = document.querySelector('#participant-list ul');
   const totalParticipants = document.getElementById('total-participants');
   const additionalParticipant = document.getElementById('additional-participant');
   const participantBirthday = document.getElementById('participant-birthday');
+  const priceSummarySignature = document.getElementById('price-summary-signature');
+  const nameInput = document.getElementById('name');
   const participants = [];
 
   mugPrice.textContent = PRICES.mug.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -68,9 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    priceSummary.innerHTML = `
-      <div class="top"></div>
-      <table>
+    priceSummaryTable.innerHTML = `
         ${priceSummaryData.map(item => `
           <tr>
             <td>${item.name}</td>
@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
           <td><strong>${priceSummaryData
             .reduce((acc, item) => acc + parseFloat(item.price), 0)
             .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></td>
-        </tr>
-      </table>
-      <div class="bottom"></div>`;
+        </tr>`;
+
+    priceSummarySignature.textContent = nameInput.value;
   };
 
   // Add participant dialog
