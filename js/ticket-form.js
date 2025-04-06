@@ -167,4 +167,20 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('ticket-2').removeAttribute('disabled');
     }
   }
+
+  // Initialize IMask for CPF input
+  const cpfMask = IMask(document.getElementById('cpf'), {
+    mask: '000.000.000-00',
+    translation: {
+      '0': { pattern: /[0-9]/ }
+    }
+  });
+
+  // Initialize IMask for Whatsapp input
+  const whatsappMask = IMask(document.getElementById('whatsapp'), {
+    mask: '(00) 00000-0000',
+    translation: {
+      '0': { pattern: /[0-9]/ }
+    }
+  });
 });
