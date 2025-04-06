@@ -68,6 +68,16 @@
             </div>
           </div>
         </fieldset>
+        <fieldset id="participant-list">
+          <legend>Participantes adicionais <span id="total-participants"></span></legend>
+          <ul></ul>
+
+          <div class="form-group">
+            <button type="button" id="add-participant" class="cta-button" style="transform: none; opacity: 1;">
+              <i class="fa-solid fa-user-plus"></i> Adicionar Participante
+            </button>
+          </div>
+        </fieldset>
 
         <fieldset id="ticket-types-fieldset">
           <legend>Escolha o Tipo de Ingresso</legend>
@@ -97,8 +107,8 @@
           </div>
         </fieldset>
 
-        <pre id="price-summary">
-        </pre>
+        <div id="price-summary">
+        </div>
 
         <div class="form-note">
           <p><i class="fa-solid fa-circle-info"></i> O pagamento será processado após a confirmação da reserva.
@@ -112,6 +122,32 @@
     </section>
   </main>
   <footer-component></footer-component>
+
+  <dialog id="participant-dialog">
+    <div class="dialog-header">
+      <h3>Adicionar Participante</h3>
+      <button type="button" class="close-dialog">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <form id="additional-participant-form">
+      <input type="hidden" id="additional-participant" name="additional-participant">
+
+      <div class="form-group">
+        <label for="participant-name">Nome</label>
+        <input type="text" name="participant-name" id="participant-name" placeholder="Nome" required>
+      </div>
+      <div class="form-group">
+        <label for="participant-document">Documento</label>
+        <input type="text" name="participant-document" id="participant-document" placeholder="Documento" required>
+      </div>
+      <div class="form-group">
+        <label for="participant-birthday">Data de Nascimento</label>
+        <input type="date" name="participant-birthday" id="participant-birthday" placeholder="Data de Nascimento" required>
+      </div>
+      <button type="submit" class="save-participant cta-button">Salvar</button>
+    </form>
+  </dialog>
 
   <script src="js/ticket-form.js"></script>
 </body>

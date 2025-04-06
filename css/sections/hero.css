@@ -146,7 +146,7 @@
 }
 
 /* Botões */
-.cta-button {
+/* .cta-button {
   position: relative;
   z-index: 1;
 
@@ -162,15 +162,18 @@
   text-decoration: none;
 
   background-color: var(--color-deep-purple);
-  opacity: 0;
 
   cursor: pointer;
-
-  transition: all 0.3s ease;
-  animation: fadeIn 2s ease forwards 1.5s;
 }
 
-.cta-button::before {
+.hero-content .cta-button {
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: fadeIn 2s ease forwards 1.5s;
+} */
+
+
+/* .cta-button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -190,7 +193,7 @@
 
 .cta-button:hover::before {
   left: 100%;
-}
+} */
 
 .scroll-indicator {
   position: absolute;
@@ -246,6 +249,7 @@
   padding: 15px 40px;
   font-family: var(--font-medieval);
   font-size: 1.2rem;
+  text-decoration: none;
   background-color: var(--color-deep-purple);
   color: var(--color-light);
   border: 2px solid var(--color-gold);

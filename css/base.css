@@ -70,6 +70,48 @@ section header {
   margin-bottom: 60px;
 }
 
+dialog {
+  margin: revert;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100%;
+  width: 500px;
+  overflow-y: scroll;
+  background-color: var(--color-parchment);
+}
+
+dialog form {
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+
+dialog .dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+dialog .dialog-header .close-dialog {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--color-dark);
+}
+
+dialog .dialog-header h3 {
+  font-size: 1.5rem;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
 .dark-section {
   background-color: var(--color-navy);
   color: var(--color-light);
