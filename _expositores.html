@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercadores e Artesãos - Brumas Festival Medieval</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sections/merchant-form.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <script src="js/script.js"></script>
+  <script src="js/components.js"></script>
+</head>
+
+<body>
+  <header-component></header-component>
+
+  <main>
+    <section class="merchant-section">
+      <div class="mist-layer"></div>
+      <div class="pulsating-mist"></div>
+
+      <div class="section-container">
+        <div class="section-header">
+          <div class="flourish-header"></div>
+          <h1 class="illuminated-heading gold-heading">Mercadores e Artesãos</h1>
+          <div class="flourish-header"></div>
+        </div>
+
+        <div class="merchant-container">
+          <div class="illuminated-border gold-border">
+            <div class="leaf-ornament leaf-ornament-tl"></div>
+            <div class="leaf-ornament leaf-ornament-br"></div>
+
+            <div class="merchant-intro">
+              <div class="intro-image">
+                <div class="merchant-icon">
+                  <i class="fa-solid fa-store"></i>
+                </div>
+              </div>
+              <div class="intro-text">
+                <h2 class="gold-text">Convite aos Mercadores do Reino</h2>
+                <p>onvidamos artesãos, mercadores e produtores de
+                  artefatos medievais a participarem do Mercado Medieval do Festival Brumas. Este
+                  espaço reservado para comércio de produtos temáticos receberá centenas de visitantes
+                  ávidos por levar consigo uma recordação autêntica do mundo medieval.</p>
+
+                <p>Os mercadores selecionados terão a oportunidade de expor e comercializar seus
+                  produtos em um ambiente totalmente ambientado, proporcionando uma experiência
+                  imersiva tanto para os vendedores quanto para os compradores.</p>
+              </div>
+            </div>
+
+            <div class="medieval-divider"></div>
+
+            <div class="merchants-guidelines">
+              <h3><i class="fa-solid fa-scroll gold-text"></i> Diretrizes para Mercadores</h3>
+
+              <div class="guidelines-grid">
+                <div class="guideline-item">
+                  <div class="guideline-icon">
+                    <i class="fa-solid fa-palette"></i>
+                  </div>
+                  <div class="guideline-content">
+                    <h4>Produtos Aceitos</h4>
+                    <p>Artefatos medievais, armaduras, armas (não funcionais), joias, cerâmicas,
+                      esculturas, vestuário de época, alimentos típicos, bebidas artesanais, ervas
+                      e especiarias, incensos, produtos de couro, instrumentos musicais e demais
+                      itens que remetam à cultura medieval.</p>
+                  </div>
+                </div>
+
+                <div class="guideline-item">
+                  <div class="guideline-icon">
+                    <i class="fa-solid fa-tent"></i>
+                  </div>
+                  <div class="guideline-content">
+                    <h4>Espaço de Exposição</h4>
+                    <p>Cada mercador receberá um espaço dentro da área do mercado medieval. É
+                      incentivado que a decoração da banca e o vestuário do expositor sigam a
+                      temática medieval para contribuir com a atmosfera imersiva do evento.</p>
+                  </div>
+                </div>
+
+                <div class="guideline-item">
+                  <div class="guideline-icon">
+                    <i class="fa-solid fa-coins"></i>
+                  </div>
+                  <div class="guideline-content">
+                    <h4>Taxas e Contribuições</h4>
+                    <p>Será cobrada uma taxa de participação para custear a infraestrutura do
+                      mercado. Mercadores podem optar por diferentes tamanhos de banca conforme a
+                      necessidade. Detalhes serão informados após aprovação da inscrição.</p>
+                  </div>
+                </div>
+
+                <div class="guideline-item">
+                  <div class="guideline-icon">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                  </div>
+                  <div class="guideline-content">
+                    <h4>Prazos Importantes</h4>
+                    <p>As inscrições serão avaliadas conforme ordem de chegada e adequação à
+                      temática. Recomendamos inscrição com antecedência, pois o número de vagas é
+                      limitado e os espaços são disputados.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="medieval-divider"></div>
+
+            <div class="merchant-form-container">
+              <h3 class="gold-text">Formulário de Inscrição</h3>
+
+              <p class="form-intro">Preencha o formulário abaixo para manifestar interesse em participar
+                como expositor no Festival Brumas. Nossa equipe entrará em contato para confirmar a
+                participação e fornecer mais detalhes.</p>
+
+              <form id="merchant-form" class="medieval-form">
+                <div class="form-columns">
+                  <div class="form-column">
+                    <div class="form-group">
+                      <label for="merchant-name"><i class="fa-solid fa-user"></i> Nome do
+                        Mercador/Artesão</label>
+                      <input type="text" id="merchant-name" name="merchant-name" required
+                        placeholder="Vosso nome completo">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="merchant-email"><i class="fa-solid fa-envelope"></i>
+                        Email</label>
+                      <input type="email" id="merchant-email" name="merchant-email" required
+                        placeholder="vosso@email.com">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="merchant-whatsapp"><i class="fa-brands fa-whatsapp"></i>
+                        WhatsApp</label>
+                      <input type="tel" id="merchant-whatsapp" name="merchant-whatsapp" required
+                        placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="business-name"><i class="fa-solid fa-shop"></i> Nome do
+                        Estabelecimento/Marca</label>
+                      <input type="text" id="business-name" name="business-name" required
+                        placeholder="Nome da vossa loja ou marca">
+                    </div>
+                  </div>
+
+                  <div class="form-column">
+                    <div class="form-group">
+                      <label for="product-type"><i class="fa-solid fa-tag"></i> Tipo de
+                        Produtos</label>
+                      <select id="product-type" name="product-type" required>
+                        <option value="">Selecione o tipo de mercadoria</option>
+                        <option value="artesanato">Artesanato medieval</option>
+                        <option value="armas">Armas e armaduras decorativas</option>
+                        <option value="vestuario">Vestuário medieval</option>
+                        <option value="joias">Joias e acessórios</option>
+                        <option value="alimentos">Alimentos e bebidas</option>
+                        <option value="ervas">Ervas e produtos naturais</option>
+                        <option value="couro">Artigos em couro</option>
+                        <option value="instrumentos">Instrumentos musicais</option>
+                        <option value="outros">Outros produtos temáticos</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="space-size"><i class="fa-solid fa-maximize"></i> Tamanho de
+                        Espaço Necessário</label>
+                      <select id="space-size" name="space-size" required>
+                        <option value="">Selecione o tamanho necessário</option>
+                        <option value="pequeno">Pequeno (2m x 2m)</option>
+                        <option value="medio">Médio (3m x 2m)</option>
+                        <option value="grande">Grande (4m x 2m)</option>
+                        <option value="personalizado">Personalizado (especificar na descrição)
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="previous-experience"><i class="fa-solid fa-calendar-check"></i>
+                        Participou de outros eventos medievais?</label>
+                      <div class="radio-options">
+                        <div class="radio-option">
+                          <input type="radio" id="experience-yes" name="previous-experience" value="sim">
+                          <label for="experience-yes">Sim</label>
+                        </div>
+                        <div class="radio-option">
+                          <input type="radio" id="experience-no" name="previous-experience" value="nao" checked>
+                          <label for="experience-no">Não</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group" id="events-group" style="display: none;">
+                      <label for="previous-events"><i class="fa-solid fa-list"></i> Quais
+                        eventos?</label>
+                      <input type="text" id="previous-events" name="previous-events"
+                        placeholder="Liste os eventos anteriores">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="product-description"><i class="fa-solid fa-pen-fancy"></i> Descrição dos
+                    Produtos</label>
+                  <textarea id="product-description" name="product-description" rows="5" required
+                    placeholder="Descreva detalhadamente os produtos que serão comercializados..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="special-requirements"><i class="fa-solid fa-bolt"></i> Requisitos
+                    Especiais</label>
+                  <textarea id="special-requirements" name="special-requirements" rows="3"
+                    placeholder="Necessidades específicas como eletricidade, água, etc. (se houver)"></textarea>
+                </div>
+
+                <div class="form-group checkbox-group full-width">
+                  <div class="checkbox-option">
+                    <input type="checkbox" id="accept-terms" name="accept-terms" required>
+                    <label for="accept-terms">
+                      Concordo com os <a href="termos-expositores.html" target="_blank" class="terms-link">termos e
+                        condições para expositores</a> do Festival
+                      Brumas
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-note">
+                  <p><i class="fa-solid fa-circle-info"></i> Após o envio, nossa equipe analisará sua
+                    solicitação e entrará em contato através do email fornecido. As vagas são
+                    limitadas e sujeitas à aprovação prévia.</p>
+                </div>
+
+                <button type="submit" class="submit-button gold-button">
+                  <i class="fa-solid fa-paper-plane"></i> Enviar Solicitação
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer-component></footer-component>
+</body>
+
+</html>
