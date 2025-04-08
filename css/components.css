@@ -193,3 +193,42 @@ form:hover {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M5,35 C5,20 20,5 35,5 C35,20 20,35 5,35 Z" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,30 C10,20 20,10 30,10 C30,20 20,30 10,30 Z" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
   transform: rotate(180deg);
 }
+
+#confirmation-modal {
+  font-family: var(--font-medieval);
+  text-align: center;
+}
+
+#confirmation-modal h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-deep-purple);
+  margin-bottom: 15px;
+}
+
+#confirmation-modal p:not(:first-of-type) {
+  font-size: .9rem;
+  color: var(--color-deep-purple);
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* iluminura */
+/* float: left;
+position: relative;
+font-family: var(--font-medieval);
+font-size: 3.5rem;
+line-height: 0.8;
+padding: 4px 8px 0 0;
+color: var(--color-deep-purple); */
+
+
+
+#confirmation-modal p:first-of-type {
+  font-family: var(--font-medieval);
+  font-size: 1.5rem;
+  color: var(--color-deep-purple);
+}
+
+
+

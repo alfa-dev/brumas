@@ -194,16 +194,26 @@
     <button id="fill-form" onclick="fillForm()" hidden>Preencha o formulário</button>
   </dialog>
 
-  <dialog id="confirmation-modal">
-    <div class="dialog-header">
-      <h3>Confirmação</h3>
+  <dialog id="confirmation-modal" class="papiro">
+    <div class="top"></div>
+      <h4>Pergaminho da Confirmação</h4>
       <a href="index.html">
-        <i class="fa-solid fa-xmark"></i>
+        <img src="assets/b_principal.webp" alt="Brumas Festival Medieval" width="70">
       </a>
-    </div>
-    <div class="dialog-content">
-      <p>Obrigado por reservar seu ingresso!</p>
-    </div>
+
+      <p><strong>Salve, nobre viajante!</strong></p>
+
+      <p>Vossa solicitação de passagem para o <strong>Festival Brumas</strong> foi recebida com o selo real!</p>
+
+      <p>Em breve, um mensageiro eletrônico chegará ao vosso castelo com instruções para o pagamento do tributo.
+        Após a confirmação, vossa passagem será selada e enviada.</p>
+
+      <p>Que as brumas vos guiem até nosso festival!</p>
+
+      <a href="index.html" class="cta-button" style="transform: none; opacity: 1; margin-top: 20px; animation: none;">
+        <i class="fa-solid fa-check"></i> Entendido
+      </a>
+    <div class="bottom"></div>
   </dialog>
 
   <script src="js/ticket-form.js"></script>

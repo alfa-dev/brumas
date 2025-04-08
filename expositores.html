@@ -157,6 +157,30 @@
     </section>
   </main>
   <footer-component></footer-component>
+
+  <dialog id="confirmation-modal" class="papiro">
+    <div class="dialog-header">
+      <h3><i class="fa-solid fa-scroll"></i> Pergaminho da Confirmação</h3>
+      <button type="button" class="close-dialog">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="dialog-content">
+      <p>Salve, honrado mercador!</p>
+
+      <p>Vossa solicitação para o Mercado Medieval do Festival Brumas foi recebida com o selo real! Os conselheiros do reino já examinam vossa proposta.</p>
+
+      <p>Em breve, um mensageiro eletrônico chegará ao vosso estabelecimento com a decisão real e instruções para a participação no mercado.</p>
+
+      <p>Que vossas mercadorias encontrem bons compradores em nosso festival!</p>
+
+      <div class="dialog-footer">
+        <button onclick="this.closest('dialog').close()" class="cta-button">
+          <i class="fa-solid fa-check"></i> Entendido
+        </button>
+      </div>
+    </div>
+  </dialog>
 </body>
 
 </html>
