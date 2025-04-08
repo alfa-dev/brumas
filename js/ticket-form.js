@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const participantBirthday = document.getElementById('participant-birthday');
   const priceSummarySignature = document.getElementById('price-summary-signature');
   const nameInput = document.getElementById('name');
-  const confirmationModal = document.getElementById('confirmation-modal');
   const participants = [];
 
   mugPrice.textContent = PRICES.mug.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -100,39 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     participantDialog.close();
   });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
-    if (!form) return;
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-
-      confirmationModal.showModal();
-
-      fetch(form.action, {
-        method: form.method,
-        body: formData,
-        mode: 'no-cors'
-      })
-        .then(response => {
-          if (response.type === 'opaqueredirect')
-            return fetch(response.url, {mode: 'no-cors'});
-
-          return response;
-        })
-        .then(response => {
-          const submissionSummary = document.getElementById('submission-summary');
-          submissionSummary.innerHTML = createMerchantSummary(data);
-        })
-        .catch(error => {
-          console.error('Erro ao enviar os dados:', error);
-        });
-    });
-  });
-
   // Add participant
   const addParticipantForm = document.querySelector('#additional-participant-form');
   addParticipantForm.addEventListener('submit', function(event) {
@@ -217,5 +183,47 @@ document.addEventListener('DOMContentLoaded', function() {
     translation: {
       '0': { pattern: /[0-9]/ }
     }
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    submitButton.setAttribute('disabled', true);
+
+    const formData = new FormData(form);
+    // const data = Object.fromEntries(formData);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      mode: 'no-cors'
+    })
+      .then(response => {
+        if (response.type === 'opaqueredirect')
+          return fetch(response.url, {mode: 'no-cors'});
+
+        return response;
+      })
+      .then(response => {
+        console.log(response);
+        document.getElementById('confirmation-modal').showModal();
+      })
+      .catch(error => {
+        alert('Erro ao enviar os dados: ' + error);
+        console.error('Erro ao enviar os dados:', error);
+        submitButton.removeAttribute('disabled');
+      });
+  });
+
+  document.getElementById('confirmation-modal').addEventListener('close', function () {
+    submitButton.removeAttribute('disabled');
   });
 });

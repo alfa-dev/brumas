@@ -168,37 +168,3 @@ customElements.define('tickets-component', TicketsComponent);
 customElements.define('contact-component', ContactComponent);
 customElements.define('social-component', SocialComponent);
 customElements.define('ticket-types', TicketTypes);
-
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.querySelector('form');
-  if (!form) return;
-
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-
-    const confirmationModal = document.getElementById('confirmation-modal');
-    confirmationModal.showModal();
-
-    fetch(form.action, {
-      method: form.method,
-      body: formData,
-      mode: 'no-cors'
-    })
-      .then(response => {
-        if (response.type === 'opaqueredirect')
-          return fetch(response.url, {mode: 'no-cors'});
-
-        return response;
-      })
-      .then(response => {
-        const submissionSummary = document.getElementById('submission-summary');
-        submissionSummary.innerHTML = createMerchantSummary(data);
-      })
-      .catch(error => {
-        console.error('Erro ao enviar os dados:', error);
-      });
-  });
-});
