@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const participantBirthday = document.getElementById('participant-birthday');
   const priceSummarySignature = document.getElementById('price-summary-signature');
   const nameInput = document.getElementById('name');
+  const confirmationModal = document.getElementById('confirmation-modal');
   const participants = [];
 
   mugPrice.textContent = PRICES.mug.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -99,6 +100,39 @@ document.addEventListener('DOMContentLoaded', function() {
     participantDialog.close();
   });
 
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      confirmationModal.showModal();
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        mode: 'no-cors'
+      })
+        .then(response => {
+          if (response.type === 'opaqueredirect')
+            return fetch(response.url, {mode: 'no-cors'});
+
+          return response;
+        })
+        .then(response => {
+          const submissionSummary = document.getElementById('submission-summary');
+          submissionSummary.innerHTML = createMerchantSummary(data);
+        })
+        .catch(error => {
+          console.error('Erro ao enviar os dados:', error);
+        });
+    });
+  });
+
   // Add participant
   const addParticipantForm = document.querySelector('#additional-participant-form');
   addParticipantForm.addEventListener('submit', function(event) {
@@ -109,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
       name: document.getElementById('participant-name').value,
       document: document.getElementById('participant-document').value,
       age: calculateAge(document.getElementById('participant-birthday').value),
+      birthday: document.getElementById('participant-birthday').value,
     });
 
     updateParticipantList();
@@ -137,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </li>
     `).join('');
 
-    additionalParticipant.value = JSON.stringify(participants);
+    additionalParticipant.value = participants.map(participant => `${participant.name}, ${participant.birthday}`).join('; ');
     updatePriceSummary();
   }
 
