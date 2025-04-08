@@ -196,6 +196,8 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    submitButton.innerHTML = 'Enviando';
+    submitButton.classList.add('loading');
     submitButton.setAttribute('disabled', true);
 
     const formData = new FormData(form);
