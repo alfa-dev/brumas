@@ -15,7 +15,7 @@
 
 :root {
   --color-dark: #080806;
-  --color-navy: #0a1246;
+  --color-navy: #401b79;
   --color-blue: #417ab9;
   --color-purple: #401b79;
   --color-deep-purple: #270d4f;
@@ -116,6 +116,10 @@ dialog::backdrop {
   background-color: var(--color-navy);
   color: var(--color-light);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,30 L55,40 L65,42 L58,50 L60,60 L50,55 L40,60 L42,50 L35,42 L45,40 Z" fill="%23491449" opacity="0.1"/></svg>');
+}
+
+.dark-section .medieval-divider {
+  filter: contrast(0.5);
 }
 
 .section-container {
