@@ -42,7 +42,8 @@
 }
 
 .illuminated-heading + .medieval-divider,
-.gold-text + .medieval-divider {
+.gold-text + .medieval-divider,
+h2 + .medieval-divider {
   margin-top: 0;
 }
 
