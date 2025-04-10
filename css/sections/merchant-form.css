@@ -1,0 +1,43 @@
+.radio-options {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.radio-option label {
+  position: relative;
+  cursor: pointer;
+  top: 3px;
+}
+
+.form-group:has(#experience-yes:checked) + #events-group {
+  display: block;
+}
+
+.form-group {
+  min-width: 100%;
+}
+
+.form-group:has(#email),
+.form-group:has(#whatsapp) {
+  min-width: 300px;
+}
+
+.form-group:has(select) select {
+  width: unset;
+}
+
+#events-group {
+  display: none;
+}
+
+#personal-data-fieldset {
+  flex-direction: row;
+}

@@ -26,7 +26,7 @@
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/sections/ticket-form.css">
-  <link rel="stylesheet" href="css/sections/form.css">
+  <link rel="stylesheet" href="css/sections/merchant-form.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,10 +69,26 @@
             termos e condições para expositores</a> do Festival Brumas</p>
       </div>
 
+      <button onclick="preencherFormulario()">Preencher form com mock</button>
+      <script>
+        function preencherFormulario() {
+          document.getElementById('name').value = 'Mercador/Artesão';
+          document.getElementById('email').value = 'mercador@artesao.com';
+          document.getElementById('whatsapp').value = '(00) 00000-0000';
+          document.getElementById('business-name').value = 'Mercadoria Medieval';
+          document.getElementById('product-type').value = 'artesanato';
+          document.getElementById('description').value = 'Produtos artesanais medievais feitos à mão';
+          document.getElementById('social-media').value = '@mercadoriamedieval';
+          document.getElementById('portfolio').value = 'https://portfolio.mercadoriamedieval.com';
+          document.getElementById('experience').value = 'Participação em feiras medievais há 5 anos';
+          document.getElementById('additional-info').value = 'Preciso de ponto de energia para iluminação';
+        }
+      </script>
 
       <form
         action="https://script.google.com/macros/s/AKfycbxdt9ACzqELRdahMLUiNITh0d5i7HBSFbzcE4Gry8TVjFW4d-tHmUNJYt-7G2m8Qnde7w/exec"
         method="POST" class="medieval-card">
+        <input type="hidden" name="expositor" value="true">
         <h3 class="gold-text">Formulário de Inscrição</h3>
 
         <p class="form-intro">
@@ -141,7 +157,7 @@
             </div>
           </div>
 
-          <div class="form-group" id="events-group" style="display: none;">
+          <div class="form-group" id="events-group">
             <label for="previous-events"><i class="fa-solid fa-list"></i> Quais
               eventos?</label>
             <input type="text" id="previous-events" name="previous-events"
@@ -163,6 +179,16 @@
           </div>
         </fieldset>
 
+        <fieldset>
+          <div class="form-group">
+            <label for="accept-terms">
+              <input type="checkbox" id="accept-terms" name="accept-terms" required>
+              Li e aceito os
+              <a href="termos-expositores.html" target="_blank" onclick="window.open(this.href, 'termsWindow', 'width=900,height=700,scrollbars=yes'); return false;">termos e condições</a>
+            </label>
+          </div>
+        </fieldset>
+
         <div class="form-note">
           <p><i class="fa-solid fa-circle-info"></i> Após o envio, nossa equipe analisará sua
             solicitação e entrará em contato através do email fornecido. As vagas são
@@ -179,10 +205,7 @@
 
   <dialog id="confirmation-modal" class="papiro">
     <div class="dialog-header">
-      <h3><i class="fa-solid fa-scroll"></i> Pergaminho da Confirmação</h3>
-      <button type="button" class="close-dialog">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <h3>Salve, honrado mercador!</h3>
     </div>
     <div class="dialog-content">
       <p>Salve, honrado mercador!</p>
@@ -193,13 +216,13 @@
 
       <p>Que vossas mercadorias encontrem bons compradores em nosso festival!</p>
 
-      <div class="dialog-footer">
-        <button onclick="this.closest('dialog').close()" class="cta-button">
-          <i class="fa-solid fa-check"></i> Entendido
-        </button>
-      </div>
+      <a href="index.html" class="cta-button" style="transform: none; opacity: 1; margin-top: 20px; animation: none;">
+        <i class="fa-solid fa-check"></i> Entendido
+      </a>
     </div>
   </dialog>
+
+  <script src="js/merchant-form.js"></script>
 </body>
 
 </html>
