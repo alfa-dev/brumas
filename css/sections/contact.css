@@ -269,7 +269,7 @@ contact-component a:hover {
     height: 30px;
     width: 100%;
     margin: 20px 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 15"><path d="M0,7.5 Q75,15 150,7.5 T300,7.5" fill="none" stroke="%23d4af37" stroke-width="1"/><g fill="%23d4af37"><circle cx="50" cy="7.5" r="1.5"/><circle cx="100" cy="7.5" r="1.5"/><circle cx="150" cy="7.5" r="1.5"/><circle cx="200" cy="7.5" r="1.5"/><circle cx="250" cy="7.5" r="1.5"/></g></svg>');
+    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 15"><path d="M0,7.5 Q75,15 150,7.5 T300,7.5" fill="none" stroke="%23d4af37" stroke-width="1"/><g fill="%23d4af37"><circle cx="50" cy="7.5" r="1.5"/><circle cx="100" cy="7.5" r="1.5"/><circle cx="150" cy="7.5" r="1.5"/><circle cx="200" cy="7.5" r="1.5"/><circle cx="250" cy="7.5" r="1.5"/></g></svg>'); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

@@ -174,18 +174,6 @@ tickets-component ul li:nth-child(4n + 4)::before {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
 }
 
-
-/* Ticket Seal */
-
-
-tickets-component article:nth-child(2n + 1)::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,6 v8 M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
-
-tickets-component article:nth-child(2n + 2)::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
-
 /* Media Queries */
 /* @media (max-width: 992px) {
   .tickets-container {
