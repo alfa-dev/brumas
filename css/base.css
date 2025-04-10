@@ -138,16 +138,6 @@ dialog::backdrop {
   font-family: var(--font-medieval);
 }
 
-.flourish-header {
-  height: 30px;
-  width: 150px;
-  margin: 10px 0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 C20,15 40,0 50,5 C60,10 80,-5 100,5" stroke="%23d4af37" fill="none" stroke-width="1"/></svg>');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
 /* Utilitários de Layout */
 .content-columns {
   display: flex;
