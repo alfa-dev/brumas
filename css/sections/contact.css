@@ -11,13 +11,13 @@ contact-component a {
     width: 70%;
     margin: 0 auto;
     padding: 20px 30px;
-    overflow: hidden;
 
     font-family: var(--font-title);
     font-size: 1.1rem;
     letter-spacing: 0.5px;
     color: var(--color-dark);
     text-decoration: none;
+    overflow-wrap: anywhere;
 
     background-color: rgba(244, 233, 205, 0.9);
     border: 1px solid var(--color-gold);

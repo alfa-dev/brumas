@@ -12,10 +12,8 @@ const TICKETS = [
     name: 'Festival',
     price: PRICES.ticket.regular,
     description: [
-      'Acesso às festividades do reino',
-      'Apresentações de menestréis e trovadores',
-      'Torneios de cavaleiros e jogos medievais',
-      'Mercado medieval com artesanato e comidas típicas',
+      'Jogo medievais',
+      'Mercado medieval',
     ],
   },
   {
@@ -24,10 +22,8 @@ const TICKETS = [
     price: PRICES.ticket.premium,
     description: [
       'Todas as benesses do ingresso Festival',
-      'Pernoite em aposentos na vila medieval',
-      'Desjejum tradicional servido no salão comunal',
-      'Acesso à cerimônia de encerramento ao luar',
-      'Participação na caçada ao tesouro noturna',
+      'Pernoite na Hospedaria ( (símbolo de atenção) necessário levar roupa de cama e itens de higiene)',
+      'Desjejum tradicional',
     ],
   }
 ];
