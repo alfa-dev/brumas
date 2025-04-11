@@ -26,14 +26,13 @@ class HeaderComponent extends HTMLElement {
               <img src="assets/b_fundo_escuro.svg" alt="Brumas Logo">
             </a>
           </div>
+          <input type="checkbox" id="menu-toggle" class="menu-toggle">
           <div class="nav-links">
             ${navLinks()}
           </div>
-          <div class="hamburger">
+          <label for="menu-toggle" class="menu-icon">
             <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          </label>
         </nav>
       </header>
     `;

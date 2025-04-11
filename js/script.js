@@ -12,6 +12,8 @@ const TICKETS = [
     name: 'Festival',
     price: PRICES.ticket.regular,
     description: [
+      'Acesso a festividades do reino',
+      'Apresentação de menestrei e trovadores',
       'Jogo medievais',
       'Mercado medieval',
     ],
@@ -32,7 +34,7 @@ const NAV_LINKS = ['Início', 'Sobre', 'Programação', 'Atrações', 'Local', '
 
 const CONTACT = {
   email: 'brumasfestival@gmail.com',
-  phone: '(21) 98333-6417',
+  phone: '+55(21) 98333-6417',
   address: 'Estr. Adam Blumer, 5580 - Jardim Esmeralda, Magé - RJ, 25908-683',
   address_link: 'https://maps.app.goo.gl/wXHUA32M3vWztiTS9'
 };
