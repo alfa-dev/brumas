@@ -24,7 +24,7 @@ const TICKETS = [
     price: PRICES.ticket.premium,
     description: [
       'Todas as benesses do ingresso Festival',
-      'Pernoite na Hospedaria ( (símbolo de atenção) necessário levar roupa de cama e itens de higiene)',
+      'Pernoite na Hospedaria',
       'Desjejum tradicional',
     ],
   }

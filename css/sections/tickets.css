@@ -158,20 +158,8 @@ tickets-component ul li::before {
   background-repeat: no-repeat;
 }
 
-tickets-component ul li:nth-child(4n + 1)::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><polygon points="10,4 13,14 7,14" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
-
-tickets-component ul li:nth-child(4n + 2)::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
-
-tickets-component ul li:nth-child(4n + 3)::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><path d="M10,6 v8 M6,10 h8" stroke="%23d4af37" stroke-width="0.8"/></svg>');
-}
-
-tickets-component ul li:nth-child(4n + 4)::before {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="%23d4af37" stroke-width="1.2"/><circle cx="10" cy="10" r="4" fill="none" stroke="%23d4af37" stroke-width="0.8"/></svg>');
+tickets-component ul li::before {
+  background-image: url('../../assets/flor_de_lis_branca.svg');
 }
 
 /* Media Queries */
