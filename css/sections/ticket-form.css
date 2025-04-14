@@ -84,6 +84,9 @@ ticket-types input[type="radio"] {
   display: none;
 }
 
+#ticket-types-fieldset:has(#ticket-1:checked) + .form-note {
+  display: none;
+}
 
 #optional-fieldset {
   display: flex;

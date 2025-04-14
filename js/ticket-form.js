@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const participantBirthday = document.getElementById('participant-birthday');
   const priceSummarySignature = document.getElementById('price-summary-signature');
   const nameInput = document.getElementById('name');
+  const termsLink = document.querySelector('.terms-link');
   const participants = [];
 
   mugPrice.textContent = PRICES.mug.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -183,6 +184,12 @@ document.addEventListener('DOMContentLoaded', function() {
     translation: {
       '0': { pattern: /[0-9]/ }
     }
+  });
+
+  termsLink.addEventListener('click', function () {
+    event.preventDefault();
+    const link = this.href;
+    window.open(link, '_blank', 'width=900,height=700');
   });
 });
 
