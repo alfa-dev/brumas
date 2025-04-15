@@ -30,12 +30,24 @@ class HeaderComponent extends HTMLElement {
           <div class="nav-links">
             ${navLinks()}
           </div>
-          <label for="menu-toggle" class="menu-icon">
-            <span></span>
+          <label for="menu-toggle" class="menu-icon" id="menu-toggle-label">
+            <img src="assets/burger_menu.svg" alt="Menu">
           </label>
         </nav>
       </header>
     `;
+
+    (function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const menuLinks = document.querySelectorAll('.nav-links a');
+
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          console.log(link);
+          menuToggle.click();
+        });
+      });
+    })();
   }
 }
 
