@@ -99,16 +99,16 @@
 </head>
 <body>
   <div class="photo-viewer">
-    <a href="index.html" class="back-button">
+    <a href="#" onclick="window.history.back()" class="back-button">
       <i class="fa-solid fa-arrow-left"></i>
     </a>
     <div class="photo-container">
-      <img id="photo" src="" alt="">
+      <img id="photo" src="" alt="" style="view-transition-name: 'gallery-item';">
       <div class="photo-title" id="photo-title"></div>
     </div>
-    <div class="close-button">
+    <a href="index.html" class="close-button">
       <i class="fa-solid fa-times"></i>
-    </div>
+    </a>
   </div>
 
   <script>
@@ -116,15 +116,13 @@
     const urlParams = new URLSearchParams(window.location.search);
     const photoSrc = urlParams.get('src');
     const photoTitle = urlParams.get('title');
+    const photo = document.getElementById('photo');
 
     // Set photo and title
-    document.getElementById('photo').src = photoSrc;
-    document.getElementById('photo-title').textContent = photoTitle;
+    photo.src = photoSrc;
+    photo.alt = photoTitle;
+    photoTitle.textContent = photoTitle;
 
-    // Close button functionality
-    document.querySelector('.close-button').addEventListener('click', () => {
-      window.location.href = 'index.html';
-    });
   </script>
 </body>
 </html>
