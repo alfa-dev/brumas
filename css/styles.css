@@ -12,6 +12,7 @@
 @import 'sections/tickets.css';
 @import 'sections/contact.css';
 @import 'sections/organizers.css';
+@import 'sections/gallery.css';
 
 /* Importação dos elementos decorativos */
 @import 'decorative/illuminations.css';

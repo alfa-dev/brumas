@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!form) return;
 
   const submitButton = form.querySelector('button[type="submit"]');
+  const createdAt = form.querySelector('input[name="created_at"]');
+
+  createdAt.value = new Date().toISOString();
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();

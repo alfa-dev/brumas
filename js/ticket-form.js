@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   participantBirthday.max = new Date().toISOString().split('T')[0];
 
+  const createdAt = document.querySelector('input[name="created_at"]');
+  createdAt.value = new Date().toISOString();
+
   mugCheckbox.addEventListener('change', updatePriceSummary.bind(this));
   document.querySelectorAll('input[data-price]').forEach(ticket => {
     ticket.addEventListener('change', updatePriceSummary.bind(this));
