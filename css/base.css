@@ -28,6 +28,11 @@
   --font-text: "Gentium Book Plus", serif;
 }
 
+::view-transition-old(gallery-item),
+::view-transition-new(gallery-item) {
+  animation: fade-slide 0.5s ease;
+}
+
 /* Reset e Estilos Gerais */
 * {
   margin: 0;

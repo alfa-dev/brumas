@@ -30,7 +30,7 @@ const TICKETS = [
   }
 ];
 
-const NAV_LINKS = ['Início', 'Sobre', 'Programação', 'Atrações', 'Local', 'Ingressos', 'Contato', 'Organizadores'];
+const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Programação', 'Atrações', 'Local', 'Ingressos', 'Contato', 'Organizadores'];
 
 const CONTACT = {
   email: 'brumasfestival@gmail.com',
