@@ -50,13 +50,12 @@ const SOCIAL_LINKS = [
 
 // Atualiza a contagem regressiva quando a página carrega
 document.addEventListener('DOMContentLoaded', function () {
+  const eventDateElement = document.querySelector('.event-date');
 
-  const eventDate = document.querySelector('.event-date');
+  if (!eventDateElement) return;
 
-  if (!eventDate) return;
-
-  eventDate.addEventListener('click', function () {
-    eventDate.removeEventListener('click', arguments.callee);
+  eventDateElement.addEventListener('click', () => {
+    eventDateElement.removeEventListener('click', arguments.callee);
 
     const eventDate = new Date('2025-07-19T00:00:00');
     let timeDifference = eventDate - new Date();
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     medievalSong.play();
 
     if (timeDifference > 0) {
-      const eventDateElement = document.querySelector('.event-date');
+
       setInterval(() => {
         timeDifference = eventDate - new Date();
         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
