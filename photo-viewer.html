@@ -14,6 +14,17 @@
     rel="stylesheet">
 
   <style>
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1001;
+      mix-blend-mode: hard-light;
+      pointer-events: none;
+    }
+
     .photo-viewer {
       position: fixed;
       top: 0;
@@ -98,6 +109,11 @@
   </style>
 </head>
 <body>
+  <video autoplay muted loop playsinline id="bg-video" poster="videos/poster.png">
+    <source
+      src="videos/bg.mp4"
+      type="video/mp4">
+  </video>
   <div class="photo-viewer">
     <a href="#" onclick="window.history.back()" class="back-button">
       <i class="fa-solid fa-arrow-left"></i>
