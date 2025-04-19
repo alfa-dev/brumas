@@ -28,10 +28,6 @@
   --font-text: "Gentium Book Plus", serif;
 }
 
-::view-transition-old(gallery-item),
-::view-transition-new(gallery-item) {
-  animation: fade-slide 0.5s ease;
-}
 
 /* Reset e Estilos Gerais */
 * {
@@ -49,6 +45,8 @@ body {
   background-color: var(--color-parchment);
   color: var(--color-dark);
   line-height: 1.6;
+
+  view-transition-name: page;
 }
 
 h1,
@@ -236,3 +234,87 @@ dialog::backdrop {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+
+
+/*
+
+
+
+@keyframes shrink {
+	to {
+		scale: 0.8;
+		opacity: 0.5;
+	}
+}
+@keyframes grow {
+	from {
+		scale: 0.8;
+		opacity: 0.5;
+	}
+}
+@keyframes slide-in {
+	from {
+		translate: 100vw 0;
+	}
+}
+@keyframes slide-out {
+	to {
+		translate: 100vw 0;
+	}
+}
+@keyframes scale-up {
+	from {
+		scale: 0;
+	}
+}
+@keyframes scale-down {
+	to {
+		scale: 0;
+	}
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+}
+@keyframes fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+::view-transition {
+	background: black;
+}
+
+:root {
+	view-transition-name: none;
+}
+body {
+	view-transition-name: page;
+}
+
+::view-transition-group(page) {
+	animation-duration: 0.7s;
+}
+
+:root[data-transition="reload"] {
+	&::view-transition-old(page) {
+		display: none;
+	}
+	&::view-transition-new(page) {
+		animation-name: fade-in, scale-up;
+	}
+} */
+
+/* :root[data-transition="pop"] {
+	&::view-transition-old(page) {
+		animation-name: slide-out;
+		z-index: 1;
+	}
+	&::view-transition-new(page) {
+		animation-name: grow;
+		transform-origin: 100% 50%;
+	}
+} */

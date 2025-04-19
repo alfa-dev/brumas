@@ -32,6 +32,74 @@ const TICKETS = [
 
 const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Programação', 'Atrações', 'Local', 'Ingressos', 'Contato', 'Organizadores'];
 
+const PHOTOS = [
+  {
+    src: 'assets/pictues/brumas_1.webp',
+    alt: 'A Fauno',
+    title: 'A Fauno'
+  },
+  {
+    src: 'assets/pictues/brumas_2.webp',
+    alt: 'Dança Circular Celta',
+    title: 'Dança Circular Celta'
+  },
+  {
+    src: 'assets/pictues/brumas_3.webp',
+    alt: 'Swordplay',
+    title: 'Swordplay'
+  },
+  {
+    src: 'assets/pictues/brumas_4.webp',
+    alt: 'Taverna Medieval',
+    title: 'Taverna Medieval'
+  },
+  {
+    src: 'assets/pictues/brumas_5.webp',
+    alt: 'Oaklore',
+    title: 'Oaklore'
+  },
+  {
+    src: 'assets/pictues/brumas_6.webp',
+    alt: 'Fogueira Mística',
+    title: 'Fogueira Mística'
+  },
+  {
+    src: 'assets/pictues/brumas_7.webp',
+    alt: 'Arquearia',
+    title: 'Arquearia'
+  },
+  {
+    src: 'assets/pictues/brumas_8.webp',
+    alt: 'Encerramento da Dança Circular',
+    title: 'Encerramento da Dança Circular'
+  },
+  {
+    src: 'assets/pictues/brumas_9.webp',
+    alt: 'Montagem do Acampamento Recreacionista',
+    title: 'Montagem do Acampamento Recreacionista'
+  },
+  {
+    src: 'assets/pictues/brumas_10.webp',
+    alt: 'Acampamento Recreacionista',
+    title: 'Acampamento Recreacionista'
+  },
+  // {
+  //   src: 'assets/pictues/brumas_11.webp',
+  //   alt: 'Parede de Escudos',
+  //   title: 'Parede de Escudos'
+  // },
+  {
+    src: 'assets/pictues/brumas_12.webp',
+    alt: 'Oraculistas',
+    title: 'Oraculistas'
+  },
+  {
+    src: 'assets/pictues/brumas_13.webp',
+    alt: 'Expositores',
+    title: 'Expositores'
+  }
+];
+
 const CONTACT = {
   email: 'brumasfestival@gmail.com',
   phone: '+55(21) 98333-6417',
@@ -87,4 +155,15 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.countdown').innerHTML = 'O evento já começou!';
     }
   });
+
+  function handleClick(e) {
+    // Fallback for browsers that don't support this API:
+    if (!document.startViewTransition) {
+      updateTheDOMSomehow();
+      return;
+    }
+
+    // With a View Transition:
+    document.startViewTransition(() => updateTheDOMSomehow());
+  }
 });

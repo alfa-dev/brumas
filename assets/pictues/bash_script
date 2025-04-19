@@ -1,0 +1,18 @@
+#!/bin/bash
+
+for img in ./*.{jpg,jpeg,JPG,JPEG}; do
+  [ -e "$img" ] || continue
+
+  # Define o nome de saída
+  saida="${img%.*}.webp"
+
+  # Se o nome do arquivo contém "sm", usa qualidade 75. Caso contrário, 95.
+  if [[ "$img" == *sm* ]]; then
+    qualidade=75
+  else
+    qualidade=95
+  fi
+
+  echo "Convertendo $img → $saida (qualidade $qualidade)"
+  convert "$img" -quality $qualidade "$saida"
+done
