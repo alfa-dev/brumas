@@ -13,7 +13,7 @@ const TICKETS = [
     price: PRICES.ticket.regular,
     description: [
       'Acesso a festividades do reino',
-      'Apresentação de menestrei e trovadores',
+      'Apresentação de menestreis e trovadores',
       'Jogo medievais',
       'Mercado medieval',
     ],
