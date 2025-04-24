@@ -16,12 +16,12 @@
 }
 
 .photo-gallery::before {
-  left: 0;
+  left: -1px;
   background: linear-gradient(to right, var(--color-navy), transparent);
 }
 
 .photo-gallery::after {
-  right: 0;
+  right: -1px;
   background: linear-gradient(to left, var(--color-navy), transparent);
 }
 
@@ -114,7 +114,14 @@
 }
 
 @media (max-width: 768px) {
+  .photo-gallery::before,
+  .photo-gallery::after {
+    content: none;
+  }
+
   .gallery-item {
+    aspect-ratio: 1/1;
+    width: 80%;
     min-width: 250px;
   }
 
