@@ -1,12 +1,46 @@
 .photo-gallery {
   padding: 2rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-gallery::before,
+.photo-gallery::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.photo-gallery::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-navy), transparent);
+}
+
+.photo-gallery::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-navy), transparent);
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   gap: 1.5rem;
   padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
+  z-index: 0;
+}
+
+.gallery-grid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 .gallery-item {
@@ -17,6 +51,9 @@
   transition: transform 0.3s ease;
   aspect-ratio: 4/3;
   background-color: #000;
+  min-width: 300px;
+  scroll-snap-align: center;
+  flex: 0 0 auto;
 }
 
 .gallery-link {
@@ -77,9 +114,8 @@
 }
 
 @media (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+  .gallery-item {
+    min-width: 250px;
   }
 
   .gallery-overlay {
