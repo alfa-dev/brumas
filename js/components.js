@@ -183,7 +183,7 @@ class PhotoGallery extends HTMLElement {
         <div class="gallery-grid">
         ${PHOTOS.map(photo => `
           <div class="gallery-item">
-            <a href="photo-viewer.html?src=${photo.src}&title=${photo.title}" class="gallery-link">
+            <a href="photo-viewer.html?id=${photo.id}" class="gallery-link">
               <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt}" loading="lazy">
               <div class="gallery-overlay">
                 <p>${photo.title}</p>

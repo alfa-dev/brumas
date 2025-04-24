@@ -34,66 +34,79 @@ const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Programação', 'Atrações',
 
 const PHOTOS = [
   {
+    id: 1,
     src: 'assets/pictues/brumas_1.webp',
     alt: 'A Fauno',
     title: 'A Fauno'
   },
   {
+    id: 2,
     src: 'assets/pictues/brumas_2.webp',
     alt: 'Dança Circular Celta',
     title: 'Dança Circular Celta'
   },
   {
+    id: 3,
     src: 'assets/pictues/brumas_3.webp',
     alt: 'Swordplay',
     title: 'Swordplay'
   },
   {
+    id: 4,
     src: 'assets/pictues/brumas_4.webp',
     alt: 'Taverna Medieval',
     title: 'Taverna Medieval'
   },
   {
+    id: 5,
     src: 'assets/pictues/brumas_5.webp',
     alt: 'Oaklore',
     title: 'Oaklore'
   },
   {
+    id: 6,
     src: 'assets/pictues/brumas_6.webp',
     alt: 'Fogueira Mística',
     title: 'Fogueira Mística'
   },
   {
+    id: 7,
     src: 'assets/pictues/brumas_7.webp',
     alt: 'Arquearia',
     title: 'Arquearia'
   },
   {
+    id: 8,
     src: 'assets/pictues/brumas_8.webp',
     alt: 'Encerramento da Dança Circular',
     title: 'Encerramento da Dança Circular'
   },
   {
+    id: 9,
     src: 'assets/pictues/brumas_9.webp',
     alt: 'Montagem do Acampamento Recreacionista',
     title: 'Montagem do Acampamento Recreacionista'
   },
   {
+    id: 10,
     src: 'assets/pictues/brumas_10.webp',
     alt: 'Acampamento Recreacionista',
     title: 'Acampamento Recreacionista'
   },
   // {
+  //   id: 11,
   //   src: 'assets/pictues/brumas_11.webp',
   //   alt: 'Parede de Escudos',
   //   title: 'Parede de Escudos'
   // },
   {
+    id: 11,
     src: 'assets/pictues/brumas_12.webp',
     alt: 'Oraculistas',
     title: 'Oraculistas'
   },
   {
+    id: 12,
     src: 'assets/pictues/brumas_13.webp',
     alt: 'Expositores',
     title: 'Expositores'
