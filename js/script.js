@@ -93,20 +93,20 @@ const PHOTOS = [
     alt: 'Acampamento Recreacionista',
     title: 'Acampamento Recreacionista'
   },
-  // {
-  //   id: 11,
-  //   src: 'assets/pictues/brumas_11.webp',
-  //   alt: 'Parede de Escudos',
-  //   title: 'Parede de Escudos'
-  // },
   {
     id: 11,
+    src: 'assets/pictues/brumas_11.webp',
+    alt: 'Parede de Escudos',
+    title: 'Parede de Escudos'
+  },
+  {
+    id: 12,
     src: 'assets/pictues/brumas_12.webp',
     alt: 'Oraculistas',
     title: 'Oraculistas'
   },
   {
-    id: 12,
+    id: 13,
     src: 'assets/pictues/brumas_13.webp',
     alt: 'Expositores',
     title: 'Expositores'
@@ -124,6 +124,10 @@ const SOCIAL_LINKS = [
   {
     name: 'Instagram',
     url: 'https://www.instagram.com/brumasfestivalmedieval/',
+  },
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/people/Brumas-Festival-Medieval/61574571856569/',
   }
 ];
 
