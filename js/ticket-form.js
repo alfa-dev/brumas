@@ -29,45 +29,57 @@ document.addEventListener('DOMContentLoaded', function() {
     ticket.addEventListener('change', updatePriceSummary.bind(this));
   });
 
+  const embaixador = document.getElementById('embaixador');
+
+  embaixador.addEventListener('input', function () {
+    if (SOCIAL_LINKS_.includes(embaixador.value)) {
+      embaixador.setCustomValidity('');
+    } else {
+      embaixador.setCustomValidity('Código de embaixador inválido');
+    }
+
+    updatePriceSummary();
+  });
+
   function updatePriceSummary() {
     mugCheckbox.dataset.price = btoa(PRICES.mug);
 
     const priceSummaryData = [];
 
     document.querySelectorAll('input[data-price]:checked').forEach(input => {
-      const price = atob(input.dataset.price);
+      const price = atob(input.dataset.name).includes('Festival') ? atob(input.dataset.price) * (isCodEmbaixadorValid() ? 0.9 : 1) : atob(input.dataset.price);
       const priceFormatted = parseFloat(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
       priceSummaryData.push({
         price: price,
         priceFormatted: priceFormatted,
-        name: atob(input.dataset.name),
+        name: atob(input.dataset.name) + (isCodEmbaixadorValid() && atob(input.dataset.name).includes('Festival') ? ' (-10%)' : ''),
       });
     });
 
     checkMinorParticipants();
 
     participants.map(participant => {
-      const ticketPrice = atob(getSelectedTickets().dataset.price);
+      const ticketPrice = atob(getSelectedTickets().dataset.price) * (isCodEmbaixadorValid() ? 0.9 : 1);
       const ticketPriceFormatted = parseFloat(ticketPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const halfTicketPrice = ticketPrice / 2;
       const halfTicketPriceFormatted = halfTicketPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
       if (participant.age >= 18) {
         priceSummaryData.push({
-          price: ticketPrice,
+          price: ticketPrice * (isCodEmbaixadorValid() ? 0.9 : 1),
           priceFormatted: ticketPriceFormatted,
           name: participant.name
         });
       } else if (participant.age < 6) {
         priceSummaryData.push({
           price: 0,
-          priceFormatted: 'Grátis - Menor de 6 anos',
+          priceFormatted: 'Menor de 6 anos R$ 0,00',
           name: participant.name
         });
       } else {
         priceSummaryData.push({
-          price: halfTicketPrice,
+          price: halfTicketPrice * (isCodEmbaixadorValid() ? 0.9 : 1),
           priceFormatted: `Meia: ${halfTicketPriceFormatted}`,
           name: participant.name
         });
@@ -90,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     priceSummarySignature.textContent = nameInput.value;
   };
+  setTimeout(() => updatePriceSummary());
 
   // Add participant dialog
   const addParticipantButton = document.getElementById('add-participant');
@@ -150,6 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
     return document.querySelector('ticket-types input:checked');
   }
 
+  function isCodEmbaixadorValid() {
+    const embaixador = document.getElementById('embaixador');
+    return (embaixador.checkValidity() && embaixador.value !== '');
+  }
+
   function calculateAge(birthday) {
     const today = new Date();
     const birthDate = new Date(birthday);
@@ -189,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  termsLink.addEventListener('click', function () {
+  termsLink.addEventListener('click', function (event) {
     event.preventDefault();
     const link = this.href;
     window.open(link, '_blank', 'width=900,height=700');
