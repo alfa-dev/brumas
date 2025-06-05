@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const priceSummaryData = [];
 
     document.querySelectorAll('input[data-price]:checked').forEach(input => {
-      const price = atob(input.dataset.name).includes('Festival') ? atob(input.dataset.price) * (isCodEmbaixadorValid() ? 0.9 : 1) : atob(input.dataset.price);
+      const price = atob(input.dataset.name).includes('Festival') ? atob(input.dataset.price) - (isCodEmbaixadorValid() ? 12 : 0) : atob(input.dataset.price);
       const priceFormatted = parseFloat(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
       priceSummaryData.push({
@@ -60,14 +60,14 @@ document.addEventListener('DOMContentLoaded', function() {
     checkMinorParticipants();
 
     participants.map(participant => {
-      const ticketPrice = atob(getSelectedTickets().dataset.price) * (isCodEmbaixadorValid() ? 0.9 : 1);
+      const ticketPrice = atob(getSelectedTickets().dataset.price) - (isCodEmbaixadorValid() ? 12 : 0);
       const ticketPriceFormatted = parseFloat(ticketPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const halfTicketPrice = ticketPrice / 2;
       const halfTicketPriceFormatted = halfTicketPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
       if (participant.age >= 18) {
         priceSummaryData.push({
-          price: ticketPrice * (isCodEmbaixadorValid() ? 0.9 : 1),
+          price: ticketPrice - (isCodEmbaixadorValid() ? 12 : 0),
           priceFormatted: ticketPriceFormatted,
           name: participant.name
         });
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       } else {
         priceSummaryData.push({
-          price: halfTicketPrice * (isCodEmbaixadorValid() ? 0.9 : 1),
+          price: halfTicketPrice - (isCodEmbaixadorValid() ? 6 : 0),
           priceFormatted: `Meia: ${halfTicketPriceFormatted}`,
           name: participant.name
         });
