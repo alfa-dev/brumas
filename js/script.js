@@ -113,7 +113,7 @@ const PHOTOS = [
   }
 ];
 
-const SOCIAL_LINKS_ = ['ROL4666', 'GUI001', 'IRONERDS10', 'JUS001'];
+const SOCIAL_LINKS_ = ['ROL4666', 'GUI001', 'IRONERDS10', 'JUS001', 'MONA002'];
 
 
 const CONTACT = {
