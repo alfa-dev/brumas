@@ -113,7 +113,7 @@ const PHOTOS = [
   }
 ];
 
-const SOCIAL_LINKS_ = ['ROL4666', 'GUI001', 'IRONERDS10', 'JUS001', 'MONA002', 'JP003', 'FALTAM30'];
+const SOCIAL_LINKS_ = ['ROL4666', 'GUI001', 'IRONERDS10', 'JUS001', 'MONA002', 'JP003', 'FALTAM30', 'MAGENERD'];
 
 
 const CONTACT = {
@@ -134,6 +134,53 @@ const SOCIAL_LINKS = [
   }
 ];
 
+const ATTRACTIONS = [
+  {
+    id: 1,
+    name: 'Lui na Greine',
+    description: 'Uma jornada mágica através da natureza e dos elementos da terra.',
+    picture: 'lui_na_greine.jpg',
+    picture_webp: 'lui_na_greine.webp',
+    icon: 'leaf',
+    tags: ['Natureza', 'Elementos']
+  },
+  {
+    id: 2,
+    name: 'Myrrox',
+    description: 'Uma experiência épica de fantasia e aventura medieval.',
+    picture: 'myrrox.jpg',
+    picture_webp: 'myrrox.webp',
+    icon: 'dragon',
+    tags: ['Fantasia', 'Aventura']
+  },
+  {
+    id: 3,
+    name: 'Ordem das Flores',
+    description: 'A sagrada ordem que preserva a beleza e harmonia da natureza.',
+    picture: 'ordem_das_flores.jpg',
+    picture_webp: 'ordem_das_flores.webp',
+    icon: 'seedling',
+    tags: ['Sagrado', 'Harmonia']
+  },
+  {
+    id: 4,
+    name: 'Ulf Viking Combat',
+    description: 'Combates épicos e demonstrações de força dos guerreiros nórdicos.',
+    picture: 'ulf_viking_combat.jpg',
+    picture_webp: 'ulf_viking_combat.webp',
+    icon: 'shield-halved',
+    tags: ['Combate', 'Nórdico']
+  },
+  {
+    id: 5,
+    name: 'Zaman Tribal',
+    description: 'Ritmos ancestrais e danças tribais que conectam com os espíritos da terra.',
+    picture: 'zaman_tribal.jpg',
+    picture_webp: 'zaman_tribal.webp',
+    icon: 'drum',
+    tags: ['Tribal', 'Ritual']
+  }
+];
 
 
 // Atualiza a contagem regressiva quando a página carrega
