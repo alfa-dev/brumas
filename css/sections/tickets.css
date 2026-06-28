@@ -156,6 +156,23 @@ tickets-component .ticket-button:hover {
   color: var(--color-dark);
 }
 
+tickets-component .ticket-button-disabled {
+  opacity: 0.6;
+  cursor: default;
+  background-color: rgba(64, 27, 121, 0.4);
+  border: 1px dashed rgba(169, 131, 64, 0.5);
+  pointer-events: none;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+tickets-component .ticket-price-soon {
+  font-style: italic;
+  font-size: 1rem;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
 /* Lista com Símbolos Alquímicos */
 tickets-component ul li {
   position: relative;

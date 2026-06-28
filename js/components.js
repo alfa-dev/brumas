@@ -87,12 +87,12 @@ class TicketsComponent extends HTMLElement {
     this.innerHTML = this.tickets.map(ticket => `
       <article class="ticket-card">
         <header>
-          <h3>${ticket.name} <span class="ticket-base-price">R$ ${ticket.price}</span></h3>
+          <h3>${ticket.name} <span class="ticket-base-price ticket-price-soon">Em breve</span></h3>
         </header>
         <ul>
           ${ticket.description.map(description => `<li>${description}</li>`).join('')}
         </ul>
-        <a href="ingressos.html?tipo=${ticket.id}" class="ticket-button">Adquirir Passagem</a>
+        <span class="ticket-button ticket-button-disabled"><i class="fa-solid fa-hourglass-half"></i> Preços em breve</span>
       </article>
     `).join('');
   }
