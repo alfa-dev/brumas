@@ -1,7 +1,7 @@
 const PRICES = {
   ticket: {
     regular: 120,
-    premium: 200,
+    premium: 220,
   },
   mug: 40
 };
