@@ -292,7 +292,7 @@ function createInfinitepayCheckout({ submissionId, name, email, whatsapp }) {
     body: JSON.stringify({
       handle: 'brumasfestival',
       order_nsu: submissionId,
-      redirect_url: `${window.location.origin}/?pagamento=confirmado&ref=${submissionId}`,
+      redirect_url: `${window.location.origin}/pagamento-confirmado.html?ref=${submissionId}`,
       items,
       customer: {
         name,

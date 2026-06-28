@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento Confirmado - Brumas Festival Medieval</title>
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="css/styles.css?v=ca39471">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <script src="js/script.js?v=ca39471"></script>
+  <script src="js/components.js?v=ca39471"></script>
+
+  <style>
+    .confirmation-section {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 80px;
+    }
+
+    .confirmation-scroll {
+      position: relative;
+      max-width: 560px;
+      width: 100%;
+      padding: 50px 40px;
+      text-align: center;
+      background-image: url('assets/papiro_texture.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--color-gold);
+      border-radius: 5px;
+      filter: sepia(.15);
+    }
+
+    .confirmation-scroll .top,
+    .confirmation-scroll .bottom {
+      position: absolute;
+      left: 0;
+      width: 105%;
+      height: 22px;
+      transform: translateX(-2%);
+      background-image: url('assets/papiro_texture.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    .confirmation-scroll .top {
+      top: 0;
+      box-shadow: 0 0 10px rgba(0,0,0,.2), 0 8px 7px rgba(0,0,0,.4), inset 1px -4px 5px 5px #8a6e4e;
+    }
+
+    .confirmation-scroll .bottom {
+      bottom: 0;
+      box-shadow: 0 0 10px rgba(0,0,0,.2), 0 -6px 10px rgba(0,0,0,.4), inset 0 0 5px 6px #b99469;
+    }
+
+    .confirmation-scroll .top::before,
+    .confirmation-scroll .bottom::before,
+    .confirmation-scroll .top::after,
+    .confirmation-scroll .bottom::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: -9px;
+      width: 10px;
+      height: 10px;
+      background-color: var(--color-parchment);
+      box-shadow: inset 0 0 10px 6px rgba(109,63,10,1);
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      transform: translateY(-50%);
+    }
+
+    .confirmation-scroll .top::after,
+    .confirmation-scroll .bottom::after {
+      left: unset;
+      right: -9px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .seal-icon {
+      font-size: 4rem;
+      color: #2a7a2a;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .confirmation-scroll h1 {
+      font-family: var(--font-medieval);
+      font-size: 2rem;
+      color: var(--color-deep-purple);
+      margin-bottom: 20px;
+    }
+
+    .confirmation-scroll p {
+      font-family: var(--font-body);
+      color: var(--color-dark);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .divider-gold {
+      width: 80px;
+      height: 2px;
+      background: var(--color-gold);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    .ref-badge {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #666;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+      word-break: break-all;
+    }
+
+    .next-steps {
+      text-align: left;
+      margin: 20px 0;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 5px;
+      border-left: 3px solid var(--color-gold);
+    }
+
+    .next-steps li {
+      font-family: var(--font-body);
+      color: var(--color-dark);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .confirmation-scroll .cta-button {
+      transform: none;
+      opacity: 1;
+      animation: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header-component></header-component>
+
+  <main style="padding-top: 72px;">
+    <section class="confirmation-section">
+      <div class="confirmation-scroll">
+        <div class="top"></div>
+
+        <span class="seal-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </span>
+
+        <a href="index.html">
+          <img src="assets/b_principal.webp" alt="Brumas Festival Medieval" width="70" style="margin-bottom: 16px;">
+        </a>
+
+        <h1>Passagem Selada!</h1>
+
+        <p><strong>Salve, nobre viajante!</strong></p>
+
+        <p>Vosso tributo foi recebido com o selo real. Vossa presença no <strong>Festival Brumas</strong>
+          está confirmada!</p>
+
+        <div class="divider-gold"></div>
+
+        <ul class="next-steps">
+          <li><i class="fa-solid fa-envelope gold-text"></i> &nbsp; Um pergaminho será enviado ao vosso
+            mensageiro eletrônico com os detalhes da passagem.</li>
+          <li><i class="fa-solid fa-calendar-days gold-text"></i> &nbsp; Guarda a data:
+            <strong>19 de setembro de 2026</strong>.</li>
+          <li><i class="fa-solid fa-location-dot gold-text"></i> &nbsp; Estr. Adam Blumer, 5580 — Magé, RJ.</li>
+        </ul>
+
+        <div class="divider-gold"></div>
+
+        <p style="font-size: 0.85rem; color: #666;">Código de referência do pedido:</p>
+        <span class="ref-badge" id="order-ref">—</span>
+
+        <br><br>
+
+        <a href="index.html" class="cta-button">
+          <i class="fa-solid fa-castle"></i> Retornar ao Reino
+        </a>
+
+        <div class="bottom"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer-component></footer-component>
+
+  <script>
+    const ref = new URLSearchParams(window.location.search).get('ref');
+    if (ref) document.getElementById('order-ref').textContent = ref;
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DL5KF46QH2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DL5KF46QH2');
+  </script>
+</body>
+
+</html>
