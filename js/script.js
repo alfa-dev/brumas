@@ -116,6 +116,7 @@ const PHOTOS = [
 const SOCIAL_LINKS_ = ['ROL4666', 'GUI001', 'IRONERDS10', 'JUS001', 'MONA002', 'JP003', 'FALTAM30', 'MAGENERD', 'AMAURI007'];
 
 
+
 const CONTACT = {
   email: 'brumasfestival@gmail.com',
   phone: '+55(21) 98333-6417',

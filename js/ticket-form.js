@@ -1,3 +1,5 @@
+let cartItems = [];
+
 document.addEventListener('DOMContentLoaded', function() {
   const birthdate = document.getElementById('birthdate');
   const mugCheckbox = document.getElementById('mug');
@@ -101,6 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </tr>`;
 
     priceSummarySignature.textContent = nameInput.value;
+
+    cartItems = priceSummaryData;
+    const total = priceSummaryData.reduce((acc, item) => acc + parseFloat(item.price), 0);
+    document.getElementById('total_amount').value = total.toFixed(2);
   };
   setTimeout(() => updatePriceSummary());
 
@@ -229,37 +235,73 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    submitButton.innerHTML = 'Enviando';
+    submitButton.innerHTML = 'Processando...';
     submitButton.classList.add('loading');
     submitButton.setAttribute('disabled', true);
 
-    const formData = new FormData(form);
-    // const data = Object.fromEntries(formData);
+    const submissionId = crypto.randomUUID();
+    document.getElementById('submission_id').value = submissionId;
 
+    const formData = new FormData(form);
+
+    // Salva no Google Sheets (fire and forget — sem aguardar resposta)
     fetch(form.action, {
       method: form.method,
       body: formData,
       mode: 'no-cors'
-    })
-      .then(response => {
-        if (response.type === 'opaqueredirect')
-          return fetch(response.url, {mode: 'no-cors'});
+    }).catch(error => console.error('Erro ao salvar dados:', error));
 
-        return response;
-      })
-      .then(response => {
-        console.log(response);
-        SpamProtection.recordSubmission();
-        document.getElementById('confirmation-modal').showModal();
-      })
-      .catch(error => {
-        alert('Erro ao enviar os dados: ' + error);
-        console.error('Erro ao enviar os dados:', error);
-        submitButton.removeAttribute('disabled');
-      });
+    SpamProtection.recordSubmission();
+
+    createInfinitepayCheckout({
+      submissionId,
+      name: formData.get('name'),
+      email: formData.get('email'),
+      whatsapp: formData.get('whatsapp'),
+    })
+    .then(({ url }) => {
+      window.location.href = url;
+    })
+    .catch(error => {
+      console.error('Erro ao processar pagamento:', error);
+      document.getElementById('confirmation-modal').showModal();
+    });
   });
 
   document.getElementById('confirmation-modal').addEventListener('close', function () {
     submitButton.removeAttribute('disabled');
+    submitButton.innerHTML = '<i class="fa-solid fa-ticket"></i> Reservar Ingresso';
+    submitButton.classList.remove('loading');
   });
 });
+
+function createInfinitepayCheckout({ submissionId, name, email, whatsapp }) {
+  const items = cartItems
+    .filter(item => parseFloat(item.price) > 0)
+    .map(item => ({
+      description: item.name,
+      quantity: 1,
+      price: Math.round(parseFloat(item.price) * 100)
+    }));
+
+  const phoneDigits = whatsapp.replace(/\D/g, '');
+
+  return fetch('https://api.infinitepay.io/invoices/public/checkout/links', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      handle: 'brumasfestival',
+      order_nsu: submissionId,
+      redirect_url: `${window.location.origin}/?pagamento=confirmado&ref=${submissionId}`,
+      items,
+      customer: {
+        name,
+        email,
+        phone_number: '+55' + phoneDigits
+      }
+    })
+  }).then(res => {
+    if (!res.ok) throw new Error('Falha ao criar checkout');
+    return res.json();
+  });
+}
