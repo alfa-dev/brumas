@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('confirmation-modal').addEventListener('close', function () {
     submitButton.removeAttribute('disabled');
-    submitButton.innerHTML = '<i class="fa-solid fa-ticket"></i> Reservar Ingresso';
+    submitButton.innerHTML = '<i class="fa-solid fa-coins"></i> Ir para Pagamento';
     submitButton.classList.remove('loading');
   });
 });
