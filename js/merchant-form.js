@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    if (SpamProtection.isSpam(form)) {
+      document.getElementById('confirmation-modal').showModal();
+      return;
+    }
+
     submitButton.innerHTML = 'Enviando';
     submitButton.classList.add('disabled');
     submitButton.setAttribute('disabled', true);

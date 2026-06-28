@@ -1,0 +1,22 @@
+#!/bin/sh
+# Cache busting automático: atualiza ?v= em todos os HTMLs a cada commit.
+# Setup (uma vez por máquina): git config core.hooksPath .githooks
+
+set -e
+
+VERSION=$(git write-tree | cut -c1-7)
+
+sed_inplace() {
+  case "$(uname -s)" in
+    Darwin) sed -i '' "$@" ;;
+    *)      sed -i "$@" ;;
+  esac
+}
+
+find . -maxdepth 1 -name "*.html" ! -name "_*.html" | while read -r file; do
+  sed_inplace -E "s|(href=\"css/[^\"]+\.css)(\?v=[^\"]*)?\"|\1?v=$VERSION\"|g" "$file"
+  sed_inplace -E "s|(src=\"js/[^\"]+\.js)(\?v=[^\"]*)?\"|\1?v=$VERSION\"|g" "$file"
+  git add "$file"
+done
+
+echo "[pre-commit] cache busting aplicado: ?v=$VERSION"

@@ -32,6 +32,18 @@
 }
 
 
+/* Campo honeypot: invisível para humanos, armadilha para bots */
+.hp-trap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
 /* Reset e Estilos Gerais */
 * {
   margin: 0;

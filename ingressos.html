@@ -25,8 +25,8 @@
   <meta name="theme-color" content="#ffffff">
 
 
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/sections/ticket-form.css">
+  <link rel="stylesheet" href="css/styles.css?v=9e89d8b">
+  <link rel="stylesheet" href="css/sections/ticket-form.css?v=9e89d8b">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,8 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js"></script>
-  <script src="js/components.js"></script>
+  <script src="js/script.js?v=9e89d8b"></script>
+  <script src="js/components.js?v=9e89d8b"></script>
   <script src="https://unpkg.com/imask"></script>
 </head>
 
@@ -65,6 +65,13 @@
         class="medieval-card">
         <input type="hidden" id="additional-participant" name="additional-participant">
         <input type="hidden" id="created_at" name="created_at">
+        <!-- Anti-spam -->
+        <div class="hp-trap" aria-hidden="true">
+          <label for="_hp">Deixe este campo em branco</label>
+          <input type="text" id="_hp" name="_hp" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" id="_ltime" name="_ltime">
+        <input type="hidden" id="_jsck" name="_jsck">
         <fieldset id="personal-data-fieldset">
           <legend>Vossos Dados Pessoais</legend>
           <div class="form-group">
@@ -240,7 +247,8 @@
     <div class="bottom"></div>
   </dialog>
 
-  <script src="js/ticket-form.js"></script>
+  <script src="js/spam-protection.js?v=9e89d8b"></script>
+  <script src="js/ticket-form.js?v=9e89d8b"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DL5KF46QH2"></script>
   <script>
