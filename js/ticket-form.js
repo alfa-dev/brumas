@@ -234,8 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
       mode: 'no-cors'
     }).catch(error => console.error('Erro ao salvar dados:', error));
 
-    SpamProtection.recordSubmission();
-
     createInfinitepayCheckout({
       submissionId,
       name: formData.get('name'),
@@ -243,10 +241,11 @@ document.addEventListener('DOMContentLoaded', function () {
       whatsapp: formData.get('whatsapp'),
     })
     .then(({ url }) => {
+      SpamProtection.recordSubmission();
       window.location.href = url;
     })
     .catch(error => {
-      console.error('Erro ao processar pagamento:', error);
+      console.error('[pagamento] erro:', error);
       document.getElementById('confirmation-modal').showModal();
     });
   });
