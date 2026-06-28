@@ -1,3 +1,19 @@
+/* Badge de vendas abertas */
+.tickets-open-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--color-dark);
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  padding: 6px 20px;
+  border-radius: 30px;
+  margin-top: 12px;
+  box-shadow: 0 4px 15px rgba(169, 131, 64, 0.4);
+}
+
 /* Ingressos */
 tickets-component {
   display: flex;
@@ -49,9 +65,9 @@ tickets-component .ticket-card {
 }
 
 tickets-component .ticket-card:hover {
-  /* transform: scale(1.05); */
-  transform: scale3d(1.02, 1.02, 1.02);
-  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+  transform: scale3d(1.03, 1.03, 1.03);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 0 0 30px rgba(169, 131, 64, 0.35);
+  border-color: var(--color-gold-light);
 }
 
 tickets-component .ticket-card:hover .ticket-seal {

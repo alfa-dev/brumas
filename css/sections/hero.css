@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(8, 8, 6, 0.7), rgba(10, 18, 70, 0.7));
+  background: linear-gradient(160deg, rgba(8, 8, 6, 0.8) 0%, rgba(39, 13, 79, 0.6) 50%, rgba(10, 18, 70, 0.8) 100%);
 }
 
 #hero::after {
@@ -114,6 +114,26 @@
   animation: fadeIn 2s ease forwards .5s;
 }
 
+.edition-badge {
+  font-family: var(--font-medieval);
+  font-size: 0.8rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  border: 1px solid rgba(169, 131, 64, 0.5);
+  padding: 6px 24px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards 0.4s;
+  background-color: rgba(8, 8, 6, 0.45);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 18px rgba(169, 131, 64, 0.25), inset 0 0 8px rgba(169, 131, 64, 0.07);
+  position: relative;
+  z-index: 1;
+  cursor: default;
+}
+
 .event-date {
   position: relative;
   font-size: 1.5rem;
@@ -121,9 +141,14 @@
   font-family: var(--font-medieval);
   color: var(--color-light);
   display: inline-block;
-  padding: 10px 30px;
+  padding: 12px 36px;
   opacity: 0;
   animation: fadeIn 2s ease forwards 1s;
+  background-color: rgba(8, 8, 6, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(169, 131, 64, 0.35);
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 12px rgba(169, 131, 64, 0.1);
 }
 
 .event-date::before,
@@ -284,8 +309,21 @@
   left: 100%;
 }
 
+.mist-glow {
+  animation: fadeIn 2s ease forwards 1.5s, mistPulse 3s ease-in-out infinite 3.5s !important;
+}
+
+@keyframes mistPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(169, 131, 64, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(169, 131, 64, 0.7), 0 0 55px rgba(169, 131, 64, 0.25), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
 @media (prefers-reduced-motion) {
-  h1, .main-title, .subtitle, .event-date, .cta-button, .scroll-indicator {
+  h1, .main-title, .subtitle, .event-date, .cta-button, .scroll-indicator, .edition-badge {
     animation: none;
     opacity: 1;
   }

@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
   eventDateElement.addEventListener('click', () => {
     eventDateElement.removeEventListener('click', arguments.callee);
 
-    const eventDate = new Date('2025-07-19T00:00:00');
+    const eventDate = new Date('2026-09-19T00:00:00');
     let timeDifference = eventDate - new Date();
 
     const medievalMusicUrls = [
