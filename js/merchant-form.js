@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => {
         console.log(response);
+        SpamProtection.recordSubmission();
         document.getElementById('confirmation-modal').showModal();
       })
       .catch(error => {
