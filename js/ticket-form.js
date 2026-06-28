@@ -31,45 +31,33 @@ document.addEventListener('DOMContentLoaded', function() {
     ticket.addEventListener('change', updatePriceSummary.bind(this));
   });
 
-  const embaixador = document.getElementById('embaixador');
-
-  embaixador.addEventListener('input', function () {
-    if (SOCIAL_LINKS_.includes(embaixador.value)) {
-      embaixador.setCustomValidity('');
-    } else {
-      embaixador.setCustomValidity('Código de embaixador inválido');
-    }
-
-    updatePriceSummary();
-  });
-
   function updatePriceSummary() {
     mugCheckbox.dataset.price = btoa(PRICES.mug);
 
     const priceSummaryData = [];
 
     document.querySelectorAll('input[data-price]:checked').forEach(input => {
-      const price = atob(input.dataset.name).includes('Festival') ? atob(input.dataset.price) - (isCodEmbaixadorValid() ? 12 : 0) : atob(input.dataset.price);
+      const price = atob(input.dataset.price);
       const priceFormatted = parseFloat(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
       priceSummaryData.push({
         price: price,
         priceFormatted: priceFormatted,
-        name: atob(input.dataset.name) + (isCodEmbaixadorValid() && atob(input.dataset.name).includes('Festival') ? ' (-10%)' : ''),
+        name: atob(input.dataset.name),
       });
     });
 
     checkMinorParticipants();
 
     participants.map(participant => {
-      const ticketPrice = atob(getSelectedTickets().dataset.price) - (isCodEmbaixadorValid() ? 12 : 0);
+      const ticketPrice = atob(getSelectedTickets().dataset.price);
       const ticketPriceFormatted = parseFloat(ticketPrice).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const halfTicketPrice = ticketPrice / 2;
       const halfTicketPriceFormatted = halfTicketPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
       if (participant.age >= 18) {
         priceSummaryData.push({
-          price: ticketPrice - (isCodEmbaixadorValid() ? 12 : 0),
+          price: ticketPrice,
           priceFormatted: ticketPriceFormatted,
           name: participant.name
         });
@@ -81,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       } else {
         priceSummaryData.push({
-          price: halfTicketPrice - (isCodEmbaixadorValid() ? 6 : 0),
+          price: halfTicketPrice,
           priceFormatted: `Meia: ${halfTicketPriceFormatted}`,
           name: participant.name
         });
@@ -167,11 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function getSelectedTickets() {
     return document.querySelector('ticket-types input:checked');
-  }
-
-  function isCodEmbaixadorValid() {
-    const embaixador = document.getElementById('embaixador');
-    return (embaixador.checkValidity() && embaixador.value !== '');
   }
 
   function calculateAge(birthday) {
