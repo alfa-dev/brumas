@@ -122,6 +122,6 @@
 
 ###
 
-Brumas \- Festival Medieval | Data de Atualização: Maio de 2025
+Brumas \- Festival Medieval | Data de Atualização: Junho de 2026
 
 Para mais informações, entre em contato: brumasfestival@gmail.com

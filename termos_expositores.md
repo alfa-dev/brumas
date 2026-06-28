@@ -160,6 +160,6 @@
 
 10.5. Ao preencher o formulário de inscrição para expositores, o interessado declara ter lido, compreendido e concordado com todos os termos e condições aqui estabelecidos.
 
-Brumas \- Festival Medieval | Data de Atualização: Maio de 2025
+Brumas \- Festival Medieval | Data de Atualização: Junho de 2026
 
 Para mais informações, entre em contato: brumasfestival@gmail.com
