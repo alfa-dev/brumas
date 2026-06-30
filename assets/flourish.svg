@@ -1,23 +1,69 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 520" fill="none">
+  <defs>
+    <!-- Brush taper: opaque/thick at bottom (y=520), fades to near-invisible at top (y=0) -->
+    <linearGradient id="brushFade" x1="0" y1="520" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#a98340" stop-opacity="1"/>
+      <stop offset="55%"  stop-color="#a98340" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#a98340" stop-opacity="0.04"/>
+    </linearGradient>
+    <!-- Lighter version for thin stems -->
+    <linearGradient id="brushFadeThin" x1="0" y1="520" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#a98340" stop-opacity="0.9"/>
+      <stop offset="50%"  stop-color="#a98340" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#a98340" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Central stem lines fanning upward from bottom -->
-  <g stroke="#a98340" fill="none" stroke-linecap="round">
-    <path stroke-width="1.5" d="M95,510 C90,450 80,385 72,315 C64,248 66,190 60,130 C55,85 48,48 52,10"/>
-    <path stroke-width="1.2" d="M95,510 C98,450 105,383 112,313 C118,247 116,188 124,128 C130,83 136,46 132,8"/>
-    <path stroke-width="0.9" d="M95,510 C88,448 76,382 68,310 C60,242 63,182 55,122 C49,78 42,40 46,5"/>
-    <path stroke-width="0.9" d="M95,510 C100,447 110,380 118,308 C126,240 124,180 132,120 C138,76 145,38 141,3"/>
-    <path stroke-width="0.7" d="M95,510 C82,445 65,375 54,300 C44,228 47,165 36,100"/>
-    <path stroke-width="0.6" d="M95,510 C108,443 127,372 138,296 C148,224 146,160 157,94"/>
-    <path stroke-width="0.5" d="M95,510 C78,442 58,370 46,293 C34,218 38,152 24,88"/>
-    <path stroke-width="0.4" d="M95,510 C112,440 133,368 145,290 C156,215 154,148 167,82"/>
-
-    <!-- Curving tendril branches sweeping left — pronounced arcs that curl at the tip -->
-    <path stroke-width="0.55" d="M68,322 C50,308 24,308 10,320 C0,329 4,342 12,342"/>
-    <path stroke-width="0.45" d="M64,340 C48,330 28,334 14,348 C4,358 8,370 16,368"/>
-    <path stroke-width="0.4"  d="M61,358 C50,352 34,348 20,360 C9,370 12,382 18,380"/>
+  <!-- ====== FAN STEMS — pronounced S-curves, gradient brush taper ====== -->
+  <!-- Thick/main stems -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Far left sweep -->
+    <path stroke="url(#brushFade)" stroke-width="3.2"
+      d="M93,515 C62,445 38,368 36,285 C34,202 52,148 22,82 C14,60 14,28 18,4"/>
+    <!-- Mid-left, S-curve -->
+    <path stroke="url(#brushFade)" stroke-width="2.5"
+      d="M94,515 C70,448 52,375 50,298 C48,222 62,162 46,98 C36,60 38,26 42,6"/>
+    <!-- Slight-left with reverse S -->
+    <path stroke="url(#brushFade)" stroke-width="2"
+      d="M95,515 C80,450 68,380 66,308 C64,238 76,178 60,114 C50,74 52,36 54,8"/>
+    <!-- Center-left -->
+    <path stroke="url(#brushFade)" stroke-width="1.8"
+      d="M95,515 C88,452 80,384 78,314 C76,246 84,186 70,122 C62,84 62,42 64,10"/>
+    <!-- Center-right (mirror) -->
+    <path stroke="url(#brushFade)" stroke-width="1.8"
+      d="M97,515 C104,452 112,384 114,314 C116,246 108,186 122,122 C130,84 130,42 128,10"/>
+    <!-- Slight-right -->
+    <path stroke="url(#brushFade)" stroke-width="2"
+      d="M97,515 C112,450 126,378 128,305 C130,232 118,172 134,108 C144,68 142,30 140,8"/>
+    <!-- Mid-right S-curve -->
+    <path stroke="url(#brushFade)" stroke-width="2.5"
+      d="M98,515 C122,446 142,372 144,292 C146,215 132,155 150,90 C160,54 158,22 154,5"/>
+    <!-- Far right sweep -->
+    <path stroke="url(#brushFade)" stroke-width="3.2"
+      d="M99,515 C130,442 156,362 158,278 C160,196 144,140 166,74 C174,50 178,22 174,4"/>
   </g>
 
-  <!-- ====== SCATTERED INDIVIDUAL LEAVES along stems (organic, non-paired) ====== -->
+  <!-- Thinner outer fans -->
+  <g fill="none" stroke-linecap="round">
+    <path stroke="url(#brushFadeThin)" stroke-width="1.2"
+      d="M92,515 C55,445 28,365 24,278 C20,192 42,132 8,64"/>
+    <path stroke="url(#brushFadeThin)" stroke-width="1.2"
+      d="M100,515 C138,443 168,362 172,274 C176,188 154,128 188,60"/>
+    <path stroke="url(#brushFadeThin)" stroke-width="0.7"
+      d="M91,515 C46,442 16,358 10,266 C4,176 30,110 -4,44"/>
+  </g>
+
+  <!-- Curving tendril branches sweeping left — pronounced arcs with curl -->
+  <g fill="none" stroke-linecap="round">
+    <path stroke="url(#brushFadeThin)" stroke-width="0.8"
+      d="M66,328 C46,312 20,308 6,322 C-4,332 0,346 10,344"/>
+    <path stroke="url(#brushFadeThin)" stroke-width="0.65"
+      d="M62,346 C44,334 22,336 8,350 C-2,360 2,374 10,372"/>
+    <path stroke="url(#brushFadeThin)" stroke-width="0.5"
+      d="M60,364 C46,358 30,354 18,366 C8,376 12,388 18,385"/>
+  </g>
+
+  <!-- ====== SCATTERED LEAVES (organic, non-paired) ====== -->
   <g fill="#a98340">
     <ellipse cx="56"  cy="148" rx="2.6" ry="7.2" transform="rotate(-43 56 148)"/>
     <ellipse cx="78"  cy="163" rx="2"   ry="5.2" transform="rotate(56 78 163)"/>
@@ -34,7 +80,7 @@
     <ellipse cx="106" cy="246" rx="2.4" ry="5.8" transform="rotate(43 106 246)"/>
   </g>
 
-  <!-- ====== SMALL 5-PETAL FLOWER at stem tip (top of composition) ====== -->
+  <!-- ====== SMALL 5-PETAL FLOWER at stem tip ====== -->
   <g fill="#a98340" transform="translate(92, 10)">
     <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(0)"/>
     <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(72)"/>
@@ -53,7 +99,6 @@
        C115,43 130,32 146,34
        C162,36 170,49 167,61
        C164,73 153,79 143,75"/>
-  <!-- Small 4-petal flower inside top-right spiral -->
   <g fill="#a98340" transform="translate(152, 62)">
     <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(0)"/>
     <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(90)"/>
@@ -69,7 +114,6 @@
        C89,33 100,27 110,29
        C120,31 126,42 122,51
        C118,60 108,63 100,59"/>
-  <!-- Single leaf near top-left spiral -->
   <ellipse fill="#a98340" cx="119" cy="42" rx="2.5" ry="5.2" transform="rotate(-18 119 42)"/>
 
   <!-- ====== MID-RIGHT SPIRAL: center=(148,210), r=32 ====== -->
@@ -81,7 +125,6 @@
        C122,196 135,188 148,190
        C161,192 168,203 165,213
        C162,223 152,228 143,224"/>
-  <!-- Small 4-petal flower inside mid-right spiral -->
   <g fill="#a98340" transform="translate(131, 212)">
     <ellipse cx="0" cy="-5.5" rx="2.5" ry="4.8" transform="rotate(0)"/>
     <ellipse cx="0" cy="-5.5" rx="2.5" ry="4.8" transform="rotate(90)"/>
@@ -98,7 +141,6 @@
        C63,267 53,261 42,263
        C31,265 26,275 29,283
        C32,291 41,295 49,291"/>
-  <!-- Single leaf near left spiral -->
   <ellipse fill="#a98340" cx="52" cy="258" rx="2.2" ry="5.6" transform="rotate(-38 52 258)"/>
 
   <!-- ====== BOTTOM-LEFT LARGE SPIRAL: center=(58,395), r=48 ====== -->
@@ -114,13 +156,11 @@
        C32,384 44,376 56,379
        C68,382 74,393 71,402
        C68,411 59,415 51,411"/>
-  <!-- Small 4-petal flower inside bottom-left spiral -->
   <g fill="#a98340" transform="translate(20, 400)">
     <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(0)"/>
     <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(90)"/>
     <circle  cx="0" cy="0"  r="2.8"/>
   </g>
-  <!-- Single leaf at spiral entry -->
   <ellipse fill="#a98340" cx="76" cy="356" rx="2.5" ry="6.4" transform="rotate(-22 76 356)"/>
 
   <!-- ====== BOTTOM-RIGHT MEDIUM SPIRAL: center=(148,395), r=40 ====== -->
