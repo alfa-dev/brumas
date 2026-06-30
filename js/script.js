@@ -35,111 +35,111 @@ const NAV_LINKS = ['Início', 'Sobre', 'Galeria', /* 'Programação', 'Atraçõe
 const PHOTOS = [
   {
     id: 1,
+    src: 'assets/pictues/brumas_artesaos_medievais.webp',
+    alt: 'Artesanato Medieval',
+    title: 'Artesanato Medieval'
+  },
+  {
+    id: 2,
+    src: 'assets/pictues/brumas_elmo_do_guerreiro.webp',
+    alt: 'Itens históricos',
+    title: 'Itens históricos'
+  },
+  {
+    id: 3,
     src: 'assets/pictues/brumas_contacao_de_historias.webp',
     alt: 'Contação de Histórias',
     title: 'Contação de Histórias'
   },
   {
-    id: 2,
-    src: 'assets/pictues/brumas_jogo_medieval.webp',
-    alt: 'Jogo Medieval',
-    title: 'Jogo Medieval'
-  },
-  {
-    id: 3,
-    src: 'assets/pictues/brumas_guerreiro_de_couro.webp',
-    alt: 'Guerreiro de Couro',
-    title: 'Guerreiro de Couro'
-  },
-  {
     id: 4,
-    src: 'assets/pictues/brumas_musico_do_pandeiro.webp',
-    alt: 'Músico do Pandeiro',
-    title: 'Músico do Pandeiro'
+    src: 'assets/pictues/brumas_jogo_medieval.webp',
+    alt: 'Jogos',
+    title: 'Jogos'
   },
   {
     id: 5,
-    src: 'assets/pictues/brumas_caneca_brumas.webp',
-    alt: 'Caneca Brumas',
-    title: 'Caneca Brumas'
+    src: 'assets/pictues/brumas_musico_do_pandeiro.webp',
+    alt: 'Música',
+    title: 'Música'
   },
   {
     id: 6,
-    src: 'assets/pictues/brumas_caldeiron_na_fogueira.webp',
-    alt: 'Caldeirão na Fogueira',
-    title: 'Caldeirão na Fogueira'
+    src: 'assets/pictues/brumas_caneca_brumas.webp',
+    alt: 'Souvenires',
+    title: 'Souvenires'
   },
   {
     id: 7,
-    src: 'assets/pictues/brumas_alda_medieval.webp',
-    alt: 'Aldeã Medieval',
-    title: 'Aldeã Medieval'
+    src: 'assets/pictues/brumas_caldeiron_na_fogueira.webp',
+    alt: 'Acampamento histórico',
+    title: 'Acampamento histórico'
   },
   {
     id: 8,
-    src: 'assets/pictues/brumas_hidromel_no_corno.webp',
-    alt: 'Hidromel no Corno',
-    title: 'Hidromel no Corno'
+    src: 'assets/pictues/brumas_alda_medieval.webp',
+    alt: 'Recriação Histórica',
+    title: 'Recriação Histórica'
   },
   {
     id: 9,
-    src: 'assets/pictues/brumas_elmo_do_guerreiro.webp',
-    alt: 'Elmo do Guerreiro',
-    title: 'Elmo do Guerreiro'
+    src: 'assets/pictues/brumas_portal_brumas.webp',
+    alt: 'Imersão',
+    title: 'Imersão'
   },
   {
     id: 10,
-    src: 'assets/pictues/brumas_portal_brumas.webp',
-    alt: 'Portal Brumas',
-    title: 'Portal Brumas'
+    src: 'assets/pictues/brumas_hidromel_no_corno.webp',
+    alt: 'Bebidas',
+    title: 'Bebidas'
   },
   {
     id: 11,
     src: 'assets/pictues/brumas_festival_ao_luar.webp',
-    alt: 'Festival ao Luar',
-    title: 'Festival ao Luar'
+    alt: 'Vivências',
+    title: 'Vivências'
   },
   {
     id: 12,
     src: 'assets/pictues/brumas_guardia_da_fogueira.webp',
-    alt: 'Guardiã da Fogueira',
-    title: 'Guardiã da Fogueira'
+    alt: 'Fogueiras',
+    title: 'Fogueiras'
   },
   {
     id: 13,
-    src: 'assets/pictues/brumas_encontro_de_guerreiros.webp',
-    alt: 'Encontro de Guerreiros',
-    title: 'Encontro de Guerreiros'
+    src: 'assets/pictues/brumas_guerreiro_de_couro.webp',
+    alt: 'Encontros ...',
+    title: 'Encontros ...'
   },
   {
     id: 14,
-    src: 'assets/pictues/brumas_danca_dos_veus.webp',
-    alt: 'Dança dos Véus',
-    title: 'Dança dos Véus'
+    src: 'assets/pictues/brumas_encontro_de_guerreiros.webp',
+    alt: 'Reencontros',
+    title: '... e reencontros'
   },
   {
     id: 15,
-    src: 'assets/pictues/brumas_conversa_ao_entardecer.webp',
-    alt: 'Conversa ao Entardecer',
-    title: 'Conversa ao Entardecer'
+    src: 'assets/pictues/brumas_danca_dos_veus.webp',
+    alt: 'Danças',
+    title: 'Danças'
   },
   {
     id: 16,
-    src: 'assets/pictues/brumas_combate_com_escudos.webp',
-    alt: 'Combate com Escudos',
-    title: 'Combate com Escudos'
+    src: 'assets/pictues/brumas_conversa_ao_entardecer.webp',
+    alt: 'Trocas',
+    title: 'Trocas'
   },
   {
     id: 17,
-    src: 'assets/pictues/brumas_guerreira_medieval.webp',
-    alt: 'Guerreira Medieval',
-    title: 'Guerreira Medieval'
+    src: 'assets/pictues/brumas_combate_com_escudos.webp',
+    alt: 'Combates',
+    title: 'Combates'
   },
   {
     id: 18,
-    src: 'assets/pictues/brumas_artesaos_medievais.webp',
-    alt: 'Artesãos Medievais',
-    title: 'Artesãos Medievais'
+    src: 'assets/pictues/brumas_guerreira_medieval.webp',
+    alt: 'Apresentações',
+    title: 'Apresentações'
   }
 ];
 
