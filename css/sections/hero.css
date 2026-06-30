@@ -144,11 +144,6 @@
   padding: 12px 36px;
   opacity: 0;
   animation: fadeIn 2s ease forwards 1s;
-  background-color: rgba(8, 8, 6, 0.4);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(169, 131, 64, 0.35);
-  border-radius: 4px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 12px rgba(169, 131, 64, 0.1);
 }
 
 .event-date::before,
