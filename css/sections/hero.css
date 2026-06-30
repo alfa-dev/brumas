@@ -170,6 +170,17 @@
   animation: fadeInRight 1s ease forwards 2s;
 }
 
+.event-time {
+  font-family: var(--font-medieval);
+  font-size: 1rem;
+  color: var(--color-gold);
+  letter-spacing: 3px;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards 1.3s;
+}
+
 /* Botões */
 /* .cta-button {
   position: relative;
