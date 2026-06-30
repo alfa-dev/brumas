@@ -35,81 +35,111 @@ const NAV_LINKS = ['Início', 'Sobre', 'Galeria', /* 'Programação', 'Atraçõe
 const PHOTOS = [
   {
     id: 1,
-    src: 'assets/pictues/brumas_1.webp',
-    alt: 'A Fauno',
-    title: 'A Fauno'
+    src: 'assets/pictues/brumas_contacao_de_historias.webp',
+    alt: 'Contação de Histórias',
+    title: 'Contação de Histórias'
   },
   {
     id: 2,
-    src: 'assets/pictues/brumas_2.webp',
-    alt: 'Dança Circular Celta',
-    title: 'Dança Circular Celta'
+    src: 'assets/pictues/brumas_jogo_medieval.webp',
+    alt: 'Jogo Medieval',
+    title: 'Jogo Medieval'
   },
   {
     id: 3,
-    src: 'assets/pictues/brumas_3.webp',
-    alt: 'Swordplay',
-    title: 'Swordplay'
+    src: 'assets/pictues/brumas_guerreiro_de_couro.webp',
+    alt: 'Guerreiro de Couro',
+    title: 'Guerreiro de Couro'
   },
   {
     id: 4,
-    src: 'assets/pictues/brumas_4.webp',
-    alt: 'Taverna Medieval',
-    title: 'Taverna Medieval'
+    src: 'assets/pictues/brumas_musico_do_pandeiro.webp',
+    alt: 'Músico do Pandeiro',
+    title: 'Músico do Pandeiro'
   },
   {
     id: 5,
-    src: 'assets/pictues/brumas_5.webp',
-    alt: 'Oaklore',
-    title: 'Oaklore'
+    src: 'assets/pictues/brumas_caneca_brumas.webp',
+    alt: 'Caneca Brumas',
+    title: 'Caneca Brumas'
   },
   {
     id: 6,
-    src: 'assets/pictues/brumas_6.webp',
-    alt: 'Fogueira Mística',
-    title: 'Fogueira Mística'
+    src: 'assets/pictues/brumas_caldeiron_na_fogueira.webp',
+    alt: 'Caldeirão na Fogueira',
+    title: 'Caldeirão na Fogueira'
   },
   {
     id: 7,
-    src: 'assets/pictues/brumas_7.webp',
-    alt: 'Arquearia',
-    title: 'Arquearia'
+    src: 'assets/pictues/brumas_alda_medieval.webp',
+    alt: 'Aldeã Medieval',
+    title: 'Aldeã Medieval'
   },
   {
     id: 8,
-    src: 'assets/pictues/brumas_8.webp',
-    alt: 'Encerramento da Dança Circular',
-    title: 'Encerramento da Dança Circular'
+    src: 'assets/pictues/brumas_hidromel_no_corno.webp',
+    alt: 'Hidromel no Corno',
+    title: 'Hidromel no Corno'
   },
   {
     id: 9,
-    src: 'assets/pictues/brumas_9.webp',
-    alt: 'Montagem do Acampamento Recreacionista',
-    title: 'Montagem do Acampamento Recreacionista'
+    src: 'assets/pictues/brumas_elmo_do_guerreiro.webp',
+    alt: 'Elmo do Guerreiro',
+    title: 'Elmo do Guerreiro'
   },
   {
     id: 10,
-    src: 'assets/pictues/brumas_10.webp',
-    alt: 'Acampamento Recreacionista',
-    title: 'Acampamento Recreacionista'
+    src: 'assets/pictues/brumas_portal_brumas.webp',
+    alt: 'Portal Brumas',
+    title: 'Portal Brumas'
   },
   {
     id: 11,
-    src: 'assets/pictues/brumas_11.webp',
-    alt: 'Parede de Escudos',
-    title: 'Parede de Escudos'
+    src: 'assets/pictues/brumas_festival_ao_luar.webp',
+    alt: 'Festival ao Luar',
+    title: 'Festival ao Luar'
   },
   {
     id: 12,
-    src: 'assets/pictues/brumas_12.webp',
-    alt: 'Oraculistas',
-    title: 'Oraculistas'
+    src: 'assets/pictues/brumas_guardia_da_fogueira.webp',
+    alt: 'Guardiã da Fogueira',
+    title: 'Guardiã da Fogueira'
   },
   {
     id: 13,
-    src: 'assets/pictues/brumas_13.webp',
-    alt: 'Expositores',
-    title: 'Expositores'
+    src: 'assets/pictues/brumas_encontro_de_guerreiros.webp',
+    alt: 'Encontro de Guerreiros',
+    title: 'Encontro de Guerreiros'
+  },
+  {
+    id: 14,
+    src: 'assets/pictues/brumas_danca_dos_veus.webp',
+    alt: 'Dança dos Véus',
+    title: 'Dança dos Véus'
+  },
+  {
+    id: 15,
+    src: 'assets/pictues/brumas_conversa_ao_entardecer.webp',
+    alt: 'Conversa ao Entardecer',
+    title: 'Conversa ao Entardecer'
+  },
+  {
+    id: 16,
+    src: 'assets/pictues/brumas_combate_com_escudos.webp',
+    alt: 'Combate com Escudos',
+    title: 'Combate com Escudos'
+  },
+  {
+    id: 17,
+    src: 'assets/pictues/brumas_guerreira_medieval.webp',
+    alt: 'Guerreira Medieval',
+    title: 'Guerreira Medieval'
+  },
+  {
+    id: 18,
+    src: 'assets/pictues/brumas_artesaos_medievais.webp',
+    alt: 'Artesãos Medievais',
+    title: 'Artesãos Medievais'
   }
 ];
 
