@@ -1,188 +1,196 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 520" fill="none">
   <defs>
-    <!-- Brush taper: opaque/thick at bottom (y=520), fades to near-invisible at top (y=0) -->
-    <linearGradient id="brushFade" x1="0" y1="520" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+    <!--
+      Brush taper: all stems originate near y=470 (convergence point).
+      Opaque at base, fades to near-invisible at the tips.
+    -->
+    <linearGradient id="brush" x1="0" y1="470" x2="0" y2="0" gradientUnits="userSpaceOnUse">
       <stop offset="0%"   stop-color="#a98340" stop-opacity="1"/>
-      <stop offset="55%"  stop-color="#a98340" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#a98340" stop-opacity="0.04"/>
+      <stop offset="60%"  stop-color="#a98340" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#a98340" stop-opacity="0.05"/>
     </linearGradient>
-    <!-- Lighter version for thin stems -->
-    <linearGradient id="brushFadeThin" x1="0" y1="520" x2="0" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%"   stop-color="#a98340" stop-opacity="0.9"/>
-      <stop offset="50%"  stop-color="#a98340" stop-opacity="0.55"/>
+    <linearGradient id="brushThin" x1="0" y1="470" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#a98340" stop-opacity="0.85"/>
       <stop offset="100%" stop-color="#a98340" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
-  <!-- ====== FAN STEMS — pronounced S-curves, gradient brush taper ====== -->
-  <!-- Thick/main stems -->
-  <g fill="none" stroke-linecap="round">
-    <!-- Far left sweep -->
-    <path stroke="url(#brushFade)" stroke-width="3.2"
-      d="M93,515 C62,445 38,368 36,285 C34,202 52,148 22,82 C14,60 14,28 18,4"/>
-    <!-- Mid-left, S-curve -->
-    <path stroke="url(#brushFade)" stroke-width="2.5"
-      d="M94,515 C70,448 52,375 50,298 C48,222 62,162 46,98 C36,60 38,26 42,6"/>
-    <!-- Slight-left with reverse S -->
-    <path stroke="url(#brushFade)" stroke-width="2"
-      d="M95,515 C80,450 68,380 66,308 C64,238 76,178 60,114 C50,74 52,36 54,8"/>
-    <!-- Center-left -->
-    <path stroke="url(#brushFade)" stroke-width="1.8"
-      d="M95,515 C88,452 80,384 78,314 C76,246 84,186 70,122 C62,84 62,42 64,10"/>
-    <!-- Center-right (mirror) -->
-    <path stroke="url(#brushFade)" stroke-width="1.8"
-      d="M97,515 C104,452 112,384 114,314 C116,246 108,186 122,122 C130,84 130,42 128,10"/>
-    <!-- Slight-right -->
-    <path stroke="url(#brushFade)" stroke-width="2"
-      d="M97,515 C112,450 126,378 128,305 C130,232 118,172 134,108 C144,68 142,30 140,8"/>
-    <!-- Mid-right S-curve -->
-    <path stroke="url(#brushFade)" stroke-width="2.5"
-      d="M98,515 C122,446 142,372 144,292 C146,215 132,155 150,90 C160,54 158,22 154,5"/>
-    <!-- Far right sweep -->
-    <path stroke="url(#brushFade)" stroke-width="3.2"
-      d="M99,515 C130,442 156,362 158,278 C160,196 144,140 166,74 C174,50 178,22 174,4"/>
+  <!--
+    ====================================================================
+    STEMS — all converge near (95, 470).
+    Main ones curve toward the spirals; fine ones fan out and fade.
+    ====================================================================
+  -->
+
+  <!-- Main stems going upward to top spirals -->
+  <g fill="none" stroke="url(#brush)" stroke-linecap="round">
+    <!-- toward top-right large spiral -->
+    <path stroke-width="1.8"
+      d="M95,470 C96,395 112,318 128,242 C138,185 144,135 148,28"/>
+    <!-- toward top inner small spiral -->
+    <path stroke-width="1.5"
+      d="M95,470 C94,394 100,316 106,240 C110,182 112,132 112,26"/>
+    <!-- center-left upward stem -->
+    <path stroke-width="1.3"
+      d="M95,470 C92,392 86,315 82,240 C78,180 74,132 70,76"/>
+    <!-- toward mid-right spiral -->
+    <path stroke-width="1.4"
+      d="M95,470 C102,420 118,372 132,320 C142,282 147,252 148,185"/>
+    <!-- toward mid-left counter-spiral (arcs left) -->
+    <path stroke-width="1.2"
+      d="M95,470 C84,448 74,422 68,398 C62,374 62,348 72,278"/>
   </g>
 
-  <!-- Thinner outer fans -->
-  <g fill="none" stroke-linecap="round">
-    <path stroke="url(#brushFadeThin)" stroke-width="1.2"
-      d="M92,515 C55,445 28,365 24,278 C20,192 42,132 8,64"/>
-    <path stroke="url(#brushFadeThin)" stroke-width="1.2"
-      d="M100,515 C138,443 168,362 172,274 C176,188 154,128 188,60"/>
-    <path stroke="url(#brushFadeThin)" stroke-width="0.7"
-      d="M91,515 C46,442 16,358 10,266 C4,176 30,110 -4,44"/>
+  <!-- Fine/hair stems — fan wide, fade to nothing -->
+  <g fill="none" stroke="url(#brushThin)" stroke-linecap="round">
+    <path stroke-width="0.9"
+      d="M95,470 C72,438 46,396 28,338 C14,292 6,248 4,182"/>
+    <path stroke-width="0.7"
+      d="M95,470 C66,436 34,390 16,330 C2,280 -4,230 -6,162"/>
+    <path stroke-width="0.7"
+      d="M95,470 C106,438 126,396 144,340 C158,296 164,252 166,186"/>
+    <path stroke-width="0.5"
+      d="M95,470 C58,432 24,385 6,322 C-6,272 -10,222 -12,155"/>
+    <path stroke-width="0.5"
+      d="M95,470 C110,434 134,386 155,326 C170,278 176,228 178,162"/>
   </g>
 
-  <!-- Curving tendril branches sweeping left — pronounced arcs with curl -->
-  <g fill="none" stroke-linecap="round">
-    <path stroke="url(#brushFadeThin)" stroke-width="0.8"
-      d="M66,328 C46,312 20,308 6,322 C-4,332 0,346 10,344"/>
-    <path stroke="url(#brushFadeThin)" stroke-width="0.65"
-      d="M62,346 C44,334 22,336 8,350 C-2,360 2,374 10,372"/>
-    <path stroke="url(#brushFadeThin)" stroke-width="0.5"
-      d="M60,364 C46,358 30,354 18,366 C8,376 12,388 18,385"/>
+  <!-- Short stems connecting convergence to the lower spirals -->
+  <g fill="none" stroke="url(#brush)" stroke-linecap="round">
+    <!-- to bottom-left large spiral — sweeps left then curls into entry -->
+    <path stroke-width="1.7"
+      d="M95,470 C76,468 60,462 52,452 C45,444 44,425 52,350"/>
+    <!-- to bottom-right medium spiral -->
+    <path stroke-width="1.7"
+      d="M95,470 C112,468 130,464 140,456 C147,450 148,440 148,357"/>
+    <!-- to small bottom spiral -->
+    <path stroke-width="1.2"
+      d="M95,470 C120,472 142,472 155,469 C162,467 165,462 165,435"/>
   </g>
 
-  <!-- ====== SCATTERED LEAVES (organic, non-paired) ====== -->
+  <!-- Curling tendril branches off the left hair stems -->
+  <g fill="none" stroke="#a98340" stroke-linecap="round">
+    <path stroke-width="0.65"
+      d="M32,335 C16,322 0,322 -8,334 C-14,344 -10,356 -2,354"/>
+    <path stroke-width="0.55"
+      d="M22,354 C8,344 -6,347 -12,360 C-16,370 -12,381 -4,378"/>
+    <path stroke-width="0.45"
+      d="M12,374 C2,367 -10,372 -14,382 C-18,392 -14,402 -8,399"/>
+  </g>
+
+  <!--
+    ====================================================================
+    TEARDROP ACCENTS — filled solid shapes, scattered organically
+    ====================================================================
+  -->
   <g fill="#a98340">
-    <ellipse cx="56"  cy="148" rx="2.6" ry="7.2" transform="rotate(-43 56 148)"/>
-    <ellipse cx="78"  cy="163" rx="2"   ry="5.2" transform="rotate(56 78 163)"/>
-    <ellipse cx="124" cy="143" rx="3"   ry="7.8" transform="rotate(34 124 143)"/>
-    <ellipse cx="110" cy="165" rx="1.8" ry="4.5" transform="rotate(-28 110 165)"/>
-    <ellipse cx="68"  cy="210" rx="2.4" ry="6.2" transform="rotate(-31 68 210)"/>
-    <ellipse cx="118" cy="196" rx="2.2" ry="5.6" transform="rotate(49 118 196)"/>
-    <ellipse cx="132" cy="224" rx="2.8" ry="6.8" transform="rotate(27 132 224)"/>
-    <ellipse cx="84"  cy="180" rx="2.1" ry="5"   transform="rotate(-19 84 180)"/>
-    <ellipse cx="56"  cy="260" rx="2.5" ry="6.2" transform="rotate(-23 56 260)"/>
-    <ellipse cx="112" cy="272" rx="2"   ry="5.1" transform="rotate(39 112 272)"/>
-    <ellipse cx="72"  cy="297" rx="2.6" ry="6.6" transform="rotate(-46 72 297)"/>
-    <ellipse cx="126" cy="287" rx="2.2" ry="5.4" transform="rotate(17 126 287)"/>
-    <ellipse cx="106" cy="246" rx="2.4" ry="5.8" transform="rotate(43 106 246)"/>
+    <!-- Upper stem area, prominent drops -->
+    <ellipse cx="124" cy="234" rx="4"   ry="9"   transform="rotate(20 124 234)"/>
+    <ellipse cx="109" cy="222" rx="3.5" ry="7.5" transform="rotate(9 109 222)"/>
+    <ellipse cx="88"  cy="228" rx="3"   ry="6.5" transform="rotate(-6 88 228)"/>
+    <!-- Mid section -->
+    <ellipse cx="74"  cy="268" rx="2.6" ry="5.8" transform="rotate(-18 74 268)"/>
+    <ellipse cx="134" cy="258" rx="2.5" ry="5.5" transform="rotate(22 134 258)"/>
+    <!-- Fine stem drops -->
+    <ellipse cx="30"  cy="328" rx="1.8" ry="4.2" transform="rotate(-30 30 328)"/>
+    <ellipse cx="158" cy="332" rx="1.8" ry="4"   transform="rotate(32 158 332)"/>
+    <!-- Near lower spiral entries -->
+    <ellipse cx="54"  cy="445" rx="3"   ry="6.5" transform="rotate(-8 54 445)"/>
+    <ellipse cx="140" cy="448" rx="3"   ry="6"   transform="rotate(12 140 448)"/>
   </g>
 
-  <!-- ====== SMALL 5-PETAL FLOWER at stem tip ====== -->
-  <g fill="#a98340" transform="translate(92, 10)">
-    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(0)"/>
-    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(72)"/>
-    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(144)"/>
-    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(216)"/>
-    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(288)"/>
-    <circle  cx="0" cy="0"  r="3.5"/>
-  </g>
+  <!--
+    ====================================================================
+    SPIRALS
+    ====================================================================
+  -->
 
-  <!-- ====== TOP-RIGHT LARGE SPIRAL: center=(148,60), r=38 ====== -->
+  <!-- Top-right large spiral: center=(148,67), r=40 -->
   <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
-    d="M148,22
-       C169,22 186,39 186,60
-       C186,81 169,98 148,98
-       C127,98 111,82 113,62
-       C115,43 130,32 146,34
-       C162,36 170,49 167,61
-       C164,73 153,79 143,75"/>
-  <g fill="#a98340" transform="translate(152, 62)">
+    d="M148,27
+       C170,27 188,45 188,67
+       C188,89 170,107 148,107
+       C126,107 109,90 111,69
+       C113,49 128,38 146,40
+       C163,42 171,56 168,68
+       C165,80 154,85 144,81"/>
+  <!-- Accent teardrops inside top-right spiral -->
+  <ellipse fill="#a98340" cx="150" cy="68" rx="3.5" ry="6.5" transform="rotate(10 150 68)"/>
+  <ellipse fill="#a98340" cx="134" cy="54" rx="2.5" ry="4.5" transform="rotate(-15 134 54)"/>
+
+  <!-- Top inner small spiral: center=(112,50), r=22 -->
+  <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
+    d="M112,28
+       C124,28 134,38 134,50
+       C134,62 124,72 112,72
+       C100,72 91,63 93,51
+       C95,40 105,34 115,37
+       C124,40 129,50 125,59
+       C121,67 111,70 103,66"/>
+
+  <!-- Mid-right spiral: center=(148,215), r=30 -->
+  <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
+    d="M148,185
+       C164,185 178,199 178,215
+       C178,231 164,245 148,245
+       C132,245 119,232 121,216
+       C123,200 135,192 148,194
+       C160,196 167,207 164,217
+       C161,227 151,232 142,228"/>
+  <ellipse fill="#a98340" cx="126" cy="216" rx="2.8" ry="5.5" transform="rotate(5 126 216)"/>
+
+  <!-- Mid-left counter-clockwise spiral: center=(40,272), r=28 -->
+  <path stroke="#a98340" stroke-width="1.4" stroke-linecap="round"
+    d="M68,272
+       C68,256 55,244 40,244
+       C25,244 13,257 13,272
+       C13,287 26,300 40,299
+       C55,298 65,286 63,274
+       C61,262 51,256 40,258
+       C30,260 25,270 28,278
+       C31,286 40,290 48,287"/>
+  <ellipse fill="#a98340" cx="19" cy="272" rx="2.5" ry="5" transform="rotate(-5 19 272)"/>
+
+  <!-- Bottom-left large spiral: center=(52,395), r=45 -->
+  <path stroke="#a98340" stroke-width="2.3" stroke-linecap="round"
+    d="M52,350
+       C78,350 97,370 97,395
+       C97,420 78,440 52,440
+       C26,440 7,420 7,395
+       C7,371 25,353 50,354
+       C75,355 91,374 91,395
+       C91,416 74,430 52,429
+       C31,428 18,413 20,397
+       C22,383 35,376 47,379
+       C59,382 65,393 62,402
+       C59,412 49,416 41,411"/>
+  <!-- 4-petal flower inside bottom-left spiral -->
+  <g fill="#a98340" transform="translate(16,397)">
     <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(0)"/>
     <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(90)"/>
     <circle  cx="0" cy="0"  r="2.8"/>
   </g>
 
-  <!-- ====== TOP-LEFT SMALL SPIRAL: center=(108,44), r=24 ====== -->
-  <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
-    d="M108,20
-       C122,20 132,31 132,44
-       C132,57 121,68 108,68
-       C95,68 85,57 87,45
-       C89,33 100,27 110,29
-       C120,31 126,42 122,51
-       C118,60 108,63 100,59"/>
-  <ellipse fill="#a98340" cx="119" cy="42" rx="2.5" ry="5.2" transform="rotate(-18 119 42)"/>
+  <!-- Bottom-right medium spiral: center=(148,395), r=38 -->
+  <path stroke="#a98340" stroke-width="2.1" stroke-linecap="round"
+    d="M148,357
+       C170,357 186,374 186,395
+       C186,416 170,433 148,433
+       C126,433 110,417 112,397
+       C114,377 128,367 145,369
+       C162,371 170,384 167,396
+       C164,408 153,415 143,410"/>
+  <ellipse fill="#a98340" cx="116" cy="396" rx="3" ry="5.5" transform="rotate(-8 116 396)"/>
 
-  <!-- ====== MID-RIGHT SPIRAL: center=(148,210), r=32 ====== -->
-  <path stroke="#a98340" stroke-width="2" stroke-linecap="round"
-    d="M148,178
-       C165,178 180,192 180,210
-       C180,228 165,243 148,243
-       C131,243 118,229 120,212
-       C122,196 135,188 148,190
-       C161,192 168,203 165,213
-       C162,223 152,228 143,224"/>
-  <g fill="#a98340" transform="translate(131, 212)">
-    <ellipse cx="0" cy="-5.5" rx="2.5" ry="4.8" transform="rotate(0)"/>
-    <ellipse cx="0" cy="-5.5" rx="2.5" ry="4.8" transform="rotate(90)"/>
-    <circle  cx="0" cy="0"   r="2.5"/>
-  </g>
-
-  <!-- ====== MID-LEFT COUNTER SPIRAL: center=(42,278), r=30 ====== -->
-  <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
-    d="M72,278
-       C72,261 58,248 42,248
-       C26,248 14,262 14,278
-       C14,294 27,308 42,307
-       C57,306 67,293 65,280
-       C63,267 53,261 42,263
-       C31,265 26,275 29,283
-       C32,291 41,295 49,291"/>
-  <ellipse fill="#a98340" cx="52" cy="258" rx="2.2" ry="5.6" transform="rotate(-38 52 258)"/>
-
-  <!-- ====== BOTTOM-LEFT LARGE SPIRAL: center=(58,395), r=48 ====== -->
-  <path stroke="#a98340" stroke-width="2.5" stroke-linecap="round"
-    d="M58,347
-       C84,347 106,369 106,395
-       C106,421 84,443 58,443
-       C32,443 10,421 10,395
-       C10,370 30,351 54,352
-       C78,353 94,371 94,393
-       C94,414 77,428 58,427
-       C39,426 28,413 30,398
-       C32,384 44,376 56,379
-       C68,382 74,393 71,402
-       C68,411 59,415 51,411"/>
-  <g fill="#a98340" transform="translate(20, 400)">
-    <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(0)"/>
-    <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(90)"/>
-    <circle  cx="0" cy="0"  r="2.8"/>
-  </g>
-  <ellipse fill="#a98340" cx="76" cy="356" rx="2.5" ry="6.4" transform="rotate(-22 76 356)"/>
-
-  <!-- ====== BOTTOM-RIGHT MEDIUM SPIRAL: center=(148,395), r=40 ====== -->
-  <path stroke="#a98340" stroke-width="2.2" stroke-linecap="round"
-    d="M148,355
-       C170,355 188,373 188,395
-       C188,417 170,435 148,435
-       C126,435 109,418 111,397
-       C113,377 128,366 145,368
-       C162,370 171,383 168,396
-       C165,409 153,416 142,411"/>
-  <ellipse fill="#a98340" cx="116" cy="397" rx="3" ry="5.5" transform="rotate(-8 116 397)"/>
-
-  <!-- ====== SMALL BOTTOM SPIRAL: center=(168,452), r=22 ====== -->
-  <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
-    d="M168,430
-       C180,430 190,440 190,452
-       C190,464 180,474 168,474
-       C156,474 147,465 149,453
-       C151,442 160,436 168,438
-       C176,440 181,449 178,456
-       C175,463 167,466 161,462"/>
-  <ellipse fill="#a98340" cx="153" cy="438" rx="2.2" ry="5.1" transform="rotate(-24 153 438)"/>
+  <!-- Small bottom spiral: center=(165,452), r=20 -->
+  <path stroke="#a98340" stroke-width="1.6" stroke-linecap="round"
+    d="M165,432
+       C177,432 185,441 185,452
+       C185,463 177,472 165,472
+       C153,472 145,463 147,452
+       C149,442 158,437 166,439
+       C174,441 178,450 175,457
+       C172,464 163,466 157,462"/>
+  <ellipse fill="#a98340" cx="148" cy="452" rx="2.5" ry="4.5" transform="rotate(-12 148 452)"/>
 
 </svg>
