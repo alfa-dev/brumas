@@ -36,8 +36,8 @@ const PHOTOS = [
   {
     id: 1,
     src: 'assets/pictues/brumas_artesaos_medievais.webp',
-    alt: 'Artesanato Medieval',
-    title: 'Artesanato Medieval'
+    alt: 'Expositores',
+    title: 'Expositores'
   },
   {
     id: 2,
