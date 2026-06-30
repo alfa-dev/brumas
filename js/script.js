@@ -30,7 +30,7 @@ const TICKETS = [
   }
 ];
 
-const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Expositores', /* 'Programação', 'Atrações', 'Local', */ 'Ingressos', 'Contato', 'Organizadores'];
+const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Expositores', /* 'Programação', 'Atrações', */ 'Ingressos', 'Contato', 'Local', 'Organizadores'];
 
 const PHOTOS = [
   {

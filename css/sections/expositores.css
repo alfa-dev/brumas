@@ -1,0 +1,37 @@
+#expositores {
+    position: relative;
+    overflow: hidden;
+}
+
+.flourish-deco {
+    position: absolute;
+    top: 50%;
+    height: 85%;
+    width: auto;
+    opacity: 0.22;
+    pointer-events: none;
+    user-select: none;
+}
+
+.flourish-left {
+    left: -20px;
+    transform: translateY(-50%) scaleX(-1);
+}
+
+.flourish-right {
+    right: -20px;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 900px) {
+    .flourish-deco {
+        height: 60%;
+        opacity: 0.15;
+    }
+}
+
+@media (max-width: 600px) {
+    .flourish-deco {
+        display: none;
+    }
+}

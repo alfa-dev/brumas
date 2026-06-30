@@ -13,6 +13,7 @@
 @import 'sections/contact.css';
 @import 'sections/organizers.css';
 @import 'sections/gallery.css';
+@import 'sections/expositores.css';
 
 /* Importação dos elementos decorativos */
 @import 'decorative/illuminations.css';

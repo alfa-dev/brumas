@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 520" fill="none">
+
+  <!-- Central stem lines fanning upward from bottom -->
+  <g stroke="#a98340" fill="none" stroke-linecap="round">
+    <path stroke-width="1.5" d="M95,510 C90,450 80,385 72,315 C64,248 66,190 60,130 C55,85 48,48 52,10"/>
+    <path stroke-width="1.2" d="M95,510 C98,450 105,383 112,313 C118,247 116,188 124,128 C130,83 136,46 132,8"/>
+    <path stroke-width="0.9" d="M95,510 C88,448 76,382 68,310 C60,242 63,182 55,122 C49,78 42,40 46,5"/>
+    <path stroke-width="0.9" d="M95,510 C100,447 110,380 118,308 C126,240 124,180 132,120 C138,76 145,38 141,3"/>
+    <path stroke-width="0.7" d="M95,510 C82,445 65,375 54,300 C44,228 47,165 36,100"/>
+    <path stroke-width="0.6" d="M95,510 C108,443 127,372 138,296 C148,224 146,160 157,94"/>
+    <path stroke-width="0.5" d="M95,510 C78,442 58,370 46,293 C34,218 38,152 24,88"/>
+    <path stroke-width="0.4" d="M95,510 C112,440 133,368 145,290 C156,215 154,148 167,82"/>
+    <!-- Feathery branch lines on left -->
+    <path stroke-width="0.4" d="M68,320 C50,314 34,318 18,310"/>
+    <path stroke-width="0.35" d="M65,333 C49,328 35,334 19,327"/>
+    <path stroke-width="0.35" d="M63,346 C48,342 35,349 20,344"/>
+  </g>
+
+  <!-- Teardrop accents along stems -->
+  <g fill="#a98340">
+    <ellipse cx="62"  cy="140" rx="3"   ry="6.5" transform="rotate(-18 62 140)"/>
+    <ellipse cx="120" cy="135" rx="2.8" ry="5.8" transform="rotate(22 120 135)"/>
+    <ellipse cx="74"  cy="240" rx="2.5" ry="5.5" transform="rotate(-8 74 240)"/>
+    <ellipse cx="116" cy="232" rx="2.5" ry="5"   transform="rotate(12 116 232)"/>
+    <ellipse cx="86"  cy="316" rx="2.5" ry="5.5" transform="rotate(-4 86 316)"/>
+    <circle  cx="104" cy="175" r="2.5"/>
+    <circle  cx="74"  cy="198" r="2"/>
+    <circle  cx="106" cy="268" r="1.8"/>
+  </g>
+
+  <!-- Top-right large spiral: center=(148,60), r=38 -->
+  <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
+    d="M148,22
+       C169,22 186,39 186,60
+       C186,81 169,98 148,98
+       C127,98 111,82 113,62
+       C115,43 130,32 146,34
+       C162,36 170,49 167,61
+       C164,73 153,79 143,75"/>
+  <!-- Teardrops inside top-right spiral -->
+  <ellipse fill="#a98340" cx="153" cy="62" rx="3.5" ry="6"   transform="rotate(8 153 62)"/>
+  <ellipse fill="#a98340" cx="130" cy="46" rx="2.5" ry="4.5" transform="rotate(-12 130 46)"/>
+
+  <!-- Top-left small spiral: center=(108,44), r=24 -->
+  <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
+    d="M108,20
+       C122,20 132,31 132,44
+       C132,57 121,68 108,68
+       C95,68 85,57 87,45
+       C89,33 100,27 110,29
+       C120,31 126,42 122,51
+       C118,60 108,63 100,59"/>
+
+  <!-- Mid-right spiral: center=(148,210), r=32 -->
+  <path stroke="#a98340" stroke-width="2" stroke-linecap="round"
+    d="M148,178
+       C165,178 180,192 180,210
+       C180,228 165,243 148,243
+       C131,243 118,229 120,212
+       C122,196 135,188 148,190
+       C161,192 168,203 165,213
+       C162,223 152,228 143,224"/>
+  <ellipse fill="#a98340" cx="128" cy="212" rx="2.8" ry="5.2" transform="rotate(5 128 212)"/>
+
+  <!-- Mid-left counter-clockwise spiral: center=(42,278), r=30 -->
+  <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
+    d="M72,278
+       C72,261 58,248 42,248
+       C26,248 14,262 14,278
+       C14,294 27,308 42,307
+       C57,306 67,293 65,280
+       C63,267 53,261 42,263
+       C31,265 26,275 29,283
+       C32,291 41,295 49,291"/>
+
+  <!-- Bottom-left large spiral: center=(58,395), r=48 -->
+  <path stroke="#a98340" stroke-width="2.5" stroke-linecap="round"
+    d="M58,347
+       C84,347 106,369 106,395
+       C106,421 84,443 58,443
+       C32,443 10,421 10,395
+       C10,370 30,351 54,352
+       C78,353 94,371 94,393
+       C94,414 77,428 58,427
+       C39,426 28,413 30,398
+       C32,384 44,376 56,379
+       C68,382 74,393 71,402
+       C68,411 59,415 51,411"/>
+  <ellipse fill="#a98340" cx="18" cy="398" rx="3.5" ry="7" transform="rotate(-5 18 398)"/>
+
+  <!-- Bottom-right medium spiral: center=(148,395), r=40 -->
+  <path stroke="#a98340" stroke-width="2.2" stroke-linecap="round"
+    d="M148,355
+       C170,355 188,373 188,395
+       C188,417 170,435 148,435
+       C126,435 109,418 111,397
+       C113,377 128,366 145,368
+       C162,370 171,383 168,396
+       C165,409 153,416 142,411"/>
+  <ellipse fill="#a98340" cx="116" cy="397" rx="3" ry="5.5" transform="rotate(-8 116 397)"/>
+
+  <!-- Small bottom spiral: center=(168,452), r=22 -->
+  <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
+    d="M168,430
+       C180,430 190,440 190,452
+       C190,464 180,474 168,474
+       C156,474 147,465 149,453
+       C151,442 160,436 168,438
+       C176,440 181,449 178,456
+       C175,463 167,466 161,462"/>
+  <ellipse fill="#a98340" cx="150" cy="453" rx="2.5" ry="4.5" transform="rotate(-12 150 453)"/>
+
+</svg>
