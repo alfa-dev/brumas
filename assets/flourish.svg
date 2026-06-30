@@ -16,19 +16,42 @@
     <path stroke-width="0.35" d="M63,346 C48,342 35,349 20,344"/>
   </g>
 
-  <!-- Teardrop accents along stems -->
+  <!-- ====== LEAF PAIRS along the stems ====== -->
+  <!-- Leaves are pairs of pointed ellipses branching off the stems -->
   <g fill="#a98340">
-    <ellipse cx="62"  cy="140" rx="3"   ry="6.5" transform="rotate(-18 62 140)"/>
-    <ellipse cx="120" cy="135" rx="2.8" ry="5.8" transform="rotate(22 120 135)"/>
-    <ellipse cx="74"  cy="240" rx="2.5" ry="5.5" transform="rotate(-8 74 240)"/>
-    <ellipse cx="116" cy="232" rx="2.5" ry="5"   transform="rotate(12 116 232)"/>
-    <ellipse cx="86"  cy="316" rx="2.5" ry="5.5" transform="rotate(-4 86 316)"/>
-    <circle  cx="104" cy="175" r="2.5"/>
-    <circle  cx="74"  cy="198" r="2"/>
-    <circle  cx="106" cy="268" r="1.8"/>
+
+    <!-- Leaf pair at upper stem, y≈145 -->
+    <ellipse cx="60" cy="138" rx="2.8" ry="7.5" transform="rotate(-38 60 138)"/>
+    <ellipse cx="76" cy="133" rx="2.8" ry="7.5" transform="rotate(32 76 133)"/>
+
+    <!-- Leaf pair at mid stem, y≈230 -->
+    <ellipse cx="67" cy="228" rx="2.5" ry="6.5" transform="rotate(-28 67 228)"/>
+    <ellipse cx="80" cy="222" rx="2.5" ry="6.5" transform="rotate(22 80 222)"/>
+    <ellipse cx="110" cy="225" rx="2.5" ry="6.5" transform="rotate(-22 110 225)"/>
+    <ellipse cx="122" cy="230" rx="2.5" ry="6.5" transform="rotate(28 122 230)"/>
+
+    <!-- Leaf pair at lower stem, y≈315 -->
+    <ellipse cx="68" cy="314" rx="2.5" ry="6" transform="rotate(-20 68 314)"/>
+    <ellipse cx="81" cy="308" rx="2.5" ry="6" transform="rotate(18 81 308)"/>
+    <ellipse cx="112" cy="310" rx="2.3" ry="5.5" transform="rotate(-18 112 310)"/>
+    <ellipse cx="124" cy="316" rx="2.3" ry="5.5" transform="rotate(22 124 316)"/>
+
+    <!-- Small accent dots on stems -->
+    <circle cx="74" cy="195" r="2"/>
+    <circle cx="106" cy="268" r="1.8"/>
   </g>
 
-  <!-- Top-right large spiral: center=(148,60), r=38 -->
+  <!-- ====== SMALL 5-PETAL FLOWER at stem tip (top of composition) ====== -->
+  <g fill="#a98340" transform="translate(92, 10)">
+    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-7" rx="3"   ry="6.5" transform="rotate(288)"/>
+    <circle  cx="0" cy="0"  r="3.5"/>
+  </g>
+
+  <!-- ====== TOP-RIGHT LARGE SPIRAL: center=(148,60), r=38 ====== -->
   <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
     d="M148,22
        C169,22 186,39 186,60
@@ -37,11 +60,14 @@
        C115,43 130,32 146,34
        C162,36 170,49 167,61
        C164,73 153,79 143,75"/>
-  <!-- Teardrops inside top-right spiral -->
-  <ellipse fill="#a98340" cx="153" cy="62" rx="3.5" ry="6"   transform="rotate(8 153 62)"/>
-  <ellipse fill="#a98340" cx="130" cy="46" rx="2.5" ry="4.5" transform="rotate(-12 130 46)"/>
+  <!-- Small 4-petal flower inside top-right spiral -->
+  <g fill="#a98340" transform="translate(152, 62)">
+    <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(90)"/>
+    <circle  cx="0" cy="0"  r="2.8"/>
+  </g>
 
-  <!-- Top-left small spiral: center=(108,44), r=24 -->
+  <!-- ====== TOP-LEFT SMALL SPIRAL: center=(108,44), r=24 ====== -->
   <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
     d="M108,20
        C122,20 132,31 132,44
@@ -50,8 +76,10 @@
        C89,33 100,27 110,29
        C120,31 126,42 122,51
        C118,60 108,63 100,59"/>
+  <!-- Small accent leaf near top-left spiral -->
+  <ellipse fill="#a98340" cx="118" cy="44" rx="2.5" ry="5" transform="rotate(-15 118 44)"/>
 
-  <!-- Mid-right spiral: center=(148,210), r=32 -->
+  <!-- ====== MID-RIGHT SPIRAL: center=(148,210), r=32 ====== -->
   <path stroke="#a98340" stroke-width="2" stroke-linecap="round"
     d="M148,178
        C165,178 180,192 180,210
@@ -60,9 +88,14 @@
        C122,196 135,188 148,190
        C161,192 168,203 165,213
        C162,223 152,228 143,224"/>
-  <ellipse fill="#a98340" cx="128" cy="212" rx="2.8" ry="5.2" transform="rotate(5 128 212)"/>
+  <!-- Small 4-petal flower inside mid-right spiral -->
+  <g fill="#a98340" transform="translate(131, 212)">
+    <ellipse cx="0" cy="-5.5" rx="2.5" ry="4.8" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-5.5" rx="2.5" ry="4.8" transform="rotate(90)"/>
+    <circle  cx="0" cy="0"   r="2.5"/>
+  </g>
 
-  <!-- Mid-left counter-clockwise spiral: center=(42,278), r=30 -->
+  <!-- ====== MID-LEFT COUNTER SPIRAL: center=(42,278), r=30 ====== -->
   <path stroke="#a98340" stroke-width="1.5" stroke-linecap="round"
     d="M72,278
        C72,261 58,248 42,248
@@ -72,8 +105,11 @@
        C63,267 53,261 42,263
        C31,265 26,275 29,283
        C32,291 41,295 49,291"/>
+  <!-- Small leaf accent near left spiral -->
+  <ellipse fill="#a98340" cx="54" cy="260" rx="2.2" ry="5.5" transform="rotate(-35 54 260)"/>
+  <ellipse fill="#a98340" cx="32" cy="258" rx="2.2" ry="5"   transform="rotate(35 32 258)"/>
 
-  <!-- Bottom-left large spiral: center=(58,395), r=48 -->
+  <!-- ====== BOTTOM-LEFT LARGE SPIRAL: center=(58,395), r=48 ====== -->
   <path stroke="#a98340" stroke-width="2.5" stroke-linecap="round"
     d="M58,347
        C84,347 106,369 106,395
@@ -86,9 +122,17 @@
        C32,384 44,376 56,379
        C68,382 74,393 71,402
        C68,411 59,415 51,411"/>
-  <ellipse fill="#a98340" cx="18" cy="398" rx="3.5" ry="7" transform="rotate(-5 18 398)"/>
+  <!-- Small 4-petal flower inside bottom-left spiral -->
+  <g fill="#a98340" transform="translate(20, 400)">
+    <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-6" rx="2.8" ry="5.5" transform="rotate(90)"/>
+    <circle  cx="0" cy="0"  r="2.8"/>
+  </g>
+  <!-- Leaf near entry of bottom-left spiral -->
+  <ellipse fill="#a98340" cx="78" cy="357" rx="2.5" ry="6.5" transform="rotate(-20 78 357)"/>
+  <ellipse fill="#a98340" cx="42" cy="351" rx="2.5" ry="6"   transform="rotate(25 42 351)"/>
 
-  <!-- Bottom-right medium spiral: center=(148,395), r=40 -->
+  <!-- ====== BOTTOM-RIGHT MEDIUM SPIRAL: center=(148,395), r=40 ====== -->
   <path stroke="#a98340" stroke-width="2.2" stroke-linecap="round"
     d="M148,355
        C170,355 188,373 188,395
@@ -97,9 +141,10 @@
        C113,377 128,366 145,368
        C162,370 171,383 168,396
        C165,409 153,416 142,411"/>
+  <!-- Teardrop inside bottom-right spiral -->
   <ellipse fill="#a98340" cx="116" cy="397" rx="3" ry="5.5" transform="rotate(-8 116 397)"/>
 
-  <!-- Small bottom spiral: center=(168,452), r=22 -->
+  <!-- ====== SMALL BOTTOM SPIRAL: center=(168,452), r=22 ====== -->
   <path stroke="#a98340" stroke-width="1.8" stroke-linecap="round"
     d="M168,430
        C180,430 190,440 190,452
@@ -108,6 +153,7 @@
        C151,442 160,436 168,438
        C176,440 181,449 178,456
        C175,463 167,466 161,462"/>
-  <ellipse fill="#a98340" cx="150" cy="453" rx="2.5" ry="4.5" transform="rotate(-12 150 453)"/>
+  <!-- Small leaf at small spiral entry -->
+  <ellipse fill="#a98340" cx="152" cy="440" rx="2.2" ry="5" transform="rotate(-20 152 440)"/>
 
 </svg>
