@@ -51,6 +51,15 @@
     background-color: var(--color-deep-purple);
 }
 
+#local .medieval-card {
+    background-color: var(--color-parchment);
+    color: var(--color-deep-purple);
+}
+
+#local .medieval-card h3 {
+    color: var(--color-deep-purple);
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .location-info {

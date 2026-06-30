@@ -30,7 +30,7 @@ const TICKETS = [
   }
 ];
 
-const NAV_LINKS = ['Início', 'Sobre', 'Galeria', /* 'Programação', 'Atrações', 'Local', */ 'Ingressos', 'Contato', 'Organizadores'];
+const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Expositores', /* 'Programação', 'Atrações', 'Local', */ 'Ingressos', 'Contato', 'Organizadores'];
 
 const PHOTOS = [
   {
@@ -101,21 +101,21 @@ const PHOTOS = [
   },
   {
     id: 12,
-    src: 'assets/pictues/brumas_guardia_da_fogueira.webp',
-    alt: 'Fogueiras',
-    title: 'Fogueiras'
-  },
-  {
-    id: 13,
     src: 'assets/pictues/brumas_guerreiro_de_couro.webp',
     alt: 'Encontros ...',
     title: 'Encontros ...'
   },
   {
-    id: 14,
+    id: 13,
     src: 'assets/pictues/brumas_encontro_de_guerreiros.webp',
     alt: 'Reencontros',
     title: '... e reencontros'
+  },
+  {
+    id: 14,
+    src: 'assets/pictues/brumas_guardia_da_fogueira.webp',
+    alt: 'Fogueiras',
+    title: 'Fogueiras'
   },
   {
     id: 15,

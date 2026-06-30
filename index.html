@@ -44,7 +44,7 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="css/styles.css?v=bfc6427">
+  <link rel="stylesheet" href="css/styles.css?v=146eb48">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,8 +52,8 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=bfc6427"></script>
-  <script src="js/components.js?v=bfc6427"></script>
+  <script src="js/script.js?v=146eb48"></script>
+  <script src="js/components.js?v=146eb48"></script>
 </head>
 
 <body>
@@ -142,10 +142,26 @@
         <div class="section-header">
           <h2 class="illuminated-heading">Galeria</h2>
           <p>Brumas Festival 2025</p>
-          <div class="medieval-divider"></div>
         </div>
 
         <photo-gallery></photo-gallery>
+      </div>
+    </section>
+
+    <!-- Expositores Section -->
+    <section id="expositores" class="section alchemy-pattern">
+      <div class="mist-layer"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="illuminated-heading gold-heading">Expositores 2026</h2>
+          <div class="medieval-divider"></div>
+        </div>
+        <div class="expositores-cta-container">
+          <p>As inscrições para expositores estão abertas. Traga sua arte, ofício ou gastronomia ao mercado medieval do Brumas 2026. Vagas limitadas e sujeitas à aprovação prévia dos organizadores.</p>
+          <a href="expositores.html" class="cta-button mist-glow">
+            <i class="fa-solid fa-store" style="margin-right: 10px;"></i>Quero ser Expositor
+          </a>
+        </div>
       </div>
     </section>
 
@@ -214,40 +230,11 @@
       </div>
     </section>
 
-    <!-- Local Section -->
-    <section id="local" class="section">
-      <div class="section-container">
-        <div class="section-header">
-          <h2>Local</h2>
-          <div class="medieval-divider"></div>
-        </div>
-        <div class="location-container">
-          <div class="location-info">
-            <div class="medieval-card">
-              <h3>Caminho das Montanhas</h3>
-              <p><i class="fa-solid fa-location-dot" style="margin-right: .5em;"></i> Tv. Eng. Paulo de Alencar Araripe, Cantagalo – Guapimirim/RJ</p>
-              <p><i class="fa-solid fa-city" style="margin-right: .5em;"></i> Cantagalo, Guapimirim</p>
-              <p class="location-description"> O cenário perfeito para nossa viagem ao passado medieval.</p>
-              <div class="map-directions">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Tv.+Eng.+Paulo+de+Alencar+Araripe,+Cantagalo,+Guapimirim,+RJ" target="_blank" class="map-button">Como Chegar</a>
-              </div>
-            </div>
-          </div>
-          <div class="location-map">
-            <div class="map-frame">
-              <iframe src="https://maps.google.com/maps?q=Tv.+Eng.+Paulo+de+Alencar+Araripe,+Cantagalo,+Guapimirim,+RJ&output=embed&hl=pt-BR" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Ingressos Section -->
     <section id="ingressos" class="dark-section">
       <header>
         <h2 class="illuminated-heading">Ingressos</h2>
         <div class="tickets-open-badge"><i class="fa-solid fa-hourglass-half"></i> Vendas em Breve · Edição 2026</div>
-        <div class="medieval-divider"></div>
       </header>
 
       <!-- tickets-->
@@ -280,17 +267,36 @@
 
             <contact-component></contact-component>
 
-            <div class="exhibitor-notice">
-              <div class="notice-icon">
-                <i class="fa-solid fa-scroll" style="color: white;"></i>
-              </div>
-              <h4>Aviso aos Mercadores e Artesãos</h4>
-              <p>Interessados em expor seus produtos no mercado medieval, <span class="highlight">contactar com devida
-                  antecedência</span>. As vagas são limitadas e sujeitas à aprovação prévia dos organizadores.</p>
-              <a href="expositores.html" class="merchant-link gold-button"><i class="fa-solid fa-store" style="margin-right: 10px;"></i>Inscrever-se como Expositor</a>
-            </div>
-
             <social-component></social-component>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local Section -->
+    <section id="local" class="section dark-section">
+      <div class="mist-layer"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="illuminated-heading">Local</h2>
+          <div class="medieval-divider"></div>
+        </div>
+        <div class="location-container">
+          <div class="location-info">
+            <div class="medieval-card">
+              <h3>Caminho das Montanhas</h3>
+              <p><i class="fa-solid fa-location-dot" style="margin-right: .5em;"></i> Tv. Eng. Paulo de Alencar Araripe, Cantagalo – Guapimirim/RJ</p>
+              <p><i class="fa-solid fa-city" style="margin-right: .5em;"></i> Cantagalo, Guapimirim</p>
+              <p class="location-description"> O cenário perfeito para nossa viagem ao passado medieval.</p>
+              <div class="map-directions">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Tv.+Eng.+Paulo+de+Alencar+Araripe,+Cantagalo,+Guapimirim,+RJ" target="_blank" class="map-button">Como Chegar</a>
+              </div>
+            </div>
+          </div>
+          <div class="location-map">
+            <div class="map-frame">
+              <iframe src="https://maps.google.com/maps?q=Tv.+Eng.+Paulo+de+Alencar+Araripe,+Cantagalo,+Guapimirim,+RJ&output=embed&hl=pt-BR" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
         </div>
       </div>
