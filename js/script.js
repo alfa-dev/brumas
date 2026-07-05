@@ -148,8 +148,8 @@ const PHOTOS = [
 const CONTACT = {
   email: 'brumasfestival@gmail.com',
   phone: '+55(21) 98333-6417',
-  address: 'Rua Francisco Portela, 115 - Magé - RJ',
-  address_link: 'https://www.google.com/maps/search/?api=1&query=Rua+Francisco+Portela%2C+115%2C+Mag%C3%A9%2C+RJ'
+  address: 'Rua Francisco Portela, nº 115, Cantagalo, Guapimirim - RJ - CEP 25945-328',
+  address_link: 'https://www.google.com/maps/search/?api=1&query=Rua+Francisco+Portela%2C+115%2C+Cantagalo%2C+Guapimirim%2C+RJ%2C+25945-328'
 };
 
 const SOCIAL_LINKS = [
