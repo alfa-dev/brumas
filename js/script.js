@@ -148,8 +148,8 @@ const PHOTOS = [
 const CONTACT = {
   email: 'brumasfestival@gmail.com',
   phone: '+55(21) 98333-6417',
-  address: 'Estr. Adam Blumer, 5580 - Jardim Esmeralda, Magé - RJ, 25908-683',
-  address_link: 'https://maps.app.goo.gl/wXHUA32M3vWztiTS9'
+  address: 'Rua Francisco Portela, 115 - Magé - RJ',
+  address_link: 'https://www.google.com/maps/search/?api=1&query=Rua+Francisco+Portela%2C+115%2C+Mag%C3%A9%2C+RJ'
 };
 
 const SOCIAL_LINKS = [
