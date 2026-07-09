@@ -150,17 +150,22 @@ tickets-component .ticket-button {
   width: 80%;
   padding: 15px;
   text-align: center;
-  background-color: var(--color-purple);
+  text-decoration: none;
+  background-color: var(--color-deep-purple);
   color: var(--color-light);
+  border: 2px solid var(--color-gold);
   border-radius: 5px;
   font-family: var(--font-medieval);
   font-size: 1.2rem;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 tickets-component .ticket-button:hover {
-  background-color: var(--color-gold);
-  color: var(--color-dark);
+  background-color: var(--color-purple);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
 }
 
 tickets-component .ticket-main-cta {
@@ -168,8 +173,6 @@ tickets-component .ticket-main-cta {
   margin: 0;
   padding: 16px 60px;
   font-size: 1.3rem;
-  border: 2px solid var(--color-gold);
-  letter-spacing: 1px;
 }
 
 tickets-component .ticket-button-disabled {
