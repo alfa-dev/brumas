@@ -15,10 +15,7 @@ const TICKETS = [
     name: 'Ingresso Antecipado',
     price: PRICES.ticket.regular,
     description: [
-      'Acesso a festividades do reino',
-      'Apresentação de menestreis e trovadores',
-      'Jogo medievais',
-      'Mercado medieval',
+      'Ingresso para entrada do dia 25.07.26',
     ],
   },
   {
@@ -26,8 +23,7 @@ const TICKETS = [
     name: 'Ingresso + Camping',
     price: PRICES.ticket.camping,
     description: [
-      'Todas as benesses do Ingresso Antecipado',
-      'Área de camping durante o festival',
+      'Ingresso ao evento, com direito a um espaço no camping do local e um café da manhã no dia de domingo!',
     ],
   },
   {
@@ -35,9 +31,7 @@ const TICKETS = [
     name: 'Ingresso + Alojamento',
     price: PRICES.ticket.lodging,
     description: [
-      'Todas as benesses do Ingresso Antecipado',
-      'Pernoite na Hospedaria',
-      'Desjejum tradicional',
+      'Acesso ao evento, com direito a hospedagem em quarto coletivo e um café da manhã no dia de domingo!',
     ],
   }
 ];

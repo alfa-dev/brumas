@@ -17,10 +17,10 @@
 /* Ingressos */
 tickets-component {
   display: flex;
-  gap: 50px;
+  gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -50,10 +50,10 @@ tickets-component .ticket-card {
   position: relative;
   display: flex;
   justify-content: space-between;
-  flex: 1;
+  flex: 1 1 300px;
   flex-direction: column;
-  min-width: 300px;
-  max-width: 400px;
+  min-width: 280px;
+  max-width: 340px;
   background-color: rgba(10, 18, 70, 0.8);
   border: 2px solid var(--color-gold);
   border-radius: 5px;
@@ -196,28 +196,25 @@ tickets-component ul li::before {
 }
 
 /* Media Queries */
-/* @media (max-width: 992px) {
-  .tickets-container {
+@media (max-width: 992px) {
+  tickets-component {
     gap: 30px;
+    max-width: 700px;
+  }
+
+  tickets-component .ticket-card {
+    flex: 1 1 45%;
   }
 }
 
-@media (max-width: 768px) {
-  .tickets-container .ticket-card .ticket-content ul {
-    margin-bottom: 80px;
+@media (max-width: 600px) {
+  tickets-component {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .tickets-container .ticket-card {
-    max-width: 100%;
+  tickets-component .ticket-card {
+    width: 100%;
+    max-width: 400px;
   }
 }
-
-@media (max-width: 480px) {
-  .tickets-container .ticket-card .ticket-header h3 {
-    font-size: 1.6rem;
-  }
-
-  .tickets-container .ticket-card .ticket-header .ticket-price {
-    font-size: 2rem;
-  }
-} */
