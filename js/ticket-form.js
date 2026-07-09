@@ -173,10 +173,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const minorParticipants = participants.some(participant => participant.age < 18);
 
     if (minorParticipants) {
-      document.getElementById('ticket-1').click();
-      document.getElementById('ticket-2').setAttribute('disabled', true);
+      if (document.getElementById('ticket-3').checked) {
+        document.getElementById('ticket-1').click();
+      }
+      document.getElementById('ticket-3').setAttribute('disabled', true);
     } else {
-      document.getElementById('ticket-2').removeAttribute('disabled');
+      document.getElementById('ticket-3').removeAttribute('disabled');
     }
   }
 

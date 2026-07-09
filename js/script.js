@@ -1,15 +1,18 @@
 const PRICES = {
   ticket: {
     regular: 120,
-    premium: 220,
+    camping: 187,
+    lodging: 230,
   },
   mug: 40
 };
 
+const TICKET_SALES_URL = 'https://brumas-front-end.vercel.app/ingressos.html';
+
 const TICKETS = [
   {
     id: 1,
-    name: 'Festival',
+    name: 'Ingresso Antecipado',
     price: PRICES.ticket.regular,
     description: [
       'Acesso a festividades do reino',
@@ -20,10 +23,19 @@ const TICKETS = [
   },
   {
     id: 2,
-    name: 'Festival + Hospedagem',
-    price: PRICES.ticket.premium,
+    name: 'Ingresso + Camping',
+    price: PRICES.ticket.camping,
     description: [
-      'Todas as benesses do ingresso Festival',
+      'Todas as benesses do Ingresso Antecipado',
+      'Área de camping durante o festival',
+    ],
+  },
+  {
+    id: 3,
+    name: 'Ingresso + Alojamento',
+    price: PRICES.ticket.lodging,
+    description: [
+      'Todas as benesses do Ingresso Antecipado',
       'Pernoite na Hospedaria',
       'Desjejum tradicional',
     ],
