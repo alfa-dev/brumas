@@ -84,17 +84,25 @@ class TicketsComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.innerHTML = this.tickets.map(ticket => `
-      <article class="ticket-card">
-        <header>
-          <h3>${ticket.name} <span class="ticket-base-price">R$ ${ticket.price}</span></h3>
-        </header>
-        <ul>
-          ${ticket.description.map(description => `<li>${description}</li>`).join('')}
-        </ul>
-        <a href="${TICKET_SALES_URL}?tipo=${ticket.id}" class="ticket-button">Adquirir Passagem</a>
-      </article>
-    `).join('');
+    this.innerHTML = `
+      <div class="tickets-grid">
+        ${this.tickets.map(ticket => `
+          <article class="ticket-card">
+            <header>
+              <h3>${ticket.name} <span class="ticket-base-price">R$ ${ticket.price}</span></h3>
+            </header>
+            <ul>
+              ${ticket.description.map(description => `<li>${description}</li>`).join('')}
+            </ul>
+            <!-- CTA por tipo desabilitada temporariamente: a página de ingressos ainda não
+                 suporta pré-selecionar o tipo via parâmetro "tipo" na URL.
+            <a href="${TICKET_SALES_URL}?tipo=${ticket.id}" class="ticket-button">Adquirir Passagem</a>
+            -->
+          </article>
+        `).join('')}
+      </div>
+      <a href="${TICKET_SALES_URL}" class="ticket-button ticket-main-cta">Adquirir Ingresso</a>
+    `;
   }
 }
 class TicketTypes extends HTMLElement {

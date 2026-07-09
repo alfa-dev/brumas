@@ -17,11 +17,19 @@
 /* Ingressos */
 tickets-component {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+tickets-component .tickets-grid {
+  display: flex;
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 tickets-component header {
@@ -49,7 +57,6 @@ tickets-component header .ticket-base-price {
 tickets-component .ticket-card {
   position: relative;
   display: flex;
-  justify-content: space-between;
   flex: 1 1 300px;
   flex-direction: column;
   min-width: 280px;
@@ -156,6 +163,15 @@ tickets-component .ticket-button:hover {
   color: var(--color-dark);
 }
 
+tickets-component .ticket-main-cta {
+  width: auto;
+  margin: 0;
+  padding: 16px 60px;
+  font-size: 1.3rem;
+  border: 2px solid var(--color-gold);
+  letter-spacing: 1px;
+}
+
 tickets-component .ticket-button-disabled {
   opacity: 0.6;
   cursor: default;
@@ -197,7 +213,7 @@ tickets-component ul li::before {
 
 /* Media Queries */
 @media (max-width: 992px) {
-  tickets-component {
+  tickets-component .tickets-grid {
     gap: 30px;
     max-width: 700px;
   }
@@ -208,7 +224,7 @@ tickets-component ul li::before {
 }
 
 @media (max-width: 600px) {
-  tickets-component {
+  tickets-component .tickets-grid {
     flex-direction: column;
     align-items: center;
   }
@@ -216,5 +232,10 @@ tickets-component ul li::before {
   tickets-component .ticket-card {
     width: 100%;
     max-width: 400px;
+  }
+
+  tickets-component .ticket-main-cta {
+    width: 100%;
+    padding: 16px 20px;
   }
 }
