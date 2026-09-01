@@ -1,0 +1,555 @@
+/* ==========================================================================
+   Hotsite de Expositores — Brumas Festival Medieval
+   ========================================================================== */
+
+/* --- Hero --- */
+.exp-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 20px 60px;
+  text-align: center;
+}
+
+.exp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/pictues/brumas_artesaos_medievais.webp');
+  background-size: cover;
+  background-position: center 30%;
+  z-index: -2;
+}
+
+.exp-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(8, 8, 6, 0.88) 0%, rgba(39, 13, 79, 0.78) 45%, rgba(10, 18, 70, 0.88) 100%);
+  z-index: -1;
+}
+
+.exp-hero-content {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.exp-urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  background: linear-gradient(135deg, #e6c46a, var(--color-gold));
+  padding: 8px 22px;
+  border-radius: 30px;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+  animation: expPulse 2.2s ease-in-out infinite;
+}
+
+.exp-urgency-badge i {
+  animation: expFlicker 1.4s ease-in-out infinite;
+}
+
+@keyframes expPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5); }
+  50% { box-shadow: 0 4px 30px rgba(212, 175, 55, 0.9); }
+}
+
+@keyframes expFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.exp-hero h1 {
+  font-family: var(--font-medieval);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  color: var(--color-light);
+  margin: 24px 0 10px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.exp-hero h1 span {
+  display: block;
+  font-family: var(--font-title);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 6px;
+}
+
+.exp-hero-subtitle {
+  font-family: var(--font-text);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: var(--color-parchment);
+  max-width: 640px;
+  margin: 18px auto 30px;
+  line-height: 1.7;
+}
+
+.exp-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 30px;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  color: var(--color-light);
+}
+
+.exp-hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exp-hero-meta i {
+  color: var(--color-gold);
+}
+
+.exp-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+.exp-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  color: var(--color-light);
+  border: 2px solid var(--color-gold);
+  border-radius: 5px;
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.exp-cta-secondary:hover {
+  background: rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+}
+
+.exp-hero-scarcity {
+  font-family: var(--font-text);
+  font-style: italic;
+  color: var(--color-gold-light, var(--color-gold));
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* --- Countdown --- */
+.exp-countdown-strip {
+  background: linear-gradient(90deg, var(--color-deep-purple), var(--color-navy));
+  border-top: 1px solid rgba(212, 175, 55, 0.4);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 26px 20px;
+  text-align: center;
+}
+
+.exp-countdown-strip .exp-countdown-label {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
+.exp-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.exp-countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+}
+
+.exp-countdown-number {
+  font-family: var(--font-medieval);
+  font-size: 2.2rem;
+  color: var(--color-light);
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+}
+
+.exp-countdown-unit {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+  margin-top: 4px;
+}
+
+/* --- Prova social --- */
+.exp-social-proof {
+  padding: 56px 20px;
+  text-align: center;
+}
+
+.exp-social-note {
+  font-family: var(--font-text);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-gold);
+  margin-top: 20px;
+}
+
+.exp-social-proof p.exp-eyebrow {
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  margin-bottom: 18px;
+}
+
+.exp-vendor-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.exp-vendor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-text);
+  font-size: 0.95rem;
+  color: var(--color-light);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 30px;
+  padding: 8px 18px;
+}
+
+.exp-vendor-chip i {
+  color: var(--color-gold);
+}
+
+.exp-vendor-chip.exp-vendor-more {
+  border-style: dashed;
+  color: var(--color-parchment);
+  opacity: 0.85;
+}
+
+/* --- Benefícios --- */
+.exp-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.exp-benefit-card {
+  background: linear-gradient(135deg, rgba(10, 18, 70, 0.9) 0%, rgba(73, 20, 73, 0.8) 100%);
+  border: 1px solid var(--color-gold);
+  border-radius: 6px;
+  padding: 30px 24px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exp-benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35), 0 0 25px rgba(212, 175, 55, 0.25);
+}
+
+.exp-benefit-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.12);
+  border: 2px solid var(--color-gold);
+}
+
+.exp-benefit-icon i {
+  font-size: 1.5rem;
+  color: var(--color-gold);
+}
+
+.exp-benefit-card h3 {
+  font-family: var(--font-title);
+  color: var(--color-light);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.exp-benefit-card p {
+  font-family: var(--font-text);
+  color: var(--color-parchment);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- Categorias aceitas --- */
+.exp-categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.exp-category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 160px;
+  padding: 22px 12px;
+  background: var(--color-parchment);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.exp-category-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28), 0 0 20px rgba(212, 175, 55, 0.35);
+}
+
+.exp-category-item i {
+  font-size: 1.6rem;
+  color: var(--color-deep-purple);
+}
+
+.exp-category-item span {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--color-dark);
+}
+
+/* --- Como funciona (etapas) --- */
+.exp-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  counter-reset: exp-step;
+}
+
+.exp-step {
+  position: relative;
+  text-align: center;
+  padding: 10px 16px;
+}
+
+.exp-step::before {
+  counter-increment: exp-step;
+  content: counter(exp-step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold-light, var(--color-gold)), var(--color-gold));
+  color: var(--color-dark);
+  font-family: var(--font-title);
+  font-weight: bold;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.exp-step h3 {
+  font-family: var(--font-title);
+  color: var(--color-light);
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.exp-step p {
+  font-family: var(--font-text);
+  color: var(--color-parchment);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --- Galeria de referência --- */
+.exp-gallery-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.exp-gallery-strip img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+/* --- FAQ --- */
+.exp-faq {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.exp-faq-item {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.exp-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 20px 4px;
+  text-align: left;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  color: var(--color-light);
+}
+
+.exp-faq-question i {
+  color: var(--color-gold);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.exp-faq-item.is-open .exp-faq-question i {
+  transform: rotate(180deg);
+}
+
+.exp-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  font-family: var(--font-text);
+  color: var(--color-parchment);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.exp-faq-item.is-open .exp-faq-answer {
+  max-height: 400px;
+  padding-bottom: 20px;
+}
+
+/* --- CTA final --- */
+.exp-final-cta {
+  text-align: center;
+  padding: 10px 20px 60px;
+}
+
+.exp-final-cta h2 {
+  margin-bottom: 10px;
+}
+
+.exp-final-cta p {
+  max-width: 600px;
+  margin: 0 auto 26px;
+  color: var(--color-dark);
+}
+
+/* --- Botão flutuante WhatsApp --- */
+.exp-whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  padding: 14px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.exp-whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+.exp-whatsapp-float i {
+  font-size: 1.3rem;
+}
+
+.exp-whatsapp-float .exp-wa-text {
+  max-width: 160px;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 768px) {
+  .exp-hero {
+    min-height: 100vh;
+    padding: 110px 16px 50px;
+  }
+
+  .exp-countdown {
+    gap: 18px;
+  }
+
+  .exp-countdown-number {
+    font-size: 1.7rem;
+  }
+
+  .exp-gallery-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .exp-whatsapp-float .exp-wa-text {
+    display: none;
+  }
+
+  .exp-whatsapp-float {
+    padding: 14px;
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .exp-hero-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
