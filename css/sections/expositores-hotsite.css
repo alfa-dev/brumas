@@ -352,12 +352,21 @@
   color: var(--color-dark);
 }
 
-/* --- Como funciona (etapas) --- */
+/* --- Como funciona (timeline) --- */
+.exp-steps-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.exp-steps-section .section-header {
+  margin-bottom: 34px;
+}
+
 .exp-steps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  max-width: 1100px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1000px;
   margin: 0 auto;
   counter-reset: exp-step;
 }
@@ -365,39 +374,93 @@
 .exp-step {
   position: relative;
   text-align: center;
-  padding: 10px 16px;
+  padding: 44px 12px 0;
 }
 
 .exp-step::before {
   counter-increment: exp-step;
   content: counter(exp-step);
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 16px;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 14px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-gold-light, var(--color-gold)), var(--color-gold));
   color: var(--color-dark);
   font-family: var(--font-title);
   font-weight: bold;
-  font-size: 1.3rem;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  font-size: 1rem;
+  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.15), 0 4px 12px rgba(212, 175, 55, 0.35);
+}
+
+/* linha da timeline */
+.exp-step::after {
+  content: "";
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: rgba(212, 175, 55, 0.4);
+  z-index: 0;
+}
+
+.exp-step:last-child::after {
+  display: none;
 }
 
 .exp-step h3 {
   font-family: var(--font-title);
   color: var(--color-light);
-  font-size: 1.05rem;
-  margin-bottom: 8px;
+  font-size: 0.98rem;
+  margin-bottom: 6px;
 }
 
 .exp-step p {
   font-family: var(--font-text);
   color: var(--color-parchment);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .exp-steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 420px;
+    text-align: left;
+  }
+
+  .exp-step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: 16px;
+    text-align: left;
+    padding: 0 0 26px;
+  }
+
+  .exp-step::before {
+    margin: 0;
+  }
+
+  .exp-step h3 {
+    padding-top: 8px;
+  }
+
+  .exp-step p {
+    grid-column: 2;
+  }
+
+  .exp-step::after {
+    top: 40px;
+    left: 19px;
+    width: 2px;
+    height: 100%;
+  }
 }
 
 /* --- Galeria de referência --- */
@@ -468,20 +531,71 @@
   padding-bottom: 20px;
 }
 
+/* --- Galeria (seção clara) --- */
+.exp-gallery-section {
+  background: var(--color-parchment);
+}
+
 /* --- CTA final --- */
 .exp-final-cta {
+  position: relative;
   text-align: center;
-  padding: 10px 20px 60px;
+  padding: 90px 20px;
+  overflow: hidden;
+  background: var(--color-navy);
+}
+
+.exp-final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/pictues/brumas_artesaos_medievais.webp');
+  background-size: cover;
+  background-position: center 35%;
+  opacity: 0.28;
+  z-index: 0;
+}
+
+.exp-final-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(10, 18, 70, 0.92) 0%, rgba(39, 13, 79, 0.88) 100%);
+  z-index: 0;
+}
+
+.exp-final-cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.exp-final-cta .exp-eyebrow {
+  margin-bottom: 14px;
 }
 
 .exp-final-cta h2 {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  color: var(--color-light);
 }
 
-.exp-final-cta p {
-  max-width: 600px;
-  margin: 0 auto 26px;
-  color: var(--color-dark);
+.exp-final-cta .medieval-divider {
+  background-image: url('../../assets/medieval_divider_white.svg');
+  margin-bottom: 22px;
+}
+
+.exp-final-cta-text {
+  max-width: 560px;
+  margin: 0 auto 30px;
+  font-family: var(--font-text);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-parchment);
+}
+
+.exp-final-cta .exp-hero-scarcity {
+  margin-top: 20px;
 }
 
 /* --- Botão flutuante WhatsApp --- */
@@ -492,30 +606,52 @@
   z-index: 500;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: #25D366;
+  gap: 12px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
   color: #fff;
   font-family: var(--font-title);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
   letter-spacing: 0.5px;
-  padding: 14px 20px;
-  border-radius: 40px;
+  padding: 10px 22px 10px 10px;
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(18, 140, 126, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.exp-whatsapp-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: expWaPulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes expWaPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(1.18); opacity: 0; }
+  100% { opacity: 0; }
+}
+
 .exp-whatsapp-float:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 32px rgba(18, 140, 126, 0.55), 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .exp-whatsapp-float i {
-  font-size: 1.3rem;
-}
-
-.exp-whatsapp-float .exp-wa-text {
-  max-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 1.35rem;
+  flex-shrink: 0;
 }
 
 /* --- Responsivo --- */
