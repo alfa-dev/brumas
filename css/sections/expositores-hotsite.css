@@ -262,6 +262,33 @@
   opacity: 0.85;
 }
 
+/* Prova social em seção clara */
+.exp-social-proof:not(.dark-section) p.exp-eyebrow,
+.exp-social-proof:not(.dark-section) .exp-social-note {
+  color: var(--color-gold-dark, #8a6a34);
+}
+
+.exp-social-proof:not(.dark-section) .exp-vendor-chip {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-deep-purple) 100%);
+  border-color: var(--color-gold);
+  color: var(--color-light);
+}
+
+.exp-social-proof:not(.dark-section) .exp-vendor-chip i {
+  color: var(--color-gold-light, var(--color-gold));
+}
+
+.exp-social-proof:not(.dark-section) .exp-vendor-chip.exp-vendor-more {
+  background: transparent;
+  border-color: rgba(39, 13, 79, 0.45);
+  color: var(--color-deep-purple);
+  opacity: 1;
+}
+
+.exp-social-proof:not(.dark-section) .exp-vendor-chip.exp-vendor-more i {
+  color: var(--color-deep-purple);
+}
+
 /* --- Benefícios --- */
 .exp-benefits-grid {
   display: grid;
