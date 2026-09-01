@@ -14,14 +14,35 @@
   text-align: center;
 }
 
+.exp-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+  filter: blur(7px) brightness(0.72) saturate(1.05);
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
 .exp-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('../../assets/pictues/brumas_artesaos_medievais.webp');
+  background-image: url('../../assets/videos/hero-expositores-poster.jpg');
   background-size: cover;
-  background-position: center 30%;
-  z-index: -2;
+  background-position: center;
+  filter: blur(7px) brightness(0.72);
+  transform: scale(1.1);
+  z-index: -3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-hero-video {
+    display: none;
+  }
 }
 
 .exp-hero::after {
