@@ -265,7 +265,7 @@
 }
 
 .exp-benefit-card {
-  background: linear-gradient(135deg, rgba(10, 18, 70, 0.9) 0%, rgba(73, 20, 73, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(212, 175, 55, 0.08) 100%);
   border: 1px solid var(--color-gold);
   border-radius: 6px;
   padding: 30px 24px;
@@ -352,6 +352,21 @@
   color: var(--color-dark);
 }
 
+/* Categorias em seção clara: cards roxos para contraste com o fundo */
+.exp-categories-section .exp-category-item {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-deep-purple) 100%);
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 6px 16px rgba(39, 13, 79, 0.25);
+}
+
+.exp-categories-section .exp-category-item i {
+  color: var(--color-gold);
+}
+
+.exp-categories-section .exp-category-item span {
+  color: var(--color-light);
+}
+
 /* --- Como funciona (timeline) --- */
 .exp-steps-section {
   padding-top: 64px;
@@ -425,6 +440,19 @@
   color: var(--color-parchment);
   font-size: 0.85rem;
   line-height: 1.55;
+}
+
+/* Timeline em seção clara */
+.exp-steps-section:not(.dark-section) .exp-step h3 {
+  color: var(--color-deep-purple);
+}
+
+.exp-steps-section:not(.dark-section) .exp-step p {
+  color: var(--color-dark);
+}
+
+.exp-steps-section:not(.dark-section) .exp-step::after {
+  background: rgba(73, 20, 73, 0.35);
 }
 
 @media (max-width: 700px) {
