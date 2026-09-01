@@ -115,6 +115,13 @@
   color: var(--color-gold);
 }
 
+/* CTA sempre visível — sem o fade-in do .mist-glow, só o brilho pulsante */
+.exp-hero .mist-glow,
+.exp-final-cta .mist-glow {
+  opacity: 1 !important;
+  animation: mistPulse 3s ease-in-out infinite 1s !important;
+}
+
 .exp-hero-ctas {
   display: flex;
   flex-wrap: wrap;
