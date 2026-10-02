@@ -62,29 +62,15 @@
     astro.appendChild(center);
     svg.appendChild(astro);
 
-    // Constelações que cintilam
+    // Constelações (acendem quando o mouse chega perto)
     CONSTELLATIONS.forEach((pts, c) => {
       const g = el('g', { class: 'magic-constellation' });
-      g.style.animationDelay = `${c * 2.2}s`;
+      g.dataset.cx = pts.reduce((t, p) => t + p[0], 0) / pts.length;
+      g.dataset.cy = pts.reduce((t, p) => t + p[1], 0) / pts.length;
       g.appendChild(el('polyline', { points: pts.map(p => p.join(',')).join(' '), class: 'magic-line' }));
       pts.forEach(([x, y]) => g.appendChild(el('circle', { cx: x, cy: y, r: 3, class: 'magic-star' })));
       svg.appendChild(g);
     });
-
-    // Faíscas douradas que sobem e cintilam
-    for (let i = 0; i < 10; i++) {
-      const x = Math.random() * 1200;
-      const y = 300 + Math.random() * 600;
-      const size = 4 + Math.random() * 6;
-      const spark = el('path', {
-        d: `M 0 ${-size} Q 1 -1 ${size} 0 Q 1 1 0 ${size} Q -1 1 ${-size} 0 Q -1 -1 0 ${-size} Z`,
-        class: 'magic-spark',
-        transform: `translate(${x.toFixed(0)} ${y.toFixed(0)})`
-      });
-      spark.style.animationDelay = `${(Math.random() * 12).toFixed(1)}s`;
-      spark.style.animationDuration = `${(9 + Math.random() * 7).toFixed(1)}s`;
-      svg.appendChild(spark);
-    }
 
     // Rosa dos ventos girando devagar
     const rose = el('g', { class: 'map-rose', transform: 'translate(1080 780)' });
@@ -156,13 +142,42 @@
 
     // Brilho dourado que segue o mouse (só com ponteiro fino)
     if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+      const svg = map.querySelector('svg');
+      const constellations = map.querySelectorAll('.magic-constellation');
+      let lastTrail = 0;
       section.addEventListener('pointermove', e => {
         const r = section.getBoundingClientRect();
-        section.style.setProperty('--mx', `${e.clientX - r.left}px`);
-        section.style.setProperty('--my', `${e.clientY - r.top}px`);
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        section.style.setProperty('--mx', `${x}px`);
+        section.style.setProperty('--my', `${y}px`);
         section.classList.add('is-glowing');
+
+        // Rastro de estrelinhas atrás do cursor (no máximo 1 a cada 70ms)
+        const now = performance.now();
+        if (now - lastTrail > 70) {
+          lastTrail = now;
+          const star = document.createElement('span');
+          star.className = 'cursor-star';
+          star.style.left = `${x + (Math.random() - 0.5) * 16}px`;
+          star.style.top = `${y + (Math.random() - 0.5) * 16}px`;
+          star.style.setProperty('--size', `${(4 + Math.random() * 6).toFixed(1)}px`);
+          star.style.setProperty('--color', COLORS[Math.floor(Math.random() * COLORS.length)]);
+          star.addEventListener('animationend', () => star.remove());
+          section.appendChild(star);
+        }
+
+        // Constelações perto do cursor se acendem
+        const ctm = svg.getScreenCTM();
+        if (!ctm) return;
+        constellations.forEach(g => {
+          const sx = ctm.a * g.dataset.cx + ctm.e, sy = ctm.d * g.dataset.cy + ctm.f;
+          g.classList.toggle('is-lit', Math.hypot(sx - e.clientX, sy - e.clientY) < 220);
+        });
       });
-      section.addEventListener('pointerleave', () => section.classList.remove('is-glowing'));
+      section.addEventListener('pointerleave', () => {
+        section.classList.remove('is-glowing');
+        constellations.forEach(g => g.classList.remove('is-lit'));
+      });
     }
 
     if (reduceMotion) {

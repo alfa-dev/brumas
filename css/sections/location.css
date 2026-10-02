@@ -99,17 +99,44 @@
     font-family: var(--font-medieval);
     font-size: 1.05rem;
     text-decoration: none;
-    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 
+    /* Reflexo de luz que atravessa o botão no hover */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(100deg, transparent, rgba(255, 240, 200, 0.35), transparent);
+        transform: skewX(-20deg);
+        pointer-events: none;
+    }
+
+    /* Hover: continua roxo, sobe um pouco, borda clareia e ganha brilho dourado suave */
     &:hover {
-        background-color: var(--color-gold);
-        color: var(--color-dark);
-        box-shadow: 0 0 18px var(--color-gold-glow);
+        transform: translateY(-2px);
+        border-color: var(--color-gold-light);
+        box-shadow: 0 8px 18px rgba(39, 13, 79, 0.25), 0 0 14px rgba(212, 175, 55, 0.35);
+    }
+
+    &:hover::after {
+        left: 120%;
+        transition: left 0.7s ease;
     }
 }
 
+/* Ghost: no hover ganha o fundo roxo do botão principal */
 .map-button--ghost {
     background-color: transparent;
+
+    &:hover {
+        background-color: var(--color-deep-purple);
+        color: var(--color-light);
+    }
 }
 
 /* Mapa com moldura dourada */

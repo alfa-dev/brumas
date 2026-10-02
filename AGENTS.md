@@ -126,8 +126,10 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
   `0.9rem`), usando `flex: none` + `width`/`height` fixos (senão o círculo achata no celular).
 - **Botão principal (`.map-button`):** fundo `--color-deep-purple`, `border: 2px solid --color-gold`,
   `border-radius: 5px`, MedievalSharp `1.05rem`, `padding: 12px 24px`, ícone à esquerda com `gap: 10px`.
-  Hover: fundo dourado, texto escuro e `box-shadow: 0 0 18px --color-gold-glow`.
-- **Botão secundário (`.map-button--ghost`):** igual ao principal com fundo transparente. Ações lado a
+  Hover: **continua roxo** (o fundo dourado chapado foi rejeitado), sobe 2px, borda `--color-gold-light`,
+  sombra roxa + brilho dourado suave, e um reflexo de luz (`::after` em gradiente) atravessa o botão.
+- **Botão secundário (`.map-button--ghost`):** igual ao principal com fundo transparente; no hover ganha o
+  fundo roxo e texto claro. Ações lado a
   lado com `gap: 12px` e `flex-wrap`.
 - **Moldura de mídia (`.map-frame`):** `padding: 8px`, `border: 1px solid --color-gold`,
   `border-radius: 6px`, fundo `rgba(8,8,6,.35)`, sombra `0 18px 40px rgba(0,0,0,.35)` e segunda borda
@@ -344,6 +346,10 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   girando (conic-gradient mascarado) + halo pulsando, e o JS emite partículas douradas/violeta aleatórias
   (bolinhas e estrelinhas) enquanto o mouse estiver em cima.
 - Guia de design: documentado o efeito **"Orbe Encantado"** (anel mágico + halo + partículas) para reuso.
+- Sobre: faíscas que subiam sozinhas removidas e constelações sem piscar; agora as estrelas **só reagem ao
+  mouse** — rastro de estrelinhas atrás do cursor (`.cursor-star`, 1 a cada 70ms) e constelações a
+  menos de 220px do cursor se acendem (`.is-lit`).
+- Hover dos botões `.map-button` refeito (roxo + elevação + brilho + reflexo), no lugar do dourado chapado.
 - Fio dourado do Sobre passava por cima dos medalhões (cada passo cria contexto de empilhamento pelo
   `transform`); `.journey-step` ganhou `z-index: 1`.
 - Scroll lateral corrigido: `.pulsating-mist` da Galeria passava da largura da tela; `section` ganhou

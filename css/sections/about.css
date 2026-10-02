@@ -99,22 +99,36 @@
 }
 
 .magic-constellation {
-    animation: magicPulse 7s ease-in-out infinite;
+    opacity: 0.25;
+    transition: opacity 0.8s ease, filter 0.8s ease;
+
+    &.is-lit {
+        opacity: 0.9;
+        filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.7));
+    }
 }
 
 .magic-star {
     fill: rgba(169, 131, 64, 0.6);
 }
 
-.magic-spark {
-    fill: var(--color-gold);
-    opacity: 0;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation-name: magicRise;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.5));
+/* Rastro de estrelinhas que segue o mouse */
+.cursor-star {
+    position: absolute;
+    z-index: 0;
+    width: var(--size, 6px);
+    height: var(--size, 6px);
+    background: var(--color, #e8c770);
+    clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+    filter: drop-shadow(0 0 3px var(--color, #e8c770));
+    pointer-events: none;
+    animation: cursorStar 0.9s ease-out forwards;
+}
+
+@keyframes cursorStar {
+    0%   { transform: translate(-50%, -50%) scale(0.3) rotate(0deg); opacity: 0.9; }
+    40%  { transform: translate(-50%, -50%) scale(1) rotate(45deg); opacity: 0.8; }
+    100% { transform: translate(-50%, 10px) scale(0.2) rotate(90deg); opacity: 0; }
 }
 
 /* Brilho dourado que acompanha o mouse */
@@ -131,14 +145,6 @@
 
 #sobre.is-glowing::after {
     opacity: 1;
-}
-
-@keyframes magicRise {
-    0%   { opacity: 0; translate: 0 0; scale: 0.4; }
-    15%  { opacity: 0.55; scale: 1; }
-    50%  { opacity: 0.2; }
-    65%  { opacity: 0.5; }
-    100% { opacity: 0; translate: 0 -220px; scale: 0.5; }
 }
 
 @keyframes magicPulse {
@@ -216,13 +222,11 @@
 
 @media (prefers-reduced-motion: reduce) {
     .map-trail, .map-rose-spin, .magic-sigil-outer, .magic-sigil-inner, .magic-hex,
-    .magic-constellation, .magic-spark, .journey-orb::before {
+    .journey-orb::before {
         animation: none;
     }
 
-    .magic-spark {
-        opacity: 0.4;
-    }
+
 }
 
 .journey-step {
