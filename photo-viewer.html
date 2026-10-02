@@ -6,7 +6,7 @@
   <title>Brumas - Visualizar Foto</title>
   <meta name="robots" content="noindex, follow">
 
-  <link rel="stylesheet" href="css/styles.css?v=9710485">
+  <link rel="stylesheet" href="css/styles.css?v=c735a39">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,13 +14,13 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=9710485"></script>
+  <script src="js/script.js?v=c735a39"></script>
 
-  <link rel="stylesheet" href="css/sections/photo-viewer.css?v=9710485">
+  <link rel="stylesheet" href="css/sections/photo-viewer.css?v=c735a39">
 </head>
 <body class="pv-body">
-  <video muted loop playsinline preload="none" data-lazy-video id="bg-video" poster="videos/poster-v2.jpg?v=9710485">
-    <source data-src="videos/bg-v2.mp4?v=9710485" type="video/mp4">
+  <video muted loop playsinline preload="none" data-lazy-video id="bg-video" poster="videos/poster-v2.jpg?v=c735a39">
+    <source data-src="videos/bg-v2.mp4?v=c735a39" type="video/mp4">
   </video>
   <div class="photo-viewer">
     <div class="pv-topbar">
@@ -34,8 +34,9 @@
     </div>
 
     <div class="pv-stage">
-      <figure class="pv-frame">
-        <img id="photo" src="" alt="" style="view-transition-name: 'gallery-item';">
+      <figure class="pv-frame is-empty" id="photo-frame">
+        <img id="photo" alt="">
+        <span class="pv-loader" aria-hidden="true"></span>
       </figure>
     </div>
 
@@ -60,9 +61,6 @@
     const nextButton = document.getElementById('next-button');
     const photoCounter = document.getElementById('photo-counter');
 
-    updatePhoto();
-    updateButtons();
-
     function updateButtons() {
       if (isFirstPhoto()) prevButton.setAttribute('disabled', 'disabled');
       else prevButton.removeAttribute('disabled');
@@ -80,13 +78,72 @@
       return PHOTOS.find(p => p.id === getPhotoId());
     }
 
-    function updatePhoto() {
-      const currentPhoto = getCurrentPhoto();
+    // Troca de foto: mostra o carregamento, espera a imagem estar pronta (decodificada) e só então troca
+    // foto, título e contador juntos, animando o tamanho da moldura (300ms).
+    const frame = document.getElementById('photo-frame');
+    const RESIZE_MS = 300;
+    const cache = new Map();
+    let requestToken = 0;
 
+    function preload(src) {
+      if (!cache.has(src)) {
+        const img = new Image();
+        img.src = src;
+        cache.set(src, (img.decode ? img.decode() : new Promise((ok, err) => { img.onload = ok; img.onerror = err; })).catch(() => {}));
+      }
+      return cache.get(src);
+    }
+
+    function preloadNeighbors(id) {
+      [id - 1, id + 1].forEach(n => {
+        const p = PHOTOS.find(photo => photo.id === n);
+        if (p) preload(p.src);
+      });
+    }
+
+    async function updatePhoto() {
+      const currentPhoto = getCurrentPhoto();
+      if (!currentPhoto) return;
+      const token = ++requestToken;
+
+      // Só mostra o loader se a imagem demorar (evita piscar quando já está em cache)
+      const loaderTimer = setTimeout(() => frame.classList.add('is-loading'), 120);
+      await preload(currentPhoto.src);
+      clearTimeout(loaderTimer);
+      if (token !== requestToken) return; // o usuário já pediu outra foto
+
+      const animate = !frame.classList.contains('is-empty') &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const from = frame.getBoundingClientRect();
+
+      frame.style.width = '';
+      frame.style.height = '';
+      frame.classList.remove('is-resizing');
       photo.src = currentPhoto.src;
       photo.alt = currentPhoto.title;
       photoTitleElement.textContent = currentPhoto.title;
       photoCounter.textContent = `${String(currentPhoto.id).padStart(2, '0')} / ${PHOTOS.length}`;
+      frame.classList.remove('is-loading', 'is-empty');
+
+      if (animate) {
+        const to = frame.getBoundingClientRect();
+        if (Math.abs(to.width - from.width) > 1 || Math.abs(to.height - from.height) > 1) {
+          frame.style.width = `${from.width}px`;
+          frame.style.height = `${from.height}px`;
+          frame.classList.add('is-resizing');
+          frame.offsetWidth; // aplica o tamanho antigo antes de animar
+          frame.style.width = `${to.width}px`;
+          frame.style.height = `${to.height}px`;
+          setTimeout(() => {
+            if (token !== requestToken) return;
+            frame.classList.remove('is-resizing');
+            frame.style.width = '';
+            frame.style.height = '';
+          }, RESIZE_MS + 30);
+        }
+      }
+
+      preloadNeighbors(currentPhoto.id);
     }
 
     function isFirstPhoto() {
@@ -130,6 +187,9 @@
         window.location.href = 'index.html#galeria';
       }
     });
+
+    updatePhoto();
+    updateButtons();
   </script>
 
   <!-- Carregado só depois do "load" para não competir com o carregamento da página -->

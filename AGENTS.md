@@ -429,6 +429,10 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   passa sobre a foto. Controles (barra superior, título, navegação) ficam **acima** da névoa (`z-index: 3`,
   foto em 1, vídeo em 2) com a cor normal; `.photo-viewer` sem `position: fixed`/z-index/opacity para não isolar as camadas (fixed sempre cria
   contexto de empilhamento).
+- Visualizador de fotos — troca suave: a foto nova é pré-carregada e decodificada (`img.decode()`) antes
+  de trocar; enquanto isso a atual esmaece e aparece um **loader dourado/violeta** (só se demorar >120ms).
+  Foto, título e contador trocam **juntos**; a moldura **anima o tamanho em 300ms** (FLIP com width/height,
+  `.is-resizing`). Fotos vizinhas são pré-carregadas; cliques rápidos usam só o último pedido (token).
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3
