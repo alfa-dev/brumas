@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = '17d4358';
+const BUILD = '6c79c29';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -47,6 +47,25 @@ function loadLazyVideos() {
 }
 if (document.readyState === 'complete') setTimeout(loadLazyVideos, 0);
 else window.addEventListener('load', () => setTimeout(loadLazyVideos, 0));
+
+// Desempenho: seções fora da tela recebem .is-offscreen (pausa animações via CSS) e vídeos fora da tela
+// ficam pausados. Começa depois do "load", junto com os vídeos.
+function watchOffscreen() {
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (target.tagName === 'VIDEO') {
+        if (isIntersecting) { const p = target.play(); if (p && p.catch) p.catch(() => {}); }
+        else target.pause();
+      } else {
+        target.classList.toggle('is-offscreen', !isIntersecting);
+      }
+    });
+  }, { rootMargin: '100px 0px' });
+  document.querySelectorAll('section, footer, video').forEach(el => io.observe(el));
+}
+if (document.readyState === 'complete') setTimeout(watchOffscreen, 0);
+else window.addEventListener('load', () => setTimeout(watchOffscreen, 0));
 
 const PRICES = {
   ticket: {

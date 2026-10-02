@@ -46,9 +46,8 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#270d4f">
 
-  <link rel="stylesheet" href="css/styles.css?v=17d4358">
-  <link rel="stylesheet" href="css/sections/ticket-form.css?v=17d4358">
-  <link rel="stylesheet" href="css/sections/merchant-form.css?v=17d4358">
+  <link rel="stylesheet" href="css/styles.css?v=6c79c29">
+  <link rel="stylesheet" href="css/sections/expositores-page.css?v=6c79c29">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,172 +55,147 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=17d4358"></script>
-  <script src="js/components.js?v=17d4358"></script>
+  <script src="js/script.js?v=6c79c29"></script>
+  <script src="js/components.js?v=6c79c29"></script>
   <script src="https://unpkg.com/imask"></script>
 </head>
 
 <body>
   <header-component></header-component>
 
-  <main style="padding-top: 72px;">
-    <section class="ticket-form-section" id="form-expositor">
-      <header style="margin-bottom: unset;">
-        <h1 class="illuminated-heading gold-heading">Mercadores e Artesãos</h1>
-      </header>
-      <div class="medieval-divider" style="margin: 0px 0 40px;"></div>
-
-      <div class="medieval-card"
-        style="max-width: 800px; margin: 0 auto; margin-bottom: 20px; transform: none; opacity: 1;">
-        <h3>Diretrizes para Mercadores</h3>
-        <p class="illuminated-text">Convidamos artesãos, mercadores e produtores de
-          artefatos medievais a participarem do <strong>Mercado Medieval do Festival Brumas</strong>. Este
-          espaço reservado para comércio de produtos temáticos receberá visitantes
-          ávidos por levar consigo uma recordação autêntica do mundo medieval.<br><br></p>
-
-        <p>A edição 2026 já aconteceu e as inscrições para 2027 abrirão em breve. Deixe desde já o seu
-          interesse registrado e seja avisado em primeira mão.<br><br></p>
-
-        <p>Os mercadores selecionados terão a oportunidade de expor e comercializar seus
-          produtos em um espaço totalmente ambientado, proporcionando uma experiência
-          imersiva tanto para os vendedores quanto para os compradores.<br><br></p>
-
-        <p class="form-note"><a href="termos-expositores.html" target="_blank"
-            class="terms-link">
-            Termos e condições para expositores</a></p>
+  <main class="exp-page">
+    <!-- Banner: foto do mercado ao fundo + título -->
+    <section class="exp-banner dark-section">
+      <div class="exp-banner-inner">
+        <p class="exp-banner-eyebrow">Mercado Medieval · Edição 2027</p>
+        <h1>Mercadores e Artesãos</h1>
+        <p class="exp-banner-text">Leve vosso ofício ao reino das Brumas.</p>
       </div>
+    </section>
 
-      <!-- <button onclick="preencherFormulario()">Preencher form com mock</button>
-      <script>
-        function preencherFormulario() {
-          document.getElementById('name').value = 'Mercador/Artesão';
-          document.getElementById('email').value = 'mercador@artesao.com';
-          document.getElementById('whatsapp').value = '(00) 00000-0000';
-          document.getElementById('business-name').value = 'Mercadoria Medieval';
-          document.getElementById('product-type').value = 'artesanato';
-          document.getElementById('description').value = 'Produtos artesanais medievais feitos à mão';
-          document.getElementById('social-media').value = '@mercadoriamedieval';
-          document.getElementById('portfolio').value = 'https://portfolio.mercadoriamedieval.com';
-          document.getElementById('experience').value = 'Participação em feiras medievais há 5 anos';
-          document.getElementById('additional-info').value = 'Preciso de ponto de energia para iluminação';
-        }
-      </script> -->
+    <!-- Como funciona (conteúdo próprio desta página) -->
+    <section class="section exp-how">
+      <div class="section-container">
+        <ol class="exp-how-steps">
+          <li>
+            <span class="exp-how-icon"><i class="fa-solid fa-feather-pointed"></i></span>
+            <h2>Registre o interesse</h2>
+            <p>Preencha o formulário abaixo. Leva menos de dois minutos.</p>
+          </li>
+          <li>
+            <span class="exp-how-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
+            <h2>Receba o aviso</h2>
+            <p>Quando as inscrições de 2027 abrirem, avisamos primeiro quem está na lista.</p>
+          </li>
+          <li>
+            <span class="exp-how-icon"><i class="fa-solid fa-chess-rook"></i></span>
+            <h2>Monte sua banca</h2>
+            <p>Após a aprovação, vosso espaço no mercado está garantido. Veja os
+              <a href="termos-expositores.html" target="_blank">termos e condições</a>.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-      <form
-        action="https://script.google.com/macros/s/AKfycbxdt9ACzqELRdahMLUiNITh0d5i7HBSFbzcE4Gry8TVjFW4d-tHmUNJYt-7G2m8Qnde7w/exec"
-        method="POST" class="medieval-card">
-        <input type="hidden" name="expositor" value="true">
-        <input type="hidden" id="created_at" name="created_at">
-        <!-- Anti-spam -->
-        <div class="hp-trap" aria-hidden="true">
-          <label for="_hp">Deixe este campo em branco</label>
-          <input type="text" id="_hp" name="_hp" tabindex="-1" autocomplete="off">
-        </div>
-        <input type="hidden" id="_ltime" name="_ltime">
-        <input type="hidden" id="_jsck" name="_jsck">
-        <h3 class="gold-text">Lista de Interesse · Edição 2027</h3>
-
-        <p class="form-intro">
-          Preencha o formulário abaixo para manifestar interesse em participar
-          como expositor na edição 2027 do Festival Brumas. Avisaremos quando as inscrições
-          abrirem e entraremos em contato com mais detalhes.
-        </p>
-
-        <fieldset id="personal-data-fieldset">
-          <div class="form-group">
-            <label for="name"><i class="fa-solid fa-user"></i> Nome do
-              Mercador/Artesão</label>
-            <input type="text" id="name" name="name" required placeholder="Vosso nome completo">
+    <!-- Formulário de interesse -->
+    <section class="section exp-form-section" id="form-expositor">
+      <div class="section-container">
+        <form
+          action="https://script.google.com/macros/s/AKfycbxdt9ACzqELRdahMLUiNITh0d5i7HBSFbzcE4Gry8TVjFW4d-tHmUNJYt-7G2m8Qnde7w/exec"
+          method="POST" class="exp-form">
+          <input type="hidden" name="expositor" value="true">
+          <input type="hidden" id="created_at" name="created_at">
+          <!-- Anti-spam -->
+          <div class="hp-trap" aria-hidden="true">
+            <label for="_hp">Deixe este campo em branco</label>
+            <input type="text" id="_hp" name="_hp" tabindex="-1" autocomplete="off">
           </div>
+          <input type="hidden" id="_ltime" name="_ltime">
+          <input type="hidden" id="_jsck" name="_jsck">
 
-          <div class="form-group">
-            <label for="email"><i class="fa-solid fa-envelope"></i>
-              Email</label>
-            <input type="email" id="email" name="email" required placeholder="vosso@email.com">
-          </div>
+          <header class="exp-form-header">
+            <p class="exhibitors-eyebrow">Lista de Interesse · Edição 2027</p>
+            <h2>Deixe vosso selo</h2>
+            <p class="exp-form-intro">Avisaremos quando as inscrições abrirem e entraremos em contato com mais detalhes.</p>
+          </header>
 
-          <div class="form-group">
-            <label for="whatsapp"><i class="fa-brands fa-whatsapp"></i>
-              WhatsApp</label>
-            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000">
-          </div>
-
-          <div class="form-group">
-            <label for="business-name"><i class="fa-solid fa-shop"></i> Nome do
-              Estabelecimento/Marca</label>
-            <input type="text" id="business-name" name="business-name" required
-              placeholder="Nome da vossa loja ou marca">
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <div class="form-group">
-            <label for="product-type"><i class="fa-solid fa-tag"></i> Tipo de
-              Produtos</label>
-            <select id="product-type" name="product-type" required>
-              <option value="">Selecione o tipo de mercadoria</option>
-              <option value="artesanato">Artesanato medieval</option>
-              <option value="armas">Armas e armaduras decorativas</option>
-              <option value="vestuario">Vestuário medieval</option>
-              <option value="joias">Joias e acessórios</option>
-              <option value="alimentos">Alimentos e bebidas</option>
-              <option value="ervas">Ervas e produtos naturais</option>
-              <option value="couro">Artigos em couro</option>
-              <option value="instrumentos">Instrumentos musicais</option>
-              <option value="outros">Outros produtos temáticos</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="previous-experience"><i class="fa-solid fa-calendar-check"></i>
-              Participou de outros eventos medievais?</label>
-            <div class="radio-options">
-              <div class="radio-option">
-                <input type="radio" id="experience-yes" name="previous-experience" value="sim">
-                <label for="experience-yes">Sim</label>
+          <fieldset class="exp-step">
+            <legend><span class="exp-step-num">I</span> Quem és tu</legend>
+            <div class="exp-grid">
+              <div class="exp-field exp-field--full">
+                <label for="name"><i class="fa-solid fa-user"></i> Nome do Mercador/Artesão</label>
+                <input type="text" id="name" name="name" required placeholder="Vosso nome completo" autocomplete="name">
               </div>
-              <div class="radio-option">
-                <input type="radio" id="experience-no" name="previous-experience" value="nao" checked>
-                <label for="experience-no">Não</label>
+              <div class="exp-field">
+                <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" required placeholder="vosso@email.com" autocomplete="email">
+              </div>
+              <div class="exp-field">
+                <label for="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</label>
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(00) 00000-0000" autocomplete="tel">
+              </div>
+              <div class="exp-field exp-field--full">
+                <label for="business-name"><i class="fa-solid fa-shop"></i> Nome do Estabelecimento/Marca</label>
+                <input type="text" id="business-name" name="business-name" required placeholder="Nome da vossa loja ou marca">
               </div>
             </div>
-          </div>
+          </fieldset>
 
-          <div class="form-group" id="events-group">
-            <label for="previous-events"><i class="fa-solid fa-list"></i> Quais
-              eventos?</label>
-            <input type="text" id="previous-events" name="previous-events"
-              placeholder="Liste os eventos anteriores">
-          </div>
+          <fieldset class="exp-step">
+            <legend><span class="exp-step-num">II</span> Vossa mercadoria</legend>
+            <div class="exp-grid">
+              <div class="exp-field exp-field--full">
+                <label for="product-type"><i class="fa-solid fa-tag"></i> Tipo de Produtos</label>
+                <select id="product-type" name="product-type" required>
+                  <option value="">Selecione o tipo de mercadoria</option>
+                  <option value="artesanato">Artesanato medieval</option>
+                  <option value="armas">Armas e armaduras decorativas</option>
+                  <option value="vestuario">Vestuário medieval</option>
+                  <option value="joias">Joias e acessórios</option>
+                  <option value="alimentos">Alimentos e bebidas</option>
+                  <option value="ervas">Ervas e produtos naturais</option>
+                  <option value="couro">Artigos em couro</option>
+                  <option value="instrumentos">Instrumentos musicais</option>
+                  <option value="outros">Outros produtos temáticos</option>
+                </select>
+              </div>
+              <div class="exp-field exp-field--full">
+                <span class="exp-label"><i class="fa-solid fa-calendar-check"></i> Participou de outros eventos medievais?</span>
+                <div class="exp-pills">
+                  <input type="radio" id="experience-yes" name="previous-experience" value="sim">
+                  <label for="experience-yes">Sim</label>
+                  <input type="radio" id="experience-no" name="previous-experience" value="nao" checked>
+                  <label for="experience-no">Não</label>
+                </div>
+              </div>
+              <div class="exp-field exp-field--full" id="events-group">
+                <label for="previous-events"><i class="fa-solid fa-list"></i> Quais eventos?</label>
+                <input type="text" id="previous-events" name="previous-events" placeholder="Liste os eventos anteriores">
+              </div>
+              <div class="exp-field exp-field--full">
+                <label for="product-description"><i class="fa-solid fa-pen-fancy"></i> Descrição dos Produtos</label>
+                <textarea id="product-description" name="product-description" rows="5" required
+                  placeholder="Descreva os produtos que serão comercializados..."></textarea>
+              </div>
+            </div>
+          </fieldset>
 
-          <div class="form-group">
-            <label for="product-description"><i class="fa-solid fa-pen-fancy"></i>
-              Descrição dos Produtos</label>
-            <textarea id="product-description" name="product-description" rows="5" required
-              placeholder="Descreva detalhadamente os produtos que serão comercializados..."></textarea>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <div class="form-group">
-            <label for="accept-terms">
+          <fieldset class="exp-step">
+            <legend><span class="exp-step-num">III</span> Confirmação</legend>
+            <label class="exp-check" for="accept-terms">
               <input type="checkbox" id="accept-terms" name="accept-terms" required>
-              Li e aceito os
-              <a href="termos-expositores.html" target="_blank" onclick="window.open(this.href, 'termsWindow', 'width=900,height=700,scrollbars=yes'); return false;">termos e condições</a>
+              <span>Li e aceito os
+                <a href="termos-expositores.html" target="_blank" onclick="window.open(this.href, 'termsWindow', 'width=900,height=700,scrollbars=yes'); return false;">termos e condições</a></span>
             </label>
-          </div>
-        </fieldset>
+            <p class="exp-form-note"><i class="fa-solid fa-circle-info"></i> Quando as inscrições para 2027 abrirem,
+              entraremos em contato pelo email informado. As vagas são limitadas e sujeitas à aprovação prévia.</p>
+          </fieldset>
 
-        <div class="form-note">
-          <p><i class="fa-solid fa-circle-info"></i> Quando as inscrições para 2027 abrirem, entraremos em
-            contato através do email fornecido. As vagas são limitadas e sujeitas à
-            aprovação prévia.</p>
-        </div>
-
-        <button type="submit" class="cta-button mist-glow" style="animation: none; opacity: 1;">
-          <i class="fa-solid fa-paper-plane"></i> Registrar Interesse
-        </button>
-      </form>
+          <button type="submit" class="map-button exp-submit">
+            <i class="fa-solid fa-paper-plane"></i> Registrar Interesse
+          </button>
+        </form>
+      </div>
     </section>
   </main>
   <footer-component></footer-component>
@@ -242,8 +216,8 @@
     </div>
   </dialog>
 
-  <script src="js/spam-protection.js?v=17d4358"></script>
-  <script src="js/merchant-form.js?v=17d4358"></script>
+  <script src="js/spam-protection.js?v=6c79c29"></script>
+  <script src="js/merchant-form.js?v=6c79c29"></script>
   <script>
     // Pré-seleciona o tipo de mercadoria quando vindo do hotsite (?tipo=...)
     document.addEventListener('DOMContentLoaded', function () {
@@ -256,7 +230,15 @@
     });
   </script>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DL5KF46QH2"></script>
+  <!-- Carregado só depois do "load" para não competir com o carregamento da página -->
+  <script>
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-DL5KF46QH2';
+      document.head.appendChild(s);
+    });
+  </script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}

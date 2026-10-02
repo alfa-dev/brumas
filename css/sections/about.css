@@ -29,9 +29,17 @@
     mask-image: radial-gradient(ellipse at center, #000 45%, transparent 85%);
 }
 
+/* Cada camada é um elemento composto na GPU; o mouse desloca via `translate` (profundidade) */
 .map-svg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+}
+
+.about-map [data-depth] {
+    will-change: transform;
+    transition: translate 0.6s ease-out;
 }
 
 .map-trail {
@@ -40,14 +48,22 @@
     stroke-width: 2;
     stroke-linecap: round;
     stroke-dasharray: 2 10;
-    animation: mapInkFade 14s ease-in-out infinite;
+    opacity: 0.7;
 }
 
 .map-rose {
+    position: absolute;
+    right: 9%;
+    bottom: 14%;
+    width: 150px;
+    height: 160px;
     opacity: 0.25;
 }
 
 .map-rose-spin {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
     animation: mapSpin 60s linear infinite;
 }
 
@@ -64,9 +80,13 @@
 }
 
 .map-rose-n {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: var(--font-title);
-    font-size: 18px;
-    fill: rgba(92, 52, 22, 0.7);
+    font-size: 14px;
+    color: rgba(92, 52, 22, 0.7);
 }
 
 /* Elementos mágicos */
@@ -85,7 +105,21 @@
 }
 
 .magic-sigil {
+    position: absolute;
+    left: 14%;
+    top: 22%;
+    width: 270px;
+    height: 270px;
+    margin: -135px 0 0 -135px;
     opacity: 0.4;
+
+    & svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+    }
 }
 
 .magic-sigil-outer {
@@ -115,10 +149,6 @@
 }
 
 /* Camadas de profundidade do fundo (deslocadas pelo mouse) */
-.map-layer {
-    transition: translate 0.6s ease-out;
-}
-
 /* Astrolábio desperta perto do cursor */
 .magic-sigil {
     transition: opacity 0.8s ease, filter 0.8s ease;
@@ -213,30 +243,30 @@
     100% { transform: translate(-50%, 10px) scale(0.2) rotate(90deg); opacity: 0; }
 }
 
-/* Brilho dourado que acompanha o mouse */
-#sobre::after {
-    content: '';
+/* Brilho dourado que acompanha o mouse (movido por transform, sem recalcular estilo da seção) */
+.about-glow {
     position: absolute;
-    inset: 0;
+    left: 0;
+    top: 0;
+    width: 520px;
+    height: 520px;
+    margin: -260px 0 0 -260px;
     z-index: 0;
     pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 50%);
     opacity: 0;
+    will-change: transform, opacity;
     transition: opacity 0.6s ease;
-    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(212, 175, 55, 0.12), transparent 70%);
-}
 
-#sobre.is-glowing::after {
-    opacity: 1;
+    &.is-on {
+        opacity: 1;
+    }
 }
 
 @keyframes magicPulse {
     0%, 100% { opacity: 0.25; }
     50%      { opacity: 0.7; }
-}
-
-@keyframes mapInkFade {
-    0%, 100% { opacity: 0.35; }
-    50%      { opacity: 1; }
 }
 
 @keyframes mapSpin {
@@ -250,35 +280,29 @@
     max-width: 960px;
     margin: 0 auto;
     padding: 10px 0;
-
-    /* Fio dourado que liga os medalhões */
-    &::before {
-        content: '';
-        position: absolute;
-        top: 40px;
-        bottom: calc(-1 * var(--tail, 40px));
-        left: 50%;
-        width: 2px;
-        transform: translateX(-50%);
-        background: linear-gradient(to bottom, transparent, var(--color-gold) 8%);
-        opacity: 0.25;
-    }
-
-    /* Parte "acesa" do fio, que cresce com o scroll (--progress via JS) */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 40px;
-        left: 50%;
-        width: 2px;
-        height: calc((100% - 40px + var(--tail, 40px)) * var(--progress, 0));
-        transform: translateX(-50%);
-        background: var(--color-gold);
-        box-shadow: 0 0 10px var(--color-gold-glow);
-    }
 }
 
-/* Revelação dos passos + parallax leve (--shift via JS) */
+/* Fio dourado (elemento real criado pelo JS): trilho apagado + preenchimento que cresce com a rolagem */
+.journey-line {
+    position: absolute;
+    z-index: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, rgba(169, 131, 64, 0.3) 8%);
+    pointer-events: none;
+}
+
+.journey-line-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--color-gold);
+    box-shadow: 0 0 10px var(--color-gold-glow);
+    transform: scaleY(0);
+    transform-origin: top;
+    will-change: transform;
+}
+
+/* Revelação dos passos (parallax leve dos medalhões é aplicado por transform via JS) */
 .journey-step {
     opacity: 0;
     transform: translateY(40px);
@@ -289,9 +313,6 @@
         transform: translateY(0);
     }
 
-    & .journey-orb {
-        translate: 0 var(--shift, 0);
-    }
 
     &:hover h3 {
         color: var(--color-purple);
@@ -302,8 +323,13 @@
     transition: color 0.3s ease;
 }
 
+/* Fora da tela: animações contínuas pausadas */
+#sobre.is-paused :is(.magic-sigil-outer, .magic-sigil-inner, .magic-hex, .map-rose-spin) {
+    animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .map-trail, .map-rose-spin, .magic-sigil-outer, .magic-sigil-inner, .magic-hex,
+    .map-rose-spin, .magic-sigil-outer, .magic-sigil-inner, .magic-hex,
     .journey-orb::before {
         animation: none;
     }
@@ -313,7 +339,7 @@
 
 .journey-step {
     position: relative;
-    /* acima do fio dourado (::before/::after da jornada), senão a linha cruza os medalhões */
+    /* acima do fio dourado (.journey-line), senão a linha cruza os medalhões */
     z-index: 1;
     display: grid;
     grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr);
@@ -348,7 +374,6 @@
         mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
         opacity: 0;
         transition: opacity 0.4s ease;
-        animation: mapSpin 2.4s linear infinite;
         pointer-events: none;
     }
 
@@ -364,8 +389,10 @@
         pointer-events: none;
     }
 
+    /* o anel só gira durante o hover (girar invisível custava um recálculo por quadro) */
     &.is-enchanted::before {
         opacity: 1;
+        animation: mapSpin 2.4s linear infinite;
     }
 
     &.is-enchanted::after {
@@ -466,16 +493,6 @@
 
 /* Celular: fio e medalhões à esquerda, todo o texto à direita */
 @media (max-width: 760px) {
-    .about-journey::before,
-    .about-journey::after {
-        left: 36px;
-        top: 30px;
-    }
-
-    .about-journey::after {
-        height: calc((100% - 30px + var(--tail, 30px)) * var(--progress, 0));
-    }
-
     .journey-step {
         grid-template-columns: 72px minmax(0, 1fr);
         align-items: start;

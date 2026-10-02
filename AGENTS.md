@@ -38,7 +38,7 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 | `css/styles.css` | Importa base, layout, componentes, seções e decorativos |
 | `assets/brumas-2027/` | Arte 2027 da seção Sobre (medalhões coroa, pergaminho e cavalo) em WebP |
 | `assets/pictues/` | Fotos da galeria (`nome.webp` + `nome_sm.webp`) — sim, a pasta é "pictues" |
-| `docs/` | Referências internas: conteúdo do Drive, menções na imprensa, `pesquisa-web-brumas.md` (varredura da web em 2026-10-02) |
+| `docs/` | Referências internas: conteúdo do Drive, menções na imprensa, `pesquisa-web-brumas.md` (varredura da web em 2026-10-02), `otimizacoes-desempenho.md` (o que foi otimizado e como medir) |
 | `sitemap.xml`, `robots.txt` | SEO técnico |
 
 ## Convenções
@@ -89,6 +89,18 @@ Proteções em camadas:
 - Commits sem o hook (ex.: pela interface do GitHub) não carimbam nada: evitar.
 - HTML continua com cache de até 10 min no GitHub Pages (não dá para mudar cabeçalhos lá); por isso as
   camadas 2 e 3 existem.
+
+## Desempenho — regras (detalhes e medições em `docs/otimizacoes-desempenho.md`)
+
+- Efeitos ligados a mouse/rolagem **não gravam variáveis CSS em elementos grandes**: mover elementos
+  próprios por `transform`/`translate`; só trocar classe quando o estado mudar.
+- Animações contínuas só com `transform`/`opacity` (nunca `filter`, `box-shadow`, `background-position`
+  em loop); nada animando invisível (ex.: anel do orbe só gira no hover).
+- SVG animado não fica dentro de uma camada grande com `mask`: separar em `<svg>` próprios compostos.
+- Seções fora da tela pausam sozinhas (`.is-offscreen` via `js/script.js`); efeitos novos com loop
+  devem respeitar isso.
+- Vídeos: `preload="none" data-lazy-video` + `<source data-src>`, sem áudio, `+faststart`.
+- Scripts de terceiros (analytics etc.) só depois do `load`.
 
 ---
 
@@ -405,6 +417,12 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Vídeo de fundo do hero otimizado: `videos/bg.mp4` (9,7 MB, com áudio inútil) → `videos/bg-v2.mp4`
   (0,5 MB, sem áudio, crf 30, faststart); poster `poster.png` (1,8 MB) → `poster-v2.jpg` (22 KB). Nomes
   novos de propósito (guardrail de cache).
+- `expositores.html` redesenhada: banner com foto do mercado ao fundo, faixa "como funciona" (3 passos) e
+  formulário em pergaminho com moldura dourada dupla em etapas I/II/III (pílulas Sim/Não, select com seta
+  dourada). Mesmos `id`/`name` dos campos (planilha e anti-spam intactos). CSS em
+  `css/sections/expositores-page.css`; `ticket-form.css`/`merchant-form.css` não são mais usados nela.
+- **Desempenho:** análise de memória/CPU (heap estável ~4 MB, sem vazamento) e otimizações de
+  renderização e rede — ver `docs/otimizacoes-desempenho.md`.
 - **Cache:** incidente em produção (JS novo + `about.css` antigo via `@import` sem versão). Criados os
   guardrails da seção "Cache" (hook versiona tudo e falha se faltar; carimbo de build CSS/JS com
   recarga automática; sentinela `--about-fx`).

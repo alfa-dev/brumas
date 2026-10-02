@@ -1,5 +1,5 @@
 // Seção "Sobre o Festival": fundo medieval e mágico animado (trilhas de tinta, astrolábio com luas,
-// faíscas, constelações), parallax, brilho que segue o mouse e revelação da jornada
+// constelações), parallax, brilho que segue o mouse e revelação da jornada
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -22,53 +22,22 @@
     return node;
   }
 
+  function svgLayer(cls, depth) {
+    const svg = el('svg', { viewBox: '0 0 1200 900', preserveAspectRatio: 'xMidYMid slice', class: `map-svg ${cls}` });
+    svg.dataset.depth = depth;
+    return svg;
+  }
+
+  // Desempenho: cada camada é um <svg> próprio (composto na GPU) e os anéis que giram são <svg> pequenos
+  // girados por CSS. Assim nada dentro da camada grande com máscara precisa ser repintado a cada quadro.
   function buildMap(container) {
-    const svg = el('svg', { viewBox: '0 0 1200 900', preserveAspectRatio: 'xMidYMid slice', class: 'map-svg' });
-    // Camadas de profundidade (deslocadas em ritmos diferentes pelo mouse)
-    const far = el('g', { class: 'map-layer', 'data-depth': '6' });
-    const mid = el('g', { class: 'map-layer', 'data-depth': '14' });
-    const near = el('g', { class: 'map-layer', 'data-depth': '24' });
-    svg.append(far, mid, near);
+    // Camada distante: trilhas de tinta (estáticas)
+    const far = svgLayer('map-far', 6);
+    TRAILS.forEach(d => far.appendChild(el('path', { d, class: 'map-trail' })));
 
-    // Trilhas pontilhadas que se desenham
-    TRAILS.forEach((d, i) => {
-      const path = el('path', { d, class: 'map-trail' });
-      path.style.animationDelay = `${i * 4}s`;
-      far.appendChild(path);
-    });
-
-    // Astrolábio lúdico: anéis com fases da lua e pontinhos, girando em sentidos opostos
-    const astro = el('g', { class: 'magic-sigil', transform: 'translate(170 200)' });
-    const outer = el('g', { class: 'magic-sigil-outer' });
-    outer.appendChild(el('circle', { r: 118, class: 'magic-line' }));
-    outer.appendChild(el('circle', { r: 96, class: 'magic-line' }));
-    for (let i = 0; i < 8; i++) {
-      const a = (i / 8) * Math.PI * 2;
-      const x = Math.cos(a) * 107, y = Math.sin(a) * 107;
-      // Lua: círculo cheio com outro deslocado "apagando" uma parte, de acordo com a fase
-      const phase = Math.cos(a) * 6;
-      const moon = el('g', { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)})` });
-      moon.appendChild(el('circle', { r: 7, class: 'magic-moon' }));
-      moon.appendChild(el('circle', { cx: phase.toFixed(1), r: 7, class: 'magic-moon-shadow' }));
-      outer.appendChild(moon);
-    }
-    const inner = el('g', { class: 'magic-sigil-inner' });
-    inner.appendChild(el('circle', { r: 70, class: 'magic-line' }));
-    for (let i = 0; i < 24; i++) {
-      const a = (i / 24) * Math.PI * 2;
-      inner.appendChild(el('circle', { cx: (Math.cos(a) * 70).toFixed(1), cy: (Math.sin(a) * 70).toFixed(1), r: i % 3 === 0 ? 3 : 1.5, class: 'magic-star' }));
-    }
-    // Lua crescente com uma estrelinha no centro
-    const center = el('g', { class: 'magic-hex' });
-    center.appendChild(el('path', { d: 'M 10 -30 A 30 30 0 1 0 10 30 A 24 24 0 1 1 10 -30 Z', class: 'magic-moon' }));
-    center.appendChild(el('path', { d: 'M 22 -6 Q 23 -1 28 0 Q 23 1 22 6 Q 21 1 16 0 Q 21 -1 22 -6 Z', class: 'magic-moon' }));
-    astro.appendChild(outer);
-    astro.appendChild(inner);
-    astro.appendChild(center);
-    near.appendChild(astro);
-
-    // Constelações (acendem quando o mouse chega perto)
-    CONSTELLATIONS.forEach((pts, c) => {
+    // Camada do meio: constelações (acendem quando o mouse chega perto)
+    const mid = svgLayer('map-mid', 14);
+    CONSTELLATIONS.forEach(pts => {
       const g = el('g', { class: 'magic-constellation' });
       g.dataset.cx = pts.reduce((t, p) => t + p[0], 0) / pts.length;
       g.dataset.cy = pts.reduce((t, p) => t + p[1], 0) / pts.length;
@@ -77,20 +46,54 @@
       mid.appendChild(g);
     });
 
+    // Astrolábio lúdico: anéis com fases da lua e pontinhos girando em sentidos opostos
+    const astro = document.createElement('div');
+    astro.className = 'magic-sigil';
+    astro.dataset.depth = 24;
+    const ring = (cls, build) => {
+      const svg = el('svg', { viewBox: '-135 -135 270 270', class: cls });
+      build(svg);
+      astro.appendChild(svg);
+    };
+    ring('magic-sigil-outer', svg => {
+      svg.appendChild(el('circle', { r: 118, class: 'magic-line' }));
+      svg.appendChild(el('circle', { r: 96, class: 'magic-line' }));
+      for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2;
+        const moon = el('g', { transform: `translate(${(Math.cos(a) * 107).toFixed(1)} ${(Math.sin(a) * 107).toFixed(1)})` });
+        moon.appendChild(el('circle', { r: 7, class: 'magic-moon' }));
+        moon.appendChild(el('circle', { cx: (Math.cos(a) * 6).toFixed(1), r: 7, class: 'magic-moon-shadow' }));
+        svg.appendChild(moon);
+      }
+    });
+    ring('magic-sigil-inner', svg => {
+      svg.appendChild(el('circle', { r: 70, class: 'magic-line' }));
+      for (let i = 0; i < 24; i++) {
+        const a = (i / 24) * Math.PI * 2;
+        svg.appendChild(el('circle', { cx: (Math.cos(a) * 70).toFixed(1), cy: (Math.sin(a) * 70).toFixed(1), r: i % 3 === 0 ? 3 : 1.5, class: 'magic-star' }));
+      }
+    });
+    ring('magic-hex', svg => {
+      svg.appendChild(el('path', { d: 'M 10 -30 A 30 30 0 1 0 10 30 A 24 24 0 1 1 10 -30 Z', class: 'magic-moon' }));
+      svg.appendChild(el('path', { d: 'M 22 -6 Q 23 -1 28 0 Q 23 1 22 6 Q 21 1 16 0 Q 21 -1 22 -6 Z', class: 'magic-moon' }));
+    });
+
     // Rosa dos ventos girando devagar
-    const rose = el('g', { class: 'map-rose', transform: 'translate(1080 780)' });
-    const spin = el('g', { class: 'map-rose-spin' });
-    spin.appendChild(el('circle', { r: 46, class: 'map-rose-ring' }));
-    spin.appendChild(el('circle', { r: 38, class: 'map-rose-ring' }));
-    spin.appendChild(el('path', { d: 'M 0 -60 L 9 0 L 0 60 L -9 0 Z M -60 0 L 0 -9 L 60 0 L 0 9 Z', class: 'map-rose-star' }));
-    spin.appendChild(el('path', { d: 'M -32 -32 L 4 -4 M 32 -32 L -4 -4 M -32 32 L 4 4 M 32 32 L -4 4', class: 'map-rose-ring' }));
-    rose.appendChild(spin);
-    const north = el('text', { x: 0, y: -68, class: 'map-rose-n', 'text-anchor': 'middle' });
+    const rose = document.createElement('div');
+    rose.className = 'map-rose';
+    rose.dataset.depth = 6;
+    const roseSvg = el('svg', { viewBox: '-75 -85 150 160', class: 'map-rose-spin' });
+    roseSvg.appendChild(el('circle', { r: 46, class: 'map-rose-ring' }));
+    roseSvg.appendChild(el('circle', { r: 38, class: 'map-rose-ring' }));
+    roseSvg.appendChild(el('path', { d: 'M 0 -60 L 9 0 L 0 60 L -9 0 Z M -60 0 L 0 -9 L 60 0 L 0 9 Z', class: 'map-rose-star' }));
+    roseSvg.appendChild(el('path', { d: 'M -32 -32 L 4 -4 M 32 -32 L -4 -4 M -32 32 L 4 4 M 32 32 L -4 4', class: 'map-rose-ring' }));
+    rose.appendChild(roseSvg);
+    const north = document.createElement('span');
+    north.className = 'map-rose-n';
     north.textContent = 'N';
     rose.appendChild(north);
-    far.appendChild(rose);
 
-    container.appendChild(svg);
+    container.append(far, mid, astro, rose);
   }
 
   function init() {
@@ -109,12 +112,35 @@
     const placeSeam = () => {
       const jr = journey.getBoundingClientRect(), sr = section.getBoundingClientRect();
       const lineX = window.matchMedia('(max-width: 760px)').matches ? jr.left + 36 : jr.left + jr.width / 2;
-      seam.style.setProperty('--origin', `${(lineX - sr.left).toFixed(0)}px`);
+      seam.style.setProperty('--origin', `${(lineX - sr.left).toFixed(0)}px`);  // só no resize
     };
     placeSeam();
     window.addEventListener('resize', placeSeam);
 
     const steps = journey.querySelectorAll('.journey-step');
+    const orbs = [...steps].map(step => step.querySelector('.journey-orb'));
+
+    // Fio dourado: trilho + preenchimento reais (o preenchimento cresce por transform: scaleY, sem
+    // recalcular estilo da seção a cada rolagem)
+    const line = document.createElement('div');
+    line.className = 'journey-line';
+    line.setAttribute('aria-hidden', 'true');
+    const fill = document.createElement('div');
+    fill.className = 'journey-line-fill';
+    line.appendChild(fill);
+    journey.parentElement.appendChild(line);
+    const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
+    function placeLine() {
+      const container = journey.parentElement;
+      const cr = container.getBoundingClientRect(), jr = journey.getBoundingClientRect(), sr = section.getBoundingClientRect();
+      const x = isMobile() ? jr.left - cr.left + 36 : jr.left - cr.left + jr.width / 2;
+      const top = jr.top - cr.top + 40;
+      line.style.left = `${x.toFixed(0)}px`;
+      line.style.top = `${top.toFixed(0)}px`;
+      line.style.height = `${(sr.bottom - cr.top - top).toFixed(0)}px`;
+    }
+    placeLine();
+    window.addEventListener('resize', placeLine);
 
     // Medalhões encantados: anel mágico + partículas aleatórias enquanto o mouse estiver em cima
     const COLORS = ['#e8c770', '#f6e3a6', '#c8a050', '#b98ae6', '#d9c2f5'];
@@ -185,10 +211,14 @@
 
     // Brilho dourado que segue o mouse (só com ponteiro fino)
     if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-      const svg = map.querySelector('svg');
+      const mid = map.querySelector('.map-mid');
       const constellations = map.querySelectorAll('.magic-constellation');
-      const layers = map.querySelectorAll('.map-layer');
+      const layers = map.querySelectorAll('[data-depth]');
       const astro = map.querySelector('.magic-sigil');
+      const glow = document.createElement('div');
+      glow.className = 'about-glow';
+      glow.setAttribute('aria-hidden', 'true');
+      section.insertBefore(glow, section.firstChild);
 
       // Clique no fundo: onda dourada + explosão de partículas
       section.addEventListener('click', e => {
@@ -207,9 +237,8 @@
       section.addEventListener('pointermove', e => {
         const r = section.getBoundingClientRect();
         const x = e.clientX - r.left, y = e.clientY - r.top;
-        section.style.setProperty('--mx', `${x}px`);
-        section.style.setProperty('--my', `${y}px`);
-        section.classList.add('is-glowing');
+        glow.style.transform = `translate3d(${x.toFixed(0)}px, ${y.toFixed(0)}px, 0)`;
+        if (!glow.classList.contains('is-on')) glow.classList.add('is-on');
 
         // Rastro de estrelinhas atrás do cursor (no máximo 1 a cada 70ms)
         const now = performance.now();
@@ -233,17 +262,19 @@
         });
 
         // Constelações perto do cursor se acendem; o astrolábio "desperta"
-        const ctm = svg.getScreenCTM();
+        const ar = astro.getBoundingClientRect();
+        const near = Math.hypot(ar.left + ar.width / 2 - e.clientX, ar.top + ar.height / 2 - e.clientY) < 260;
+        if (near !== astro.classList.contains('is-awake')) astro.classList.toggle('is-awake', near);
+        const ctm = mid.getScreenCTM();
         if (!ctm) return;
-        const ax = ctm.a * 170 + ctm.e, ay = ctm.d * 200 + ctm.f;
-        astro.classList.toggle('is-awake', Math.hypot(ax - e.clientX, ay - e.clientY) < 260);
         constellations.forEach(g => {
           const sx = ctm.a * g.dataset.cx + ctm.e, sy = ctm.d * g.dataset.cy + ctm.f;
-          g.classList.toggle('is-lit', Math.hypot(sx - e.clientX, sy - e.clientY) < 220);
+          const lit = Math.hypot(sx - e.clientX, sy - e.clientY) < 220;
+          if (lit !== g.classList.contains('is-lit')) g.classList.toggle('is-lit', lit);
         });
       });
       section.addEventListener('pointerleave', () => {
-        section.classList.remove('is-glowing');
+        glow.classList.remove('is-on');
         constellations.forEach(g => g.classList.remove('is-lit'));
         layers.forEach(layer => { layer.style.translate = ''; });
         astro.classList.remove('is-awake');
@@ -252,7 +283,7 @@
 
     if (reduceMotion) {
       steps.forEach(step => step.classList.add('is-visible'));
-      journey.style.setProperty('--progress', 1);
+      fill.style.transform = 'scaleY(1)';
       section.classList.add('is-sealed');
       return;
     }
@@ -279,17 +310,17 @@
       map.style.transform = `translate3d(0, ${rect.top * -0.25}px, 0)`;
 
       // Fio desce até a borda inferior da seção; ao encostar nela, abre a borda dourada entre as seções
-      const jr = journey.getBoundingClientRect();
-      const tail = rect.bottom - jr.bottom;
-      journey.style.setProperty('--tail', `${tail.toFixed(0)}px`);
-      const progress = Math.min(1, Math.max(0, (vh * 0.6 - jr.top) / (jr.height + tail)));
-      journey.style.setProperty('--progress', progress.toFixed(3));
-      section.classList.toggle('is-sealed', progress >= 0.995);
+      const lr = line.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (vh * 0.6 - lr.top) / lr.height));
+      fill.style.transform = `scaleY(${progress.toFixed(3)})`;
+      const sealed = progress >= 0.995;
+      if (sealed !== section.classList.contains('is-sealed')) section.classList.toggle('is-sealed', sealed);
 
-      steps.forEach(step => {
-        const r = step.getBoundingClientRect();
+      orbs.forEach(orb => {
+        if (!orb) return;
+        const r = orb.getBoundingClientRect();
         const offset = (r.top + r.height / 2 - vh / 2) / vh;
-        step.style.setProperty('--shift', `${(offset * -24).toFixed(1)}px`);
+        orb.style.transform = `translate3d(0, ${(offset * -24).toFixed(1)}px, 0)`;
       });
     }
     window.addEventListener('scroll', () => {
@@ -300,6 +331,11 @@
     }, { passive: true });
     window.addEventListener('resize', update);
     update();
+
+    // Fora da tela: pausa as animações contínuas do fundo
+    new IntersectionObserver(([entry]) => {
+      section.classList.toggle('is-paused', !entry.isIntersecting);
+    }).observe(section);
   }
 
   // Guardrail: os efeitos só são montados quando o CSS desta versão está carregado. Com CSS antigo em

@@ -1,7 +1,7 @@
 /* Carimbo de build (atualizado pelo pre-commit). O js/script.js compara com o BUILD dele e, se divergirem
    (CSS antigo em cache), recarrega as folhas de estilo. Não editar à mão. */
 :root {
-  --build: "17d4358";
+  --build: "6c79c29";
 }
 
 /* Variáveis de Cores e Fontes */
@@ -153,11 +153,11 @@ section:not(.dark-section):not(#hero) {
 }
 
 .dark-section .medieval-divider {
-  background-image: url('../../assets/medieval_divider_white.svg?v=17d4358');
+  background-image: url('../../assets/medieval_divider_white.svg?v=6c79c29');
 }
 
 .dark-section .medieval-scroll .medieval-divider {
-  background-image: url('../../assets/medieval_divider.svg?v=17d4358');
+  background-image: url('../../assets/medieval_divider.svg?v=6c79c29');
 }
 
 .section-container {
@@ -200,7 +200,7 @@ section:not(.dark-section):not(#hero) {
 
   /* background-image: linear-gradient(to top, #00000022 0%, #00000022 100%); */
   background: radial-gradient(circle, #ffffff 0%, #ffffff 70%, #eaeaea 100%);
-  background-image: url('../../assets/papiro_texture.jpg?v=17d4358');
+  background-image: url('../assets/papiro_texture.jpg?v=6c79c29');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -216,7 +216,7 @@ section:not(.dark-section):not(#hero) {
   width: 105%;
   height: 20px;
   transform: translateX(-2%);
-  background-image: url('../../assets/papiro_texture.jpg?v=17d4358');
+  background-image: url('../assets/papiro_texture.jpg?v=6c79c29');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -349,3 +349,11 @@ body {
 		transform-origin: 100% 50%;
 	}
 } */
+
+/* Desempenho: seções fora da tela pausam animações contínuas (classe aplicada pelo js/script.js) */
+.is-offscreen,
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after {
+  animation-play-state: paused !important;
+}

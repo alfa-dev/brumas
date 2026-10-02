@@ -191,6 +191,14 @@ footer {
 }
 
 /* Media Queries para Responsividade */
+/* Desempenho: no celular, desfoque de fundo do menu fixo é caro durante a rolagem */
+@media (max-width: 768px) {
+    .navbar {
+        backdrop-filter: none;
+        background-color: rgba(12, 8, 20, 0.92);
+    }
+}
+
 @media (max-width: 768px) {
 
     .logo img {
@@ -251,7 +259,6 @@ footer {
             radial-gradient(ellipse at 50% 0%, rgba(169, 131, 64, 0.22), transparent 55%),
             radial-gradient(ellipse at 50% 100%, rgba(139, 74, 150, 0.35), transparent 60%),
             #1a0834;
-        backdrop-filter: blur(8px);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-12px);
