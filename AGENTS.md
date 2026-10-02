@@ -498,6 +498,9 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Local: iframe do Google Maps trocado por **mapa ilustrado** (`assets/mapa-guapimirim.webp`) dentro da moldura;
   arrastável só um pouco (até 10%, com resistência, volta ao centro ao soltar) e clique sem arrastar abre o
   endereço no Google Maps (`.map-illustrated` em `location.css`, JS em `js/script.js`).
+- Links do local corrigidos para o ponto exato (-22.5352707, -42.9908409): mapa ilustrado e `CONTACT.address_link` →
+  link curto https://maps.app.goo.gl/pCQhvAfJ3on3fJhS7; "Como Chegar" → rota do Google Maps até as coordenadas; Waze → `ll=` com as
+  coordenadas (a busca por texto com "Cantagalo" caía no lugar errado).
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3

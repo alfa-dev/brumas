@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = '2a6adab';
+const BUILD = 'ad8a437';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -325,7 +325,7 @@ const CONTACT = {
   email: 'brumasfestival@gmail.com',
   phone: '+55(21) 98333-6417',
   address: 'Rua Francisco Portela, nº 115, Cantagalo, Guapimirim - RJ - CEP 25945-328',
-  address_link: 'https://www.google.com/maps/search/?api=1&query=Rua+Francisco+Portela%2C+115%2C+Cantagalo%2C+Guapimirim%2C+RJ%2C+25945-328'
+  address_link: 'https://maps.app.goo.gl/pCQhvAfJ3on3fJhS7'
 };
 
 const SOCIAL_LINKS = [
