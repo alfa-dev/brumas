@@ -29,7 +29,8 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 | `expositores.html` | Formulário de expositores (hoje: lista de interesse 2027) → Google Apps Script |
 | `expositores-2026.html` | Redireciona para `expositores.html` (o hotsite de urgência 2026 foi removido) |
 | `pagamento-confirmado.html` | Retorno do checkout (ainda cita 19/09/2026) |
-| `photo-viewer.html` | Visualizador das fotos da galeria (`?id=`); estilos em `css/sections/photo-viewer.css` (linkado só nessa página) |
+| `photo-viewer.html` | Visualizador das fotos da galeria (`?id=`); estilos em `css/sections/photo-viewer.css` (linkado só nessa página); compartilhamento em `js/photo-share.js` |
+| `galeria/foto-N.html` + `assets/og/foto-N.jpg` + `assets/stories/foto-N.jpg` | **Gerados** por `scripts/gerar-compartilhamento.py` (prévia de cada foto para WhatsApp/Facebook). Rodar de novo sempre que `PHOTOS` mudar |
 | `termos-participantes.html`, `termos-expositores.html` | Termos (fonte em `termos_*.md`) |
 | `_expositores.html` | Arquivo antigo; ignorado pelo hook de cache busting |
 | `js/script.js` | **Dados do site**: `PRICES`, `TICKET_SALES_URL`, `TICKETS`, `NAV_LINKS`, `PHOTOS`, `CONTACT`, `SOCIAL_LINKS`, `ATTRACTIONS` |
@@ -507,6 +508,16 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   **borda dourada fina (1px)**, texto claro normal, seta e reflexo a cada ~6s. Rejeitados a pedido: estrelas
   laterais, texto dourado, borda grossa/dupla e ícone do Instagram em anel. Não usa `.map-button`. Magia: `data-enchant` (hover: luz girando
   na borda + partículas) e `data-enchant-click` (clique: 44 partículas, clarão e onda dourada) — `js/enchant.js`.
+- **Compartilhar fotos da galeria** (visualizador): botão "Compartilhar" abre painel com prévia e opções.
+  - *Stories e Instagram:* o Instagram não aceita link de compartilhamento vindo de site; o caminho é a
+    folha nativa do celular (Web Share API com arquivo), onde aparecem Stories/Feed/Direct. A imagem
+    1080x1920 é **pré-gerada** (`assets/stories/foto-N.jpg`, fontes OFL em `scripts/fonts/`) — gerá-la no
+    navegador com canvas falhava em `file://`. No computador, baixa a imagem (em `file://`, abre numa aba).
+  - *WhatsApp/Facebook/Copiar link:* link `galeria/foto-N.html` — página estática com `og:image` da própria
+    foto (prévia certa) que redireciona para `photo-viewer.html?id=N`.
+  - *Baixar imagem* e *Mais opções* (folha nativa, só em tela de toque).
+  - Botão "voltar" do topo removido (redundante com o "fechar").
+  - Testado: file:// e http no desktop, e celular simulado (share recebe o arquivo + texto com link).
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3
