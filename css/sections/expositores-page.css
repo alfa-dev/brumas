@@ -16,7 +16,7 @@
     color: var(--color-light);
     background:
         linear-gradient(180deg, rgba(26, 8, 52, 0.55), rgba(26, 8, 52, 0.85)),
-        url('../../assets/pictues/brumas_mercado_laminas.webp?v=1ceadd2') center 60% / cover no-repeat;
+        url('../../assets/pictues/brumas_mercado_laminas.webp?v=f7def83') center 60% / cover no-repeat;
     border-bottom: 2px solid var(--color-gold);
     overflow: hidden;
 }

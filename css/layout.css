@@ -95,7 +95,7 @@ footer {
     margin-bottom: 10px;
 }
 
-/* Estandartes ao vento nas laterais (vídeo em loop, sem som): o preto some com mix-blend-mode: screen */
+/* Estandartes ao vento nas laterais (vídeo em loop, sem som) */
 footer {
     position: relative;
     overflow: hidden;
@@ -114,9 +114,7 @@ footer {
     pointer-events: none;
     user-select: none;
     z-index: 0;
-    /* O blend fica no contêiner: com transform/z-index ele isola o contexto, e um blend só no <video>
-       misturaria com nada (o preto apareceria como retângulo) */
-    mix-blend-mode: screen;
+    /* Sem blend: o fundo do vídeo é preto como o do rodapé; a máscara só suaviza as bordas */
 
     & video {
         display: block;

@@ -424,6 +424,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   local serão confirmados nos canais oficiais", atualização Outubro de 2026), HTML e `.md`. Participantes:
   10.1 sem "fazenda" (área rural e de natureza) e e-mail de contato corrigido para brumasfestival@gmail.com.
   Expositores: nova 2.5 (lista de interesse 2027 não é inscrição nem reserva) e numeração 6.5→6.4.
+- Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
+  diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3
   já dizia que cadeiras são por conta do expositor.
 - Nova foto do mercado (`assets/pictues/brumas_mercado_laminas.webp`, banca de lâminas e bainhas, recorte
