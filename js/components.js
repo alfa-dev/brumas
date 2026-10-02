@@ -227,7 +227,7 @@ class PhotoGallery extends HTMLElement {
           <figure class="gallery-item">
             <a href="photo-viewer.html?id=${photo.id}" class="gallery-link">
               <div class="gallery-frame">
-                <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt}" loading="lazy">
+                <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt.replace(/\s*\.+$/, '')} no Brumas Festival Medieval 2025, em Guapimirim (RJ)" loading="lazy" width="373" height="249">
               </div>
               <figcaption>${photo.title}</figcaption>
             </a>
