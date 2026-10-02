@@ -305,6 +305,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
       https://developers.facebook.com/tools/debug/ (força o WhatsApp/Facebook a atualizar a prévia).
 - [ ] **Itens inclusos para expositores 2027:** a home diz "barraca de madeira e ponto de energia".
       Confirmar para 2027.
+- [ ] **Trechos de vídeo 2026:** o usuário quer recortar vários trechos dos vídeos do mesmo
+      Drive (ex.: Zaman Tribal, Ordem das Flores, Jasbick). Vídeos já extraídos em `~/Downloads/brumas-2026-evento/` (fora do repo).
 - [ ] **Data da edição 2027:** quando definida, seguir o checklist abaixo.
 - [ ] Bug antigo nos dados: `TICKETS[0].description` diz "entrada do dia 25.07.26" (data errada) —
       corrigir ao reabrir as vendas.
@@ -518,6 +520,16 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   - *Baixar imagem* e *Mais opções* (folha nativa, só em tela de toque).
   - Botão "voltar" do topo removido (redundante com o "fechar").
   - Testado: file:// e http no desktop, e celular simulado (share recebe o arquivo + texto com link).
+- **Galeria por edição:** 17 fotos de 2026 (retiradas a pedido: "Danças entre as Brumas" id 19 e "Oráculos" id 25,
+  ids reservados; adicionadas 34–37: Caminho das Luzes, Faíscas na Fogueira, Mercado ao Anoitecer, Saberes
+  Medievais; "A Dama e a Coruja" trocada por outra foto da mesma série, mantendo o id 22) (escolhidas entre 107 do Drive "Fotos e Vídeos do Evento";
+  `assets/pictues/2026/brumas26_*.webp` + `_sm`) em destaque, 2025 acessível. `PHOTOS` ganhou `album` e
+  `GALLERY_ALBUMS` (rótulo/legenda); ids de 2026 = 19–33 (**ids nunca são renumerados**: os links
+  `galeria/foto-N.html` dependem deles). `PhotoGallery` renderiza abas (a primeira = mais recente, selo
+  "Nova", lembra a escolha na sessão) e troca a legenda da seção. Visualizador navega e conta só dentro
+  da edição da foto ("01 / 17") e mostra o ano no topo. Gerador de compartilhamento usa `album` no texto.
+  Para nova edição: fotos com `album: 2027`, ids novos no fim, entrada no topo de `GALLERY_ALBUMS` e rodar
+  `python3 scripts/gerar-compartilhamento.py`.
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3

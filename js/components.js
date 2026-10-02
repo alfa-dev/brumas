@@ -23,7 +23,7 @@ class HeaderComponent extends HTMLElement {
         <nav class="navbar">
           <div class="logo">
             <a href="index.html">
-              <img src="assets/b_fundo_escuro.svg?v=53e694a" alt="Brumas Logo">
+              <img src="assets/b_fundo_escuro.svg?v=83e700f" alt="Brumas Logo">
             </a>
           </div>
           <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -70,14 +70,14 @@ class FooterComponent extends HTMLElement {
       <footer>
         ${['left', 'right'].map(side => `
           <div class="footer-banner footer-banner--${side}" aria-hidden="true">
-            <video muted loop playsinline preload="none" data-lazy-video poster="videos/estandarte-footer-poster.jpg?v=53e694a">
-              <source data-src="videos/estandarte-footer.mp4?v=53e694a" type="video/mp4">
+            <video muted loop playsinline preload="none" data-lazy-video poster="videos/estandarte-footer-poster.jpg?v=83e700f">
+              <source data-src="videos/estandarte-footer.mp4?v=83e700f" type="video/mp4">
             </video>
           </div>
         `).join('')}
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="assets/b_fundo_escuro.svg?v=53e694a" alt="Brumas Logo">
+                <img src="assets/b_fundo_escuro.svg?v=83e700f" alt="Brumas Logo">
                 <p>Brumas - Festival Medieval</p>
             </div>
             <div class="footer-links">
@@ -228,27 +228,29 @@ class PhotoGallery extends HTMLElement {
     super();
   }
 
+  // Galeria por edição: abas (a mais recente em destaque, primeira e selecionada) e carrossel da edição
+  // escolhida. A legenda da seção (.gallery-caption) acompanha a aba.
   connectedCallback() {
+    const albums = GALLERY_ALBUMS.filter(a => PHOTOS.some(p => p.album === a.year));
+    const saved = (() => { try { return Number(sessionStorage.getItem('brumas-album')); } catch (e) { return 0; } })();
+    this.album = albums.some(a => a.year === saved) ? saved : albums[0].year;
+
     this.innerHTML = `
+      <div class="gallery-tabs" role="tablist" aria-label="Edições">
+        ${albums.map((a, i) => `
+          <button type="button" role="tab" class="gallery-tab${i === 0 ? ' gallery-tab--featured' : ''}" data-album="${a.year}">
+            ${i === 0 ? '<span class="gallery-tab-badge">Nova</span>' : ''}${a.label}
+          </button>
+        `).join('')}
+      </div>
       <div class="photo-gallery">
-        <div class="gallery-grid">
-        ${PHOTOS.map(photo => `
-          <figure class="gallery-item">
-            <a href="photo-viewer.html?id=${photo.id}" class="gallery-link">
-              <div class="gallery-frame">
-                <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt.replace(/\s*\.+$/, '')} no Brumas Festival Medieval 2025, em Guapimirim (RJ)" loading="lazy" width="373" height="249">
-              </div>
-              <figcaption>${photo.title}</figcaption>
-            </a>
-          </figure>
-          `).join('')}
-        </div>
+        <div class="gallery-grid" role="tabpanel"></div>
       </div>
       <div class="gallery-nav">
         <button type="button" class="gallery-nav-button" data-dir="-1" aria-label="Fotos anteriores">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
-        <span class="gallery-nav-label">${PHOTOS.length} registros</span>
+        <span class="gallery-nav-label"></span>
         <button type="button" class="gallery-nav-button" data-dir="1" aria-label="Próximas fotos">
           <i class="fa-solid fa-chevron-right"></i>
         </button>
@@ -263,6 +265,42 @@ class PhotoGallery extends HTMLElement {
         grid.scrollBy({ left: step * Number(button.dataset.dir), behavior: 'smooth' });
       });
     });
+    this.querySelectorAll('.gallery-tab').forEach(tab => {
+      tab.addEventListener('click', () => this.show(Number(tab.dataset.album)));
+    });
+    this.show(this.album, true);
+  }
+
+  show(year, first) {
+    this.album = year;
+    try { sessionStorage.setItem('brumas-album', String(year)); } catch (e) {}
+    const info = GALLERY_ALBUMS.find(a => a.year === year);
+    const photos = PHOTOS.filter(p => p.album === year);
+    this.querySelectorAll('.gallery-tab').forEach(tab => {
+      const on = Number(tab.dataset.album) === year;
+      tab.classList.toggle('is-active', on);
+      tab.setAttribute('aria-selected', on);
+    });
+    const grid = this.querySelector('.gallery-grid');
+    if (!first) grid.classList.add('is-switching');
+    const render = () => {
+      grid.innerHTML = photos.map(photo => `
+        <figure class="gallery-item">
+          <a href="photo-viewer.html?id=${photo.id}" class="gallery-link">
+            <div class="gallery-frame">
+              <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt.replace(/\s*\.+$/, '')} no Brumas Festival Medieval ${photo.album}, em Guapimirim (RJ)" loading="lazy">
+            </div>
+            <figcaption>${photo.title}</figcaption>
+          </a>
+        </figure>
+      `).join('');
+      grid.scrollLeft = 0;
+      grid.classList.remove('is-switching');
+    };
+    if (first) render(); else setTimeout(render, 200);
+    this.querySelector('.gallery-nav-label').textContent = `${photos.length} registros`;
+    const caption = this.closest('section') && this.closest('section').querySelector('.gallery-caption');
+    if (caption && info) caption.textContent = info.caption;
   }
 }
 

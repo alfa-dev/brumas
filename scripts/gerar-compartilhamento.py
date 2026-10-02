@@ -19,7 +19,8 @@ BASE = 'https://brumasfestival.com.br'
 src = open(os.path.join(ROOT, 'js/script.js'), encoding='utf-8').read()
 block = src[src.index('const PHOTOS = ['):]
 block = block[:block.index('];')]
-photos = re.findall(r"id:\s*(\d+),\s*src:\s*'([^']+)',\s*alt:\s*'([^']*)',\s*title:\s*'([^']*)'", block)
+photos = re.findall(r"id:\s*(\d+),\s*src:\s*'([^']+)',\s*alt:\s*'([^']*)',\s*title:\s*'([^']*)',\s*album:\s*(\d+)", block)
+EDITION = {'2025': '1ª edição', '2026': '2ª edição'}
 
 os.makedirs(os.path.join(ROOT, 'galeria'), exist_ok=True)
 os.makedirs(os.path.join(ROOT, 'assets/og'), exist_ok=True)
@@ -29,7 +30,7 @@ FONT_TITLE = os.path.join(FONTS, 'MedievalSharp.ttf')
 FONT_CAPS = os.path.join(FONTS, 'Cinzel.ttf')
 FONT_ITALIC = os.path.join(FONTS, 'GentiumBookPlus-Italic.ttf')
 
-def story_jpg(src, title, out):
+def story_jpg(src, title, album, out):
     """Imagem 9:16 para Stories: nebulosa, logo, foto em moldura dourada dupla, título e assinatura."""
     W, H = 1080, 1920
     tmp_photo = out + '.photo.png'
@@ -66,7 +67,7 @@ def story_jpg(src, title, out):
         # textos
         '-gravity', 'north',
         '-font', FONT_CAPS, '-pointsize', '28', '-kerning', '8', '-fill', '#e3b558',
-        '-annotate', f'+0+{text_top - 26}', 'BRUMAS FESTIVAL · 2025',
+        '-annotate', f'+0+{text_top - 26}', f'BRUMAS FESTIVAL · {album}',
         '-font', FONT_TITLE, '-pointsize', '84', '-kerning', '0', '-fill', '#ffffff',
         '-annotate', f'+0+{text_top + 22}', title,
         '-fill', '#c8a050', '-draw', f'rectangle {cx-160},{text_top+144} {cx+160},{text_top+146}',
@@ -79,7 +80,7 @@ def story_jpg(src, title, out):
     subprocess.run(cmd, check=True)
     os.remove(tmp_photo)
 
-for pid, path, alt, title in photos:
+for pid, path, alt, title, album in photos:
     title = re.sub(r'^[.\s]+|[.\s]+$', '', title)
     og = f'assets/og/foto-{pid}.jpg'
     # Prévia 1200x630: a própria foto desfocada ao fundo + foto inteira no centro com filete dourado
@@ -91,10 +92,10 @@ for pid, path, alt, title in photos:
         '-delete', '0', '-gravity', 'center', '-composite',
         '-strip', '-quality', '78', os.path.join(ROOT, og)], check=True)
 
-    story_jpg(path, title, os.path.join(ROOT, f'assets/stories/foto-{pid}.jpg'))
+    story_jpg(path, title, album, os.path.join(ROOT, f'assets/stories/foto-{pid}.jpg'))
 
     t = html.escape(f'{title} · Brumas Festival Medieval')
-    d = html.escape(f'{title} na 1ª edição do Brumas Festival Medieval, em Guapimirim (RJ). A 3ª edição chega em 2027.')
+    d = html.escape(f'{title} na {EDITION.get(album, album)} do Brumas Festival Medieval, em Guapimirim (RJ). A 3ª edição chega em 2027.')
     page = f'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>

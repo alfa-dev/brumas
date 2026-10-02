@@ -12,7 +12,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url('../../assets/galeria-emblema-bg-v2.webp?v=53e694a') right center / cover no-repeat;
+  background: url('../../assets/galeria-emblema-bg-v2.webp?v=83e700f') right center / cover no-repeat;
   opacity: 0.18;
   mix-blend-mode: screen;
   pointer-events: none;
@@ -151,6 +151,80 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   color: rgba(245, 245, 245, 0.7);
+}
+
+/* Abas de edição (2026 em destaque, 2025 acessível) */
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 4px 0 6px;
+}
+
+.gallery-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid rgba(169, 131, 64, 0.45);
+  border-radius: 999px;
+  background: rgba(8, 8, 6, 0.3);
+  color: rgba(245, 245, 245, 0.7);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--color-light);
+    border-color: var(--color-gold);
+  }
+
+  &.is-active {
+    color: var(--color-dark);
+    background: linear-gradient(180deg, #f1cf7a, #c8a050);
+    border-color: #f1cf7a;
+    box-shadow: 0 0 16px rgba(212, 167, 68, 0.4);
+  }
+}
+
+.gallery-tab-badge {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--color-deep-purple);
+  color: #f1cf7a;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+}
+
+.gallery-grid {
+  transition: opacity 0.2s ease;
+
+  &.is-switching {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-tabs {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .gallery-tab {
+    padding: 7px 11px;
+    font-size: 0.66rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .gallery-tab-badge {
+    display: none;
+  }
 }
 
 /* Media Queries */

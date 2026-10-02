@@ -9,7 +9,7 @@
   <title>Brumas - Visualizar Foto</title>
   <meta name="robots" content="noindex, follow">
 
-  <link rel="stylesheet" href="css/styles.css?v=53e694a">
+  <link rel="stylesheet" href="css/styles.css?v=83e700f">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,13 +17,13 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=53e694a"></script>
+  <script src="js/script.js?v=83e700f"></script>
 
-  <link rel="stylesheet" href="css/sections/photo-viewer.css?v=53e694a">
+  <link rel="stylesheet" href="css/sections/photo-viewer.css?v=83e700f">
 </head>
 <body class="pv-body">
-  <video muted loop playsinline preload="none" data-lazy-video id="bg-video" poster="videos/poster-v2.jpg?v=53e694a">
-    <source data-src="videos/bg-v2.mp4?v=53e694a" type="video/mp4">
+  <video muted loop playsinline preload="none" data-lazy-video id="bg-video" poster="videos/poster-v2.jpg?v=83e700f">
+    <source data-src="videos/bg-v2.mp4?v=83e700f" type="video/mp4">
   </video>
   <div class="photo-viewer">
     <div class="pv-topbar">
@@ -107,6 +107,16 @@
       return PHOTOS.find(p => p.id === getPhotoId());
     }
 
+    // Navegação dentro da edição (álbum) da foto atual, na ordem da lista
+    function albumPhotos() {
+      const current = getCurrentPhoto();
+      return current ? PHOTOS.filter(p => p.album === current.album) : [];
+    }
+
+    function albumIndex() {
+      return albumPhotos().findIndex(p => p.id === getPhotoId());
+    }
+
     // Troca de foto: mostra o carregamento, espera a imagem estar pronta (decodificada) e só então troca
     // foto, título e contador juntos, animando o tamanho da moldura (300ms).
     const frame = document.getElementById('photo-frame');
@@ -123,11 +133,9 @@
       return cache.get(src);
     }
 
-    function preloadNeighbors(id) {
-      [id - 1, id + 1].forEach(n => {
-        const p = PHOTOS.find(photo => photo.id === n);
-        if (p) preload(p.src);
-      });
+    function preloadNeighbors() {
+      const list = albumPhotos(), i = albumIndex();
+      [list[i - 1], list[i + 1]].forEach(p => { if (p) preload(p.src); });
     }
 
     async function updatePhoto() {
@@ -151,7 +159,8 @@
       photo.src = currentPhoto.src;
       photo.alt = currentPhoto.title;
       photoTitleElement.textContent = currentPhoto.title;
-      photoCounter.textContent = `${String(currentPhoto.id).padStart(2, '0')} / ${PHOTOS.length}`;
+      photoCounter.textContent = `${String(albumIndex() + 1).padStart(2, '0')} / ${albumPhotos().length}`;
+      document.querySelector('.pv-topbar .pv-eyebrow').textContent = `Galeria · Brumas Festival ${currentPhoto.album}`;
       frame.classList.remove('is-loading', 'is-empty');
 
       if (animate) {
@@ -172,26 +181,27 @@
         }
       }
 
-      preloadNeighbors(currentPhoto.id);
+      preloadNeighbors();
     }
 
     function isFirstPhoto() {
-      return getPhotoId() === 1;
+      return albumIndex() <= 0;
     }
 
     function isLastPhoto() {
-      return getPhotoId() === PHOTOS.length;
+      return albumIndex() === albumPhotos().length - 1;
     }
 
     function navigatePhoto(direction) {
-      let currentIndex = getPhotoId();
+      const list = albumPhotos();
+      let index = albumIndex();
 
-      if      (direction === 'prev' && !isFirstPhoto()) currentIndex--;
-      else if (direction === 'next' && !isLastPhoto()) currentIndex++;
+      if      (direction === 'prev' && !isFirstPhoto()) index--;
+      else if (direction === 'next' && !isLastPhoto()) index++;
       else return;
 
       const newUrl = new URL(window.location.href);
-      newUrl.searchParams.set('id', currentIndex);
+      newUrl.searchParams.set('id', list[index].id);
       window.history.pushState({}, '', newUrl);
       window.dispatchEvent(new Event('brumas:photochange'));
 
@@ -223,7 +233,7 @@
     updateButtons();
   </script>
 
-  <script src="js/photo-share.js?v=53e694a"></script>
+  <script src="js/photo-share.js?v=83e700f"></script>
   <!-- Carregado só depois do "load" para não competir com o carregamento da página -->
   <script>
     window.addEventListener('load', function () {
