@@ -227,6 +227,8 @@
 
 .journey-step {
     position: relative;
+    /* acima do fio dourado (::before/::after da jornada), senão a linha cruza os medalhões */
+    z-index: 1;
     display: grid;
     grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr);
     align-items: center;

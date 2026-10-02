@@ -304,6 +304,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Medalhões do Sobre: hover sem crescer/girar — o `<img>` fica num `.journey-orb` que ganha anel mágico
   girando (conic-gradient mascarado) + halo pulsando, e o JS emite partículas douradas/violeta aleatórias
   (bolinhas e estrelinhas) enquanto o mouse estiver em cima.
+- Fio dourado do Sobre passava por cima dos medalhões (cada passo cria contexto de empilhamento pelo
+  `transform`); `.journey-step` ganhou `z-index: 1`.
 - Scroll lateral corrigido: `.pulsating-mist` da Galeria passava da largura da tela; `section` ganhou
   `overflow-x: clip` (verificado em index, expositores, ingressos e photo-viewer, 1440px e 390px).
 - Hero: "Nos vemos em 2027" reorganizado no padrão do guia (`.hero-info` em `hero.css`: eyebrow, título
