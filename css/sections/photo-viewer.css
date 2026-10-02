@@ -9,7 +9,7 @@
   color: var(--color-light);
 }
 
-/* Névoa em vídeo por cima, bem suave */
+/* Névoa em vídeo por cima da FOTO (hard-light, efeito original); os controles ficam acima dela */
 #bg-video {
   position: fixed;
   inset: 0;
@@ -17,25 +17,34 @@
   height: 100vh;
   object-fit: cover;
   transform: scale(-1);
-  opacity: 0.35;
-  mix-blend-mode: screen;
+  opacity: 0.6;
+  mix-blend-mode: hard-light;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
 }
 
+/* Camadas: foto (1) < névoa em vídeo (2) < controles (3). O .photo-viewer não cria contexto de
+   empilhamento (sem position: fixed, z-index ou opacity próprios), para a névoa poder ficar entre a foto e os controles. */
 .photo-viewer {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
+  /* não usar position: fixed aqui: fixed sempre cria contexto de empilhamento */
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  box-sizing: border-box;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 16px;
   padding: 20px 24px 28px;
+}
+
+.photo-viewer > * {
   animation: pvFadeIn 0.5s ease-out;
 }
 
 /* Barra superior: voltar · eyebrow · fechar */
 .pv-topbar {
+  position: relative;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,6 +90,8 @@
 
 /* Palco da foto, com moldura dourada dupla */
 .pv-stage {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,6 +128,8 @@
 
 /* Legenda + navegação */
 .pv-footer {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;

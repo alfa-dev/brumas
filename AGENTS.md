@@ -424,6 +424,11 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   local serão confirmados nos canais oficiais", atualização Outubro de 2026), HTML e `.md`. Participantes:
   10.1 sem "fazenda" (área rural e de natureza) e e-mail de contato corrigido para brumasfestival@gmail.com.
   Expositores: nova 2.5 (lista de interesse 2027 não é inscrição nem reserva) e numeração 6.5→6.4.
+- Visualizador de fotos: a névoa em vídeo voltou a ficar **por cima** de tudo (`z-index: 2`,
+  `mix-blend-mode: hard-light`, opacidade 0.6, `pointer-events: none`), como na versão original — a fumaça
+  passa sobre a foto. Controles (barra superior, título, navegação) ficam **acima** da névoa (`z-index: 3`,
+  foto em 1, vídeo em 2) com a cor normal; `.photo-viewer` sem `position: fixed`/z-index/opacity para não isolar as camadas (fixed sempre cria
+  contexto de empilhamento).
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3
