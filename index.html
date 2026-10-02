@@ -60,11 +60,6 @@
       "@type": "Organization",
       "name": "Brumas Festival Medieval",
       "url": "https://brumasfestival.com.br/"
-    },
-    "offers": {
-      "@type": "Offer",
-      "url": "https://brumasfestival.com.br/ingressos.html",
-      "availability": "https://schema.org/InStock"
     }
   }
   </script>
@@ -95,7 +90,7 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="css/styles.css?v=62bb27e">
+  <link rel="stylesheet" href="css/styles.css?v=afce5c7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,8 +98,8 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=62bb27e"></script>
-  <script src="js/components.js?v=62bb27e"></script>
+  <script src="js/script.js?v=afce5c7"></script>
+  <script src="js/components.js?v=afce5c7"></script>
 </head>
 
 <body>
@@ -115,10 +110,10 @@
     <section id="hero" class="parallax-section">
 
       <h1 style="background-image: url(assets/brumas_logo.svg);">Brumas Festival Medieval</h1>
-      <div class="edition-badge">2ª edição 2026: no limiar das Brumas</div>
-      <time datetime="2026-09-19" class="event-date">19 de Setembro de 2026</time>
-      <div class="event-time">13h às 22h</div>
-      <a href="https://brumas-front-end.vercel.app/ingressos.html" class="cta-button mist-glow">Garantir Ingresso</a>
+      <div class="edition-badge">2ª edição 2026 · Obrigado por atravessar as Brumas</div>
+      <time datetime="2027" class="event-date">Nos vemos em 2027</time>
+      <div class="event-time">3ª edição · data em breve</div>
+      <a href="#2027" class="cta-button mist-glow">Próxima Edição</a>
 
       <div class="video-container">
         <video autoplay muted loop playsinline id="bg-video" poster="videos/poster.png">
@@ -204,13 +199,13 @@
       <div class="mist-layer"></div>
 <div class="section-container">
         <div class="section-header">
-          <h2 class="illuminated-heading gold-heading">Expositores 2026</h2>
+          <h2 class="illuminated-heading gold-heading">Expositores</h2>
           <div class="medieval-divider"></div>
         </div>
         <div class="expositores-cta-container">
-          <p>As inscrições para expositores estão abertas. Traga sua arte, ofício ou gastronomia ao mercado medieval do Brumas 2026. Vagas limitadas e sujeitas à aprovação prévia dos organizadores.</p>
+          <p>Obrigado a todos os mercadores e artesãos que deram vida ao mercado medieval do Brumas 2026. Quer trazer sua arte, ofício ou gastronomia para a edição de 2027? Deixe seu interesse registrado e avisaremos quando as inscrições abrirem.</p>
           <a href="expositores.html" class="cta-button mist-glow">
-            <i class="fa-solid fa-store" style="margin-right: 10px;"></i>Quero ser Expositor
+            <i class="fa-solid fa-store" style="margin-right: 10px;"></i>Quero Expor em 2027
           </a>
         </div>
       </div>
@@ -281,17 +276,33 @@
       </div>
     </section>
 
-    <!-- Ingressos Section -->
-    <section id="ingressos" class="dark-section">
-      <header>
-        <h2 class="illuminated-heading">Ingressos</h2>
-        <div class="tickets-open-badge"><i class="fa-solid fa-circle-check"></i> Vendas Abertas · Edição 2026</div>
-      </header>
+    <!-- Próxima Edição Section -->
+    <section id="2027" class="section dark-section">
+      <div class="mist-layer"></div>
+      <div class="pulsating-mist"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <h2 class="illuminated-heading">Brumas 2027</h2>
+        </div>
 
-      <!-- tickets-->
-      <tickets-component></tickets-component>
-
-      <p class="ticket-note" style="margin-top: 20px; text-align: center; color: white;"> <i class="fa-solid fa-circle-info" style="margin-right: 10px;"></i> Os valores informados são exclusivos para vendas antecipadas e pagamentos via Pix. <br> Compras com cartão de crédito (à vista ou parcelado) estão sujeitas aos encargos da operadora.</p>
+        <div class="coming-soon-container">
+          <div class="medieval-scroll">
+            <div class="scroll-top"></div>
+            <div class="scroll-content">
+              <div class="coming-soon-text">
+                <h3>As Brumas Voltarão</h3>
+                <p>A 2ª edição chegou ao fim, e o reino agradece a cada viajante, mercador, artista e guerreiro que esteve conosco em 19 de setembro de 2026.</p>
+                <div class="medieval-divider"></div>
+                <p>Em 2027 o portal se abrirá novamente para a 3ª edição do Brumas Festival Medieval. Data, local e ingressos serão anunciados em breve pelos arautos do reino: segui-nos nas redes para ser o primeiro a saber.</p>
+                <a href="https://www.instagram.com/brumasfestivalmedieval/" target="_blank" class="cta-button mist-glow" style="animation: none; opacity: 1; margin-top: 20px;">
+                  <i class="fa-brands fa-instagram" style="margin-right: 10px;"></i>Acompanhar Novidades
+                </a>
+              </div>
+            </div>
+            <div class="scroll-bottom"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contato Section - Versão Simplificada -->
