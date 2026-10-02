@@ -433,6 +433,68 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   de trocar; enquanto isso a atual esmaece e aparece um **loader dourado/violeta** (só se demorar >120ms).
   Foto, título e contador trocam **juntos**; a moldura **anima o tamanho em 300ms** (FLIP com width/height,
   `.is-resizing`). Fotos vizinhas são pré-carregadas; cliques rápidos usam só o último pedido (token).
+- **Transição entre páginas** (`css/base.css`): View Transitions entre documentos
+  (`@view-transition { navigation: auto }`). A página antiga some com desfoque e leve redução (0,35s) e a
+  nova surge subindo do desfoque (0,5s); o menu fixo (`header-component`, `view-transition-name:
+  site-header`) não anima. Vale para toda navegação interna (Chrome/Edge 126+, Safari 18.2+; Firefox
+  navega normal). Desligada com `prefers-reduced-motion`. Experimento antigo comentado foi removido.
+- **Título que viaja entre páginas:** elementos com `data-morph="nome"` nas duas páginas se transformam um no
+  outro na transição (index `.exhibitors-info h3` "Mercadores e Artesãos" → banner `h1` de
+  `expositores.html`, `data-morph="exp-title"`). JS em `js/script.js` (`pageswap`/`pagereveal`): só dá nome
+  aos que estão visíveis nas duas pontas e limpa ao terminar. Para novos pares, basta o mesmo `data-morph`.
+- Banner de `expositores.html` com **placeholder em CSS** (gradientes com as cores da foto: osso, aço,
+  couro, tecido areia) por baixo da imagem, visível enquanto ela carrega.
+- **Âncoras abrem direto na seção:** `scroll-behavior: smooth` só entra depois do `load`
+  (`html.smooth-scroll`, posto pelo `js/script.js`); antes, `index.html#expositores` rolava desde o topo.
+- Sobre: medalhão do pergaminho trocado (`medallion-scroll-v2.webp`, com estrelas saindo do anel; classe
+  `.journey-medallion--starred` aumenta a imagem para o anel ficar do tamanho dos outros).
+- **Autoria:** metatags `author`/`creator`, `link rel="author"` (X) e `twitter:creator` (@alfa_dev) em todas
+  as páginas; `creator` (Person: Rafael Lopes · Alfa Dev, X, e-mail, telefone) no JSON-LD da home. Faixa
+  **"Powered by Alfa Dev Tecnologia"** no fim de todas as páginas com `js/components.js` (incluídos nos
+  termos): só um link discreto para https://alfadev.com.br/ (o cartão com contatos foi retirado a pedido). Estilos `.dev-credit` em `css/layout.css`.
+- **Foto encantada** (`js/enchant.js`, genérico para `[data-enchant]`): na foto da seção Expositores, luz
+  dourada/violeta girando pela moldura (`@property --enchant-angle` + conic-gradient mascarado), halo e
+  partículas saindo das bordas (reusa `.orb-particle`). Para usar em outro lugar: `data-enchant` + CSS do
+  `::after`/`.is-enchanted` (ver `css/sections/exhibitors.css`).
+- Sobre — trilhas pontilhadas **aleatórias e vivas**: 4 traçados sorteados de 3 tipos — **suave** (2 curvas,
+  onda larga), **sinuoso** (4–5 curvas, mais amplitude) e **laço** (uma volta no meio; no máximo um por vez) —
+  com intensidade de tinta sorteada por ciclo (opacity 0.3–1), que se desenham do início ao fim e logo se apagam do início ao fim, em
+  ritmo linear, com pausa aleatória entre ciclos. Animadas pela **Web Animations API** (máscara SVG com
+  `pathLength="1000"` e `stroke-dashoffset` 1010 → 0 → −1010). **Nunca piscam:** traçado e duração só
+  mudam entre ciclos, com a linha apagada (mudar duração/atraso de animação CSS no meio do ciclo fazia a
+  linha saltar). Pausam fora da tela.
+- Local: Instagram do local como 3º item da lista de detalhes (ícone em círculo dourado + @handle)
+  (`@caminhodasmontanhas_guapi`, handle vindo da pesquisa web — não verificado por exigir login).
+- Link "Início" do menu (`index.html#inicio`) não funcionava: não existia `id="inicio"` (o hero é `#hero`).
+  Criada a âncora `<div id="inicio">` no topo do `<main>`.
+- **Flashes brancos em transições:** o `html` não tinha fundo próprio e as transições de página deslocavam
+  (translateY 24px) e encolhiam (scale .98) as páginas, abrindo frestas por onde aparecia branco. Agora as
+  transições usam só opacidade + desfoque. (Um `html { background }` escuro chegou a ser colocado e foi
+  **revertido**: ele escondia o vídeo de fumaça da capa, que tem z-index negativo. Nunca dar fundo ao `html`.) Regra: nunca
+  deslocar/encolher o `root` em view transitions.
+- **Retângulo branco no topo ao abrir uma foto:** o menu tem `view-transition-name: site-header` (fica parado
+  entre páginas), mas o visualizador não tem menu → o "fantasma" do menu ficava sobre a barra do
+  visualizador, e o `backdrop-filter: blur` dele não é capturado em transições (saía branco). Correção:
+  menu sem `backdrop-filter` (fundo opaco `rgba(10,7,16,.88)`) e old/new do `site-header` com fade (iguais
+  quando o menu existe nas duas páginas, então ele continua parado). Regra: **nada com `backdrop-filter`
+  em elementos com `view-transition-name`**.
+- Âncoras do menu paravam com o título colado/sob o menu fixo: `html { scroll-padding-top: 70px }` (50px no
+  celular, altura do menu). Se a altura do menu mudar, ajustar esse valor.
+- **Divisor sumindo (só em `file://`):** `css/base.css` usava `url('../../assets/...')` (só funciona por http,
+  onde `..` para na raiz). Corrigido para `../assets/`; o pre-commit agora **falha** se `css/*.css` tiver
+  `../../`.
+- Formulário de expositores: **estado de erro visível** — ao tentar enviar, cada campo inválido fica vermelho,
+  treme e ganha mensagem abaixo (obrigatório, e-mail inválido, WhatsApp incompleto via `pattern`, aceite dos
+  termos); some ao corrigir (`js/merchant-form.js`, `.has-error`/`.exp-error`).
+- Aceite dos termos com efeito mágico ao marcar (brilho dourado + partículas, `.is-sealed`).
+- **Loading em botões que trocam de página:** `data-loading-link` → ícone vira spinner, largura travada,
+  restaura no `pageshow` (voltar). Usado em "Quero Expor em 2027" da home.
+- **"Brancão" intermitente nas trocas de página (causa real):** a transição era cruzada (a nova página surgia
+  antes de a antiga sumir), então as seções claras (pergaminho) da página antiga apareciam como manchas
+  brancas e desfocadas sobre a nova — só quando havia seção clara na tela, por isso intermitente.
+  Agora é **sequencial**: antiga some em 0,25s (só opacidade), tela fica escura, nova surge de 0,25s a
+  0,65s. Verificado quadro a quadro no Chrome com GPU (galeria→foto, foto→galeria, home→expositores).
+  Regra: **nunca sobrepor old/new do root**.
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3

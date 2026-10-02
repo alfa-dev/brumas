@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = 'c735a39';
+const BUILD = '795ad15';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -28,6 +28,35 @@ window.BRUMAS_CSS_READY = new Promise(resolve => {
   }
   if (document.readyState === 'complete') check();
   else window.addEventListener('load', check);
+});
+
+// Feedback de carregamento em botões que levam a outra página ([data-loading-link]): ícone vira um
+// spinner e a largura do botão fica travada (não muda de tamanho). Desfaz ao voltar pelo histórico.
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[data-loading-link]');
+  if (!link || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+  link.style.width = `${link.getBoundingClientRect().width}px`;
+  link.classList.add('is-loading');
+  link.setAttribute('aria-busy', 'true');
+  const icon = link.querySelector('i');
+  if (icon) {
+    icon.dataset.originalClass = icon.className;
+    icon.className = 'fa-solid fa-circle-notch fa-spin';
+  }
+});
+window.addEventListener('pageshow', () => {
+  document.querySelectorAll('a[data-loading-link].is-loading').forEach(link => {
+    link.classList.remove('is-loading');
+    link.removeAttribute('aria-busy');
+    link.style.width = '';
+    const icon = link.querySelector('i');
+    if (icon && icon.dataset.originalClass) icon.className = icon.dataset.originalClass;
+  });
+});
+
+// Rolagem suave só após o "load" (ver html.smooth-scroll em base.css)
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => document.documentElement.classList.add('smooth-scroll'));
 });
 
 // Vídeos só começam a baixar depois que a página inteira terminou de carregar (evento "load").
@@ -66,6 +95,41 @@ function watchOffscreen() {
 }
 if (document.readyState === 'complete') setTimeout(watchOffscreen, 0);
 else window.addEventListener('load', () => setTimeout(watchOffscreen, 0));
+
+// Transição entre páginas — elementos "gêmeos" ([data-morph="nome"] nas duas páginas) se transformam um
+// no outro. Só entram no efeito se estiverem visíveis na tela, nas duas pontas; senão a página apenas
+// faz a transição padrão (névoa). Os nomes valem só durante a transição.
+(function () {
+  const KEY = 'brumas-morph';
+  const visible = el => {
+    const r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight && r.width > 0;
+  };
+  const clear = () => document.querySelectorAll('[data-morph]').forEach(el => { el.style.viewTransitionName = ''; });
+
+  window.addEventListener('pageswap', e => {
+    if (!e.viewTransition) return;
+    const names = [];
+    document.querySelectorAll('[data-morph]').forEach(el => {
+      if (!visible(el)) return;
+      el.style.viewTransitionName = el.dataset.morph;
+      names.push(el.dataset.morph);
+    });
+    try { sessionStorage.setItem(KEY, names.join(',')); } catch (err) {}
+  });
+
+  window.addEventListener('pagereveal', e => {
+    clear();
+    let names = [];
+    try { names = (sessionStorage.getItem(KEY) || '').split(',').filter(Boolean); sessionStorage.removeItem(KEY); } catch (err) {}
+    if (!e.viewTransition || !names.length) return;
+    names.forEach(name => {
+      const el = document.querySelector(`[data-morph="${name}"]`);
+      if (el && visible(el)) el.style.viewTransitionName = name;
+    });
+    e.viewTransition.finished.finally(clear);
+  });
+})();
 
 const PRICES = {
   ticket: {

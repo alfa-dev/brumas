@@ -80,6 +80,17 @@
     }
 }
 
+/* Instagram do local: item da lista de detalhes, como link discreto */
+.location-insta {
+    color: rgba(245, 245, 245, 0.85);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--color-gold-light);
+    }
+}
+
 .location-actions {
     display: flex;
     flex-wrap: wrap;
@@ -130,6 +141,18 @@
 }
 
 /* Ghost: no hover ganha o fundo roxo do botão principal */
+/* Carregando (js/script.js): sem efeitos de hover, cursor de espera; largura travada pelo JS */
+.map-button.is-loading {
+    cursor: progress;
+    justify-content: center;
+    transform: none;
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+
+    & i {
+        color: var(--color-gold-light);
+    }
+}
+
 .map-button--ghost {
     background-color: transparent;
 

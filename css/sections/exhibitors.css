@@ -93,6 +93,7 @@
 /* Foto emoldurada (mesma moldura dupla do mapa da seção Local) */
 .exhibitors-photo {
     position: relative;
+    transition: box-shadow 0.4s ease;
     margin: 0;
     padding: 8px;
     border: 1px solid var(--color-gold);
@@ -117,6 +118,51 @@
         object-fit: cover;
         border-radius: 3px;
     }
+}
+
+/* Efeito "Encantado" na foto (js/enchant.js): luz dourada/violeta percorrendo a moldura + halo, sem
+   aumentar a foto; partículas usam .orb-particle (about.css) */
+@property --enchant-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.exhibitors-photo::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 9px;
+    padding: 3px;
+    background: conic-gradient(from var(--enchant-angle), transparent 0 10%, var(--color-gold-light) 18%, transparent 30% 45%,
+        rgba(176, 120, 230, 0.95) 55%, transparent 66% 78%, var(--color-gold-light) 88%, transparent 96%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    opacity: 0;
+    transition: opacity 0.4s ease, box-shadow 0.4s ease;
+    pointer-events: none;
+}
+
+.exhibitors-photo.is-enchanted {
+    box-shadow: 0 18px 40px rgba(39, 13, 79, 0.18), 0 0 26px rgba(212, 175, 55, 0.45), 0 0 50px rgba(176, 120, 230, 0.25);
+
+    &::after {
+        opacity: 1;
+        animation: enchantSpin 2.4s linear infinite;
+    }
+
+    & img {
+        filter: brightness(1.06) saturate(1.08);
+    }
+}
+
+.exhibitors-photo img {
+    transition: filter 0.4s ease;
+}
+
+@keyframes enchantSpin {
+    to { --enchant-angle: 360deg; }
 }
 
 /* Media Queries */

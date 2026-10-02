@@ -14,8 +14,8 @@ header-component a {
     justify-content: space-between;
     align-items: center;
     padding: 0px 5%;
-    background-color: rgba(8, 8, 6, 0.6);
-    backdrop-filter: blur(10px);
+    /* sem backdrop-filter: ele não é capturado nas transições de página (virava um retângulo branco) */
+    background-color: rgba(10, 7, 16, 0.88);
     border-bottom: 2px solid var(--color-gold);
     box-shadow: 0 5px 20px rgba(0,0,0, 0.3), 0 15px 60px rgba(0,0,0, 0.6);
 }
@@ -448,5 +448,31 @@ footer {
         font-size: 0.75rem;
         line-height: 1.5;
         color: rgba(245, 245, 245, 0.5);
+    }
+}
+
+/* Faixa de crédito do desenvolvedor (fim da página) */
+.dev-credit {
+    background: #050403;
+    border-top: 1px solid rgba(169, 131, 64, 0.15);
+    text-align: center;
+    font-family: var(--font-text);
+    font-size: 0.7rem;
+
+    & a {
+        display: inline-block;
+        padding: 6px 12px;
+        color: rgba(245, 245, 245, 0.4);
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--color-gold-light);
+        }
+    }
+
+    & strong {
+        font-weight: 400;
+        letter-spacing: 1px;
     }
 }

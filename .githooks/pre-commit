@@ -52,6 +52,10 @@ if grep -nE "(href=\"css/[^\"?]+\.css\"|src=\"js/[^\"?]+\.js\")" $(find . -maxde
 fi
 grep -q "^const BUILD = '$VERSION';" js/script.js || { echo "[pre-commit] ERRO: BUILD ausente em js/script.js"; FAIL=1; }
 grep -q -- "--build: \"$VERSION\";" css/base.css || { echo "[pre-commit] ERRO: --build ausente em css/base.css"; FAIL=1; }
+# CSS da raiz de css/ não pode subir dois níveis (funciona por http, quebra por file://)
+if grep -nE "url\('?\.\./\.\./" css/*.css; then
+  echo "[pre-commit] ERRO: url('../../') em css/*.css — use '../assets/' (arquivos da raiz de css/)"; FAIL=1
+fi
 [ "$FAIL" -eq 0 ] || exit 1
 
 # 6) Aviso: imagens/vídeos substituídos mantendo o mesmo nome. Referências versionadas se atualizam, mas

@@ -16,7 +16,16 @@
     color: var(--color-light);
     background:
         linear-gradient(180deg, rgba(26, 8, 52, 0.55), rgba(26, 8, 52, 0.85)),
-        url('../../assets/pictues/brumas_mercado_laminas.webp?v=c735a39') center 60% / cover no-repeat;
+        url('../../assets/pictues/brumas_mercado_laminas.webp?v=795ad15') center 60% / cover no-repeat,
+        /* Placeholder enquanto a foto carrega: manchas com as cores da própria foto (couro, lâminas de
+           aço, osso claro, tecido cor de areia), por baixo do mesmo véu roxo */
+        linear-gradient(165deg, transparent 30%, rgba(170, 170, 170, 0.5) 31% 37%, transparent 38%),
+        linear-gradient(170deg, transparent 45%, rgba(140, 90, 60, 0.55) 46% 54%, transparent 55%),
+        radial-gradient(ellipse 14% 45% at 7% 30%, rgba(225, 222, 214, 0.95), transparent 70%),
+        radial-gradient(ellipse 30% 50% at 62% 22%, rgba(150, 150, 150, 0.75), transparent 70%),
+        radial-gradient(ellipse 40% 80% at 88% 45%, rgba(206, 170, 120, 0.95), transparent 70%),
+        radial-gradient(ellipse 35% 60% at 35% 70%, rgba(124, 98, 70, 0.9), transparent 70%),
+        linear-gradient(90deg, #6f5a45 0%, #5f4d43 40%, #7d6a5c 65%, #a68866 100%);
     border-bottom: 2px solid var(--color-gold);
     overflow: hidden;
 }
@@ -35,6 +44,7 @@
 }
 
 .exp-banner h1 {
+    margin-inline: auto;
     font-family: var(--font-medieval);
     font-size: 3rem;
     line-height: 1.15;
@@ -401,6 +411,82 @@
     &[disabled] {
         opacity: 0.7;
         cursor: wait;
+    }
+}
+
+/* Aceite dos termos "selado": brilho dourado no checkbox + explosão de partículas (js/merchant-form.js) */
+.exp-check {
+    position: relative;
+
+    & input {
+        transition: box-shadow 0.4s ease, transform 0.3s ease;
+    }
+
+    &.is-sealed input {
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35), 0 0 14px rgba(212, 175, 55, 0.6), 0 0 26px rgba(176, 120, 230, 0.35);
+        animation: sealPop 0.45s ease;
+    }
+}
+
+.exp-check-burst {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes sealPop {
+    40% { transform: scale(1.25); }
+}
+
+/* Estado de erro (js/merchant-form.js marca .has-error após tentativa de envio) */
+.exp-field.has-error,
+.exp-check.has-error {
+    & label,
+    & .exp-label {
+        color: #8a1c1c;
+
+        & i {
+            color: #b42323;
+        }
+    }
+
+    & input:not([type="checkbox"]):not([type="radio"]),
+    & textarea,
+    & select {
+        border-color: #b42323;
+        background-color: #fff6f4;
+        box-shadow: 0 0 0 3px rgba(180, 35, 35, 0.12);
+        animation: fieldShake 0.35s ease;
+    }
+
+    & input[type="checkbox"] {
+        outline: 2px solid #b42323;
+        outline-offset: 2px;
+    }
+}
+
+.exp-error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0 0;
+    font-size: 0.85rem;
+    font-family: var(--font-text);
+    color: #8a1c1c;
+}
+
+@keyframes fieldShake {
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .exp-field.has-error input,
+    .exp-field.has-error textarea,
+    .exp-field.has-error select {
+        animation: none;
     }
 }
 

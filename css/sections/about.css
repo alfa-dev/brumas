@@ -44,11 +44,22 @@
 
 .map-trail {
     fill: none;
-    stroke: rgba(92, 52, 22, 0.2);
+    /* tinta mais forte na base; o JS sorteia opacity 0.3–1 a cada ciclo (umas linhas mais claras, outras
+       mais marcadas) */
+    stroke: rgba(92, 52, 22, 0.45);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-dasharray: 2 10;
-    opacity: 0.7;
+}
+
+/* Máscara que "desenha" a trilha (animada pelo js/about-journey.js com a Web Animations API). O caminho
+   tem pathLength="1000"; a lacuna (1100) é maior que o traço, então começo e fim do ciclo ficam vazios */
+.map-trail-reveal {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 12;
+    stroke-dasharray: 1000 1100;
+    stroke-dashoffset: 1010;
 }
 
 .map-rose {
@@ -329,6 +340,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .map-trail-reveal {
+        stroke-dashoffset: 0;
+    }
+
     .map-rose-spin, .magic-sigil-outer, .magic-sigil-inner, .magic-hex,
     .journey-orb::before {
         animation: none;
@@ -406,6 +421,14 @@
     width: 100%;
     height: auto;
     filter: drop-shadow(0 8px 16px rgba(39, 13, 79, 0.28));
+}
+
+/* Medalhão com estrelas saindo do anel (pergaminho): a imagem é maior que o círculo, então cresce e
+   recua para o anel ficar do mesmo tamanho dos outros e as estrelas passarem da borda */
+.journey-medallion--starred {
+    width: 119.5%;
+    max-width: none;
+    margin: -9.75%;
 }
 
 /* Partículas emitidas pelo orbe */

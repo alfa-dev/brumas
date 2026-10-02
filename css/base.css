@@ -1,7 +1,7 @@
 /* Carimbo de build (atualizado pelo pre-commit). O js/script.js compara com o BUILD dele e, se divergirem
    (CSS antigo em cache), recarrega as folhas de estilo. Não editar à mão. */
 :root {
-  --build: "c735a39";
+  --build: "795ad15";
 }
 
 /* Variáveis de Cores e Fontes */
@@ -57,7 +57,24 @@
   box-sizing: border-box;
 }
 
+/* Rolagem suave só depois do carregamento (classe posta pelo js/script.js): assim um link com âncora
+   (ex.: index.html#expositores) abre direto na seção, sem rolar desde o topo */
+/* ATENÇÃO: não dar background ao <html>. Sem ele, o fundo do <body> vira o fundo da página inteira; com
+   ele, o fundo do body passa a ser pintado por cima de tudo que tem z-index negativo — e o vídeo de
+   fumaça da capa (.video-container, z-index: -1) some. As frestas escuras nas transições ficam por conta
+   do ::view-transition { background } abaixo. */
 html {
+  /* Âncoras (menu, #expositores etc.) param abaixo do menu fixo, sem espremer o título da seção */
+  scroll-padding-top: 70px;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 50px;
+  }
+}
+
+html.smooth-scroll {
   scroll-behavior: smooth;
 }
 
@@ -66,8 +83,6 @@ body {
   background-color: var(--color-parchment);
   color: var(--color-dark);
   line-height: 1.6;
-
-  view-transition-name: page;
 }
 
 h1,
@@ -153,11 +168,11 @@ section:not(.dark-section):not(#hero) {
 }
 
 .dark-section .medieval-divider {
-  background-image: url('../../assets/medieval_divider_white.svg?v=c735a39');
+  background-image: url('../assets/medieval_divider_white.svg?v=795ad15');
 }
 
 .dark-section .medieval-scroll .medieval-divider {
-  background-image: url('../../assets/medieval_divider.svg?v=c735a39');
+  background-image: url('../assets/medieval_divider.svg?v=795ad15');
 }
 
 .section-container {
@@ -200,7 +215,7 @@ section:not(.dark-section):not(#hero) {
 
   /* background-image: linear-gradient(to top, #00000022 0%, #00000022 100%); */
   background: radial-gradient(circle, #ffffff 0%, #ffffff 70%, #eaeaea 100%);
-  background-image: url('../assets/papiro_texture.jpg?v=c735a39');
+  background-image: url('../assets/papiro_texture.jpg?v=795ad15');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -216,7 +231,7 @@ section:not(.dark-section):not(#hero) {
   width: 105%;
   height: 20px;
   transform: translateX(-2%);
-  background-image: url('../assets/papiro_texture.jpg?v=c735a39');
+  background-image: url('../assets/papiro_texture.jpg?v=795ad15');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -268,87 +283,90 @@ section:not(.dark-section):not(#hero) {
 
 
 
-/*
+/* ---------- Transição entre páginas (View Transitions entre documentos) ----------
+   Ativa em navegações dentro do site (ex.: index ↔ expositores). Chrome/Edge 126+ e Safari 18.2+;
+   nos demais a navegação é normal. O menu fixo não anima (fica parado entre as páginas); o conteúdo
+   antigo some na névoa e o novo surge dela. */
+@view-transition {
+  navigation: auto;
+}
 
+header-component {
+  view-transition-name: site-header;
+}
 
+::view-transition-group(site-header) {
+  animation: none;
+}
 
-@keyframes shrink {
-	to {
-		scale: 0.8;
-		opacity: 0.5;
-	}
+/* Quando o menu existe só numa das páginas (ex.: index → visualizador de fotos), ele some/aparece com a
+   página em vez de ficar "fantasma" por cima; quando existe nas duas, as duas imagens são iguais e ele
+   continua parado */
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
 }
-@keyframes grow {
-	from {
-		scale: 0.8;
-		opacity: 0.5;
-	}
+
+::view-transition-old(site-header):only-child {
+  animation: brumasPageOut 0.25s ease-in both;
 }
-@keyframes slide-in {
-	from {
-		translate: 100vw 0;
-	}
-}
-@keyframes slide-out {
-	to {
-		translate: 100vw 0;
-	}
-}
-@keyframes scale-up {
-	from {
-		scale: 0;
-	}
-}
-@keyframes scale-down {
-	to {
-		scale: 0;
-	}
-}
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-}
-@keyframes fade-out {
-	to {
-		opacity: 0;
-	}
+
+::view-transition-new(site-header):only-child {
+  animation: brumasPageIn 0.4s ease-out 0.25s both;
 }
 
 ::view-transition {
-	background: black;
+  background: var(--color-dark);
 }
 
-:root {
-	view-transition-name: none;
-}
-body {
-	view-transition-name: page;
-}
-
-::view-transition-group(page) {
-	animation-duration: 0.7s;
+/* Sequencial, nunca cruzado: a página antiga some POR COMPLETO no escuro e só então a nova surge. Se as
+   duas aparecem juntas, as áreas claras (pergaminho) da antiga viram "manchas brancas" sobre a nova. */
+::view-transition-old(root) {
+  animation: brumasPageOut 0.25s ease-in both;
 }
 
-:root[data-transition="reload"] {
-	&::view-transition-old(page) {
-		display: none;
-	}
-	&::view-transition-new(page) {
-		animation-name: fade-in, scale-up;
-	}
-} */
+::view-transition-new(root) {
+  animation: brumasPageIn 0.4s ease-out 0.25s both;
+}
 
-/* :root[data-transition="pop"] {
-	&::view-transition-old(page) {
-		animation-name: slide-out;
-		z-index: 1;
-	}
-	&::view-transition-new(page) {
-		animation-name: grow;
-		transform-origin: 100% 50%;
-	}
-} */
+/* Só opacidade + desfoque: sem deslocar nem encolher as páginas, para nunca abrir fresta nas bordas */
+@keyframes brumasPageOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes brumasPageIn {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+/* Elementos gêmeos ([data-morph], ver js/script.js): o título viaja de uma página para a outra,
+   mudando de posição, tamanho e cor */
+[data-morph] {
+  width: fit-content;
+}
+
+::view-transition-group(exp-title) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(exp-title),
+::view-transition-new(exp-title) {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  animation-duration: 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
 
 /* Desempenho: seções fora da tela pausam animações contínuas (classe aplicada pelo js/script.js) */
 .is-offscreen,

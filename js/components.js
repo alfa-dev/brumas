@@ -23,7 +23,7 @@ class HeaderComponent extends HTMLElement {
         <nav class="navbar">
           <div class="logo">
             <a href="index.html">
-              <img src="assets/b_fundo_escuro.svg?v=c735a39" alt="Brumas Logo">
+              <img src="assets/b_fundo_escuro.svg?v=795ad15" alt="Brumas Logo">
             </a>
           </div>
           <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -70,14 +70,14 @@ class FooterComponent extends HTMLElement {
       <footer>
         ${['left', 'right'].map(side => `
           <div class="footer-banner footer-banner--${side}" aria-hidden="true">
-            <video muted loop playsinline preload="none" data-lazy-video poster="videos/estandarte-footer-poster.jpg?v=c735a39">
-              <source data-src="videos/estandarte-footer.mp4?v=c735a39" type="video/mp4">
+            <video muted loop playsinline preload="none" data-lazy-video poster="videos/estandarte-footer-poster.jpg?v=795ad15">
+              <source data-src="videos/estandarte-footer.mp4?v=795ad15" type="video/mp4">
             </video>
           </div>
         `).join('')}
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="assets/b_fundo_escuro.svg?v=c735a39" alt="Brumas Logo">
+                <img src="assets/b_fundo_escuro.svg?v=795ad15" alt="Brumas Logo">
                 <p>Brumas - Festival Medieval</p>
             </div>
             <div class="footer-links">
@@ -266,6 +266,18 @@ class PhotoGallery extends HTMLElement {
   }
 }
 
+
+// Faixa de crédito do desenvolvedor: fica no fim da página (depois do rodapé e dos organizadores),
+// com um link discreto para o site da Alfa Dev.
+function addDevCredit() {
+  if (document.querySelector('.dev-credit')) return;
+  const credit = document.createElement('div');
+  credit.className = 'dev-credit';
+  credit.innerHTML = `<a href="https://alfadev.com.br/" target="_blank" rel="noopener">Powered by <strong>Alfa Dev Tecnologia</strong></a>`;
+  document.body.appendChild(credit);
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addDevCredit);
+else addDevCredit();
 
 // Registrar o componente
 customElements.define('header-component', HeaderComponent);

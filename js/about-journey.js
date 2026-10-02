@@ -5,10 +5,44 @@
   const SVG_NS = 'http://www.w3.org/2000/svg';
 
   // Trilhas de tinta (coordenadas no viewBox 1200x900) e lugares do mapa
-  const TRAILS = [
-    'M -40 760 C 160 700, 220 560, 380 600 S 560 760, 700 640 S 860 420, 1000 470 S 1180 560, 1260 500',
-    'M 1240 120 C 1060 160, 1000 300, 840 260 S 620 90, 470 170 S 260 360, 120 300 S -20 220, -60 260'
-  ];
+  // Trilhas pontilhadas aleatórias (viewBox 1200x900): cada uma se desenha linearmente, some do início para
+  // o fim e renasce com outro traçado, outra duração e outro atraso
+  const TRAIL_COUNT = 4;
+  const rand = (min, max) => min + Math.random() * (max - min);
+  // Traçados: "suave" (poucas curvas, ondas largas), "sinuoso" (mais curvas, mais amplitude) e "laço"
+  // (uma volta no meio do caminho). Curvas ligadas por "S" continuam a tangente: nada de quinas.
+  let loopActive = false;
+  function randomTrail(kind) {
+    const fromLeft = Math.random() < 0.5;
+    const dir = fromLeft ? 1 : -1;
+    const segments = kind === 'suave' ? 2 : kind === 'sinuoso' ? 4 + Math.floor(Math.random() * 2) : 2;
+    const amp = kind === 'suave' ? 90 : kind === 'sinuoso' ? 210 : 120;
+    const step = 1360 / segments;
+    const handle = step * 0.45;
+    let x = fromLeft ? -80 : 1280;
+    let y = rand(160, 740);
+    let d = `M ${x.toFixed(0)} ${y.toFixed(0)}`;
+    for (let i = 0; i < segments; i++) {
+      const nx = x + dir * step;
+      const ny = Math.min(820, Math.max(80, y + rand(-amp, amp)));
+      if (i === 0) d += ` C ${(x + dir * handle).toFixed(0)} ${(y + rand(-40, 40)).toFixed(0)}, ${(nx - dir * handle).toFixed(0)} ${ny.toFixed(0)}, ${nx.toFixed(0)} ${ny.toFixed(0)}`;
+      else d += ` S ${(nx - dir * handle).toFixed(0)} ${ny.toFixed(0)}, ${nx.toFixed(0)} ${ny.toFixed(0)}`;
+      // laço: no fim do 1º trecho (meio da tela), dá uma volta para cima e segue em frente
+      if (kind === 'laço' && i === 0) {
+        const r = rand(55, 85);
+        const up = Math.random() < 0.5 ? -1 : 1;
+        const X = v => (nx + dir * v * r).toFixed(0);
+        const Y = v => (ny + up * v * r).toFixed(0);
+        d += ` C ${X(1.1)} ${Y(0)}, ${X(1.5)} ${Y(1.9)}, ${X(0.4)} ${Y(2)}`;
+        d += ` C ${X(-0.6)} ${Y(2.1)}, ${X(-0.7)} ${Y(0.6)}, ${X(0.3)} ${Y(0.1)}`;
+        d += ` C ${X(0.9)} ${Y(-0.2)}, ${X(1.6)} ${Y(-0.1)}, ${X(2.2)} ${Y(0)}`;
+        x = nx + dir * 2.2 * r; y = ny;
+        continue;
+      }
+      x = nx; y = ny;
+    }
+    return d;
+  }
   // Constelações (pontos ligados por linhas finas que cintilam)
   const CONSTELLATIONS = [
     [[930, 120], [990, 90], [1050, 130], [1100, 105], [1140, 160]],
@@ -33,7 +67,51 @@
   function buildMap(container) {
     // Camada distante: trilhas de tinta (estáticas)
     const far = svgLayer('map-far', 6);
-    TRAILS.forEach(d => far.appendChild(el('path', { d, class: 'map-trail' })));
+    const defs = el('defs', {});
+    far.appendChild(defs);
+    for (let i = 0; i < TRAIL_COUNT; i++) {
+      // a linha pontilhada aparece só onde a máscara (traço sólido animado) já passou
+      const mask = el('mask', { id: `trail-mask-${i}`, maskUnits: 'userSpaceOnUse', x: -200, y: -200, width: 1600, height: 1300 });
+      // pathLength fixo: o tamanho do traço na animação não depende do comprimento real do caminho, então
+      // trocar o traçado entre ciclos nunca deixa pedaços aparecendo (sem piscar)
+      const reveal = el('path', { class: 'map-trail-reveal', pathLength: 1000 });
+      mask.appendChild(reveal);
+      defs.appendChild(mask);
+      const trail = el('path', { class: 'map-trail', mask: `url(#trail-mask-${i})` });
+      far.appendChild(trail);
+
+      // Cada ciclo: sorteia um traçado, desenha do início ao fim e logo apaga do início ao fim (linear),
+      // espera um pouco e recomeça. Animado pela Web Animations API: duração e traçado só mudam entre
+      // ciclos, com a linha totalmente apagada (nada pisca)
+      const cycle = () => {
+        if (!reveal.isConnected) return;
+        // sorteia o tipo (no máximo um laço por vez) e a intensidade da tinta deste ciclo
+        let kind = Math.random() < 0.5 ? 'suave' : 'sinuoso';
+        if (!loopActive && Math.random() < 0.3) { kind = 'laço'; loopActive = true; }
+        trail.isLoop = kind === 'laço';
+        const d = randomTrail(kind);
+        trail.setAttribute('d', d);
+        reveal.setAttribute('d', d);
+        trail.style.opacity = rand(0.3, 1).toFixed(2);
+        const anim = reveal.animate(
+          [{ strokeDashoffset: 1010 }, { strokeDashoffset: 0 }, { strokeDashoffset: -1010 }],
+          { duration: rand(10000, 16000), easing: 'linear', fill: 'forwards' }
+        );
+        reveal.trailAnim = anim;
+        anim.onfinish = () => {
+          if (trail.isLoop) loopActive = false;
+          setTimeout(cycle, rand(300, 2500));
+        };
+      };
+      if (reduceMotion) {
+        const d = randomTrail(i % 2 ? 'suave' : 'sinuoso');
+        trail.setAttribute('d', d);
+        reveal.setAttribute('d', d);
+        reveal.style.strokeDashoffset = '0';
+      } else {
+        setTimeout(cycle, i * rand(1500, 3500));
+      }
+    }
 
     // Camada do meio: constelações (acendem quando o mouse chega perto)
     const mid = svgLayer('map-mid', 14);
@@ -335,6 +413,12 @@
     // Fora da tela: pausa as animações contínuas do fundo
     new IntersectionObserver(([entry]) => {
       section.classList.toggle('is-paused', !entry.isIntersecting);
+      // trilhas (Web Animations) também pausam fora da tela
+      map.querySelectorAll('.map-trail-reveal').forEach(r => {
+        if (!r.trailAnim) return;
+        if (entry.isIntersecting) { if (r.trailAnim.playState === 'paused') r.trailAnim.play(); }
+        else if (r.trailAnim.playState === 'running') r.trailAnim.pause();
+      });
     }).observe(section);
   }
 
