@@ -486,7 +486,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Formulário de expositores: **estado de erro visível** — ao tentar enviar, cada campo inválido fica vermelho,
   treme e ganha mensagem abaixo (obrigatório, e-mail inválido, WhatsApp incompleto via `pattern`, aceite dos
   termos); some ao corrigir (`js/merchant-form.js`, `.has-error`/`.exp-error`).
-- Aceite dos termos com efeito mágico ao marcar (brilho dourado + partículas, `.is-sealed`).
+- Aceite dos termos com efeito mágico ao marcar, reforçado 2x a pedido (36 partículas, raio maior, pulo com
+  giro, clarão `sealGlow` e brilho permanente mais forte; `.is-sealed`).
 - **Loading em botões que trocam de página:** `data-loading-link` → ícone vira spinner, largura travada,
   restaura no `pageshow` (voltar). Usado em "Quero Expor em 2027" da home.
 - **"Brancão" intermitente nas trocas de página (causa real):** a transição era cruzada (a nova página surgia
@@ -499,7 +500,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   arrastável só um pouco (até 10%, com resistência, volta ao centro ao soltar) e clique sem arrastar abre o
   endereço no Google Maps (`.map-illustrated` em `location.css`, JS em `js/script.js`).
 - Links do local corrigidos para o ponto exato (-22.5352707, -42.9908409): mapa ilustrado e `CONTACT.address_link` →
-  link curto https://maps.app.goo.gl/pCQhvAfJ3on3fJhS7; "Como Chegar" → rota do Google Maps até as coordenadas; Waze → `ll=` com as
+  link curto https://maps.app.goo.gl/pCQhvAfJ3on3fJhS7; "Como Chegar" → rota do Google Maps com o endereço exatamente como o Google cadastra
+  ("R. Francisco Portela, 115 - Parque Santo Antonio, …", testado: desenha a rota); Waze → `ll=` com as
   coordenadas (a busca por texto com "Cantagalo" caía no lugar errado).
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.

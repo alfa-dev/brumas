@@ -16,7 +16,7 @@
     color: var(--color-light);
     background:
         linear-gradient(180deg, rgba(26, 8, 52, 0.55), rgba(26, 8, 52, 0.85)),
-        url('../../assets/pictues/brumas_mercado_laminas.webp?v=ad8a437') center 60% / cover no-repeat,
+        url('../../assets/pictues/brumas_mercado_laminas.webp?v=8255059') center 60% / cover no-repeat,
         /* Placeholder enquanto a foto carrega: manchas com as cores da própria foto (couro, lâminas de
            aço, osso claro, tecido cor de areia), por baixo do mesmo véu roxo */
         linear-gradient(165deg, transparent 30%, rgba(170, 170, 170, 0.5) 31% 37%, transparent 38%),
@@ -423,8 +423,8 @@
     }
 
     &.is-sealed input {
-        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35), 0 0 14px rgba(212, 175, 55, 0.6), 0 0 26px rgba(176, 120, 230, 0.35);
-        animation: sealPop 0.45s ease;
+        box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.5), 0 0 28px rgba(212, 175, 55, 0.85), 0 0 52px rgba(176, 120, 230, 0.6);
+        animation: sealPop 0.6s ease, sealGlow 1.6s ease-out;
     }
 }
 
@@ -437,7 +437,14 @@
 }
 
 @keyframes sealPop {
-    40% { transform: scale(1.25); }
+    35% { transform: scale(1.5) rotate(-8deg); }
+    65% { transform: scale(0.95); }
+}
+
+/* clarão inicial que assenta no brilho permanente */
+@keyframes sealGlow {
+    0%  { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.9), 0 0 0 0 rgba(176, 120, 230, 0.8); }
+    30% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0.35), 0 0 70px rgba(176, 120, 230, 0.75); }
 }
 
 /* Estado de erro (js/merchant-form.js marca .has-error após tentativa de envio) */

@@ -56,22 +56,22 @@ document.addEventListener('DOMContentLoaded', function () {
     burst.className = 'exp-check-burst';
     burst.style.left = `${terms.offsetLeft + terms.offsetWidth / 2}px`;
     burst.style.top = `${terms.offsetTop + terms.offsetHeight / 2}px`;
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 36; i++) {
       const p = document.createElement('span');
       const star = Math.random() < 0.45;
       p.className = 'orb-particle' + (star ? ' orb-particle--star' : '');
-      const a = Math.random() * Math.PI * 2, d = 18 + Math.random() * 42;
+      const a = Math.random() * Math.PI * 2, d = 36 + Math.random() * 84;
       p.style.setProperty('--x0', '0px');
       p.style.setProperty('--y0', '0px');
       p.style.setProperty('--x1', `${Math.cos(a) * d}px`);
       p.style.setProperty('--y1', `${Math.sin(a) * d - 8}px`);
-      p.style.setProperty('--size', `${(3 + Math.random() * (star ? 8 : 4)).toFixed(1)}px`);
-      p.style.setProperty('--life', `${(0.6 + Math.random() * 0.7).toFixed(2)}s`);
+      p.style.setProperty('--size', `${(4 + Math.random() * (star ? 12 : 6)).toFixed(1)}px`);
+      p.style.setProperty('--life', `${(0.9 + Math.random() * 1).toFixed(2)}s`);
       p.style.setProperty('--color', COLORS[Math.floor(Math.random() * COLORS.length)]);
       burst.appendChild(p);
     }
     label.appendChild(burst);
-    setTimeout(() => burst.remove(), 1500);
+    setTimeout(() => burst.remove(), 2200);
   });
 
   form.addEventListener('invalid', e => showError(e.target), true);
