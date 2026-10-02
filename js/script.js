@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = 'fea7de4';
+const BUILD = '17d4358';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -29,6 +29,24 @@ window.BRUMAS_CSS_READY = new Promise(resolve => {
   if (document.readyState === 'complete') check();
   else window.addEventListener('load', check);
 });
+
+// Vídeos só começam a baixar depois que a página inteira terminou de carregar (evento "load").
+// Até lá aparece só o poster. Marcação: <video preload="none" data-lazy-video> + <source data-src="...">.
+function loadLazyVideos() {
+  document.querySelectorAll('video[data-lazy-video]').forEach(video => {
+    video.querySelectorAll('source[data-src]').forEach(source => {
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+    });
+    video.removeAttribute('data-lazy-video');
+    video.preload = 'auto';
+    video.load();
+    const play = video.play();
+    if (play && play.catch) play.catch(() => {});
+  });
+}
+if (document.readyState === 'complete') setTimeout(loadLazyVideos, 0);
+else window.addEventListener('load', () => setTimeout(loadLazyVideos, 0));
 
 const PRICES = {
   ticket: {

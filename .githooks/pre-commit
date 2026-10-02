@@ -20,7 +20,7 @@ find . -maxdepth 1 -name "*.html" ! -name "_*.html" | while read -r file; do
   sed_inplace -E \
     -e "s#(href=\"css/[^\"?]+\.css)(\?v=[^\"]*)?\"#\1?v=$VERSION\"#g" \
     -e "s#(src=\"js/[^\"?]+\.js)(\?v=[^\"]*)?\"#\1?v=$VERSION\"#g" \
-    -e "s#((src|poster)=\"(assets|videos)/[^\"?]+)(\?v=[^\"]*)?\"#\1?v=$VERSION\"#g" \
+    -e "s#((src|poster|data-src)=\"(assets|videos)/[^\"?]+)(\?v=[^\"]*)?\"#\1?v=$VERSION\"#g" \
     -e "s#url\((assets|videos)/([^)?]+)(\?v=[^)]*)?\)#url(\1/\2?v=$VERSION)#g" \
     "$file"
   git add "$file"
@@ -34,7 +34,7 @@ find css -name "*.css" | while read -r file; do
 done
 
 # 3) JS: imagens/vídeos referenciados nos templates dos componentes
-sed_inplace -E "s#((src|poster)=\"(assets|videos)/[^\"?]+)(\?v=[^\"]*)?\"#\1?v=$VERSION\"#g" js/components.js
+sed_inplace -E "s#((src|poster|data-src)=\"(assets|videos)/[^\"?]+)(\?v=[^\"]*)?\"#\1?v=$VERSION\"#g" js/components.js
 git add js/components.js
 
 # 4) Carimbo de build no CSS e no JS (o script.js compara os dois e recarrega o CSS se divergirem)

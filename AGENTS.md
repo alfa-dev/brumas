@@ -398,6 +398,13 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   eles e entrada em cascata, redes em círculos dourados no rodapé do menu (`.nav-extra`, só no mobile),
   página trava a rolagem com o menu aberto (`body:has(#menu-toggle:checked)`). Link fecha o menu sem
   `click()` no checkbox. "Nos vemos em 2027" no menu foi testado e retirado a pedido.
+- **Vídeos só após o carregamento completo:** todos os `<video>` (fundo do hero, photo-viewer,
+  estandartes do rodapé) usam `preload="none" data-lazy-video` + `<source data-src>`; o `loadLazyVideos()`
+  em `js/script.js` troca para `src` e dá play no evento `load`. Até lá aparece só o poster. O hook
+  também versiona `data-src`.
+- Vídeo de fundo do hero otimizado: `videos/bg.mp4` (9,7 MB, com áudio inútil) → `videos/bg-v2.mp4`
+  (0,5 MB, sem áudio, crf 30, faststart); poster `poster.png` (1,8 MB) → `poster-v2.jpg` (22 KB). Nomes
+  novos de propósito (guardrail de cache).
 - **Cache:** incidente em produção (JS novo + `about.css` antigo via `@import` sem versão). Criados os
   guardrails da seção "Cache" (hook versiona tudo e falha se faltar; carimbo de build CSS/JS com
   recarga automática; sentinela `--about-fx`).
