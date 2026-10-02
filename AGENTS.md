@@ -135,6 +135,45 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 - **Ilustração decorativa:** `filter: drop-shadow(0 12px 24px rgba(0,0,0,.35))`; pode "subir" um pouco
   para fora do alinhamento (`margin-top: -40px`) para parecer pendurada.
 
+### Efeito "Orbe Encantado" (medalhões do Sobre) — ⭐ aprovado com destaque
+
+Hover mágico para elementos circulares (medalhões, ícones, avatares, selos). **O elemento não cresce nem
+gira**: ele ganha um anel mágico girando na borda, um halo pulsando e solta partículas aleatórias
+douradas e violeta enquanto o mouse estiver em cima. Referência: `.journey-orb` em
+`css/sections/about.css` + função `emit()` em `js/about-journey.js`.
+
+**Marcação:** envolver o elemento num wrapper circular (pseudo-elementos não funcionam em `<img>`):
+```html
+<span class="journey-orb" aria-hidden="true"><img class="journey-medallion" src="..." alt=""></span>
+```
+
+**CSS (3 camadas no wrapper):**
+- Wrapper: `position: relative; aspect-ratio: 1; border-radius: 50%; z-index: 1`.
+- `::before` — **anel mágico**: `inset: -9px`, `conic-gradient` alternando trechos transparentes,
+  `--color-gold-light` e violeta `rgba(176,120,230,.9)`; recortado em anel com
+  `mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px))`;
+  `animation: mapSpin 2.4s linear infinite` (girando sempre, só a `opacity` muda: 0 → 1).
+- `::after` — **halo**: `inset: -14px`, `radial-gradient` dourado (.28) → violeta (.12) só na borda,
+  `animation: orbPulse 1.6s` (scale .97 ↔ 1.04) quando ativo.
+- Classe `.is-enchanted` liga as duas camadas (`transition: opacity .4s`).
+- Partículas `.orb-particle`: absolutas no centro, tamanho/cor/duração por variáveis (`--size`, `--color`,
+  `--life`, `--x0/--y0` → `--x1/--y1`), `box-shadow` da própria cor para brilhar, keyframe `orbParticle`
+  (sai da borda, se afasta, encolhe para .2 e some). Variante `.orb-particle--star` com `clip-path` de
+  estrela de 4 pontas.
+
+**JS (comportamento):**
+- `pointerenter` no item: adiciona `.is-enchanted`, emite **12 partículas** de uma vez e depois **3 a cada
+  260ms** (`setInterval`); `pointerleave`: remove a classe e para o intervalo.
+- Cada partícula: ângulo aleatório, nasce em 85–105% do raio, viaja +25–70px para fora (com leve subida
+  de 15px), 35% de chance de ser estrela, vida 0,8–1,7s, cor sorteada de
+  `['#e8c770', '#f6e3a6', '#c8a050', '#b98ae6', '#d9c2f5']`; remove-se no `animationend`.
+- `prefers-reduced-motion`: só o anel/halo, sem partículas.
+
+**Cuidados:** o wrapper precisa ficar acima de linhas/fios decorativos (o item pai com `transform` cria
+contexto de empilhamento → dar `z-index` ao pai); no celular não há hover — se for usar lá, disparar no
+toque. Para reaproveitar, extrair `emit()` para um helper genérico (ex.: `js/enchant.js`) e renomear as
+classes para algo neutro (`.enchanted-orb`).
+
 ### Outros padrões já aprovados
 
 - **Cards em arco** (antigo "Sobre o Festival", substituído pela jornada; ver git `26e7b05`..): fundo pergaminho claro em gradiente,
@@ -304,6 +343,7 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Medalhões do Sobre: hover sem crescer/girar — o `<img>` fica num `.journey-orb` que ganha anel mágico
   girando (conic-gradient mascarado) + halo pulsando, e o JS emite partículas douradas/violeta aleatórias
   (bolinhas e estrelinhas) enquanto o mouse estiver em cima.
+- Guia de design: documentado o efeito **"Orbe Encantado"** (anel mágico + halo + partículas) para reuso.
 - Fio dourado do Sobre passava por cima dos medalhões (cada passo cria contexto de empilhamento pelo
   `transform`); `.journey-step` ganhou `z-index: 1`.
 - Scroll lateral corrigido: `.pulsating-mist` da Galeria passava da largura da tela; `section` ganhou
