@@ -1,0 +1,186 @@
+/* Visualizador de fotos (photo-viewer.html) — segue o guia de design (seção Local/Galeria) */
+.pv-body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(64, 27, 121, 0.55), transparent 70%),
+    var(--color-dark);
+  color: var(--color-light);
+}
+
+/* Névoa em vídeo por cima, bem suave */
+#bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: scale(-1);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.photo-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  padding: 20px 24px 28px;
+  animation: pvFadeIn 0.5s ease-out;
+}
+
+/* Barra superior: voltar · eyebrow · fechar */
+.pv-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pv-eyebrow {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  text-align: center;
+}
+
+/* Botões redondos dourados (mesmo desenho dos ícones da seção Local) */
+.pv-icon-button {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  background: rgba(8, 8, 6, 0.35);
+  color: var(--color-gold-light);
+  font-size: 1.1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--color-gold);
+    color: var(--color-dark);
+    box-shadow: 0 0 18px var(--color-gold-glow);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+/* Palco da foto, com moldura dourada dupla */
+.pv-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+}
+
+.pv-frame {
+  position: relative;
+  max-width: min(1200px, 100%);
+  max-height: 100%;
+  padding: 8px;
+  border: 1px solid var(--color-gold);
+  border-radius: 6px;
+  background: rgba(8, 8, 6, 0.45);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(169, 131, 64, 0.12);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(169, 131, 64, 0.35);
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  & img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 270px);
+    object-fit: contain;
+    border-radius: 3px;
+  }
+}
+
+/* Legenda + navegação */
+.pv-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.pv-title {
+  font-family: var(--font-medieval);
+  font-size: 1.8rem;
+  color: var(--color-light);
+  text-align: center;
+}
+
+.pv-title::after {
+  content: '';
+  display: block;
+  width: 140px;
+  height: 10px;
+  margin: 10px auto 0;
+  background:
+    linear-gradient(45deg, transparent 35%, var(--color-gold) 35%, var(--color-gold) 65%, transparent 65%) center / 10px 10px no-repeat,
+    linear-gradient(to right, transparent, var(--color-gold) 20%, var(--color-gold) 80%, transparent) center / 100% 1px no-repeat;
+}
+
+.pv-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.pv-counter {
+  min-width: 80px;
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: rgba(245, 245, 245, 0.75);
+}
+
+@keyframes pvFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .photo-viewer {
+    padding: 14px 14px 22px;
+  }
+
+  .pv-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+  }
+
+  .pv-icon-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .pv-frame img {
+    max-height: calc(100vh - 230px);
+  }
+
+  .pv-title {
+    font-size: 1.4rem;
+  }
+}

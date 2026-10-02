@@ -1,116 +1,145 @@
-/* Seção de Organizadores com CSS Aninhado */
+/* Seção de Organizadores (versão compacta) */
+#organizadores {
+    padding: 60px 5%;
+
+    & .section-header {
+        margin-bottom: 30px;
+    }
+
+    & .section-header h2 {
+        font-size: 1.8rem;
+    }
+}
+
 .organizers-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    align-items: stretch;
 
     & .organizer-item {
-        flex: 1;
-        min-width: 200px;
-        max-width: 250px;
+        width: 230px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        transition: all 0.3s ease;
+        padding: 6px 24px;
+        transition: transform 0.3s ease;
 
         &:hover {
-            transform: translateY(-10px);
+            transform: translateY(-6px);
 
             & .organizer-logo-placeholder {
-                box-shadow: 0 10px 25px rgba(73, 20, 73, 0.2);
+                border-color: var(--color-gold-light);
+                box-shadow: 0 16px 30px rgba(39, 13, 79, 0.2), 0 0 18px var(--color-gold-glow);
             }
         }
 
+        /* Moldura dourada dupla (mesma da seção Local) */
         & .organizer-logo-placeholder {
-            width: 180px;
-            height: 180px;
-            border-radius: 5px;
-            background: rgba(244, 233, 205, 0.1);
-            border: 1px solid var(--color-gold);
-            padding: 10px;
-            margin-bottom: 20px;
+            width: 128px;
+            height: 128px;
+            padding: 8px;
+            margin-bottom: 16px;
             position: relative;
+            border: 1px solid var(--color-gold);
+            border-radius: 6px;
+            background: rgba(255, 250, 238, 0.6);
+            box-shadow: 0 12px 26px rgba(39, 13, 79, 0.14);
             transition: all 0.3s ease;
 
             &::before {
                 content: '';
                 position: absolute;
-                top: 10px;
-                left: 10px;
-                right: 10px;
-                bottom: 10px;
-                border: 1px dashed rgba(212, 175, 55, 0.3);
+                inset: 3px;
+                border: 1px solid rgba(169, 131, 64, 0.35);
+                border-radius: 4px;
                 pointer-events: none;
             }
 
             & .logo-frame {
                 width: 100%;
                 height: 100%;
+                border-radius: 3px;
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                /* display: flex;
-                align-items: center;
-                justify-content: center;
-                background: rgba(244, 233, 205, 0.8);
-                border-radius: 3px; */ */
             }
         }
 
         & .organizer-name {
-            font-family: var(--font-medieval);
+            font-family: var(--font-title);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.5;
             color: var(--color-deep-purple);
-            font-size: 1.3rem;
-            margin-top: 10px;
-            position: relative;
-            padding-bottom: 15px;
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 40px;
-                height: 2px;
-                background: linear-gradient(to right, transparent, var(--color-gold), transparent);
-            }
         }
+    }
+
+    /* Separador vertical dourado entre os organizadores */
+    & .organizer-item + .organizer-item {
+        border-left: 1px solid rgba(169, 131, 64, 0.4);
     }
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
+/* Celular: lista compacta (logo emoldurada à esquerda, nome ao lado, separadores tracejados),
+   no mesmo padrão dos detalhes da seção Expositores */
+@media (max-width: 560px) {
+    #organizadores {
+        padding: 50px 6%;
+
+        & .section-header {
+            margin-bottom: 16px;
+        }
+
+        & .section-header h2 {
+            font-size: 1.6rem;
+        }
+
+        & .medieval-divider {
+            margin-bottom: 0;
+        }
+    }
+
     .organizers-container {
-        gap: 30px;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0;
+        max-width: 360px;
+        margin: 0 auto;
 
         & .organizer-item {
-            min-width: 160px;
+            width: 100%;
+            flex-direction: row;
+            gap: 16px;
+            padding: 12px 4px;
+            text-align: left;
+
+            &:hover {
+                transform: none;
+            }
 
             & .organizer-logo-placeholder {
-                width: 150px;
-                height: 150px;
+                flex: none;
+                width: 64px;
+                height: 64px;
+                padding: 5px;
+                margin: 0;
+
+                &::before {
+                    inset: 3px;
+                }
             }
 
             & .organizer-name {
-                font-size: 1.1rem;
+                font-size: 0.8rem;
             }
         }
-    }
-}
 
-@media (max-width: 480px) {
-    .organizers-container {
-        & .organizer-item {
-            min-width: 140px;
-            max-width: 100%;
-
-            & .organizer-logo-placeholder {
-                width: 130px;
-                height: 130px;
-            }
+        & .organizer-item + .organizer-item {
+            border-left: 0;
+            border-top: 1px dashed rgba(169, 131, 64, 0.45);
         }
     }
 }

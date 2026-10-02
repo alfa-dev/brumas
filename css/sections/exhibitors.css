@@ -1,0 +1,184 @@
+/* Seção Expositores (segue o guia de design: referência seção Local) */
+#expositores {
+    padding: 60px 5%;
+
+    & .section-header {
+        margin-bottom: 30px;
+    }
+}
+
+.exhibitors-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 50px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Bloco de informações, direto sobre o pergaminho */
+.exhibitors-info {
+    color: var(--color-dark);
+
+    & .exhibitors-eyebrow {
+        font-family: var(--font-title);
+        font-size: 0.8rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--color-gold-dark);
+        margin-bottom: 8px;
+    }
+
+    & h3 {
+        font-family: var(--font-medieval);
+        font-size: 2rem;
+        color: var(--color-deep-purple);
+        margin-bottom: 14px;
+    }
+}
+
+.exhibitors-description {
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(8, 8, 6, 0.8);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(169, 131, 64, 0.4);
+}
+
+.exhibitors-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    & li {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        line-height: 1.5;
+    }
+
+    & i {
+        flex: none;
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--color-gold);
+        border-radius: 50%;
+        color: var(--color-deep-purple);
+        font-size: 0.9rem;
+    }
+}
+
+.exhibitors-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    /* Botão secundário sobre pergaminho: texto roxo em vez de claro */
+    & .map-button--ghost {
+        color: var(--color-deep-purple);
+
+        &:hover {
+            color: var(--color-dark);
+        }
+    }
+}
+
+/* Foto emoldurada (mesma moldura dupla do mapa da seção Local) */
+.exhibitors-photo {
+    position: relative;
+    margin: 0;
+    padding: 8px;
+    border: 1px solid var(--color-gold);
+    border-radius: 6px;
+    background: rgba(255, 250, 238, 0.5);
+    box-shadow: 0 18px 40px rgba(39, 13, 79, 0.18);
+    transform: rotate(1.5deg);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        border: 1px solid rgba(169, 131, 64, 0.35);
+        border-radius: 4px;
+        pointer-events: none;
+    }
+
+    & img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border-radius: 3px;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 900px) {
+    .exhibitors-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 560px;
+    }
+
+    .exhibitors-photo {
+        order: -1;
+        transform: none;
+    }
+}
+
+/* Celular: mesmo tratamento da seção Local (texto à esquerda, ícones ao lado, botões lado a lado) */
+@media (max-width: 640px) {
+    .exhibitors-container {
+        gap: 24px;
+    }
+
+    .exhibitors-info h3 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+
+    .exhibitors-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    .exhibitors-details {
+        gap: 0;
+        margin-bottom: 20px;
+
+        & li {
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        & li + li {
+            border-top: 1px dashed rgba(169, 131, 64, 0.35);
+        }
+
+        & i {
+            width: 30px;
+            height: 30px;
+            font-size: 0.8rem;
+        }
+    }
+
+    .exhibitors-actions .map-button {
+        /* cresce para ocupar a linha, mas sem quebrar o texto: se não couber, empilha */
+        flex: 1 1 auto;
+        justify-content: center;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        gap: 8px;
+    }
+}

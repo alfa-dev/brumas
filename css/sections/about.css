@@ -1,33 +1,153 @@
-/* Seção Sobre o Festival */
+/* Seção Sobre o Festival — "jornada" vertical: medalhões ligados por um fio dourado, texto alternando
+   de lado (medalhões em assets/brumas-2027/) */
 #sobre {
-    background-color: var(--color-parchment);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,30 L70,30 L70,70 L30,70 Z" stroke="%23d4af37" fill="none" opacity="0.05" stroke-width="1"/></svg>');
+    overflow: hidden;
+
+    & .section-header {
+        margin-bottom: 0;
+    }
 }
 
-#sobre .medieval-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#sobre .medieval-card p {
-    flex-grow: 1;
-}
-
-#sobre .column:first-child p::first-letter {
-    float: left;
+.about-journey {
     position: relative;
-    font-family: var(--font-medieval);
-    font-size: 3.5rem;
-    line-height: 0.8;
-    padding: 4px 8px 0 0;
-    color: var(--color-deep-purple);
+    list-style: none;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 10px 0;
+
+    /* Fio dourado que liga os medalhões */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        bottom: 40px;
+        left: 50%;
+        width: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(to bottom, transparent, var(--color-gold) 12%, var(--color-gold) 88%, transparent);
+        opacity: 0.6;
+    }
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    #sobre .column {
-        margin-bottom: 30px;
+.journey-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr);
+    align-items: center;
+
+    /* Passos se encaixam em degrau, deixando a jornada mais compacta */
+    & + & {
+        margin-top: -40px;
+    }
+}
+
+.journey-medallion {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    width: 120px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 8px 16px rgba(39, 13, 79, 0.28));
+}
+
+/* Texto direto sobre o pergaminho, alternando: ímpares à esquerda, pares à direita */
+.journey-text {
+    grid-row: 1;
+    grid-column: 1;
+    text-align: right;
+    padding: 20px 10px;
+
+    & h3 {
+        font-family: var(--font-medieval);
+        font-size: 1.6rem;
+        color: var(--color-deep-purple);
+        margin-bottom: 10px;
+    }
+
+    & p:not(.journey-eyebrow) {
+        line-height: 1.7;
+        color: var(--color-dark);
+        max-width: 380px;
+        margin-left: auto;
+    }
+}
+
+.journey-step:nth-child(even) .journey-text {
+    grid-column: 3;
+    text-align: left;
+
+    & p:not(.journey-eyebrow) {
+        margin-left: 0;
+    }
+}
+
+/* Numeral romano em eyebrow, com filete na direção do medalhão */
+.journey-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--color-gold-dark);
+    margin-bottom: 6px;
+
+    &::after {
+        content: '';
+        width: 40px;
+        height: 1px;
+        background: var(--color-gold);
+    }
+}
+
+.journey-step:nth-child(odd) .journey-eyebrow {
+    flex-direction: row-reverse;
+}
+
+/* Celular: fio e medalhões à esquerda, todo o texto à direita */
+@media (max-width: 760px) {
+    .about-journey::before {
+        left: 36px;
+        top: 30px;
+        bottom: 30px;
+    }
+
+    .journey-step {
+        grid-template-columns: 72px minmax(0, 1fr);
+        align-items: start;
+        gap: 16px;
+
+        & + & {
+            margin-top: 18px;
+        }
+    }
+
+    .journey-medallion {
+        grid-column: 1;
+        width: 72px;
+    }
+
+    .journey-text,
+    .journey-step:nth-child(even) .journey-text {
+        grid-column: 2;
+        text-align: left;
+        padding: 4px 0;
+
+        & h3 {
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+        }
+
+        & p:not(.journey-eyebrow) {
+            margin-left: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    }
+
+    .journey-step:nth-child(odd) .journey-eyebrow {
+        flex-direction: row;
     }
 }

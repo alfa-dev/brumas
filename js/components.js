@@ -59,6 +59,13 @@ class FooterComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <footer>
+        ${['left', 'right'].map(side => `
+          <div class="footer-banner footer-banner--${side}" aria-hidden="true">
+            <video autoplay muted loop playsinline preload="metadata" poster="videos/estandarte-footer-poster.jpg">
+              <source src="videos/estandarte-footer.mp4" type="video/mp4">
+            </video>
+          </div>
+        `).join('')}
         <div class="footer-content">
             <div class="footer-logo">
                 <img src="assets/b_fundo_escuro.svg" alt="Brumas Logo">
@@ -67,12 +74,35 @@ class FooterComponent extends HTMLElement {
             <div class="footer-links">
                 ${navLinks()}
             </div>
+            <div class="footer-contact">
+                <a href="mailto:${CONTACT.email}" target="_blank" aria-label="Email">
+                  <i class="fa-solid fa-envelope"></i> ${CONTACT.email}
+                </a>
+                <a href="https://wa.me/${CONTACT.phone.replace(/\D/g, '')}" target="_blank" aria-label="WhatsApp">
+                  <i class="fa-brands fa-whatsapp"></i> ${CONTACT.phone}
+                </a>
+                <span class="footer-social">
+                  ${SOCIAL_LINKS.map(link => `
+                    <a href="${link.url}" target="_blank" aria-label="${link.name}">
+                      <i class="fa-brands fa-${link.name.toLowerCase()}"></i>
+                    </a>
+                  `).join('')}
+                </span>
+            </div>
             <div class="footer-legal">
                 <p>© ${currentYear()} Brumas Festival Medieval. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
     `;
+
+    // Estandartes fora de sincronia: o da direita começa ~3s à frente
+    const rightVideo = this.querySelector('.footer-banner--right video');
+    if (rightVideo) {
+      const offset = () => { rightVideo.currentTime = 3 % (rightVideo.duration || 5); };
+      if (rightVideo.readyState >= 1) offset();
+      else rightVideo.addEventListener('loadedmetadata', offset, { once: true });
+    }
   }
 }
 
@@ -190,18 +220,36 @@ class PhotoGallery extends HTMLElement {
       <div class="photo-gallery">
         <div class="gallery-grid">
         ${PHOTOS.map(photo => `
-          <div class="gallery-item">
+          <figure class="gallery-item">
             <a href="photo-viewer.html?id=${photo.id}" class="gallery-link">
-              <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt}" loading="lazy">
-              <div class="gallery-overlay">
-                <p>${photo.title}</p>
+              <div class="gallery-frame">
+                <img src="${photo.src.replace('.webp', '_sm.webp')}" alt="${photo.alt}" loading="lazy">
               </div>
+              <figcaption>${photo.title}</figcaption>
             </a>
-          </div>
+          </figure>
           `).join('')}
         </div>
       </div>
+      <div class="gallery-nav">
+        <button type="button" class="gallery-nav-button" data-dir="-1" aria-label="Fotos anteriores">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span class="gallery-nav-label">${PHOTOS.length} registros</span>
+        <button type="button" class="gallery-nav-button" data-dir="1" aria-label="Próximas fotos">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
     `;
+
+    const grid = this.querySelector('.gallery-grid');
+    this.querySelectorAll('.gallery-nav-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = grid.querySelector('.gallery-item');
+        const step = item ? item.offsetWidth + 24 : grid.clientWidth;
+        grid.scrollBy({ left: step * Number(button.dataset.dir), behavior: 'smooth' });
+      });
+    });
   }
 }
 

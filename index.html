@@ -90,7 +90,7 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="css/styles.css?v=afce5c7">
+  <link rel="stylesheet" href="css/styles.css?v=6ce9231">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,8 +98,8 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=afce5c7"></script>
-  <script src="js/components.js?v=afce5c7"></script>
+  <script src="js/script.js?v=6ce9231"></script>
+  <script src="js/components.js?v=6ce9231"></script>
 </head>
 
 <body>
@@ -110,10 +110,16 @@
     <section id="hero" class="parallax-section">
 
       <h1 style="background-image: url(assets/brumas_logo.svg);">Brumas Festival Medieval</h1>
-      <div class="edition-badge">2ª edição 2026 · Obrigado por atravessar as Brumas</div>
-      <time datetime="2027" class="event-date">Nos vemos em 2027</time>
-      <div class="event-time">3ª edição · data em breve</div>
-      <a href="#2027" class="cta-button mist-glow">Próxima Edição</a>
+      <div class="hero-info">
+        <p class="hero-eyebrow">3ª edição · Brumas Festival Medieval</p>
+        <time datetime="2027" class="hero-title">Nos vemos em 2027</time>
+        <p class="hero-note">Data e ingressos serão anunciados em breve pelos arautos do reino.</p>
+        <div class="hero-actions">
+          <a href="https://www.instagram.com/brumasfestivalmedieval/" target="_blank" class="map-button">
+            <i class="fa-brands fa-instagram"></i> Acompanhar Novidades
+          </a>
+        </div>
+      </div>
 
       <div class="video-container">
         <video autoplay muted loop playsinline id="bg-video" poster="videos/poster.png">
@@ -127,56 +133,42 @@
       </div>
     </section>
 
-    <!-- Sobre Section com Iluminuras -->
-    <section id="sobre" class="section alchemy-pattern">
-      <div class="mist-layer"></div>
+    <!-- Sobre Section (arte 2027) -->
+    <section id="sobre" class="section">
       <div class="section-container">
         <div class="section-header">
           <h2 class="illuminated-heading">Sobre o Festival</h2>
           <div class="medieval-divider"></div>
         </div>
-        <div class="content-columns">
-          <div class="column">
-            <div class="medieval-card illuminated-border">
-              <div class="illuminated-corner-tr"></div>
-              <div class="illuminated-corner-bl"></div>
-              <div class="illuminated-corner-br"></div>
-              <div class="card-icon">
-                <i class="fa-solid fa-crown"></i>
-              </div>
-              <h3>Uma Viagem ao Passado</h3>
-              <p>Brumas Festival Medieval transporta você para uma época de bardos, arqueiros e vilarejos.
-                Uma experiência imersiva que recria o espírito da Idade Média.
-              </p>
+        <ol class="about-journey">
+          <li class="journey-step">
+            <img class="journey-medallion" src="assets/brumas-2027/medallion-crown.webp" alt="" aria-hidden="true">
+            <div class="journey-text">
+              <p class="journey-eyebrow">I</p>
+              <h3>Uma Viagem no Tempo</h3>
+              <p>Um (re)encontro com um tempo que vive na Memória e na História. No Brumas, cada participante
+                se torna viajante de eras passadas, desbravando histórias, lendas e tradições.</p>
             </div>
-          </div>
-          <div class="column">
-            <div class="medieval-card illuminated-border">
-              <div class="illuminated-corner-tr"></div>
-              <div class="illuminated-corner-bl"></div>
-              <div class="illuminated-corner-br"></div>
-              <div class="card-icon">
-                <i class="fa-solid fa-scroll"></i>
-              </div>
-              <h3>Tradição e Cultura</h3>
-              <p>Celebramos as tradições medievais com apresentações, música, artesanato,
-                jogos e acampamentos que ecoam através dos séculos.</p>
+          </li>
+          <li class="journey-step">
+            <img class="journey-medallion" src="assets/brumas-2027/medallion-scroll.webp" alt="" aria-hidden="true">
+            <div class="journey-text">
+              <p class="journey-eyebrow">II</p>
+              <h3>Saberes Ancestrais</h3>
+              <p>Inspirado em registros históricos, tradições orais e saberes ancestrais, o Brumas amplia o
+                olhar sobre a Idade Média para além da Europa, conectando os povos que moldaram o mundo.</p>
             </div>
-          </div>
-          <div class="column">
-            <div class="medieval-card illuminated-border">
-              <div class="illuminated-corner-tr"></div>
-              <div class="illuminated-corner-bl"></div>
-              <div class="illuminated-corner-br"></div>
-              <div class="card-icon">
-                <i class="fa-solid fa-chess-knight"></i>
-              </div>
-              <h3>Para Todas as Idades</h3>
-              <p>Atividades para toda a família, com palestras,
-                danças, apresentação de animais silvestres até oficinas e jogos.</p>
+          </li>
+          <li class="journey-step">
+            <img class="journey-medallion" src="assets/brumas-2027/medallion-horse.webp" alt="" aria-hidden="true">
+            <div class="journey-text">
+              <p class="journey-eyebrow">III</p>
+              <h3>Imersão para Toda a Família</h3>
+              <p>Recriação histórica e acampamento, combates, música e danças, contação de histórias, oráculos,
+                oficinas, jogos e um mercado de artesãos, do entardecer à luz das fogueiras.</p>
             </div>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -187,7 +179,8 @@
       <div class="section-container">
         <div class="section-header">
           <h2 class="illuminated-heading">Galeria</h2>
-          <p>Brumas Festival 2025</p>
+          <div class="medieval-divider"></div>
+          <p class="gallery-caption">Momentos da 1ª edição · Brumas Festival 2025</p>
         </div>
 
         <photo-gallery></photo-gallery>
@@ -197,16 +190,45 @@
     <!-- Expositores Section -->
     <section id="expositores" class="section alchemy-pattern">
       <div class="mist-layer"></div>
-<div class="section-container">
+      <div class="section-container">
         <div class="section-header">
           <h2 class="illuminated-heading gold-heading">Expositores</h2>
           <div class="medieval-divider"></div>
         </div>
-        <div class="expositores-cta-container">
-          <p>Obrigado a todos os mercadores e artesãos que deram vida ao mercado medieval do Brumas 2026. Quer trazer sua arte, ofício ou gastronomia para a edição de 2027? Deixe seu interesse registrado e avisaremos quando as inscrições abrirem.</p>
-          <a href="expositores.html" class="cta-button mist-glow">
-            <i class="fa-solid fa-store" style="margin-right: 10px;"></i>Quero Expor em 2027
-          </a>
+        <div class="exhibitors-container">
+          <div class="exhibitors-info">
+            <p class="exhibitors-eyebrow">Mercado Medieval · 2027</p>
+            <h3>Mercadores e Artesãos</h3>
+            <p class="exhibitors-description">Obrigado a todos que deram vida ao mercado do Brumas 2026. Quer trazer sua arte, ofício ou gastronomia para a próxima edição? Registre seu interesse e avisaremos quando as inscrições abrirem.</p>
+
+            <ul class="exhibitors-details">
+              <li>
+                <i class="fa-solid fa-tent"></i>
+                <span>Barraca de madeira, ponto de energia e 2 cadeiras inclusos</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-hammer"></i>
+                <span>Artesanato, vestuário, couro, joias, ervas, comidas e bebidas temáticas</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-scroll"></i>
+                <span>Vagas limitadas e sujeitas à aprovação da organização</span>
+              </li>
+            </ul>
+
+            <div class="exhibitors-actions">
+              <a href="expositores.html" class="map-button">
+                <i class="fa-solid fa-store"></i> Quero Expor em 2027
+              </a>
+              <a href="https://wa.me/5521983336417?text=Ol%C3%A1!%20Quero%20ser%20expositor%20no%20Brumas%20Festival%202027." target="_blank" class="map-button map-button--ghost">
+                <i class="fa-brands fa-whatsapp"></i> Tirar Dúvidas
+              </a>
+            </div>
+          </div>
+
+          <figure class="exhibitors-photo">
+            <img src="assets/pictues/brumas_artesaos_medievais_md.webp" alt="Mercadores com sua banca de artesanato no Brumas Festival" loading="lazy">
+          </figure>
         </div>
       </div>
     </section>
@@ -276,65 +298,6 @@
       </div>
     </section>
 
-    <!-- Próxima Edição Section -->
-    <section id="2027" class="section dark-section">
-      <div class="mist-layer"></div>
-      <div class="pulsating-mist"></div>
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="illuminated-heading">Brumas 2027</h2>
-        </div>
-
-        <div class="coming-soon-container">
-          <div class="medieval-scroll">
-            <div class="scroll-top"></div>
-            <div class="scroll-content">
-              <div class="coming-soon-text">
-                <h3>As Brumas Voltarão</h3>
-                <p>A 2ª edição chegou ao fim, e o reino agradece a cada viajante, mercador, artista e guerreiro que esteve conosco em 19 de setembro de 2026.</p>
-                <div class="medieval-divider"></div>
-                <p>Em 2027 o portal se abrirá novamente para a 3ª edição do Brumas Festival Medieval. Data, local e ingressos serão anunciados em breve pelos arautos do reino: segui-nos nas redes para ser o primeiro a saber.</p>
-                <a href="https://www.instagram.com/brumasfestivalmedieval/" target="_blank" class="cta-button mist-glow" style="animation: none; opacity: 1; margin-top: 20px;">
-                  <i class="fa-brands fa-instagram" style="margin-right: 10px;"></i>Acompanhar Novidades
-                </a>
-              </div>
-            </div>
-            <div class="scroll-bottom"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contato Section - Versão Simplificada -->
-    <section id="contato" class="section">
-      <div class="mist-layer"></div>
-      <div class="section-container">
-        <div class="section-header">
-          <h2 class="illuminated-heading gold-heading">Contato</h2>
-          <div class="medieval-divider"></div>
-        </div>
-
-        <div class="contact-container-simplified">
-          <div class="medieval-card illuminated-border gold-border">
-            <div class="leaf-ornament leaf-ornament-tl"></div>
-            <div class="leaf-ornament leaf-ornament-br"></div>
-
-            <h3 class="gold-text">Enviai Vossa Mensagem</h3>
-
-            <div class="medieval-divider"></div>
-
-            <p class="contact-intro">Os arautos e mensageiros do Reino de Brumas
-              estão a postos para receber vossos pergaminhos. Caso tenhais dúvidas sobre o festival ou qualquer outro
-              assunto relacionado às festividades, não hesiteis em nos contactar pelos meios abaixo.</p>
-
-            <contact-component></contact-component>
-
-            <social-component></social-component>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Local Section -->
     <section id="local" class="section dark-section">
       <div class="mist-layer"></div>
@@ -344,20 +307,37 @@
           <div class="medieval-divider"></div>
         </div>
         <div class="location-container">
+          <img class="location-banner" src="assets/estandarte-local.webp" alt="" aria-hidden="true" loading="lazy">
+
           <div class="location-info">
-            <div class="medieval-card">
-              <h3>Caminho das Montanhas</h3>
-              <p><i class="fa-solid fa-location-dot" style="margin-right: .5em;"></i> Rua Francisco Portela, nº 115 – Cantagalo, Guapimirim/RJ – CEP 25945-328</p>
-              <p><i class="fa-solid fa-city" style="margin-right: .5em;"></i> Cantagalo, Guapimirim - RJ</p>
-              <p class="location-description"> O cenário perfeito para nossa viagem ao passado medieval.</p>
-              <div class="map-directions">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Francisco+Portela%2C+115%2C+Cantagalo%2C+Guapimirim%2C+RJ%2C+25945-328" target="_blank" class="map-button">Como Chegar</a>
-              </div>
+            <p class="location-eyebrow">O reino das Brumas</p>
+            <h3>Caminho das Montanhas</h3>
+            <p class="location-description">O cenário perfeito para nossa viagem ao passado medieval, aos pés da serra em Guapimirim.</p>
+
+            <ul class="location-details">
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Rua Francisco Portela, nº 115<br>Cantagalo, Guapimirim/RJ</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>CEP 25945-328</span>
+              </li>
+            </ul>
+
+            <div class="location-actions">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Francisco+Portela%2C+115%2C+Cantagalo%2C+Guapimirim%2C+RJ%2C+25945-328" target="_blank" class="map-button">
+                <i class="fa-solid fa-route"></i> Como Chegar
+              </a>
+              <a href="https://waze.com/ul?q=Rua%20Francisco%20Portela%2C%20115%2C%20Cantagalo%2C%20Guapimirim%2C%20RJ&navigate=yes" target="_blank" class="map-button map-button--ghost">
+                <i class="fa-brands fa-waze"></i> Waze
+              </a>
             </div>
           </div>
+
           <div class="location-map">
             <div class="map-frame">
-              <iframe src="https://maps.google.com/maps?q=Rua+Francisco+Portela%2C+115%2C+Cantagalo%2C+Guapimirim%2C+RJ%2C+25945-328&output=embed&hl=pt-BR" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://maps.google.com/maps?q=Rua+Francisco+Portela%2C+115%2C+Cantagalo%2C+Guapimirim%2C+RJ%2C+25945-328&output=embed&hl=pt-BR" title="Mapa do local do Brumas Festival" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
@@ -373,18 +353,6 @@
           <div class="medieval-divider"></div>
         </div>
         <div class="organizers-container">
-          <!-- <div class="organizer-item">
-            <div class="organizer-logo-placeholder">
-              <div class="logo-frame"></div>
-            </div>
-            <h3 class="organizer-name">Mittelalter</h3>
-          </div> -->
-          <!-- <div class="organizer-item">
-            <div class="organizer-logo-placeholder">
-              <div class="logo-frame"></div>
-            </div>
-            <h3 class="organizer-name">Old Norse</h3>
-          </div> -->
           <div class="organizer-item">
             <div class="organizer-logo-placeholder">
               <div class="logo-frame" style="background-image: url(assets/festival_medieval_da_terra_media.webp);"></div>

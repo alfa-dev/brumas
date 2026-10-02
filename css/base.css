@@ -79,6 +79,8 @@ a {
 section {
   padding: 100px 5%;
   position: relative;
+  /* Decorativos animados (névoa pulsante, vídeos em scale) não podem gerar scroll lateral */
+  overflow-x: clip;
 }
 
 section header {
@@ -128,6 +130,12 @@ dialog .dialog-header h3 {
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
+}
+
+/* Seções claras: pergaminho + vinheta leve nos cantos */
+section:not(.dark-section):not(#hero) {
+  background-color: var(--color-parchment);
+  background-image: radial-gradient(ellipse at center, transparent 55%, rgba(70, 40, 10, 0.12) 100%);
 }
 
 .dark-section {

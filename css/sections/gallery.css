@@ -1,136 +1,172 @@
-.photo-gallery {
-  padding: 2rem 0;
-  overflow: hidden;
-  position: relative;
+/* Seção Galeria (segue o guia de design: referência seção Local) */
+#galeria {
+  padding: 70px 5% 60px;
+
+  & .section-header {
+    margin-bottom: 20px;
+  }
 }
 
-.photo-gallery::before,
-.photo-gallery::after {
+/* Emblema B em névoa como sobreposição sutil no fundo */
+#galeria::before {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 150px;
-  z-index: 1;
+  inset: 0;
+  background: url('../../assets/galeria-emblema-bg.webp') right center / cover no-repeat;
+  opacity: 0.18;
+  mix-blend-mode: screen;
   pointer-events: none;
+  z-index: 0;
 }
 
-.photo-gallery::before {
-  left: -1px;
-  background: linear-gradient(to right, var(--color-navy), transparent);
+#galeria .section-container {
+  position: relative;
+  z-index: 1;
 }
 
-.photo-gallery::after {
-  right: -1px;
-  background: linear-gradient(to left, var(--color-navy), transparent);
+.gallery-caption {
+  font-style: italic;
+  color: rgba(245, 245, 245, 0.85);
+  margin-top: 4px;
+}
+
+/* Faixa rolável, com fade lateral via máscara (nunca faixas sólidas por cima do fundo) */
+.photo-gallery {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 120px, #000 calc(100% - 120px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 120px, #000 calc(100% - 120px), transparent);
 }
 
 .gallery-grid {
   display: flex;
+  gap: 24px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  gap: 1.5rem;
-  padding: 1rem;
+  padding: 24px 120px 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  position: relative;
-  z-index: 0;
 }
 
 .gallery-grid::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
 
+/* Item: foto emoldurada + legenda sempre visível */
 .gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-  aspect-ratio: 4/3;
-  background-color: #000;
-  min-width: 300px;
-  scroll-snap-align: center;
   flex: 0 0 auto;
-}
-
-.gallery-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-}
-
-.gallery-item:hover {
-  transform: scale(1.03);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease;
-}
-
-.gallery-item:hover img {
-  opacity: 0.8;
-}
-
-.gallery-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  padding: 1.5rem;
-  color: white;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-overlay {
-  transform: translateY(0);
-}
-
-.gallery-overlay p {
+  width: 320px;
   margin: 0;
-  font-family: 'Cinzel', serif;
-  font-size: 1.2rem;
-  text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  scroll-snap-align: center;
 }
 
-/* Page transition effects */
 .gallery-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.gallery-frame {
+  position: relative;
+  padding: 6px;
+  border: 1px solid var(--color-gold);
+  border-radius: 6px;
+  background: rgba(8, 8, 6, 0.35);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(169, 131, 64, 0.35);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  & img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+}
+
+.gallery-item figcaption {
+  margin-top: 14px;
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  transition: color 0.3s ease;
+}
+
+.gallery-link:hover .gallery-frame,
+.gallery-link:focus-visible .gallery-frame {
+  transform: translateY(-6px);
+  border-color: var(--color-gold-light);
+  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.4), 0 0 18px var(--color-gold-glow);
+}
+
+.gallery-link:hover figcaption {
+  color: var(--color-light);
+}
+
+/* Navegação: botões em círculo dourado, como os ícones da seção Local */
+.gallery-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.gallery-nav-button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-gold);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-gold-light);
+  cursor: pointer;
   transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--color-gold);
+    color: var(--color-dark);
+    box-shadow: 0 0 18px var(--color-gold-glow);
+  }
 }
 
-.gallery-link:active {
-  transform: scale(0.98);
+.gallery-nav-label {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(245, 245, 245, 0.7);
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
-  .photo-gallery::before,
-  .photo-gallery::after {
-    content: none;
+  .photo-gallery {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  }
+
+  .gallery-grid {
+    padding: 20px 24px 12px;
+    gap: 16px;
   }
 
   .gallery-item {
-    aspect-ratio: 1/1;
-    width: 80%;
-    min-width: 250px;
-  }
-
-  .gallery-overlay {
-    transform: translateY(0);
-    background: rgba(0, 0, 0, 0.6);
-  }
-
-  .gallery-overlay p {
-    font-size: 1rem;
+    width: 75vw;
+    max-width: 300px;
   }
 }

@@ -24,26 +24,27 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 
 | Caminho | O que é |
 | --- | --- |
-| `index.html` | Home (hero, Sobre, Galeria, Expositores, 2027, Contato, Local, Organizadores) |
+| `index.html` | Home (hero, Sobre, Galeria, Expositores, Local, Organizadores) |
 | `ingressos.html` | Hoje: aviso de vendas encerradas. Em edição ativa: formulário de compra |
 | `expositores.html` | Formulário de expositores (hoje: lista de interesse 2027) → Google Apps Script |
 | `expositores-2026.html` | Redireciona para `expositores.html` (o hotsite de urgência 2026 foi removido) |
 | `pagamento-confirmado.html` | Retorno do checkout (ainda cita 19/09/2026) |
-| `photo-viewer.html` | Visualizador das fotos da galeria (`?id=`) |
+| `photo-viewer.html` | Visualizador das fotos da galeria (`?id=`); estilos em `css/sections/photo-viewer.css` (linkado só nessa página) |
 | `termos-participantes.html`, `termos-expositores.html` | Termos (fonte em `termos_*.md`) |
 | `_expositores.html` | Arquivo antigo; ignorado pelo hook de cache busting |
 | `js/script.js` | **Dados do site**: `PRICES`, `TICKET_SALES_URL`, `TICKETS`, `NAV_LINKS`, `PHOTOS`, `CONTACT`, `SOCIAL_LINKS`, `ATTRACTIONS` |
-| `js/components.js` | Web components: header, footer, tickets, contato, redes, galeria |
+| `js/components.js` | Web components: header, footer (com contato: email, WhatsApp, redes), tickets, galeria; `contact-component`/`social-component` seguem definidos mas sem uso na home |
 | `js/ticket-form.js`, `js/merchant-form.js`, `js/form-handler.js`, `js/spam-protection.js` | Lógica dos formulários |
 | `css/styles.css` | Importa base, layout, componentes, seções e decorativos |
+| `assets/brumas-2027/` | Arte 2027 da seção Sobre (medalhões coroa, pergaminho e cavalo) em WebP |
 | `assets/pictues/` | Fotos da galeria (`nome.webp` + `nome_sm.webp`) — sim, a pasta é "pictues" |
-| `docs/` | Referências internas (conteúdo do Drive, menções na imprensa) |
+| `docs/` | Referências internas: conteúdo do Drive, menções na imprensa, `pesquisa-web-brumas.md` (varredura da web em 2026-10-02) |
 | `sitemap.xml`, `robots.txt` | SEO técnico |
 
 ## Convenções
 
 - **Menu:** `NAV_LINKS` em `js/script.js`. O link é gerado como `index.html#<rótulo sem acento em
-  minúsculas>`, então o `id` da seção precisa bater (ex.: `'2027'` → `<section id="2027">`).
+  minúsculas>`, então o `id` da seção precisa bater (ex.: `'Ingressos'` → `<section id="ingressos">`).
   Rótulos com espaço não funcionam como âncora.
 - **Galeria:** adicionar em `PHOTOS` e colocar os arquivos `.webp` e `_sm.webp` em `assets/pictues/`.
 - **Cache busting:** o hook `.githooks/pre-commit` reescreve `?v=` em CSS/JS de todos os `*.html` da
@@ -60,17 +61,150 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 
 ---
 
+## Guia de design — padrão a seguir (referência: seção Local, out/2026)
+
+> A seção **Local** (`#local`, `css/sections/location.css`) é a **referência de qualidade** do site.
+> Ao criar ou redesenhar qualquer seção, siga o método e os estilos abaixo e compare o resultado com ela.
+
+### Método (passo a passo)
+
+1. **Diagnóstico antes de mexer:** listar o que está fraco na seção atual — informação repetida
+   (ex.: cidade duplicada), elementos fora da paleta (ex.: botão azul), caixas/cards que só "emolduram"
+   sem necessidade, mídia sem acabamento (iframe cru).
+2. **Tirar a caixa quando o fundo já resolve:** se a seção já tem fundo próprio (roxo `dark-section` ou
+   pergaminho), o conteúdo vai **direto sobre o fundo**, sem `medieval-card` em volta.
+3. **Montar a hierarquia de texto** sempre na mesma ordem:
+   *eyebrow* → título → descrição curta → filete dourado → lista de detalhes com ícone → ações.
+4. **Uma ilustração como âncora visual:** um asset temático (estandarte, medalhão etc.) ocupa uma coluna
+   própria, com `drop-shadow`, `aria-hidden="true"`, `alt=""`, `loading="lazy"` e `pointer-events: none`.
+   No celular ele encolhe e vai para cima, centralizado (não some).
+5. **Mídia emoldurada:** mapas, vídeos e embeds sempre dentro de moldura dourada dupla (ver estilos).
+6. **Grid responsivo em 3 degraus:** desktop com colunas (ex.: `200px | 1fr | 1.25fr`), tablet
+   (≤1024px) com 2 colunas e a mídia ocupando a largura toda, celular (≤640px) com 1 coluna e texto
+   centralizado.
+7. **Assets:** converter para WebP com `cwebp -q 85 -alpha_q 100 -resize <~2x a largura exibida> 0`,
+   salvar em `assets/` com nome descritivo em minúsculas e hífens. Conferir transparência e sobras de
+   recorte antes de usar (ver o caso dos animais em "Sobre", descartados por terem fundo colado).
+8. **CSS:** um arquivo por seção em `css/sections/`, com CSS aninhado (`&`), usando as variáveis de
+   `base.css`. Nada de estilo inline em marcação nova.
+9. **Verificar visualmente antes de entregar:** screenshot com Chrome headless em desktop (1440px) e
+   celular (500px). Para isolar a seção, gerar uma cópia temporária do `index.html` que esconde as outras
+   seções e troca o `?v=` por um valor aleatório (evita cache), servir com `python3 -m http.server 5501`,
+   fotografar e apagar a cópia:
+   ```sh
+   sed 's|</head>|<style>#hero,#sobre{display:none!important}</style></head>|; s|\.css?v=[a-z0-9]*|.css?v=dev'$RANDOM'|' index.html > _preview.html
+   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+     --window-size=1440,900 --virtual-time-budget=8000 --screenshot=/tmp/shot.png http://localhost:5501/_preview.html
+   rm _preview.html
+   ```
+10. **Registrar** a mudança no histórico deste arquivo (regra do topo).
+
+### Paleta e tipografia (variáveis em `css/base.css`)
+
+| Uso | Valor |
+| --- | --- |
+| Roxo profundo (botões, títulos sobre pergaminho) | `--color-deep-purple` `#270d4f` |
+| Fundo roxo das seções escuras | `--color-navy` `#401b79` |
+| Dourado (bordas, ícones) | `--color-gold` `#a98340` |
+| Dourado claro (eyebrow, ícones sobre roxo) | `--color-gold-light` `#c8a050` |
+| Brilho dourado (hover) | `--color-gold-glow` `rgba(169,131,64,.5)` |
+| Pergaminho (fundo das seções claras) | `--color-parchment` `#e9d4b5` |
+| Texto claro | `--color-light` `#f5f5f5` (descrições com 85% de opacidade) |
+| Títulos | `--font-medieval` (MedievalSharp) |
+| Eyebrow / rótulos | `--font-title` (Cinzel), maiúsculas |
+| Corpo | `--font-text` (Gentium Book Plus) |
+
+### Componentes de estilo (copiar de `css/sections/location.css`)
+
+- **Eyebrow:** Cinzel, `0.8rem`, `letter-spacing: 4px`, `uppercase`, cor `--color-gold-light`,
+  `margin-bottom: 8px`. Texto curto e temático ("O reino das Brumas").
+- **Título da seção interna:** MedievalSharp, `2rem`, cor clara sobre roxo (roxo profundo sobre pergaminho).
+- **Descrição:** itálico, `line-height: 1.7`, 85% de opacidade, separada do resto por filete
+  `border-bottom: 1px solid rgba(169,131,64,.4)` com `20px` de respiro em cima e embaixo.
+- **Lista de detalhes:** `ul` sem marcadores, `gap: 14px`; cada item com ícone Font Awesome dentro de um
+  círculo de `34px` (`border: 1px solid --color-gold`, `border-radius: 50%`, ícone `--color-gold-light`,
+  `0.9rem`), usando `flex: none` + `width`/`height` fixos (senão o círculo achata no celular).
+- **Botão principal (`.map-button`):** fundo `--color-deep-purple`, `border: 2px solid --color-gold`,
+  `border-radius: 5px`, MedievalSharp `1.05rem`, `padding: 12px 24px`, ícone à esquerda com `gap: 10px`.
+  Hover: fundo dourado, texto escuro e `box-shadow: 0 0 18px --color-gold-glow`.
+- **Botão secundário (`.map-button--ghost`):** igual ao principal com fundo transparente. Ações lado a
+  lado com `gap: 12px` e `flex-wrap`.
+- **Moldura de mídia (`.map-frame`):** `padding: 8px`, `border: 1px solid --color-gold`,
+  `border-radius: 6px`, fundo `rgba(8,8,6,.35)`, sombra `0 18px 40px rgba(0,0,0,.35)` e segunda borda
+  interna via `::before` (`inset: 3px`, `1px solid rgba(169,131,64,.35)`).
+- **Ilustração decorativa:** `filter: drop-shadow(0 12px 24px rgba(0,0,0,.35))`; pode "subir" um pouco
+  para fora do alinhamento (`margin-top: -40px`) para parecer pendurada.
+
+### Outros padrões já aprovados
+
+- **Cards em arco** (antigo "Sobre o Festival", substituído pela jornada; ver git `26e7b05`..): fundo pergaminho claro em gradiente,
+  borda dourada dupla (borda + `inset box-shadow`), topo em arco, medalhão sobreposto no topo e losango
+  roxo na base. Usar quando houver 3 blocos de texto paralelos.
+- **Overlays de fundo quase imperceptíveis** (Galeria): imagem em `::before` com `opacity` ~0.18 e
+  `mix-blend-mode: screen`; conteúdo com `z-index: 1`. Fades laterais com `mask-image`, nunca com faixas
+  de cor sólida por cima.
+- **Seção Expositores** (`css/sections/exhibitors.css`): mesmo método da Local aplicado sobre pergaminho
+  — eyebrow em `--color-gold-dark` (o dourado claro some no fundo claro), título roxo, ícones roxos,
+  botão ghost com texto roxo, e a âncora visual é uma **foto emoldurada** (moldura dupla, levemente
+  girada `rotate(1.5deg)`; no celular vai para cima e sem rotação).
+- **Seção Galeria** (`css/sections/gallery.css` + `PhotoGallery` em `js/components.js`): cada foto na
+  moldura dupla dourada, legenda **sempre visível** abaixo (Cinzel, maiúsculas, `--color-gold-light`),
+  hover com elevação + brilho dourado, e navegação com botões em círculo dourado de 44px (mesmo
+  desenho dos ícones da Local) ao redor de um rótulo "N registros".
+- **Loop sem emenda em vídeo que não fecha:** cortar o 1º segundo do início e fundi-lo no final:
+  ```sh
+  ffmpeg -i in.mp4 -filter_complex "[0:v]split[a][b];[a]trim=start=1,setpts=PTS-STARTPTS[main];\
+  [b]trim=end=1,setpts=PTS-STARTPTS[head];[main][head]xfade=transition=fade:duration=1:offset=<dur-2>[out]" \
+  -map "[out]" -an -c:v libx264 -crf 26 -pix_fmt yuv420p -movflags +faststart out.mp4
+  ```
+  Conferir comparando o último e o primeiro quadro (`magick compare -metric RMSE`) com a diferença entre
+  dois quadros seguidos.
+- **Vídeo decorativo com fundo preto** (estandartes ao vento no rodapé): `<video autoplay muted loop
+  playsinline>` sem trilha de áudio (`ffmpeg -an`), recortado/comprimido (`crf 26`, `+faststart`) com
+  poster JPG; `mix-blend-mode: screen` faz o preto sumir sobre fundo escuro e uma `mask-image` radial leve
+  esfuma a borda do quadro. Só funciona sobre fundos escuros. **Armadilha:** se o contêiner do vídeo
+  tiver `transform`, `z-index` ou `opacity` (cria contexto de empilhamento), o blend tem de ficar **no
+  contêiner**, não no `<video>` — senão o preto aparece como retângulo.
+- **Estandarte alto em seção que empilha no celular** (Local): no desktop ocupa uma coluna estreita
+  (170px, "pendurado" com `margin-top: -40px`); no celular vira detalhe absoluto no canto superior
+  direito (64px) e o texto ao lado ganha `padding-right` — a seção não fica mais comprida.
+- **Visualizador de fotos**: mesma linguagem da Galeria — barra superior com botões redondos dourados
+  (voltar/fechar) e eyebrow, foto na moldura dupla, título MedievalSharp com filete, e navegação
+  "anterior · 01 / 18 · próxima". Atalhos: setas e Esc. Atenção: não usar `<header>`/`<footer>` fora
+  de `section` — o `footer` global de `layout.css` vaza estilo.
+- **Fundo das seções claras:** só pergaminho + vinheta leve (`radial-gradient` transparente até 55% →
+  `rgba(70,40,10,.12)` nos cantos). Texturas de papel foram testadas e **rejeitadas** pelo usuário.
+- **Media queries no fim do arquivo:** um bloco `@media` colocado antes das regras base do mesmo
+  seletor é sobrescrito (aconteceu no rodapé). Sempre deixar os blocos responsivos no final.
+- **Sem scroll lateral:** `section` tem `overflow-x: clip` em `base.css` (a névoa pulsante e vídeos com
+  `scale` vazavam). Ao criar decorativos que passam da borda, conferir `scrollWidth === clientWidth`.
+- **Seções secundárias compactas** (Expositores, Organizadores): `padding: 60px 5%`, header com
+  `margin-bottom` de 24–30px.
+- **O que o usuário pediu para evitar:** excesso de ornamentos competindo com o conteúdo (estandartes +
+  animais + divisores juntos foram retirados de "Sobre"); preferir **um** elemento ilustrado por seção.
+
+---
+
 ## Estado atual — pós-evento 2026 (atualizado em 2026-10-02)
 
 A 2ª edição ("No limiar das Brumas") aconteceu em **19/09/2026** no Caminho das Montanhas,
 Rua Francisco Portela, 115 – Cantagalo, Guapimirim/RJ. O site está em **modo pós-evento**,
 anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 
-- Hero: "2ª edição 2026 · Obrigado por atravessar as Brumas" / "Nos vemos em 2027" / CTA → `#2027`.
-- Seção `#2027` ("Brumas 2027") substituiu a seção de Ingressos na home; CTA para o Instagram.
+- Hero: bloco `.hero-info` no padrão do guia — eyebrow "3ª edição · Brumas Festival Medieval", título
+  "Nos vemos em 2027" com filete, nota em itálico e botão "Acompanhar Novidades" (Instagram). Sem o badge de edição.
+- Seções claras: pergaminho + vinheta leve nos cantos (regra única em `base.css`, `section:not(.dark-section):not(#hero)`). Textura de papel testada e descartada.
+- Seções Ingressos, "Brumas 2027" e Contato fora da home; menu sem Ingressos e Contato.
+- Contato fica só no rodapé (todas as páginas com `<footer-component>`), em linha compacta.
+- Rodapé: logo B no centro + dois estandartes ao vento em vídeo nas laterais (`videos/estandarte-footer.mp4`).
+- Local: estandarte roxo alto (`assets/estandarte-local.webp`) à esquerda; no celular, pequeno no canto.
+- Organizadores em versão compacta (logos 110px, 84px no celular).
+- Galeria com o emblema "B em névoa" (`assets/galeria-emblema-bg.webp`) como sobreposição quase
+  imperceptível (`#galeria::before`, opacity 0.18 + `mix-blend-mode: screen`).
   Sem `medieval-divider` abaixo do título (removido a pedido).
 - Ingressos: vendas encerradas (`ingressos.html` com aviso, `noindex`, fora do sitemap).
 - Expositores: formulário funciona como **lista de interesse 2027**.
+- Sobre o Festival: título + `medieval-divider` padrão + 3 cards em arco (HTML/CSS) com os medalhões 2027.
 - Galeria: ainda com fotos de **2025** (legenda "Brumas Festival 2025").
 
 ## Pendências
@@ -80,17 +214,24 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
       para a edição de 19 de setembro de 2026". Revisar para 2027.
 - [ ] **Checkout externo** (`brumas-front-end.vercel.app/ingressos.html`): se não for gerado a
       partir deste repositório, fechar as vendas lá também.
+- [ ] **Endereço do local:** listagens públicas do Caminho das Montanhas usam outro endereço (Travessa
+      Eng. Paulo de Alencar Araripe, Cantagalo) — confirmar qual vale antes de 2027 (ver `docs/pesquisa-web-brumas.md`).
+- [ ] **Google com dados da 1ª edição:** resultados ainda citam Fazenda das Nascentes/Magé e 19/07/2025;
+      pedir reindexação no Search Console.
+- [ ] **Itens inclusos para expositores 2027:** a home diz "barraca de madeira, ponto de energia e 2
+      cadeiras" (condições de 2026). Confirmar para 2027.
 - [ ] **Data da edição 2027:** quando definida, seguir o checklist abaixo.
 - [ ] Bug antigo nos dados: `TICKETS[0].description` diz "entrada do dia 25.07.26" (data errada) —
       corrigir ao reabrir as vendas.
 
 ## Checklist — reabrir o site para a edição 2027
 
-1. **Hero** (`index.html`): edição/tema no `.edition-badge`, data no `<time class="event-date">`
-   (com `datetime`), horário em `.event-time`, CTA "Garantir Ingresso" → `TICKET_SALES_URL`.
+1. **Hero** (`index.html`, bloco `.hero-info`): eyebrow com edição/tema, data no `<time class="hero-title">`
+   (com `datetime`), horário na `.hero-note`, botão principal "Garantir Ingresso" → `TICKET_SALES_URL`.
+   (`.edition-badge`, `.event-date` e `.event-time` ainda existem em `hero.css` se preferir o visual antigo.)
 2. **Ingressos:** restaurar a seção `#ingressos` na home e o formulário em `ingressos.html`
    (recuperar do git: `git show 24bda16:ingressos.html` e `git show 24bda16:index.html`).
-   Atualizar `PRICES`/`TICKETS` em `js/script.js`; trocar `'2027'` por `'Ingressos'` em `NAV_LINKS`
+   Atualizar `PRICES`/`TICKETS` em `js/script.js`; descomentar `'Ingressos'` em `NAV_LINKS`
    (ou manter ambos). Remover `noindex` e voltar `ingressos.html` ao sitemap.
 3. **Contagem regressiva** (opcional): o easter egg de clique na data + música foi removido de
    `js/script.js`; recuperar com `git show 24bda16:js/script.js` se quiser e atualizar a data.
@@ -105,6 +246,79 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 ---
 
 ## Histórico de atualizações
+
+### 2026-10-02 — Seção "Sobre o Festival" com a arte 2027
+- `index.html`: seção `#sobre` agora tem o título e os 3 cards em arco com medalhões (coroa,
+  pergaminho, cavalo), com o `medieval-divider` padrão do site sob o título. Estandartes, animais e o
+  divisor do pacote foram testados e retirados a pedido.
+- `js/script.js`: `'2027'` removido do menu.
+- `index.html`: seção Contato removida (e `'Contato'` comentado em `NAV_LINKS`); contato compacto
+  (email, WhatsApp, Instagram, Facebook) adicionado ao rodapé em `js/components.js` + `.footer-contact`
+  em `css/layout.css`.
+- `css/sections/organizers.css`: seção Organizadores reduzida (menos padding, logos e nomes menores).
+- `docs/pesquisa-web-brumas.md`: pesquisa sobre o Brumas na internet (feita por agente secundário).
+- Seção Galeria embelezada pelo guia: divisor + legenda em itálico no cabeçalho, fotos com moldura
+  dupla e legenda visível, botões anterior/próxima (JS no `PhotoGallery`), seção mais compacta;
+  `gallery.css` reescrito (overlay de hover e faixas sólidas removidos).
+- Seção Local: estandarte estático trocado por vídeo em loop (`videos/estandarte-local.mp4` + poster
+  `videos/estandarte-local-poster.jpg`, gerados do vídeo Gemini sem áudio) com blend `screen`; coluna
+  do estandarte passou a 300px. `assets/estandarte-local.webp` ficou sem uso na home.
+- Seção Local: vídeo trocado por `ESTANDARDE_VENTO.mp4` (estandarte ao vento), girado 90° (veio deitado),
+  recortado, sem áudio, 480x706, ~330 KB. Loop suavizado: o último 1s faz crossfade com o 1º segundo
+  (`trim` 1s→fim + `xfade` com o trecho 0–1s; resultado 5,08s). Coluna do estandarte em 240px; máscara
+  radial leve só na borda do quadro.
+- Vídeo do estandarte movido da Local para o rodapé, renomeado `videos/estandarte-footer.mp4` (+ poster):
+  dois estandartes nas laterais do `<footer-component>` (todas as páginas), logo mantida no centro; no
+  celular ficam pequenos nos cantos de cima. Estilos em `css/layout.css`.
+- Seção Local: novo estandarte roxo alto (`Estandarte Medieval Roxo com Letra B Ornada.png` →
+  `assets/estandarte-local.webp`, 340px) em coluna de 170px; mobile otimizado (estandarte no canto,
+  texto alinhado à esquerda com ícones ao lado, botões lado a lado, mapa 240px, padding menor).
+- Textura de papel nas seções claras testada (2 versões) e removida a pedido; ficou só a vinheta leve
+  nos cantos. `#sobre` perdeu o fundo próprio e usa a regra comum. Botão "Conhecer o Festival" do hero
+  removido a pedido.
+- Mobile: Expositores no mesmo tratamento da Local (texto à esquerda, ícones 30px ao lado do texto com
+  separadores tracejados, botões lado a lado). Rodapé no celular: nome em eyebrow dourado, links em grade
+  3 colunas (Cinzel maiúsculas, sem sublinhado) entre filetes, contato em lista e redes em círculos
+  dourados de 40px (`.footer-social` no `FooterComponent`); estilos no fim de `css/layout.css`.
+- Organizadores no celular: lista compacta (logo 64px emoldurada à esquerda, nome ao lado, separadores
+  tracejados dourados), menos espaço entre título e lista.
+- Sobre o Festival: cards trocados por uma **jornada vertical** — medalhões ligados por fio dourado no
+  centro, texto alternando esquerda/direita com numeral romano (I, II, III) em eyebrow; no celular fio e
+  medalhões à esquerda e texto à direita (`css/sections/about.css`, `<ol class="about-journey">`).
+- Organizadores (desktop): logos na moldura dourada dupla, nomes em Cinzel maiúsculas, separadores
+  verticais dourados entre eles; comentários de organizadores antigos removidos do HTML.
+- Botões `.map-button` com `white-space: nowrap` e `flex: 1 1 auto` no celular: não quebram o texto,
+  empilham quando não cabem lado a lado.
+- Rodapé: o estandarte da direita começa 3s adiantado (`currentTime = 3` no `FooterComponent`).
+- Galeria: foto "Expositores" movida para a 3ª posição (ids de `PHOTOS` renumerados 1–3; o
+  `photo-viewer` navega pelo `id`, então os ids devem seguir a ordem do array).
+- Scroll lateral corrigido: `.pulsating-mist` da Galeria passava da largura da tela; `section` ganhou
+  `overflow-x: clip` (verificado em index, expositores, ingressos e photo-viewer, 1440px e 390px).
+- Hero: "Nos vemos em 2027" reorganizado no padrão do guia (`.hero-info` em `hero.css`: eyebrow, título
+  com filete, nota, botão do Instagram; halo escuro sutil atrás do texto; entrada em cascata).
+- `photo-viewer.html` redesenhado pelo guia (CSS inline movido para `css/sections/photo-viewer.css`);
+  contador "NN / 18", Esc fecha, fechar volta para `index.html#galeria`.
+- `assets/estandarte-local.webp`: estandarte da seção Local trocado pelo de letra B ornada (roxo e dourado,
+  420px).
+- `index.html` + `css/sections/location.css`: seção Local redesenhada (estandarte lavanda
+  `assets/estandarte-local.webp` à esquerda, bloco de info sem card, botões Como Chegar/Waze no estilo
+  do site, mapa com moldura dourada; empilha no celular).
+- `css/sections/contact.css`: seção Expositores mais baixa (padding 60px, header e texto compactos).
+- `index.html`: textos dos 3 cards de "Sobre o Festival" reescritos a partir do conceito oficial
+  (`docs/drive-brumas25.md`) e das atrações registradas (`docs/imprensa-mencoes.md`):
+  "Uma Viagem no Tempo", "Saberes Ancestrais", "Imersão para Toda a Família".
+- Seção Expositores redesenhada pelo guia: info (eyebrow, título, descrição, 3 detalhes com ícone,
+  botões "Quero Expor em 2027" e "Tirar Dúvidas" no WhatsApp) + foto emoldurada
+  (`assets/pictues/brumas_artesaos_medievais_md.webp`, 760px). CSS movido de `contact.css` para o novo
+  `css/sections/exhibitors.css`. Itens inclusos (barraca, energia, 2 cadeiras) vêm da chamada de 2026.
+- `AGENTS.md`: nova seção "Guia de design" com o método e os estilos da seção Local como padrão do site.
+- `css/sections/gallery.css`: emblema B em névoa como overlay sutil da Galeria; o fade lateral das
+  fotos passou de faixas sólidas (`::before/::after`) para `mask-image`, para não cobrir o emblema.
+- `index.html`: seção `#2027` removida; CTA do hero virou "Acompanhar Novidades" (Instagram, o
+  botão que estava na seção 2027); badge "2ª edição 2026 · Obrigado por atravessar as Brumas" removido.
+- `css/sections/about.css`: reescrito para os cards (empilham abaixo de 850px).
+- `assets/brumas-2027/`: só os 3 medalhões em WebP. O resto do pacote `brumas_2027_web_assets`
+  (estandartes, coelho, raposa, folhagens, cards PNG) não está no repo.
 
 ### 2026-10-02 — Site em modo pós-evento 2026 / anúncio de 2027
 - `index.html`: hero de agradecimento + "Nos vemos em 2027"; seção Ingressos substituída por `#2027`;

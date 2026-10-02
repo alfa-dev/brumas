@@ -36,26 +36,26 @@ const TICKETS = [
   }
 ];
 
-const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Expositores', /* 'Programação', 'Atrações', 'Ingressos', */ '2027', 'Contato', 'Local', 'Organizadores'];
+const NAV_LINKS = ['Início', 'Sobre', 'Galeria', 'Expositores', /* 'Programação', 'Atrações', 'Ingressos', 'Contato', */ 'Local', 'Organizadores'];
 
 const PHOTOS = [
   {
     id: 1,
-    src: 'assets/pictues/brumas_artesaos_medievais.webp',
-    alt: 'Expositores',
-    title: 'Expositores'
-  },
-  {
-    id: 2,
     src: 'assets/pictues/brumas_elmo_do_guerreiro.webp',
     alt: 'Itens históricos',
     title: 'Itens históricos'
   },
   {
-    id: 3,
+    id: 2,
     src: 'assets/pictues/brumas_contacao_de_historias.webp',
     alt: 'Contação de Histórias',
     title: 'Contação de Histórias'
+  },
+  {
+    id: 3,
+    src: 'assets/pictues/brumas_artesaos_medievais.webp',
+    alt: 'Expositores',
+    title: 'Expositores'
   },
   {
     id: 4,

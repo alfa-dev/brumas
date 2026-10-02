@@ -6,7 +6,7 @@
   <title>Brumas - Visualizar Foto</title>
   <meta name="robots" content="noindex, follow">
 
-  <link rel="stylesheet" href="css/styles.css?v=afce5c7">
+  <link rel="stylesheet" href="css/styles.css?v=6ce9231">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,185 +14,43 @@
     href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=Gentium+Book+Plus:ital@0;1&display=swap"
     rel="stylesheet">
 
-  <script src="js/script.js?v=afce5c7"></script>
+  <script src="js/script.js?v=6ce9231"></script>
 
-  <style>
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1001;
-      mix-blend-mode: hard-light;
-      pointer-events: none;
-    }
-
-    .photo-viewer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    .photo-container {
-      position: relative;
-      max-width: 90vw;
-      max-height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .photo-container img {
-      max-width: 100%;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .photo-title {
-      position: absolute;
-      bottom: 0px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      color: white;
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      padding: 1rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    }
-
-    .close-button {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .close-button:hover {
-      transform: scale(1.2);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .back-button:hover {
-      transform: scale(1.2);
-    }
-
-    .nav-button {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 2.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1.5rem;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-button:hover:not(:disabled) {
-      transform: translateY(-50%) scale(1.1);
-      background: rgba(0, 0, 0, 0.7);
-      border-color: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .nav-button:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-      background: rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .prev-button {
-      left: 30px;
-    }
-
-    .next-button {
-      right: 30px;
-    }
-
-    @media (max-width: 768px) {
-      .nav-button {
-        font-size: 2rem;
-        width: 50px;
-        height: 50px;
-      }
-
-      .prev-button {
-        left: 10px;
-      }
-
-      .next-button {
-        right: 10px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/sections/photo-viewer.css?v=6ce9231">
 </head>
-<body>
-  <video autoplay muted loop playsinline id="bg-video" poster="videos/poster.png" style="opacity: .6; transform: scale(-1);">
-    <source
-      src="videos/bg.mp4"
-      type="video/mp4">
+<body class="pv-body">
+  <video autoplay muted loop playsinline id="bg-video" poster="videos/poster.png">
+    <source src="videos/bg.mp4" type="video/mp4">
   </video>
   <div class="photo-viewer">
-    <a href="#" onclick="window.history.back()" class="back-button">
-      <i class="fa-solid fa-arrow-left"></i>
-    </a>
-    <div class="photo-container">
-      <button class="nav-button prev-button" id="prev-button">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-      <img id="photo" src="" alt="" style="view-transition-name: 'gallery-item';">
-      <div class="photo-title" id="photo-title"></div>
-      <button class="nav-button next-button" id="next-button">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
+    <div class="pv-topbar">
+      <a href="#" onclick="window.history.back(); return false;" class="pv-icon-button" aria-label="Voltar">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <p class="pv-eyebrow">Galeria · Brumas Festival 2025</p>
+      <a href="index.html#galeria" class="pv-icon-button" aria-label="Fechar">
+        <i class="fa-solid fa-xmark"></i>
+      </a>
     </div>
-    <a href="index.html" class="close-button">
-      <i class="fa-solid fa-times"></i>
-    </a>
+
+    <div class="pv-stage">
+      <figure class="pv-frame">
+        <img id="photo" src="" alt="" style="view-transition-name: 'gallery-item';">
+      </figure>
+    </div>
+
+    <div class="pv-footer">
+      <h1 class="pv-title" id="photo-title"></h1>
+      <div class="pv-nav">
+        <button class="pv-icon-button" id="prev-button" aria-label="Foto anterior">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span class="pv-counter" id="photo-counter"></span>
+        <button class="pv-icon-button" id="next-button" aria-label="Próxima foto">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -200,6 +58,7 @@
     const photoTitleElement = document.getElementById('photo-title');
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
+    const photoCounter = document.getElementById('photo-counter');
 
     updatePhoto();
     updateButtons();
@@ -227,6 +86,7 @@
       photo.src = currentPhoto.src;
       photo.alt = currentPhoto.title;
       photoTitleElement.textContent = currentPhoto.title;
+      photoCounter.textContent = `${String(currentPhoto.id).padStart(2, '0')} / ${PHOTOS.length}`;
     }
 
     function isFirstPhoto() {
@@ -266,6 +126,8 @@
         navigatePhoto('prev');
       } else if (e.key === 'ArrowRight') {
         navigatePhoto('next');
+      } else if (e.key === 'Escape') {
+        window.location.href = 'index.html#galeria';
       }
     });
   </script>
