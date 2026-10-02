@@ -43,6 +43,20 @@
         emit(el, 16);
         timer = setInterval(() => emit(el, 4), 220);
       });
+      // Clique: explosão maior + onda dourada (o link abre em nova aba, então dá tempo de ver)
+      if (el.hasAttribute('data-enchant-click')) {
+        el.addEventListener('click', () => {
+          if (reduceMotion) return;
+          emit(el, 44);
+          el.classList.remove('is-casting');
+          void el.offsetWidth;
+          el.classList.add('is-casting');
+          const ring = document.createElement('span');
+          ring.className = 'enchant-ripple';
+          ring.addEventListener('animationend', () => ring.remove());
+          el.appendChild(ring);
+        });
+      }
       el.addEventListener('pointerleave', () => {
         el.classList.remove('is-enchanted');
         clearInterval(timer);

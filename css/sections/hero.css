@@ -457,7 +457,7 @@
   border-radius: 8px;
   background:
     linear-gradient(180deg, rgba(40, 10, 70, 0.35), rgba(15, 4, 30, 0.55)),
-    url('../../assets/nebulosa-roxa.webp?v=73e8861') center / cover;
+    url('../../assets/nebulosa-roxa.webp?v=e07a597') center / cover;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
   color: var(--color-light);
   text-decoration: none;
@@ -497,6 +497,57 @@
 
 .hero-cta:hover .hero-cta-arrow {
   transform: translateX(3px);
+}
+
+/* Magia no hover (js/enchant.js): luz dourada/violeta girando pela borda + partículas (.orb-particle) */
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 10px;
+  padding: 2px;
+  background: conic-gradient(from var(--enchant-angle), transparent 0 10%, var(--color-gold-light) 18%, transparent 30% 45%,
+    rgba(176, 120, 230, 0.95) 55%, transparent 66% 78%, var(--color-gold-light) 88%, transparent 96%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.hero-cta.is-enchanted::before {
+  opacity: 1;
+  animation: enchantSpin 2s linear infinite;
+}
+
+.hero-cta.is-enchanted {
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 26px rgba(212, 167, 68, 0.45), 0 0 46px rgba(176, 120, 230, 0.3);
+}
+
+/* Clique: clarão e onda dourada */
+.hero-cta.is-casting {
+  animation: heroCtaCast 0.6s ease;
+}
+
+.enchant-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  border: 2px solid rgba(240, 200, 110, 0.9);
+  box-shadow: 0 0 16px rgba(212, 167, 68, 0.7), inset 0 0 12px rgba(176, 120, 230, 0.5);
+  pointer-events: none;
+  animation: enchantRipple 0.9s ease-out forwards;
+}
+
+@keyframes heroCtaCast {
+  30% { transform: scale(0.96); filter: brightness(1.5); }
+  60% { transform: scale(1.04); filter: brightness(1.2); }
+}
+
+@keyframes enchantRipple {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(1.35, 1.9); opacity: 0; }
 }
 
 @keyframes heroCtaShine {

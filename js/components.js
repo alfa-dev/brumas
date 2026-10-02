@@ -23,7 +23,7 @@ class HeaderComponent extends HTMLElement {
         <nav class="navbar">
           <div class="logo">
             <a href="index.html">
-              <img src="assets/b_fundo_escuro.svg?v=73e8861" alt="Brumas Logo">
+              <img src="assets/b_fundo_escuro.svg?v=e07a597" alt="Brumas Logo">
             </a>
           </div>
           <input type="checkbox" id="menu-toggle" class="menu-toggle">
@@ -70,14 +70,14 @@ class FooterComponent extends HTMLElement {
       <footer>
         ${['left', 'right'].map(side => `
           <div class="footer-banner footer-banner--${side}" aria-hidden="true">
-            <video muted loop playsinline preload="none" data-lazy-video poster="videos/estandarte-footer-poster.jpg?v=73e8861">
-              <source data-src="videos/estandarte-footer.mp4?v=73e8861" type="video/mp4">
+            <video muted loop playsinline preload="none" data-lazy-video poster="videos/estandarte-footer-poster.jpg?v=e07a597">
+              <source data-src="videos/estandarte-footer.mp4?v=e07a597" type="video/mp4">
             </video>
           </div>
         `).join('')}
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="assets/b_fundo_escuro.svg?v=73e8861" alt="Brumas Logo">
+                <img src="assets/b_fundo_escuro.svg?v=e07a597" alt="Brumas Logo">
                 <p>Brumas - Festival Medieval</p>
             </div>
             <div class="footer-links">
