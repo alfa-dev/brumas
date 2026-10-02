@@ -445,3 +445,67 @@
     justify-content: center;
   }
 }
+
+/* Botão principal da capa: nebulosa ao fundo, borda dourada fina, texto normal (claro) e seta. Compacto e sem ornamentos externos (versão maior foi achada exagerada). */
+.hero-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border: 1px solid #d9a847;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(40, 10, 70, 0.35), rgba(15, 4, 30, 0.55)),
+    url('../../assets/nebulosa-roxa.webp?v=73e8861') center / cover;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  color: var(--color-light);
+  text-decoration: none;
+  white-space: nowrap;
+  isolation: isolate;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* reflexo de luz que passa a cada ~6s */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 7px;
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 235, 190, 0.2) 45%, transparent 60%) -150% 0 / 60% 100% no-repeat;
+    animation: heroCtaShine 6s ease-in-out 2.5s infinite;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: #f1cf7a;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 18px rgba(212, 167, 68, 0.35);
+  }
+}
+
+.hero-cta-label {
+  font-family: var(--font-medieval);
+  font-size: 1rem;
+  color: var(--color-light);
+}
+
+.hero-cta-arrow {
+  font-size: 0.7rem;
+  color: #e3b558;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover .hero-cta-arrow {
+  transform: translateX(3px);
+}
+
+@keyframes heroCtaShine {
+  0%, 70% { background-position: -150% 0; }
+  100%    { background-position: 250% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta::after {
+    animation: none;
+  }
+}

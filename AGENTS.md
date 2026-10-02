@@ -503,6 +503,9 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   link curto https://maps.app.goo.gl/pCQhvAfJ3on3fJhS7; "Como Chegar" → rota do Google Maps com o endereço exatamente como o Google cadastra
   ("R. Francisco Portela, 115 - Parque Santo Antonio, …", testado: desenha a rota); Waze → `ll=` com as
   coordenadas (a busca por texto com "Cantagalo" caía no lugar errado).
+- Botão da capa "Acompanhar Novidades" (`.hero-cta` em `hero.css`): fundo nebulosa (`assets/nebulosa-roxa.webp`),
+  **borda dourada fina (1px)**, texto claro normal, seta e reflexo a cada ~6s. Rejeitados a pedido: estrelas
+  laterais, texto dourado, borda grossa/dupla e ícone do Instagram em anel. Não usa `.map-button`.
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3
