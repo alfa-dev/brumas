@@ -23,15 +23,24 @@ class HeaderComponent extends HTMLElement {
         <nav class="navbar">
           <div class="logo">
             <a href="index.html">
-              <img src="assets/b_fundo_escuro.svg?v=b80b0af" alt="Brumas Logo">
+              <img src="assets/b_fundo_escuro.svg?v=fea7de4" alt="Brumas Logo">
             </a>
           </div>
           <input type="checkbox" id="menu-toggle" class="menu-toggle">
           <div class="nav-links">
             ${navLinks()}
+            <div class="nav-extra">
+              <div class="nav-extra-social">
+                ${SOCIAL_LINKS.map(link => `
+                  <a href="${link.url}" target="_blank" aria-label="${link.name}">
+                    <i class="fa-brands fa-${link.name.toLowerCase()}"></i>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
           </div>
-          <label for="menu-toggle" class="menu-icon" id="menu-toggle-label">
-            <img src="assets/burger_menu.svg?v=b80b0af" alt="Menu">
+          <label for="menu-toggle" class="menu-icon" id="menu-toggle-label" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
           </label>
         </nav>
       </header>
@@ -41,10 +50,10 @@ class HeaderComponent extends HTMLElement {
       const menuToggle = document.getElementById('menu-toggle');
       const menuLinks = document.querySelectorAll('.nav-links a');
 
+      // Fecha o menu ao escolher um destino
       menuLinks.forEach(link => {
         link.addEventListener('click', () => {
-          console.log(link);
-          menuToggle.click();
+          menuToggle.checked = false;
         });
       });
     })();
@@ -61,14 +70,14 @@ class FooterComponent extends HTMLElement {
       <footer>
         ${['left', 'right'].map(side => `
           <div class="footer-banner footer-banner--${side}" aria-hidden="true">
-            <video autoplay muted loop playsinline preload="metadata" poster="videos/estandarte-footer-poster.jpg?v=b80b0af">
-              <source src="videos/estandarte-footer.mp4?v=b80b0af" type="video/mp4">
+            <video autoplay muted loop playsinline preload="metadata" poster="videos/estandarte-footer-poster.jpg?v=fea7de4">
+              <source src="videos/estandarte-footer.mp4?v=fea7de4" type="video/mp4">
             </video>
           </div>
         `).join('')}
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="assets/b_fundo_escuro.svg?v=b80b0af" alt="Brumas Logo">
+                <img src="assets/b_fundo_escuro.svg?v=fea7de4" alt="Brumas Logo">
                 <p>Brumas - Festival Medieval</p>
             </div>
             <div class="footer-links">

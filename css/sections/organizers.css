@@ -1,58 +1,58 @@
-/* Seção de Organizadores (versão compacta) */
+/* Organizadores: faixa escura logo abaixo do footer, como continuação dele (sem título) */
 #organizadores {
-    padding: 60px 5%;
+    padding: 0 5% 40px;
+    background-color: var(--color-dark);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="1" fill="%23491449" opacity="0.3"/></svg>');
+    box-shadow: none;
 
-    & .section-header {
-        margin-bottom: 30px;
-    }
-
-    & .section-header h2 {
-        font-size: 1.8rem;
+    & .section-container {
+        max-width: 760px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(169, 131, 64, 0.25);
     }
 }
 
 .organizers-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 8px;
 
     & .organizer-item {
-        width: 230px;
+        flex: 1 1 0;
+        max-width: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 6px 24px;
+        padding: 4px 12px;
         transition: transform 0.3s ease;
 
         &:hover {
-            transform: translateY(-6px);
+            transform: translateY(-4px);
 
             & .organizer-logo-placeholder {
                 border-color: var(--color-gold-light);
-                box-shadow: 0 16px 30px rgba(39, 13, 79, 0.2), 0 0 18px var(--color-gold-glow);
+                box-shadow: 0 0 16px var(--color-gold-glow);
             }
         }
 
-        /* Moldura dourada dupla (mesma da seção Local) */
         & .organizer-logo-placeholder {
-            width: 128px;
-            height: 128px;
-            padding: 8px;
-            margin-bottom: 16px;
+            width: 84px;
+            height: 84px;
+            padding: 6px;
+            margin-bottom: 10px;
             position: relative;
             border: 1px solid var(--color-gold);
             border-radius: 6px;
-            background: rgba(255, 250, 238, 0.6);
-            box-shadow: 0 12px 26px rgba(39, 13, 79, 0.14);
+            background: rgba(245, 245, 245, 0.06);
             transition: all 0.3s ease;
 
             &::before {
                 content: '';
                 position: absolute;
                 inset: 3px;
-                border: 1px solid rgba(169, 131, 64, 0.35);
+                border: 1px solid rgba(169, 131, 64, 0.3);
                 border-radius: 4px;
                 pointer-events: none;
             }
@@ -69,77 +69,38 @@
 
         & .organizer-name {
             font-family: var(--font-title);
-            font-size: 0.8rem;
+            font-size: 0.68rem;
+            font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
             line-height: 1.5;
-            color: var(--color-deep-purple);
+            color: var(--color-gold-light);
         }
-    }
-
-    /* Separador vertical dourado entre os organizadores */
-    & .organizer-item + .organizer-item {
-        border-left: 1px solid rgba(169, 131, 64, 0.4);
     }
 }
 
-/* Celular: lista compacta (logo emoldurada à esquerda, nome ao lado, separadores tracejados),
-   no mesmo padrão dos detalhes da seção Expositores */
+/* Celular: continuam lado a lado, só menores */
 @media (max-width: 560px) {
     #organizadores {
-        padding: 50px 6%;
-
-        & .section-header {
-            margin-bottom: 16px;
-        }
-
-        & .section-header h2 {
-            font-size: 1.6rem;
-        }
-
-        & .medieval-divider {
-            margin-bottom: 0;
-        }
+        padding: 0 4% 30px;
     }
 
     .organizers-container {
-        flex-direction: column;
-        flex-wrap: nowrap;
-        gap: 0;
-        max-width: 360px;
-        margin: 0 auto;
+        gap: 4px;
 
         & .organizer-item {
-            width: 100%;
-            flex-direction: row;
-            gap: 16px;
-            padding: 12px 4px;
-            text-align: left;
-
-            &:hover {
-                transform: none;
-            }
+            padding: 4px 4px;
 
             & .organizer-logo-placeholder {
-                flex: none;
                 width: 64px;
                 height: 64px;
-                padding: 5px;
-                margin: 0;
-
-                &::before {
-                    inset: 3px;
-                }
+                padding: 4px;
             }
 
             & .organizer-name {
-                font-size: 0.8rem;
+                font-size: 0.58rem;
+                letter-spacing: 1px;
             }
-        }
-
-        & .organizer-item + .organizer-item {
-            border-left: 0;
-            border-top: 1px dashed rgba(169, 131, 64, 0.45);
         }
     }
 }

@@ -56,7 +56,8 @@ header-component a {
 }
 
 #menu-toggle-label,
-#menu-toggle {
+#menu-toggle,
+.nav-extra {
     display: none;
 }
 
@@ -196,52 +197,170 @@ footer {
         height: 40px;
     }
 
-    /* burger menu */
+    /* ---------- Menu mobile ---------- */
+
+    /* Botão: três barras douradas que viram um X */
     #menu-toggle-label {
-        display: block;
-        width: 30px;
-        height: 30px;
-        padding: 5px;
+        flex: none;
+        box-sizing: border-box;
+        display: grid;
+        place-content: center;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border: 1px solid var(--color-gold);
+        border-radius: 50%;
+        background: rgba(8, 8, 6, 0.4);
         cursor: pointer;
-        background-color: transparent;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+        & span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--color-gold-light);
+            transition: transform 0.35s ease, opacity 0.25s ease;
+        }
     }
 
-    #menu-toggle-label img {
-        width: 100%;
-        height: 100%;
-        color: white;
+    #menu-toggle:checked ~ #menu-toggle-label {
+        background: var(--color-deep-purple);
+        box-shadow: 0 0 14px var(--color-gold-glow);
+
+        & span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        & span:nth-child(2) { opacity: 0; }
+        & span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
 
-    #menu-toggle:checked + .nav-links {
-        display: flex;
-        top: 49px;
-    }
-
-    #menu-toggle:checked + .nav-links + #menu-toggle-label {
-        background-color: #a98340;
-    }
-
+    /* Painel: roxo profundo com brilho dourado, links com losangos entre eles */
     .nav-links {
-        display: none;
+        display: flex;
         position: fixed;
-        top: -10%;
+        top: 49px;
         left: 0;
         width: 100%;
-        height: calc(100vh - 49px);
-        background-color: rgba(8, 8, 6, 0.95);
+        height: calc(100dvh - 49px);
+        box-sizing: border-box;
+        padding: 36px 24px 28px;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        transition: top 0.5s ease-in-out;
+        background:
+            radial-gradient(ellipse at 50% 0%, rgba(169, 131, 64, 0.22), transparent 55%),
+            radial-gradient(ellipse at 50% 100%, rgba(139, 74, 150, 0.35), transparent 60%),
+            #1a0834;
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+        overflow-y: auto;
     }
 
-    .nav-links.active {
-        left: 0;
+    #menu-toggle:checked + .nav-links {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
-    .nav-links a {
-        margin: 15px 0;
-        font-size: 1.2rem;
+    .nav-links > a {
+        margin: 0;
+        padding: 14px 0;
+        font-size: 1.15rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: color 0.3s ease;
+
+        /* losango dourado entre os itens */
+        & + a::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            width: 7px;
+            height: 7px;
+            border: 1px solid var(--color-gold);
+            transform: translateX(-50%) rotate(45deg);
+            opacity: 0.7;
+        }
+
+        &::after {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 8px;
+        }
+
+        &:hover::after,
+        &:active::after {
+            width: 60%;
+        }
+    }
+
+    /* Entrada em cascata ao abrir */
+    #menu-toggle:checked + .nav-links > a,
+    #menu-toggle:checked + .nav-links .nav-extra {
+        animation: menuItemIn 0.45s ease forwards;
+    }
+
+    #menu-toggle:checked + .nav-links > :nth-child(1) { animation-delay: 0.05s; }
+    #menu-toggle:checked + .nav-links > :nth-child(2) { animation-delay: 0.1s; }
+    #menu-toggle:checked + .nav-links > :nth-child(3) { animation-delay: 0.15s; }
+    #menu-toggle:checked + .nav-links > :nth-child(4) { animation-delay: 0.2s; }
+    #menu-toggle:checked + .nav-links > :nth-child(5) { animation-delay: 0.25s; }
+    #menu-toggle:checked + .nav-links > :nth-child(6) { animation-delay: 0.3s; }
+    #menu-toggle:checked + .nav-links > :nth-child(7) { animation-delay: 0.38s; }
+
+    /* Rodapé do menu: chamada para 2027 + redes em círculos dourados */
+    .nav-extra {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-top: auto;
+        padding-top: 24px;
+        width: 100%;
+        border-top: 1px solid rgba(169, 131, 64, 0.3);
+        opacity: 0;
+    }
+
+    .nav-extra-social {
+        display: flex;
+        gap: 14px;
+
+        & a {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            margin: 0;
+            padding: 0;
+            border: 1px solid var(--color-gold);
+            border-radius: 50%;
+            color: var(--color-gold-light);
+            font-size: 1.1rem;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    /* Página não rola com o menu aberto */
+    body:has(#menu-toggle:checked) {
+        overflow: hidden;
+    }
+}
+
+@keyframes menuItemIn {
+    to {
+        opacity: 1;
+        transform: none;
     }
 }
 

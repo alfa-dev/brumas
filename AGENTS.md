@@ -24,7 +24,7 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 
 | Caminho | O que é |
 | --- | --- |
-| `index.html` | Home (hero, Sobre, Galeria, Expositores, Local, Organizadores) |
+| `index.html` | Home (hero, Sobre, Galeria, Expositores, Local; footer; Organizadores abaixo do footer) |
 | `ingressos.html` | Hoje: aviso de vendas encerradas. Em edição ativa: formulário de compra |
 | `expositores.html` | Formulário de expositores (hoje: lista de interesse 2027) → Google Apps Script |
 | `expositores-2026.html` | Redireciona para `expositores.html` (o hotsite de urgência 2026 foi removido) |
@@ -389,6 +389,15 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Sobre — o fio dourado agora desce até a borda inferior da seção (`--tail` via JS) e, ao encostar nela
   (`#sobre.is-sealed`), abre uma **borda dourada entre as seções** (`.about-seam`, scaleX a partir do
   ponto do fio, com losango no encontro).
+- Organizadores movidos para **abaixo do footer** (fora do `<main>`, logo após `<footer-component>`) e
+  sem o título "Organizadores"; o link do menu `#organizadores` continua funcionando. Em pergaminho ficou
+  estranho, então virou faixa **escura** continuando o footer (filete dourado, logos 84px/64px lado a lado
+  inclusive no celular, nomes em Cinzel dourado) — `css/sections/organizers.css` reescrito.
+- Menu mobile redesenhado (`css/layout.css` + `HeaderComponent`): botão redondo dourado com 3 barras que
+  viram X, painel roxo profundo opaco com brilhos, links em Cinzel maiúsculas com losangos dourados entre
+  eles e entrada em cascata, redes em círculos dourados no rodapé do menu (`.nav-extra`, só no mobile),
+  página trava a rolagem com o menu aberto (`body:has(#menu-toggle:checked)`). Link fecha o menu sem
+  `click()` no checkbox. "Nos vemos em 2027" no menu foi testado e retirado a pedido.
 - **Cache:** incidente em produção (JS novo + `about.css` antigo via `@import` sem versão). Criados os
   guardrails da seção "Cache" (hook versiona tudo e falha se faltar; carimbo de build CSS/JS com
   recarga automática; sentinela `--about-fx`).
