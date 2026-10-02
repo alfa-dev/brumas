@@ -1,5 +1,7 @@
 **TERMOS E CONDIÇÕES PARA PARTICIPANTES**
 
+*Válido para a 3ª edição (2027) · data e local serão confirmados nos canais oficiais do Festival*
+
 ###
 
 **1\. DISPOSIÇÕES GERAIS**
@@ -104,7 +106,7 @@
 
 **10\. ACESSIBILIDADE**
 
-10.1. O evento ocorrerá em uma fazenda, podendo haver limitações de acessibilidade.
+10.1. O evento ocorre em área rural e de natureza, podendo haver limitações de acessibilidade.
 
 10.2. Cães-guia são permitidos, conforme previsto em legislação específica; outros animais não são permitidos no evento.
 
@@ -122,6 +124,6 @@
 
 ###
 
-Brumas \- Festival Medieval | Data de Atualização: Junho de 2026
+Brumas \- Festival Medieval | Data de Atualização: Outubro de 2026
 
 Para mais informações, entre em contato: brumasfestival@gmail.com

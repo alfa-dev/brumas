@@ -1,5 +1,7 @@
 **TERMOS E CONDIÇÕES PARA EXPOSITORES**
 
+*Válido para a 3ª edição (2027) · data e local serão confirmados nos canais oficiais do Festival*
+
 ###
 
 ### **1\. DISPOSIÇÕES GERAIS**
@@ -27,6 +29,8 @@
 * Comprometimento com as diretrizes de ambientação.
 
 2.4. O número de vagas é limitado e as inscrições serão avaliadas por ordem de chegada, sendo que o preenchimento do formulário não garante automaticamente a participação no evento. A participação será garantida por meio do pagamento integral do valor. Aqueles que garantem sua presença primeiro têm a liberdade de escolher o melhor lugar para vivenciar essa experiência única.
+
+2.5. O registro na lista de interesse da edição 2027, disponível no site oficial, não constitui inscrição nem reserva de espaço. Quando as inscrições forem abertas, os interessados registrados serão avisados pelos canais informados e deverão seguir o processo de seleção e pagamento descrito neste documento.
 
 ###
 
@@ -104,7 +108,7 @@
 
 6.3. A desmontagem somente poderá ser iniciada após o término oficial do evento, sendo proibida a retirada de produtos ou estruturas antes deste horário.
 
-6.5. O expositor é responsável pela retirada de todo o lixo e resíduos gerados em seu espaço, deixando a área limpa e nas mesmas condições em que foi recebida.
+6.4. O expositor é responsável pela retirada de todo o lixo e resíduos gerados em seu espaço, deixando a área limpa e nas mesmas condições em que foi recebida.
 
 ###
 
@@ -160,6 +164,6 @@
 
 10.5. Ao preencher o formulário de inscrição para expositores, o interessado declara ter lido, compreendido e concordado com todos os termos e condições aqui estabelecidos.
 
-Brumas \- Festival Medieval | Data de Atualização: Junho de 2026
+Brumas \- Festival Medieval | Data de Atualização: Outubro de 2026
 
 Para mais informações, entre em contato: brumasfestival@gmail.com

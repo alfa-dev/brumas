@@ -294,8 +294,9 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 ## Pendências
 
 - [ ] **Fotos de 2026:** incluir na galeria (`PHOTOS`) e atualizar a legenda da seção Galeria.
-- [ ] **Termos de expositores:** o formulário de interesse exige aceitar termos que dizem "Válido
-      para a edição de 19 de setembro de 2026". Revisar para 2027.
+- [ ] **Termos de expositores — contradição antiga:** a cláusula 3.2 diz que são fornecidas "2 cadeiras
+      para cada estande" e a 3.3 diz que cadeiras **não** são fornecidas. Decidir e corrigir (texto jurídico,
+      não alterado sem confirmação). Metragem da barraca ainda "a ser definida".
 - [ ] **Checkout externo** (`brumas-front-end.vercel.app/ingressos.html`): se não for gerado a
       partir deste repositório, fechar as vendas lá também.
 - [ ] **Endereço do local:** listagens públicas do Caminho das Montanhas usam outro endereço (Travessa
@@ -421,6 +422,13 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   formulário em pergaminho com moldura dourada dupla em etapas I/II/III (pílulas Sim/Não, select com seta
   dourada). Mesmos `id`/`name` dos campos (planilha e anti-spam intactos). CSS em
   `css/sections/expositores-page.css`; `ticket-form.css`/`merchant-form.css` não são mais usados nela.
+- Termos de participantes e expositores atualizados para **2027** ("Válido para a 3ª edição (2027) · data e
+  local serão confirmados nos canais oficiais", atualização Outubro de 2026), HTML e `.md`. Participantes:
+  10.1 sem "fazenda" (área rural e de natureza) e e-mail de contato corrigido para brumasfestival@gmail.com.
+  Expositores: nova 2.5 (lista de interesse 2027 não é inscrição nem reserva) e numeração 6.5→6.4.
+- Nova foto do mercado (`assets/pictues/brumas_mercado_laminas.webp`, banca de lâminas e bainhas, recorte
+  3:2 de `IMG_2025.HEIC`) na seção Expositores da home e no banner de `expositores.html`; a foto antiga
+  `brumas_artesaos_medievais_md.webp` saiu (a original continua na galeria).
 - **Desempenho:** análise de memória/CPU (heap estável ~4 MB, sem vazamento) e otimizações de
   renderização e rede — ver `docs/otimizacoes-desempenho.md`.
 - **Cache:** incidente em produção (JS novo + `about.css` antigo via `@import` sem versão). Criados os
