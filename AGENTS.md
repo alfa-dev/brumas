@@ -530,6 +530,13 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   da edição da foto ("01 / 17") e mostra o ano no topo. Gerador de compartilhamento usa `album` no texto.
   Para nova edição: fotos com `album: 2027`, ids novos no fim, entrada no topo de `GALLERY_ALBUMS` e rodar
   `python3 scripts/gerar-compartilhamento.py`.
+- **Sobre: efeitos de rolagem em CSS puro** (scroll-driven animations, fim de `css/sections/about.css`): parallax
+  do fundo e dos medalhões, entrada dos passos, fio dourado (`view-timeline: --jornada` na `.journey-line`,
+  `timeline-scope` no `#sobre`) e abertura da borda entre seções. Rodam no compositor, sincronizados com o
+  dedo (o parallax via JS "travava" no celular). Chrome/Edge 115+, Safari 26+; sem suporte, o JS antigo é a
+  reserva (`cssScroll` em `js/about-journey.js`). **Armadilha:** `#sobre` usa `overflow: clip` — com
+  `hidden` a seção vira contêiner de rolagem e o `view()` passa a seguir a seção (que não rola), congelando
+  tudo. No celular: 2 trilhas e fundo sem máscara. Efeitos de mouse continuam em JS.
 - Rodapé: `mix-blend-mode` removido dos estandartes em vídeo (o fundo do rodapé já é preto, não fazia
   diferença); fica só a máscara radial nas bordas.
 - Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3

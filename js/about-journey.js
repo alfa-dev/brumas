@@ -2,12 +2,17 @@
 // constelações), parallax, brilho que segue o mouse e revelação da jornada
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Modo leve (celular/tablet): menos trilhas; e, só na reserva em JS (sem scroll-driven CSS), sem parallax,
+  // porque no toque a rolagem roda fora do JS e o parallax via JS chega atrasado ("travado").
+  const lite = window.matchMedia('(pointer: coarse), (max-width: 760px)').matches;
+  // Com scroll-driven animations, parallax/fio/borda/entrada dos passos ficam no CSS (about.css)
+  const cssScroll = window.CSS && CSS.supports('animation-timeline: view()');
   const SVG_NS = 'http://www.w3.org/2000/svg';
 
   // Trilhas de tinta (coordenadas no viewBox 1200x900) e lugares do mapa
   // Trilhas pontilhadas aleatórias (viewBox 1200x900): cada uma se desenha linearmente, some do início para
   // o fim e renasce com outro traçado, outra duração e outro atraso
-  const TRAIL_COUNT = 4;
+  const TRAIL_COUNT = lite ? 2 : 4;
   const rand = (min, max) => min + Math.random() * (max - min);
   // Traçados: "suave" (poucas curvas, ondas largas), "sinuoso" (mais curvas, mais amplitude) e "laço"
   // (uma volta no meio do caminho). Curvas ligadas por "S" continuam a tangente: nada de quinas.
@@ -359,6 +364,19 @@
       });
     }
 
+    // Fora da tela: pausa as animações contínuas do fundo
+    new IntersectionObserver(([entry]) => {
+      section.classList.toggle('is-paused', !entry.isIntersecting);
+      // trilhas (Web Animations) também pausam fora da tela
+      map.querySelectorAll('.map-trail-reveal').forEach(r => {
+        if (!r.trailAnim) return;
+        if (entry.isIntersecting) { if (r.trailAnim.playState === 'paused') r.trailAnim.play(); }
+        else if (r.trailAnim.playState === 'running') r.trailAnim.pause();
+      });
+    }).observe(section);
+
+    if (cssScroll) return; // efeitos de rolagem por conta do CSS
+
     if (reduceMotion) {
       steps.forEach(step => step.classList.add('is-visible'));
       fill.style.transform = 'scaleY(1)';
@@ -385,7 +403,7 @@
       const vh = window.innerHeight;
       if (rect.bottom < 0 || rect.top > vh) return;
 
-      map.style.transform = `translate3d(0, ${rect.top * -0.25}px, 0)`;
+      if (!lite) map.style.transform = `translate3d(0, ${rect.top * -0.25}px, 0)`;
 
       // Fio desce até a borda inferior da seção; ao encostar nela, abre a borda dourada entre as seções
       const lr = line.getBoundingClientRect();
@@ -394,7 +412,7 @@
       const sealed = progress >= 0.995;
       if (sealed !== section.classList.contains('is-sealed')) section.classList.toggle('is-sealed', sealed);
 
-      orbs.forEach(orb => {
+      if (!lite) orbs.forEach(orb => {
         if (!orb) return;
         const r = orb.getBoundingClientRect();
         const offset = (r.top + r.height / 2 - vh / 2) / vh;
@@ -410,16 +428,6 @@
     window.addEventListener('resize', update);
     update();
 
-    // Fora da tela: pausa as animações contínuas do fundo
-    new IntersectionObserver(([entry]) => {
-      section.classList.toggle('is-paused', !entry.isIntersecting);
-      // trilhas (Web Animations) também pausam fora da tela
-      map.querySelectorAll('.map-trail-reveal').forEach(r => {
-        if (!r.trailAnim) return;
-        if (entry.isIntersecting) { if (r.trailAnim.playState === 'paused') r.trailAnim.play(); }
-        else if (r.trailAnim.playState === 'running') r.trailAnim.pause();
-      });
-    }).observe(section);
   }
 
   // Guardrail: os efeitos só são montados quando o CSS desta versão está carregado. Com CSS antigo em

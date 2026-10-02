@@ -3,7 +3,9 @@
 #sobre {
     /* sentinela: o js/about-journey.js só monta os efeitos se esta versão do CSS estiver carregada */
     --about-fx: 1;
-    overflow: hidden;
+    /* clip (e não hidden): hidden cria um contêiner de rolagem e as animações de rolagem (view())
+       passariam a seguir a seção, que nunca rola, em vez da página */
+    overflow: clip;
     isolation: isolate;
 
     & .section-header {
@@ -514,6 +516,23 @@
     flex-direction: row-reverse;
 }
 
+/* Modo leve no toque (js/about-journey.js não move o fundo): sem camadas promovidas na GPU e sem a
+   máscara grande, que pesam no celular */
+@media (pointer: coarse), (max-width: 760px) {
+    .about-map,
+    .about-map [data-depth] {
+        will-change: auto;
+    }
+
+    /* as trilhas animadas dentro de uma máscara grande obrigam a reaplicar a máscara a cada quadro */
+    .about-map {
+        inset: 0;
+        -webkit-mask-image: none;
+        mask-image: none;
+        opacity: 0.75;
+    }
+}
+
 /* Celular: fio e medalhões à esquerda, todo o texto à direita */
 @media (max-width: 760px) {
     .journey-step {
@@ -551,5 +570,102 @@
 
     .journey-step:nth-child(odd) .journey-eyebrow {
         flex-direction: row;
+    }
+}
+
+/* ---------- Efeitos de rolagem em CSS puro (scroll-driven animations) ----------
+   Rodam no compositor, sincronizados com a rolagem (sem JS a cada quadro → sem "travar" no celular).
+   Chrome/Edge 115+, Safari 26+. Sem suporte, o js/about-journey.js faz o mesmo como reserva. */
+@supports (animation-timeline: view()) {
+    #sobre {
+        timeline-scope: --jornada;
+    }
+
+    /* Parallax do fundo: o mapa anda mais devagar que a página */
+    .about-map {
+        animation: aboutMapParallax linear both;
+        animation-timeline: view();
+        animation-range: cover;
+    }
+
+    /* Parallax leve dos medalhões */
+    .journey-orb {
+        animation: aboutOrbParallax linear both;
+        animation-timeline: view();
+        animation-range: cover;
+    }
+
+    /* Entrada de cada passo ao chegar na tela */
+    .journey-step {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: aboutStepIn linear both;
+        animation-timeline: view();
+        animation-range: entry 10% entry 70%;
+    }
+
+    /* Fio dourado: acende do topo à base conforme a linha cruza 60% da altura da tela */
+    .journey-line {
+        view-timeline: --jornada block;
+    }
+
+    .journey-line-fill {
+        animation: aboutLineFill linear both;
+        animation-timeline: --jornada;
+        animation-range: cover 40vh cover calc(100% - 60vh);
+    }
+
+    /* Borda entre seções: abre quando o fio chega ao fim */
+    .about-seam {
+        transition: none;
+        animation: aboutSeamOpen linear both;
+        animation-timeline: --jornada;
+        animation-range: cover calc(100% - 60vh - 140px) cover calc(100% - 60vh);
+
+        &::after {
+            transition: none;
+            animation: aboutSeamGem linear both;
+            animation-timeline: --jornada;
+            animation-range: cover calc(100% - 60vh - 60px) cover calc(100% - 60vh);
+        }
+    }
+}
+
+@keyframes aboutMapParallax {
+    from { transform: translate3d(0, -12%, 0); }
+    to   { transform: translate3d(0, 12%, 0); }
+}
+
+@keyframes aboutOrbParallax {
+    from { translate: 0 18px; }
+    to   { translate: 0 -18px; }
+}
+
+@keyframes aboutStepIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes aboutLineFill {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+}
+
+@keyframes aboutSeamOpen {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+@keyframes aboutSeamGem {
+    from { transform: translate(-50%, -50%) rotate(45deg) scale(0); }
+    to   { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-map,
+    .journey-orb,
+    .journey-step {
+        animation: none;
     }
 }
