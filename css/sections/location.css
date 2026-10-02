@@ -181,6 +181,67 @@
         pointer-events: none;
     }
 
+    /* Mapa ilustrado: arrastável só um pouco (js/script.js), clique abre o Google Maps */
+    & .map-illustrated {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 3px;
+        cursor: grab;
+        touch-action: pan-y;
+        user-select: none;
+
+        &.is-dragging {
+            cursor: grabbing;
+        }
+
+        & img {
+            position: absolute;
+            left: -10%;
+            top: -10%;
+            width: 120%;
+            height: 120%;
+            object-fit: cover;
+            transform: translate3d(var(--map-x, 0px), var(--map-y, 0px), 0);
+            transition: transform 0.35s ease-out;
+            pointer-events: none;
+        }
+
+        &.is-dragging img {
+            transition: none;
+        }
+    }
+
+    & .map-illustrated-hint {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border: 1px solid var(--color-gold);
+        border-radius: 999px;
+        background: rgba(26, 8, 52, 0.85);
+        color: var(--color-light);
+        font-family: var(--font-title);
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        opacity: 0.85;
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+
+        & i {
+            color: var(--color-gold-light);
+        }
+    }
+
+    & .map-illustrated:hover .map-illustrated-hint {
+        opacity: 1;
+        background: var(--color-deep-purple);
+    }
+
     & iframe {
         width: 100%;
         height: 100%;

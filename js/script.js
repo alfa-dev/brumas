@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = '795ad15';
+const BUILD = '2a6adab';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -51,6 +51,43 @@ window.addEventListener('pageshow', () => {
     link.style.width = '';
     const icon = link.querySelector('i');
     if (icon && icon.dataset.originalClass) icon.className = icon.dataset.originalClass;
+  });
+});
+
+// Mapa ilustrado da seção Local: arrasta só um pouco (até 10% para cada lado) e volta ao centro ao soltar;
+// clique sem arrastar abre o Google Maps (link do <a>).
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.map-illustrated').forEach(map => {
+    let start = null, moved = false;
+    const limit = () => ({ x: map.clientWidth * 0.1, y: map.clientHeight * 0.1 });
+    const set = (x, y) => { map.style.setProperty('--map-x', `${x}px`); map.style.setProperty('--map-y', `${y}px`); };
+    map.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      start = { x: e.clientX, y: e.clientY };
+      moved = false;
+      map.setPointerCapture(e.pointerId);
+    });
+    map.addEventListener('pointermove', e => {
+      if (!start) return;
+      const dx = e.clientX - start.x, dy = e.clientY - start.y;
+      if (!moved && Math.hypot(dx, dy) < 5) return;
+      moved = true;
+      map.classList.add('is-dragging');
+      const l = limit();
+      // resistência: quanto mais longe, menos anda
+      const ease = (d, max) => max * Math.tanh(d / (max * 1.5));
+      set(ease(dx, l.x), ease(dy, l.y));
+    });
+    const end = () => {
+      if (!start) return;
+      start = null;
+      map.classList.remove('is-dragging');
+      set(0, 0);
+    };
+    map.addEventListener('pointerup', end);
+    map.addEventListener('pointercancel', end);
+    map.addEventListener('click', e => { if (moved) { e.preventDefault(); moved = false; } });
+    map.addEventListener('dragstart', e => e.preventDefault());
   });
 });
 
