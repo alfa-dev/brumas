@@ -2,12 +2,160 @@
    de lado (medalhões em assets/brumas-2027/) */
 #sobre {
     overflow: hidden;
+    isolation: isolate;
 
     & .section-header {
         margin-bottom: 0;
     }
 }
 
+#sobre .section-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Fundo medieval e mágico animado ---------- */
+.about-map {
+    position: absolute;
+    inset: -15% 0;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform;
+    opacity: 0.9;
+    /* some nas bordas, para o mapa "emergir" do pergaminho */
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 45%, transparent 85%);
+    mask-image: radial-gradient(ellipse at center, #000 45%, transparent 85%);
+}
+
+.map-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.map-trail {
+    fill: none;
+    stroke: rgba(92, 52, 22, 0.2);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 2 10;
+    animation: mapInkFade 14s ease-in-out infinite;
+}
+
+.map-rose {
+    opacity: 0.25;
+}
+
+.map-rose-spin {
+    animation: mapSpin 60s linear infinite;
+}
+
+.map-rose-ring {
+    fill: none;
+    stroke: rgba(92, 52, 22, 0.6);
+    stroke-width: 1.5;
+}
+
+.map-rose-star {
+    fill: rgba(169, 131, 64, 0.55);
+    stroke: rgba(92, 52, 22, 0.6);
+    stroke-width: 1;
+}
+
+.map-rose-n {
+    font-family: var(--font-title);
+    font-size: 18px;
+    fill: rgba(92, 52, 22, 0.7);
+}
+
+/* Elementos mágicos */
+.magic-line {
+    fill: none;
+    stroke: rgba(120, 80, 30, 0.25);
+    stroke-width: 1;
+}
+
+.magic-moon {
+    fill: rgba(169, 131, 64, 0.45);
+}
+
+.magic-moon-shadow {
+    fill: var(--color-parchment);
+}
+
+.magic-sigil {
+    opacity: 0.4;
+}
+
+.magic-sigil-outer {
+    animation: mapSpin 90s linear infinite;
+}
+
+.magic-sigil-inner {
+    animation: mapSpin 60s linear infinite reverse;
+}
+
+.magic-hex {
+    animation: magicPulse 6s ease-in-out infinite;
+}
+
+.magic-constellation {
+    animation: magicPulse 7s ease-in-out infinite;
+}
+
+.magic-star {
+    fill: rgba(169, 131, 64, 0.6);
+}
+
+.magic-spark {
+    fill: var(--color-gold);
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation-name: magicRise;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.5));
+}
+
+/* Brilho dourado que acompanha o mouse */
+#sobre::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(212, 175, 55, 0.12), transparent 70%);
+}
+
+#sobre.is-glowing::after {
+    opacity: 1;
+}
+
+@keyframes magicRise {
+    0%   { opacity: 0; translate: 0 0; scale: 0.4; }
+    15%  { opacity: 0.55; scale: 1; }
+    50%  { opacity: 0.2; }
+    65%  { opacity: 0.5; }
+    100% { opacity: 0; translate: 0 -220px; scale: 0.5; }
+}
+
+@keyframes magicPulse {
+    0%, 100% { opacity: 0.25; }
+    50%      { opacity: 0.7; }
+}
+
+@keyframes mapInkFade {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1; }
+}
+
+@keyframes mapSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* ---------- Jornada ---------- */
 .about-journey {
     position: relative;
     list-style: none;
@@ -25,7 +173,55 @@
         width: 2px;
         transform: translateX(-50%);
         background: linear-gradient(to bottom, transparent, var(--color-gold) 12%, var(--color-gold) 88%, transparent);
-        opacity: 0.6;
+        opacity: 0.25;
+    }
+
+    /* Parte "acesa" do fio, que cresce com o scroll (--progress via JS) */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        width: 2px;
+        height: calc((100% - 80px) * var(--progress, 0));
+        transform: translateX(-50%);
+        background: var(--color-gold);
+        box-shadow: 0 0 10px var(--color-gold-glow);
+    }
+}
+
+/* Revelação dos passos + parallax leve (--shift via JS) */
+.journey-step {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    & .journey-orb {
+        translate: 0 var(--shift, 0);
+    }
+
+    &:hover h3 {
+        color: var(--color-purple);
+    }
+}
+
+.journey-text h3 {
+    transition: color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-trail, .map-rose-spin, .magic-sigil-outer, .magic-sigil-inner, .magic-hex,
+    .magic-constellation, .magic-spark, .journey-orb::before {
+        animation: none;
+    }
+
+    .magic-spark {
+        opacity: 0.4;
     }
 }
 
@@ -41,15 +237,89 @@
     }
 }
 
-.journey-medallion {
+/* Orbe = medalhão + anel mágico + partículas */
+.journey-orb {
     grid-column: 2;
     grid-row: 1;
     justify-self: center;
-    width: 120px;
-    height: auto;
     position: relative;
     z-index: 1;
+    width: 120px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    /* Anel mágico girando nas bordas (aparece no hover) */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -9px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, transparent 0 10%, var(--color-gold-light) 18%, transparent 30% 45%,
+            rgba(176, 120, 230, 0.9) 55%, transparent 66% 78%, var(--color-gold-light) 88%, transparent 96%);
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+        mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        animation: mapSpin 2.4s linear infinite;
+        pointer-events: none;
+    }
+
+    /* Halo suave pulsando */
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -14px;
+        border-radius: 50%;
+        background: radial-gradient(circle, transparent 55%, rgba(212, 175, 55, 0.28) 68%, rgba(176, 120, 230, 0.12) 78%, transparent 80%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    &.is-enchanted::before {
+        opacity: 1;
+    }
+
+    &.is-enchanted::after {
+        opacity: 1;
+        animation: orbPulse 1.6s ease-in-out infinite;
+    }
+}
+
+.journey-medallion {
+    display: block;
+    width: 100%;
+    height: auto;
     filter: drop-shadow(0 8px 16px rgba(39, 13, 79, 0.28));
+}
+
+/* Partículas emitidas pelo orbe */
+.orb-particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size, 6px);
+    height: var(--size, 6px);
+    border-radius: 50%;
+    background: var(--color, #e8c770);
+    box-shadow: 0 0 6px var(--color, #e8c770);
+    pointer-events: none;
+    animation: orbParticle var(--life, 1.2s) ease-out forwards;
+}
+
+.orb-particle--star {
+    border-radius: 0;
+    clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+}
+
+@keyframes orbParticle {
+    0%   { transform: translate(-50%, -50%) translate(var(--x0), var(--y0)) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) translate(var(--x1), var(--y1)) scale(0.2); opacity: 0; }
+}
+
+@keyframes orbPulse {
+    0%, 100% { transform: scale(0.97); }
+    50%      { transform: scale(1.04); }
 }
 
 /* Texto direto sobre o pergaminho, alternando: ímpares à esquerda, pares à direita */
@@ -108,10 +378,18 @@
 
 /* Celular: fio e medalhões à esquerda, todo o texto à direita */
 @media (max-width: 760px) {
-    .about-journey::before {
+    .about-journey::before,
+    .about-journey::after {
         left: 36px;
         top: 30px;
+    }
+
+    .about-journey::before {
         bottom: 30px;
+    }
+
+    .about-journey::after {
+        height: calc((100% - 60px) * var(--progress, 0));
     }
 
     .journey-step {
@@ -124,7 +402,7 @@
         }
     }
 
-    .journey-medallion {
+    .journey-orb {
         grid-column: 1;
         width: 72px;
     }

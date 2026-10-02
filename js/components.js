@@ -96,12 +96,16 @@ class FooterComponent extends HTMLElement {
     </footer>
     `;
 
-    // Estandartes fora de sincronia: o da direita começa ~3s à frente
+    // Estandartes fora de sincronia: o da direita começa na metade do loop e toca num ritmo um pouco
+    // diferente, então os dois nunca balançam juntos
     const rightVideo = this.querySelector('.footer-banner--right video');
     if (rightVideo) {
-      const offset = () => { rightVideo.currentTime = 3 % (rightVideo.duration || 5); };
-      if (rightVideo.readyState >= 1) offset();
-      else rightVideo.addEventListener('loadedmetadata', offset, { once: true });
+      const desync = () => {
+        rightVideo.currentTime = (rightVideo.duration || 5) / 2;
+        rightVideo.playbackRate = 0.8;
+      };
+      if (rightVideo.readyState >= 1) desync();
+      else rightVideo.addEventListener('loadedmetadata', desync, { once: true });
     }
   }
 }

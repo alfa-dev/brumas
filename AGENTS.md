@@ -289,9 +289,21 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   verticais dourados entre eles; comentários de organizadores antigos removidos do HTML.
 - Botões `.map-button` com `white-space: nowrap` e `flex: 1 1 auto` no celular: não quebram o texto,
   empilham quando não cabem lado a lado.
-- Rodapé: o estandarte da direita começa 3s adiantado (`currentTime = 3` no `FooterComponent`).
+- Rodapé: estandartes dessincronizados — o da direita começa na metade do loop e toca a 0,8x
+  (`playbackRate`), então os dois nunca balançam juntos (`FooterComponent`).
 - Galeria: foto "Expositores" movida para a 3ª posição (ids de `PHOTOS` renumerados 1–3; o
   `photo-viewer` navega pelo `id`, então os ids devem seguir a ordem do array).
+- Sobre o Festival interativo (`js/about-journey.js`, carregado só na home): fundo **medieval e mágico**
+  em SVG — trilhas de tinta pulsando, astrolábio lúdico (anéis com fases da lua e pontinhos girando em sentidos opostos, lua
+  crescente no centro), constelações que cintilam, faíscas douradas subindo e rosa dos ventos — com **parallax** no
+  scroll e **brilho dourado seguindo o mouse** (`--mx/--my`). Pegadas e nomes de lugares (versão "mapa do
+  maroto"), runas e hexagrama foram testados e removidos a pedido — **evitar símbolos religiosos**,
+  manter o tom lúdico e as animações suaves (10 faíscas, opacidades baixas); passos revelados ao entrar na tela (IntersectionObserver), fio dourado que se preenche com o
+  scroll (`--progress`), medalhões com parallax leve (`--shift`) e hover (gira e brilha). Respeita
+  `prefers-reduced-motion`.
+- Medalhões do Sobre: hover sem crescer/girar — o `<img>` fica num `.journey-orb` que ganha anel mágico
+  girando (conic-gradient mascarado) + halo pulsando, e o JS emite partículas douradas/violeta aleatórias
+  (bolinhas e estrelinhas) enquanto o mouse estiver em cima.
 - Scroll lateral corrigido: `.pulsating-mist` da Galeria passava da largura da tela; `section` ganhou
   `overflow-x: clip` (verificado em index, expositores, ingressos e photo-viewer, 1440px e 390px).
 - Hero: "Nos vemos em 2027" reorganizado no padrão do guia (`.hero-info` em `hero.css`: eyebrow, título
@@ -306,7 +318,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - `css/sections/contact.css`: seção Expositores mais baixa (padding 60px, header e texto compactos).
 - `index.html`: textos dos 3 cards de "Sobre o Festival" reescritos a partir do conceito oficial
   (`docs/drive-brumas25.md`) e das atrações registradas (`docs/imprensa-mencoes.md`):
-  "Uma Viagem no Tempo", "Saberes Ancestrais", "Imersão para Toda a Família".
+  "Uma Viagem no Tempo", "Saberes Ancestrais", "Imersão para Toda a Família" (depois renomeado
+  para "Uma Imersão Completa", sem a palavra "família", a pedido).
 - Seção Expositores redesenhada pelo guia: info (eyebrow, título, descrição, 3 detalhes com ícone,
   botões "Quero Expor em 2027" e "Tirar Dúvidas" no WhatsApp) + foto emoldurada
   (`assets/pictues/brumas_artesaos_medievais_md.webp`, 760px). CSS movido de `contact.css` para o novo
