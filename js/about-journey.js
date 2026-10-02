@@ -24,12 +24,17 @@
 
   function buildMap(container) {
     const svg = el('svg', { viewBox: '0 0 1200 900', preserveAspectRatio: 'xMidYMid slice', class: 'map-svg' });
+    // Camadas de profundidade (deslocadas em ritmos diferentes pelo mouse)
+    const far = el('g', { class: 'map-layer', 'data-depth': '6' });
+    const mid = el('g', { class: 'map-layer', 'data-depth': '14' });
+    const near = el('g', { class: 'map-layer', 'data-depth': '24' });
+    svg.append(far, mid, near);
 
     // Trilhas pontilhadas que se desenham
     TRAILS.forEach((d, i) => {
       const path = el('path', { d, class: 'map-trail' });
       path.style.animationDelay = `${i * 4}s`;
-      svg.appendChild(path);
+      far.appendChild(path);
     });
 
     // Astrolábio lúdico: anéis com fases da lua e pontinhos, girando em sentidos opostos
@@ -60,7 +65,7 @@
     astro.appendChild(outer);
     astro.appendChild(inner);
     astro.appendChild(center);
-    svg.appendChild(astro);
+    near.appendChild(astro);
 
     // Constelações (acendem quando o mouse chega perto)
     CONSTELLATIONS.forEach((pts, c) => {
@@ -69,7 +74,7 @@
       g.dataset.cy = pts.reduce((t, p) => t + p[1], 0) / pts.length;
       g.appendChild(el('polyline', { points: pts.map(p => p.join(',')).join(' '), class: 'magic-line' }));
       pts.forEach(([x, y]) => g.appendChild(el('circle', { cx: x, cy: y, r: 3, class: 'magic-star' })));
-      svg.appendChild(g);
+      mid.appendChild(g);
     });
 
     // Rosa dos ventos girando devagar
@@ -83,7 +88,7 @@
     const north = el('text', { x: 0, y: -68, class: 'map-rose-n', 'text-anchor': 'middle' });
     north.textContent = 'N';
     rose.appendChild(north);
-    svg.appendChild(rose);
+    far.appendChild(rose);
 
     container.appendChild(svg);
   }
@@ -95,6 +100,19 @@
     if (!section || !map || !journey) return;
 
     buildMap(map);
+
+    // Borda dourada entre "Sobre" e a seção seguinte, que se abre a partir do ponto onde o fio chega
+    const seam = document.createElement('span');
+    seam.className = 'about-seam';
+    seam.setAttribute('aria-hidden', 'true');
+    section.appendChild(seam);
+    const placeSeam = () => {
+      const jr = journey.getBoundingClientRect(), sr = section.getBoundingClientRect();
+      const lineX = window.matchMedia('(max-width: 760px)').matches ? jr.left + 36 : jr.left + jr.width / 2;
+      seam.style.setProperty('--origin', `${(lineX - sr.left).toFixed(0)}px`);
+    };
+    placeSeam();
+    window.addEventListener('resize', placeSeam);
 
     const steps = journey.querySelectorAll('.journey-step');
 
@@ -140,10 +158,51 @@
       step.addEventListener('pointerleave', stop);
     });
 
+    // Explosão de partículas num ponto qualquer da seção (reaproveita o visual do Orbe Encantado)
+    function burst(x, y, count) {
+      const holder = document.createElement('span');
+      holder.className = 'magic-burst';
+      holder.style.left = `${x}px`;
+      holder.style.top = `${y}px`;
+      section.appendChild(holder);
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('span');
+        const star = Math.random() < 0.4;
+        p.className = 'orb-particle' + (star ? ' orb-particle--star' : '');
+        const angle = Math.random() * Math.PI * 2;
+        const end = 30 + Math.random() * 70;
+        p.style.setProperty('--x0', '0px');
+        p.style.setProperty('--y0', '0px');
+        p.style.setProperty('--x1', `${Math.cos(angle) * end}px`);
+        p.style.setProperty('--y1', `${Math.sin(angle) * end - 10}px`);
+        p.style.setProperty('--size', `${(3 + Math.random() * (star ? 9 : 5)).toFixed(1)}px`);
+        p.style.setProperty('--life', `${(0.7 + Math.random() * 0.8).toFixed(2)}s`);
+        p.style.setProperty('--color', COLORS[Math.floor(Math.random() * COLORS.length)]);
+        holder.appendChild(p);
+      }
+      setTimeout(() => holder.remove(), 1800);
+    }
+
     // Brilho dourado que segue o mouse (só com ponteiro fino)
     if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
       const svg = map.querySelector('svg');
       const constellations = map.querySelectorAll('.magic-constellation');
+      const layers = map.querySelectorAll('.map-layer');
+      const astro = map.querySelector('.magic-sigil');
+
+      // Clique no fundo: onda dourada + explosão de partículas
+      section.addEventListener('click', e => {
+        if (e.target.closest('a, button, .journey-step')) return;
+        const r = section.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        const ring = document.createElement('span');
+        ring.className = 'magic-ripple';
+        ring.style.left = `${x}px`;
+        ring.style.top = `${y}px`;
+        ring.addEventListener('animationend', () => ring.remove());
+        section.appendChild(ring);
+        burst(x, y, 16);
+      });
       let lastTrail = 0;
       section.addEventListener('pointermove', e => {
         const r = section.getBoundingClientRect();
@@ -166,9 +225,18 @@
           section.appendChild(star);
         }
 
-        // Constelações perto do cursor se acendem
+        // Profundidade: camadas do fundo se deslocam contra o cursor
+        const nx = x / r.width - 0.5, ny = y / r.height - 0.5;
+        layers.forEach(layer => {
+          const d = layer.dataset.depth;
+          layer.style.translate = `${(-nx * d).toFixed(1)}px ${(-ny * d).toFixed(1)}px`;
+        });
+
+        // Constelações perto do cursor se acendem; o astrolábio "desperta"
         const ctm = svg.getScreenCTM();
         if (!ctm) return;
+        const ax = ctm.a * 170 + ctm.e, ay = ctm.d * 200 + ctm.f;
+        astro.classList.toggle('is-awake', Math.hypot(ax - e.clientX, ay - e.clientY) < 260);
         constellations.forEach(g => {
           const sx = ctm.a * g.dataset.cx + ctm.e, sy = ctm.d * g.dataset.cy + ctm.f;
           g.classList.toggle('is-lit', Math.hypot(sx - e.clientX, sy - e.clientY) < 220);
@@ -177,12 +245,15 @@
       section.addEventListener('pointerleave', () => {
         section.classList.remove('is-glowing');
         constellations.forEach(g => g.classList.remove('is-lit'));
+        layers.forEach(layer => { layer.style.translate = ''; });
+        astro.classList.remove('is-awake');
       });
     }
 
     if (reduceMotion) {
       steps.forEach(step => step.classList.add('is-visible'));
       journey.style.setProperty('--progress', 1);
+      section.classList.add('is-sealed');
       return;
     }
 
@@ -207,9 +278,13 @@
 
       map.style.transform = `translate3d(0, ${rect.top * -0.25}px, 0)`;
 
+      // Fio desce até a borda inferior da seção; ao encostar nela, abre a borda dourada entre as seções
       const jr = journey.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, (vh * 0.6 - jr.top) / jr.height));
+      const tail = rect.bottom - jr.bottom;
+      journey.style.setProperty('--tail', `${tail.toFixed(0)}px`);
+      const progress = Math.min(1, Math.max(0, (vh * 0.6 - jr.top) / (jr.height + tail)));
       journey.style.setProperty('--progress', progress.toFixed(3));
+      section.classList.toggle('is-sealed', progress >= 0.995);
 
       steps.forEach(step => {
         const r = step.getBoundingClientRect();

@@ -350,6 +350,13 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   mouse** — rastro de estrelinhas atrás do cursor (`.cursor-star`, 1 a cada 70ms) e constelações a
   menos de 220px do cursor se acendem (`.is-lit`).
 - Hover dos botões `.map-button` refeito (roxo + elevação + brilho + reflexo), no lugar do dourado chapado.
+- Sobre — mais efeitos de mouse no fundo: camadas do mapa com **profundidade** (deslocam-se contra o
+  cursor em 3 ritmos, `.map-layer[data-depth]`), astrolábio que **desperta** (brilha) perto do cursor e
+  **clique no fundo** = onda dourada (`.magic-ripple`) + explosão de partículas (`burst()`). Efeito de
+  título com letras ondulando foi testado e **rejeitado** ("horrível") — não animar títulos.
+- Sobre — o fio dourado agora desce até a borda inferior da seção (`--tail` via JS) e, ao encostar nela
+  (`#sobre.is-sealed`), abre uma **borda dourada entre as seções** (`.about-seam`, scaleX a partir do
+  ponto do fio, com losango no encontro).
 - Fio dourado do Sobre passava por cima dos medalhões (cada passo cria contexto de empilhamento pelo
   `transform`); `.journey-step` ganhou `z-index: 1`.
 - Scroll lateral corrigido: `.pulsating-mist` da Galeria passava da largura da tela; `section` ganhou

@@ -112,6 +112,86 @@
     fill: rgba(169, 131, 64, 0.6);
 }
 
+/* Camadas de profundidade do fundo (deslocadas pelo mouse) */
+.map-layer {
+    transition: translate 0.6s ease-out;
+}
+
+/* Astrolábio desperta perto do cursor */
+.magic-sigil {
+    transition: opacity 0.8s ease, filter 0.8s ease;
+
+    &.is-awake {
+        opacity: 0.85;
+        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+    }
+}
+
+/* Clique no fundo: onda dourada + explosão de partículas */
+.magic-burst {
+    position: absolute;
+    z-index: 2;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.magic-ripple {
+    position: absolute;
+    z-index: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(212, 175, 55, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(176, 120, 230, 0.35);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: magicRipple 1s ease-out forwards;
+}
+
+@keyframes magicRipple {
+    from { width: 20px; height: 20px; opacity: 1; }
+    to   { width: 220px; height: 220px; opacity: 0; }
+}
+
+/* Borda dourada entre seções: abre a partir do ponto onde o fio encosta na borda inferior */
+.about-seam {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--color-gold) 15%, var(--color-gold-light) 50%, var(--color-gold) 85%, transparent);
+    box-shadow: 0 0 12px var(--color-gold-glow);
+    transform: scaleX(0);
+    transform-origin: var(--origin, 50%) 50%;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    /* Losango no ponto de encontro do fio com a borda */
+    &::after {
+        content: '';
+        position: absolute;
+        left: var(--origin, 50%);
+        top: 50%;
+        width: 12px;
+        height: 12px;
+        background: var(--color-deep-purple);
+        border: 2px solid var(--color-gold);
+        transform: translate(-50%, -50%) rotate(45deg) scale(0);
+        transition: transform 0.5s ease 0.1s;
+    }
+}
+
+#sobre.is-sealed .about-seam {
+    transform: scaleX(1);
+
+    &::after {
+        transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    }
+}
+
 /* Rastro de estrelinhas que segue o mouse */
 .cursor-star {
     position: absolute;
@@ -174,11 +254,11 @@
         content: '';
         position: absolute;
         top: 40px;
-        bottom: 40px;
+        bottom: calc(-1 * var(--tail, 40px));
         left: 50%;
         width: 2px;
         transform: translateX(-50%);
-        background: linear-gradient(to bottom, transparent, var(--color-gold) 12%, var(--color-gold) 88%, transparent);
+        background: linear-gradient(to bottom, transparent, var(--color-gold) 8%);
         opacity: 0.25;
     }
 
@@ -189,7 +269,7 @@
         top: 40px;
         left: 50%;
         width: 2px;
-        height: calc((100% - 80px) * var(--progress, 0));
+        height: calc((100% - 40px + var(--tail, 40px)) * var(--progress, 0));
         transform: translateX(-50%);
         background: var(--color-gold);
         box-shadow: 0 0 10px var(--color-gold-glow);
@@ -390,12 +470,8 @@
         top: 30px;
     }
 
-    .about-journey::before {
-        bottom: 30px;
-    }
-
     .about-journey::after {
-        height: calc((100% - 60px) * var(--progress, 0));
+        height: calc((100% - 30px + var(--tail, 30px)) * var(--progress, 0));
     }
 
     .journey-step {
