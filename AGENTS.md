@@ -294,9 +294,7 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 ## Pendências
 
 - [ ] **Fotos de 2026:** incluir na galeria (`PHOTOS`) e atualizar a legenda da seção Galeria.
-- [ ] **Termos de expositores — contradição antiga:** a cláusula 3.2 diz que são fornecidas "2 cadeiras
-      para cada estande" e a 3.3 diz que cadeiras **não** são fornecidas. Decidir e corrigir (texto jurídico,
-      não alterado sem confirmação). Metragem da barraca ainda "a ser definida".
+- [ ] **Termos de expositores:** metragem da barraca ainda "a ser definida" (cláusula 3.2).
 - [ ] **Checkout externo** (`brumas-front-end.vercel.app/ingressos.html`): se não for gerado a
       partir deste repositório, fechar as vendas lá também.
 - [ ] **Endereço do local:** listagens públicas do Caminho das Montanhas usam outro endereço (Travessa
@@ -304,8 +302,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - [ ] **Google com dados da 1ª edição:** resultados ainda citam Fazenda das Nascentes/Magé e 19/07/2025;
       pedir reindexação no Search Console (home, termos) e reenviar o sitemap. Testar o card novo em
       https://developers.facebook.com/tools/debug/ (força o WhatsApp/Facebook a atualizar a prévia).
-- [ ] **Itens inclusos para expositores 2027:** a home diz "barraca de madeira, ponto de energia e 2
-      cadeiras" (condições de 2026). Confirmar para 2027.
+- [ ] **Itens inclusos para expositores 2027:** a home diz "barraca de madeira e ponto de energia".
+      Confirmar para 2027.
 - [ ] **Data da edição 2027:** quando definida, seguir o checklist abaixo.
 - [ ] Bug antigo nos dados: `TICKETS[0].description` diz "entrada do dia 25.07.26" (data errada) —
       corrigir ao reabrir as vendas.
@@ -426,6 +424,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   local serão confirmados nos canais oficiais", atualização Outubro de 2026), HTML e `.md`. Participantes:
   10.1 sem "fazenda" (área rural e de natureza) e e-mail de contato corrigido para brumasfestival@gmail.com.
   Expositores: nova 2.5 (lista de interesse 2027 não é inscrição nem reserva) e numeração 6.5→6.4.
+- Cadeiras removidas da infraestrutura fornecida a expositores (termos 3.2, HTML e `.md`, e home); a 3.3
+  já dizia que cadeiras são por conta do expositor.
 - Nova foto do mercado (`assets/pictues/brumas_mercado_laminas.webp`, banca de lâminas e bainhas, recorte
   3:2 de `IMG_2025.HEIC`) na seção Expositores da home e no banner de `expositores.html`; a foto antiga
   `brumas_artesaos_medievais_md.webp` saiu (a original continua na galeria).

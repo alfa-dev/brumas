@@ -42,9 +42,7 @@
 
 * Barraca de madeira (ainda a ser definida a metragem);
 
-* Ponto de energia elétrica para iluminação e alguns pontos para carregamento de máquina e celular;
-
-* 2 cadeiras para cada estande.
+* Ponto de energia elétrica para iluminação e alguns pontos para carregamento de máquina e celular.
 
 3.3. Não serão fornecidos pela organização: cadeiras, prateleiras, iluminação específica ou outros itens para montagem do espaço, sendo estes de responsabilidade do expositor.
 
