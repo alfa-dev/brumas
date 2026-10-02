@@ -1,3 +1,35 @@
+// Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
+const BUILD = 'b80b0af';
+
+// Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
+// folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
+window.BRUMAS_CSS_READY = new Promise(resolve => {
+  function cssBuild() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--build').trim().replace(/"/g, '');
+  }
+  function check() {
+    if (BUILD === 'dev' || cssBuild() === BUILD) return resolve(true);
+    let tries = 0;
+    try { tries = Number(sessionStorage.getItem('brumas-css-retry') || 0); } catch (e) {}
+    if (tries >= 2) return resolve(false);
+    try { sessionStorage.setItem('brumas-css-retry', String(tries + 1)); } catch (e) {}
+    const links = [...document.querySelectorAll('link[rel="stylesheet"][href^="css/"]')];
+    let pending = links.length;
+    if (!pending) return resolve(false);
+    links.forEach(link => {
+      const fresh = link.cloneNode();
+      fresh.href = link.href.split('?')[0] + '?v=' + BUILD + '&r=' + Date.now();
+      fresh.onload = fresh.onerror = () => {
+        link.remove();
+        if (--pending === 0) resolve(cssBuild() === BUILD);
+      };
+      link.after(fresh);
+    });
+  }
+  if (document.readyState === 'complete') check();
+  else window.addEventListener('load', check);
+});
+
 const PRICES = {
   ticket: {
     regular: 120,

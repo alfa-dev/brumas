@@ -1,6 +1,8 @@
 /* Seção Sobre o Festival — "jornada" vertical: medalhões ligados por um fio dourado, texto alternando
    de lado (medalhões em assets/brumas-2027/) */
 #sobre {
+    /* sentinela: o js/about-journey.js só monta os efeitos se esta versão do CSS estiver carregada */
+    --about-fx: 1;
     overflow: hidden;
     isolation: isolate;
 

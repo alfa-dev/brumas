@@ -302,5 +302,20 @@
     update();
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  // Guardrail: os efeitos só são montados quando o CSS desta versão está carregado. Com CSS antigo em
+  // cache, o SVG apareceria sem estilo (formas pretas gigantes) — então espera a checagem do script.js
+  // e confere o sentinela --about-fx definido em about.css.
+  function cssReady() {
+    const section = document.getElementById('sobre');
+    return section && getComputedStyle(section).getPropertyValue('--about-fx').trim() === '1';
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const wait = window.BRUMAS_CSS_READY || Promise.resolve(true);
+    if (cssReady()) init();
+    else wait.then(() => {
+      if (cssReady()) return init();
+      // Sem o CSS certo: mostra os passos sem efeitos, em vez de deixá-los invisíveis
+      document.querySelectorAll('#sobre .journey-step').forEach(step => step.classList.add('is-visible'));
+    });
+  });
 })();

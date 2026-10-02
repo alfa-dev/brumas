@@ -61,6 +61,37 @@ Guia para agentes (Claude Code, Codex etc.) e pessoas que mexem neste repositór
 
 ---
 
+## Cache — guardrails (LEIA antes de mexer em CSS/JS/mídia)
+
+O GitHub Pages serve tudo com `Cache-Control: max-age=600` (10 min no navegador, mais a CDN) e **ignora a
+query string** (`?v=` só serve para mudar a chave do cache). Em 2026-10-02 o JS novo do Sobre rodou com o
+`about.css` antigo (importado por `@import` sem versão) e o fundo virou formas pretas gigantes em produção.
+Proteções em camadas:
+
+1. **Hook `.githooks/pre-commit`** (precisa de `git config core.hooksPath .githooks`): carimba o BUILD
+   (hash da árvore) em **todas** as referências estáticas — `<link>`/`<script>` dos HTMLs, `src`/`poster`/
+   `url()` de `assets/` e `videos/` nos HTMLs, `@import` do `css/styles.css`, `url()` em todos os CSS e
+   `src`/`poster` nos templates de `js/components.js`. **Falha o commit** se sobrar `@import` ou CSS/JS sem
+   `?v=`, e avisa quando uma mídia é sobrescrita no mesmo nome.
+2. **Carimbo de build** — `--build` em `css/base.css` e `const BUILD` em `js/script.js` (os dois atualizados
+   pelo hook; não editar à mão). No `load`, o `script.js` compara: se o CSS for de outro build, recarrega
+   as folhas com `?v=BUILD&r=<timestamp>` (até 2 tentativas por sessão) e resolve
+   `window.BRUMAS_CSS_READY`.
+3. **Sentinela por efeito** — JS que gera DOM dependente de CSS novo só monta se o CSS daquela versão
+   estiver ativo: `about.css` define `--about-fx: 1` e `about-journey.js` confere antes de `init()`; sem
+   ele, mostra o conteúdo sem efeitos.
+
+**Regras:**
+- Nunca adicionar CSS fora do `@import` do `styles.css` sem `<link ... ?v=>` (o hook cobre ambos).
+- Novo efeito JS que dependa de CSS novo → criar um sentinela `--<nome>-fx` e checar antes de montar.
+- Mídia trocada: preferir nome novo (`-v2`) quando referenciada em `js/script.js` (`PHOTOS`) ou em
+  `og:image` absolutas — essas não passam pelo hook.
+- Commits sem o hook (ex.: pela interface do GitHub) não carimbam nada: evitar.
+- HTML continua com cache de até 10 min no GitHub Pages (não dá para mudar cabeçalhos lá); por isso as
+  camadas 2 e 3 existem.
+
+---
+
 ## Guia de design — padrão a seguir (referência: seção Local, out/2026)
 
 > A seção **Local** (`#local`, `css/sections/location.css`) é a **referência de qualidade** do site.
@@ -358,6 +389,9 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - Sobre — o fio dourado agora desce até a borda inferior da seção (`--tail` via JS) e, ao encostar nela
   (`#sobre.is-sealed`), abre uma **borda dourada entre as seções** (`.about-seam`, scaleX a partir do
   ponto do fio, com losango no encontro).
+- **Cache:** incidente em produção (JS novo + `about.css` antigo via `@import` sem versão). Criados os
+  guardrails da seção "Cache" (hook versiona tudo e falha se faltar; carimbo de build CSS/JS com
+  recarga automática; sentinela `--about-fx`).
 - **SEO:** imagem de compartilhamento `assets/brumas_share.jpg` (1200x630, logo dourado sobre foto noturna,
   "Guapimirim · RJ — 3ª edição em 2027") no lugar do SVG (redes sociais não exibem SVG) em home, ingressos
   e termos; expositores usa `brumas_expositores_share.jpg`. Títulos/descrições com "Guapimirim (RJ)" e
