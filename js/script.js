@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = 'ce84bc2';
+const BUILD = '5d43d88';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -343,13 +343,6 @@ const PHOTOS = [
     album: 2025
   },
   {
-    id: 20,
-    src: 'assets/pictues/2026/brumas26_fogo-ritual.webp',
-    alt: 'Dançarinas ao redor da grande fogueira à noite',
-    title: 'Fogo Ritual',
-    album: 2026
-  },
-  {
     id: 21,
     src: 'assets/pictues/2026/brumas26_combates.webp',
     alt: 'Combate medieval com escudos e espadas',
@@ -361,13 +354,6 @@ const PHOTOS = [
     src: 'assets/pictues/2026/brumas26_a-dama-e-a-coruja.webp',
     alt: 'Dama em traje medieval olhando para a coruja pousada em sua luva',
     title: 'A Dama e a Coruja',
-    album: 2026
-  },
-  {
-    id: 23,
-    src: 'assets/pictues/2026/brumas26_o-mago.webp',
-    alt: 'Mago de barbas brancas erguendo um cálice à noite',
-    title: 'O Mago',
     album: 2026
   },
   {
@@ -385,6 +371,13 @@ const PHOTOS = [
     album: 2026
   },
   {
+    id: 29,
+    src: 'assets/pictues/2026/brumas26_trupe-tribal.webp',
+    alt: 'Grupo de dança Zaman Tribal reunido para foto',
+    title: 'Zaman Tribal',
+    album: 2026
+  },
+  {
     id: 27,
     src: 'assets/pictues/2026/brumas26_musica-ao-luar.webp',
     alt: 'Músicos tocando à noite com alaúde e violão',
@@ -396,13 +389,6 @@ const PHOTOS = [
     src: 'assets/pictues/2026/brumas26_roda-da-fogueira.webp',
     alt: 'Público reunido em roda ao redor da fogueira',
     title: 'Roda da Fogueira',
-    album: 2026
-  },
-  {
-    id: 29,
-    src: 'assets/pictues/2026/brumas26_trupe-tribal.webp',
-    alt: 'Grupo de dança Zaman Tribal reunido para foto',
-    title: 'Zaman Tribal',
     album: 2026
   },
   {
