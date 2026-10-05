@@ -344,7 +344,8 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   HEIC convertido com `sips` (o ImageMagick local não lê HEIC). Páginas de compartilhamento geradas.
 - Nova ordem do álbum 2026: primeiro as fotos posadas (pessoas olhando/sorrindo para a câmera: Zaman Tribal,
   Guerreiros, Dançarinas), depois Trompa → Combates → A Dama e a Coruja → Pequena Falcoeira → Guardiã da
-  Coruja → Saberes Medievais (logo antes da noite); por fim a noite (Música ao Luar … Mercado ao Anoitecer).
+  Coruja → Saberes Medievais (logo antes da noite); por fim a noite (Música ao Luar … Caminho das Luzes), com
+  as fotos da fogueira (Roda da Fogueira, Faíscas na Fogueira) em penúltimo e Mercado ao Anoitecer fechando.
 
 ### 2026-10-02 — Seção "Sobre o Festival" com a arte 2027
 - `index.html`: seção `#sobre` agora tem o título e os 3 cards em arco com medalhões (coroa,
