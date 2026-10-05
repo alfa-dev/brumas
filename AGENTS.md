@@ -342,9 +342,9 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 - 3 fotos de dia adicionadas ao fim do bloco diurno (ids 38–40): "O Chamado da Trompa" (`IMG_1373.jpg`),
   "Pequena Falcoeira" (`IMG_1334.heic`) e "Guardiã da Coruja" (`IMG_1297.heic`), 1080x1440 + `_sm` 420x560;
   HEIC convertido com `sips` (o ImageMagick local não lê HEIC). Páginas de compartilhamento geradas.
-- Nova ordem do álbum 2026, como uma jornada do dia: Trompa → Combates → Dançarinas → Saberes Medievais →
-  A Dama e a Coruja → Pequena Falcoeira → Guardiã da Coruja → Guerreiros → Zaman Tribal; depois a noite
-  (Música ao Luar … Mercado ao Anoitecer).
+- Nova ordem do álbum 2026: primeiro as fotos posadas (pessoas olhando/sorrindo para a câmera: Zaman Tribal,
+  Guerreiros, Dançarinas), depois Trompa → Combates → A Dama e a Coruja → Pequena Falcoeira → Guardiã da
+  Coruja → Saberes Medievais (logo antes da noite); por fim a noite (Música ao Luar … Mercado ao Anoitecer).
 
 ### 2026-10-02 — Seção "Sobre o Festival" com a arte 2027
 - `index.html`: seção `#sobre` agora tem o título e os 3 cards em arco com medalhões (coroa,

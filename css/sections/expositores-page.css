@@ -16,7 +16,7 @@
     color: var(--color-light);
     background:
         linear-gradient(180deg, rgba(26, 8, 52, 0.55), rgba(26, 8, 52, 0.85)),
-        url('../../assets/pictues/brumas_mercado_laminas.webp?v=3fd5638') center 60% / cover no-repeat,
+        url('../../assets/pictues/brumas_mercado_laminas.webp?v=b5accb8') center 60% / cover no-repeat,
         /* Placeholder enquanto a foto carrega: manchas com as cores da própria foto (couro, lâminas de
            aço, osso claro, tecido cor de areia), por baixo do mesmo véu roxo */
         linear-gradient(165deg, transparent 30%, rgba(170, 170, 170, 0.5) 31% 37%, transparent 38%),
