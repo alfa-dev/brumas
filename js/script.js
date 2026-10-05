@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = '82218c2';
+const BUILD = 'f70377c';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -346,7 +346,7 @@ const PHOTOS = [
     id: 29,
     src: 'assets/pictues/2026/brumas26_trupe-tribal.webp',
     alt: 'Grupo de dança Zaman Tribal reunido para foto',
-    title: 'Zaman Tribal',
+    title: 'Dançarinas',
     album: 2026
   },
   {
@@ -354,13 +354,6 @@ const PHOTOS = [
     src: 'assets/pictues/2026/brumas26_guerreiros.webp',
     alt: 'Dois guerreiros em túnicas medievais',
     title: 'Guerreiros',
-    album: 2026
-  },
-  {
-    id: 24,
-    src: 'assets/pictues/2026/brumas26_dancarinas.webp',
-    alt: 'Trio de dançarinas tribais com saias e flores no cabelo',
-    title: 'Dançarinas',
     album: 2026
   },
   {
