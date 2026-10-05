@@ -339,6 +339,9 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   `assets/og` e `assets/stories` (ids reservados, não reutilizar).
 - Álbum 2026 reordenado em `PHOTOS`: fotos de dia primeiro (Combates, A Dama e a Coruja, Dançarinas, Guerreiros,
   Zaman Tribal), depois as noturnas. A galeria e o visualizador seguem a ordem do array.
+- 3 fotos de dia adicionadas ao fim do bloco diurno (ids 38–40): "O Chamado da Trompa" (`IMG_1373.jpg`),
+  "Pequena Falcoeira" (`IMG_1334.heic`) e "Guardiã da Coruja" (`IMG_1297.heic`), 1080x1440 + `_sm` 420x560;
+  HEIC convertido com `sips` (o ImageMagick local não lê HEIC). Páginas de compartilhamento geradas.
 
 ### 2026-10-02 — Seção "Sobre o Festival" com a arte 2027
 - `index.html`: seção `#sobre` agora tem o título e os 3 cards em arco com medalhões (coroa,
@@ -526,7 +529,7 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
   - *Baixar imagem* e *Mais opções* (folha nativa, só em tela de toque).
   - Botão "voltar" do topo removido (redundante com o "fechar").
   - Testado: file:// e http no desktop, e celular simulado (share recebe o arquivo + texto com link).
-- **Galeria por edição:** 15 fotos de 2026 (retiradas a pedido: "Danças entre as Brumas" id 19, "Fogo Ritual" id 20, "O Mago" id 23 e "Oráculos" id 25,
+- **Galeria por edição:** 18 fotos de 2026 (retiradas a pedido: "Danças entre as Brumas" id 19, "Fogo Ritual" id 20, "O Mago" id 23 e "Oráculos" id 25,
   ids reservados; adicionadas 34–37: Caminho das Luzes, Faíscas na Fogueira, Mercado ao Anoitecer, Saberes
   Medievais; "A Dama e a Coruja" trocada por outra foto da mesma série, mantendo o id 22) (escolhidas entre 107 do Drive "Fotos e Vídeos do Evento";
   `assets/pictues/2026/brumas26_*.webp` + `_sm`) em destaque, 2025 acessível. `PHOTOS` ganhou `album` e

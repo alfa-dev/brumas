@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = '5d43d88';
+const BUILD = '34ce0cb';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -375,6 +375,27 @@ const PHOTOS = [
     src: 'assets/pictues/2026/brumas26_trupe-tribal.webp',
     alt: 'Grupo de dança Zaman Tribal reunido para foto',
     title: 'Zaman Tribal',
+    album: 2026
+  },
+  {
+    id: 38,
+    src: 'assets/pictues/2026/brumas26_chamado-da-trompa.webp',
+    alt: 'Guerreiro de barba longa soprando uma trompa de chifre ao lado do estandarte do Brumas',
+    title: 'O Chamado da Trompa',
+    album: 2026
+  },
+  {
+    id: 39,
+    src: 'assets/pictues/2026/brumas26_pequena-falcoeira.webp',
+    alt: 'Menina de capa azul segurando uma coruja suindara na luva',
+    title: 'Pequena Falcoeira',
+    album: 2026
+  },
+  {
+    id: 40,
+    src: 'assets/pictues/2026/brumas26_guardia-da-coruja.webp',
+    alt: 'Mulher em traje medieval com uma coruja suindara pousada na luva de couro',
+    title: 'Guardiã da Coruja',
     album: 2026
   },
   {

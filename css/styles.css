@@ -1,22 +1,22 @@
 /* Importação dos arquivos CSS base */
-@import 'base.css?v=5d43d88';
-@import 'layout.css?v=5d43d88';
-@import 'components.css?v=5d43d88';
+@import 'base.css?v=34ce0cb';
+@import 'layout.css?v=34ce0cb';
+@import 'components.css?v=34ce0cb';
 
 /* Importação dos arquivos de seções */
-@import 'sections/hero.css?v=5d43d88';
-@import 'sections/about.css?v=5d43d88';
-@import 'sections/attractions.css?v=5d43d88';
-@import 'sections/program.css?v=5d43d88';
-@import 'sections/location.css?v=5d43d88';
-@import 'sections/exhibitors.css?v=5d43d88';
-@import 'sections/tickets.css?v=5d43d88';
-@import 'sections/contact.css?v=5d43d88';
-@import 'sections/organizers.css?v=5d43d88';
-@import 'sections/gallery.css?v=5d43d88';
+@import 'sections/hero.css?v=34ce0cb';
+@import 'sections/about.css?v=34ce0cb';
+@import 'sections/attractions.css?v=34ce0cb';
+@import 'sections/program.css?v=34ce0cb';
+@import 'sections/location.css?v=34ce0cb';
+@import 'sections/exhibitors.css?v=34ce0cb';
+@import 'sections/tickets.css?v=34ce0cb';
+@import 'sections/contact.css?v=34ce0cb';
+@import 'sections/organizers.css?v=34ce0cb';
+@import 'sections/gallery.css?v=34ce0cb';
 /* Importação dos elementos decorativos */
-@import 'decorative/illuminations.css?v=5d43d88';
-@import 'decorative/alchemy.css?v=5d43d88';
-@import 'decorative/mist.css?v=5d43d88';
-@import 'decorative/animations.css?v=5d43d88';
-@import 'decorative/gold-effects.css?v=5d43d88';
+@import 'decorative/illuminations.css?v=34ce0cb';
+@import 'decorative/alchemy.css?v=34ce0cb';
+@import 'decorative/mist.css?v=34ce0cb';
+@import 'decorative/animations.css?v=34ce0cb';
+@import 'decorative/gold-effects.css?v=34ce0cb';
