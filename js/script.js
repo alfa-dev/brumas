@@ -1,5 +1,5 @@
 // Carimbo de build (atualizado pelo pre-commit). Não editar à mão.
-const BUILD = '34ce0cb';
+const BUILD = '3fd5638';
 
 // Guardrail de cache: se o CSS carregado for de outro build (cache antigo do navegador/CDN), recarrega as
 // folhas de estilo com um parâmetro novo e avisa os scripts que dependem delas ('brumas:css-ready').
@@ -343,17 +343,17 @@ const PHOTOS = [
     album: 2025
   },
   {
+    id: 38,
+    src: 'assets/pictues/2026/brumas26_chamado-da-trompa.webp',
+    alt: 'Guerreiro de barba longa soprando uma trompa de chifre ao lado do estandarte do Brumas',
+    title: 'O Chamado da Trompa',
+    album: 2026
+  },
+  {
     id: 21,
     src: 'assets/pictues/2026/brumas26_combates.webp',
     alt: 'Combate medieval com escudos e espadas',
     title: 'Combates',
-    album: 2026
-  },
-  {
-    id: 22,
-    src: 'assets/pictues/2026/brumas26_a-dama-e-a-coruja.webp',
-    alt: 'Dama em traje medieval olhando para a coruja pousada em sua luva',
-    title: 'A Dama e a Coruja',
     album: 2026
   },
   {
@@ -364,24 +364,17 @@ const PHOTOS = [
     album: 2026
   },
   {
-    id: 26,
-    src: 'assets/pictues/2026/brumas26_guerreiros.webp',
-    alt: 'Dois guerreiros em túnicas medievais',
-    title: 'Guerreiros',
+    id: 37,
+    src: 'assets/pictues/2026/brumas26_saberes-medievais.webp',
+    alt: 'Palestrante em cota de malha apresentando sobre ofícios medievais',
+    title: 'Saberes Medievais',
     album: 2026
   },
   {
-    id: 29,
-    src: 'assets/pictues/2026/brumas26_trupe-tribal.webp',
-    alt: 'Grupo de dança Zaman Tribal reunido para foto',
-    title: 'Zaman Tribal',
-    album: 2026
-  },
-  {
-    id: 38,
-    src: 'assets/pictues/2026/brumas26_chamado-da-trompa.webp',
-    alt: 'Guerreiro de barba longa soprando uma trompa de chifre ao lado do estandarte do Brumas',
-    title: 'O Chamado da Trompa',
+    id: 22,
+    src: 'assets/pictues/2026/brumas26_a-dama-e-a-coruja.webp',
+    alt: 'Dama em traje medieval olhando para a coruja pousada em sua luva',
+    title: 'A Dama e a Coruja',
     album: 2026
   },
   {
@@ -396,6 +389,20 @@ const PHOTOS = [
     src: 'assets/pictues/2026/brumas26_guardia-da-coruja.webp',
     alt: 'Mulher em traje medieval com uma coruja suindara pousada na luva de couro',
     title: 'Guardiã da Coruja',
+    album: 2026
+  },
+  {
+    id: 26,
+    src: 'assets/pictues/2026/brumas26_guerreiros.webp',
+    alt: 'Dois guerreiros em túnicas medievais',
+    title: 'Guerreiros',
+    album: 2026
+  },
+  {
+    id: 29,
+    src: 'assets/pictues/2026/brumas26_trupe-tribal.webp',
+    alt: 'Grupo de dança Zaman Tribal reunido para foto',
+    title: 'Zaman Tribal',
     album: 2026
   },
   {
@@ -459,13 +466,6 @@ const PHOTOS = [
     src: 'assets/pictues/2026/brumas26_mercado-ao-anoitecer.webp',
     alt: 'Mercado medieval iluminado visto da trilha de bambus',
     title: 'Mercado ao Anoitecer',
-    album: 2026
-  },
-  {
-    id: 37,
-    src: 'assets/pictues/2026/brumas26_saberes-medievais.webp',
-    alt: 'Palestrante em cota de malha apresentando sobre ofícios medievais',
-    title: 'Saberes Medievais',
     album: 2026
   }
 ];
