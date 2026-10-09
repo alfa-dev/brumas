@@ -334,6 +334,10 @@ anunciando que haverá a **3ª edição em 2027** (data ainda não definida).
 
 ## Histórico de atualizações
 
+### 2026-10-09 — Rodapé: estandartes sem fundo preto
+- `mix-blend-mode: screen` de volta nos estandartes em vídeo do rodapé, aplicado no contêiner
+  `.footer-banner` (que tem `transform`/`z-index`), não no `<video>`: o preto do vídeo aparecia como retângulo.
+
 ### 2026-10-04 — Galeria 2026: menos 2 fotos, dia antes da noite
 - Removidas "Fogo Ritual" (id 20) e "O Mago" (id 23): entradas de `PHOTOS`, `.webp`/`_sm`, `galeria/foto-N.html`,
   `assets/og` e `assets/stories` (ids reservados, não reutilizar).

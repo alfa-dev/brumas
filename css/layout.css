@@ -114,7 +114,9 @@ footer {
     pointer-events: none;
     user-select: none;
     z-index: 0;
-    /* Sem blend: o fundo do vídeo é preto como o do rodapé; a máscara só suaviza as bordas */
+    /* Blend no contêiner (ele tem transform/z-index = contexto de empilhamento; no <video> o preto
+       viraria retângulo). `screen` some com o preto do vídeo; a máscara suaviza as bordas */
+    mix-blend-mode: screen;
 
     & video {
         display: block;
